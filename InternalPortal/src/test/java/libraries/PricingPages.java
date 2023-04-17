@@ -81,10 +81,9 @@ public class PricingPages extends App
 		this.addImportExporBtns("Add");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='discount_code']")));
 		driver.findElement(By.name("discount_code")).sendKeys("newdc1234");
-		driver.findElement(By.id("react-select-3-input")).sendKeys(String.valueOf(java.time.LocalDate.now()));
+		driver.findElement(By.id("react-select-3-input")).sendKeys("4");
 		driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
-		driver.findElement(By.id("react-select-4-input")).click();
-		driver.findElement(By.id("react-select-4-input")).sendKeys(Keys.ARROW_LEFT);
+		driver.findElement(By.id("react-select-4-input")).sendKeys("8");
 		driver.findElement(By.id("react-select-4-input")).sendKeys(Keys.ENTER);
 		driver.findElement(By.id("react-select-5-input")).sendKeys("11");
 		qp.selectDropDown("11");
@@ -92,6 +91,12 @@ public class PricingPages extends App
 		driver.findElement(By.xpath("//*[@placeholder='MRO']")).sendKeys("0.50");
 		driver.findElement(By.xpath("//*[@placeholder='OEM']")).sendKeys("0.75");
 		driver.findElement(By.xpath("//*[@placeholder='RS']")).sendKeys("0.80");
+	}
+	public void verifyAddDiscountCode() throws Exception 
+	{
+		this.addDiscountCode();
+		Thread.sleep(1000);
+		this.addButton("Add Discount Code");
 	}
 	public void addButton(String btnName) {
 		List<WebElement> btns = driver.findElement(By.tagName("section")).findElements(By.tagName("button"));

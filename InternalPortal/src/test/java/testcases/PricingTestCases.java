@@ -1,6 +1,5 @@
 package testcases;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import commonUtils.App;
@@ -19,7 +18,7 @@ public class PricingTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 2)
 	public void testCase2() throws Exception {
-		App.login();
+//		App.login();
 		price.addDiscountCode();
 		//			Assert.assertTrue(res);
 		App.logout();
