@@ -43,7 +43,8 @@ public class PricingPages extends App
 		driver.findElement(By.id("react-select-3-input")).sendKeys(discountCode);
 		Thread.sleep(1200);
 		qp.selectDropDown(discountCode);
-		driver.findElement(By.id("react-select-3-input")).sendKeys(listPrice);
+		driver.findElement(By.name("list_price")).sendKeys(listPrice);
+		Thread.sleep(1200);
 		this.addButton("Add Product");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		return stockCode;
@@ -52,7 +53,9 @@ public class PricingPages extends App
 	{
 		boolean res = false;
 		String expStockCode = this.addProduct(stockCode, discountCode, listPrice);
-		driver.findElement(By.xpath("")).sendKeys(stockCode);
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//*[@class='css-wxvfrp']")).sendKeys(stockCode);
+		Thread.sleep(4000);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
 //		System.out.println("comp name is "+txts.size());
 		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
@@ -89,7 +92,7 @@ public class PricingPages extends App
 		driver.findElement(By.id("react-select-9-input")).sendKeys("0.80");
 	}
 	public void addButton(String btnName) {
-		List<WebElement> btns = driver.findElements(By.tagName("section"));
+		List<WebElement> btns = driver.findElement(By.tagName("section")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) 
 		{
 			if (btns.get(i).getText().equals(btnName)) 
