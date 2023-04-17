@@ -48,11 +48,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyCreateRMA", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_001_VerifyCreateRMA", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyCreateRMA", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_001_VerifyCreateRMA", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -72,11 +72,11 @@ public class RepairPages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (!actText.equals(expText)) {
 			res = true;
-			Object status[] = {"verifySelectItemToRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_002_VerifySelectItemToRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifySelectItemToRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_002_VerifySelectItemToRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -107,11 +107,11 @@ public class RepairPages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (!actText.equals(expText)) {
 			res = true;
-			Object status[] = {"verifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_003_VerifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_003_VerifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -134,11 +134,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyAssignLocation", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_004_VerifyAssignLocation", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyAssignLocation", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_004_VerifyAssignLocation", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -165,11 +165,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyEvaluateItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_005_VerifyEvaluateItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyEvaluateItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_005_VerifyEvaluateItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -199,11 +199,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_006_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_006_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -234,11 +234,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_007_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_007_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -303,11 +303,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyAssignToQC", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_008_VerifyAssignToQC", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyAssignToQC", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_008_VerifyAssignToQC", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -334,11 +334,11 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyQCCheckList", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_009_VerifyQCCheckList", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyQCCheckList", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_009_VerifyQCCheckList", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -359,11 +359,11 @@ public class RepairPages extends App
 		String expText = "QC FAILED";
 		if (actText.toLowerCase().equals(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyQCCheckListStatusAsFail", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_010_VerifyQCCheckListStatusAsFail", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyQCCheckListStatusAsFail", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_010_VerifyQCCheckListStatusAsFail", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -424,11 +424,11 @@ public class RepairPages extends App
 		String actStatus = ls.get(6).getText();
 		if (compName.equalsIgnoreCase(actComp)&&salesP.equalsIgnoreCase(actSp)&&status1.equalsIgnoreCase(actStatus)) {
 			res = true;
-			Object status[] = {"verifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		driver.findElement(By.xpath("//*[@title='Reset Filters ']")).click();
@@ -444,11 +444,11 @@ public class RepairPages extends App
 		ele = driver.findElement(By.xpath("//*[@title='Filters Applied']"));
 		if (ele.isDisplayed()) {
 			res = true;
-			Object status[] = {"verifyFilterStateMaintanance", "filters  are stabled after refresh the page", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_012_VerifyFilterStateMaintanance", "filters  are stabled after refresh the page", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyFilterStateMaintanance", "filters  are not stabled after refresh the page", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_013_VerifyFilterStateMaintanance", "filters  are not stabled after refresh the page", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;

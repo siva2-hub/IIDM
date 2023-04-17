@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -17,17 +18,27 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class App {
 	public static WebDriver driver;
 	public static WebDriverWait wait;
-	public static String url = "https://buzzworld-web-iidm.enterpi.com/pricing";	
+	
+	public static String url = "https://buzzworld-web-iidm.enterpi.com/pricing";
+	public static String mail = "sivakrishna.d@enterpi.com";
+	public static String pwd = "Test@4321";
+	
+//	public static String url = "https://www.staging-buzzworld.iidm.com/pricing";
+//	public static String mail = "b.raghuvardhanreddy@enterpi.com";
+//	public static String pwd = "Enter@4321";
+	
 	@BeforeTest
 	public static void login() {
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.get(url);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
-		driver.findElement(By.id("username")).sendKeys("sivakrishna.d@enterpi.com");
-		driver.findElement(By.id("password")).sendKeys("Test@4321");
+		driver.findElement(By.id("username")).sendKeys(mail);
+		driver.findElement(By.id("password")).sendKeys(pwd);
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 	} 
