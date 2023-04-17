@@ -94,9 +94,26 @@ public class PricingPages extends App
 	}
 	public void verifyAddDiscountCode() throws Exception 
 	{
-		this.addDiscountCode();
+		String dc = this.addDiscountCode();
 		Thread.sleep(1000);
 		this.addButton("Add Discount Code");
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//*[@class='css-wxvfrp']")).sendKeys(stockCode);
+		Thread.sleep(4000);
+		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
+		//		System.out.println("comp name is "+txts.size());
+		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		String actStockCode = ls.get(0).getText();
+		if (expStockCode.equalsIgnoreCase(actStockCode)) {
+			res = true;
+			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			qp.values(status);
+		} else {
+			res = false;
+			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			qp.values(status);
+		}
+		return res;
 	}
 	public void addButton(String btnName) {
 		List<WebElement> btns = driver.findElement(By.tagName("section")).findElements(By.tagName("button"));
