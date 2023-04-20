@@ -19,9 +19,9 @@ import commonUtils.App;
 
 public class QuotePages extends App
 {
+	RepairPages rp;
 	public void createQuote() throws Exception 
-	{
-		
+	{	rp = new RepairPages();	
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
@@ -32,6 +32,10 @@ public class QuotePages extends App
 //		Motion Industries - Grand Prairie
 		this.selectDropDown("Motion Industries - Grand Prairie");
 		driver.findElement(By.name("project_name")).sendKeys("Test");
+		driver.findElement(By.id("react-select-3-input")).sendKeys("Parts Quote");
+		Thread.sleep(2500);
+		this.selectDropDown("Parts Quote");
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
 	}
@@ -65,11 +69,11 @@ public class QuotePages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (actText!=expText) {
 			res = true;
-			Object status[] = {"verifySelectItemToQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifySelectItemToQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -81,11 +85,11 @@ public class QuotePages extends App
 		String expText = "OPEN";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyCreateQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyCreateQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -93,10 +97,12 @@ public class QuotePages extends App
 	public void quoteApprove() throws Exception 
 	{
 		this.submitForInternalApproval();
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		Thread.sleep(2300);
+		Thread.sleep(1200);
+		rp.toastContainer("Approve");
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
+		Thread.sleep(1500);
 	}
 	public boolean verifyApproveButton() throws Exception{
 		boolean res = false;
@@ -105,11 +111,11 @@ public class QuotePages extends App
 		String expText = "APPROVED";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyApproveButton", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyApproveButton", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -121,21 +127,18 @@ public class QuotePages extends App
 		String expText = "DELIVERED TO CUSTOMER";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
 	}
 	public void submitForCustomerApproval() throws Exception {
-		this.submitForInternalApproval();
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		Thread.sleep(2300);
+		this.quoteApprove();
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@role='menuitem']")).click();
 		Thread.sleep(2500);
@@ -147,18 +150,19 @@ public class QuotePages extends App
 		String tcName = "";
 		String expText = "";
 		if (count==1) {
-			 won = "/html/body/div[1]/div/div[3]/div[2]/button[1]";
-			 tcName = "verifyQuoteWon";
+			 won = "Won";
+			 tcName = "QUOTES_006_VerifyQuoteWon";
 			 expText = "WON";
 		} else if(count==2) {
-			 won = "/html/body/div[1]/div/div[3]/div[2]/button[2]";
-			 tcName = "verifyQuoteLost";
+			 won = "Lost";
+			 tcName = "QUOTES_007_VerifyQuoteLost";
 			 expText = "LOST";
 		}
-		driver.findElement(By.xpath(won)).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		Thread.sleep(2300);
+		rp.wonOrLostButton(won);
+		Thread.sleep(1200);
+		rp.toastContainer("Proceed");
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
+		Thread.sleep(1400);
 		boolean res = false;
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
@@ -181,11 +185,11 @@ public class QuotePages extends App
 		String expText = "PENDING APPROVAL";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifySubmitForInternalApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifySubmitForInternalApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -195,20 +199,23 @@ public class QuotePages extends App
 		this.selectItemToQuote();
 		Thread.sleep(2400);
 		WebElement rfq = driver.findElement(By.xpath("//*[@title='RFQ Received Date']"));
+		Thread.sleep(1500);
+		
+		Actions act = new Actions(driver);
+		act.moveToElement(rfq).build().perform();
+		Thread.sleep(1000);
+		List<WebElement> edits = driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElements(By.className("pi-label-edit-icon"));
+		edits.get(0).click();
+		driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElement(By.tagName("button")).click();
+		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
+		Thread.sleep(2000);
+		
+		Thread.sleep(1700);
 		WebElement qReqBy = driver.findElement(By.xpath("//*[@title='Quote Requested By']"));
 		Actions action = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		action.moveToElement(rfq).perform();
+		action.moveToElement(qReqBy).build().perform();
 		Thread.sleep(1000);
-		action.click(rfq.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[1]/div[2]/div[2]/div/div/span"))).perform();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[contains(@class,'now-btn')]")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
-		Thread.sleep(2500);
-		action.moveToElement(qReqBy).perform();
-		Thread.sleep(1000);
-		qReqBy.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[1]/div[2]/div[5]/div/div/span")).click();
+		edits.get(1).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[contains(@class,'react-select__control')]")).click();
 		Thread.sleep(1000);
@@ -218,30 +225,26 @@ public class QuotePages extends App
 		Thread.sleep(2500);
 		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
+		rp.toastContainer("Proceed");
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
 	}
 	public boolean verifyReviseQuote() throws Exception {
-		this.submitForInternalApproval();
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
+		this.quoteApprove();
+		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/div[1]/button")).click();
 		Thread.sleep(1000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		Thread.sleep(2300);
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[1]/button")).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[1]")).click();
-		Thread.sleep(2300);
+		rp.toastContainer("Proceed");
+		Thread.sleep(2700);
 		boolean res = false;
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		String expText = "V2\n"
 				+ "OPEN";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"verifyReviseQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyReviseQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -261,7 +264,7 @@ public class QuotePages extends App
 			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[2]/span/div[2]";
 		}else if(count == 3) {
 			tcName = "searchBySalesPersonName";
-			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[6]/span/div[2]";
+			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[7]/span/div[2]";
 		}else if(count == 4) {
 			tcName = "searchByEmail";
 			
@@ -276,6 +279,7 @@ public class QuotePages extends App
 			res = false;
 			Object status[] = {tcName, "No Quotes for Parts Found! for "+tcName, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
+			App.logout();
 		} else {
 			if (count==4) {
 				driver.findElement(By.xpath("//*[@class='ag-react-container']")).click();
@@ -297,6 +301,7 @@ public class QuotePages extends App
 				res = false;
 				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 				this.values(status);
+				App.logout();
 			}
 		}
 		if (count==4) {
@@ -310,11 +315,11 @@ public class QuotePages extends App
 	}
 	public boolean verifyResetandClearButtonInFiltersPage(String compName, int count) throws Exception {
 		boolean res = false;
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
+		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		driver.findElement(By.className("filter-text")).click();
-		Thread.sleep(1000);
+		Thread.sleep(2300);
 //		System.out.println("before filtersText "+compText1);
 		driver.findElement(By.id("async-select-example")).sendKeys(compName);
 		Thread.sleep(3000);
@@ -338,7 +343,7 @@ public class QuotePages extends App
 	}
 	public boolean verifyClosenadReOpenButtons(int count) throws Exception {
 		boolean res = false;
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
+		
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		this.submitForInternalApproval();
@@ -346,7 +351,8 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("/html/body/div/div/div[5]/div[3]/button[2]")).click();
-		Thread.sleep(2600);
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
+		Thread.sleep(1500);
 		String xpath = ""; String tcName = "";String expText = "";
 		if (count==1) {
 			xpath = "/html/body/div/div/div[3]/div[2]/button[1]";
@@ -376,24 +382,27 @@ public class QuotePages extends App
 	}
 	public boolean verifyFiltersStateMaintanance(String compName, String salesPerson, String status, String quotedBy, int count) throws Exception {
 		boolean res = false;
-		driver.findElement(By.id("username")).sendKeys("sivakrishna.d@enterpi.com");
-		driver.findElement(By.id("password")).sendKeys("Test@4321");
-		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		driver.findElement(By.className("filter-text")).click();
 //		System.exit(0);
-		driver.findElement(By.id("async-select-example")).sendKeys(compName);
+		Thread.sleep(1500);
+		List<WebElement> ins = driver.findElements(By.id("async-select-example"));
+		ins.get(0).sendKeys(compName);
 		Thread.sleep(3000);
 		this.selectDropDown(compName);
-		driver.findElement(By.id("react-select-4-input")).sendKeys(salesPerson);
+		driver.findElement(By.id("react-select-3-input")).sendKeys(salesPerson);
 		this.selectDropDown(salesPerson);
-		driver.findElement(By.id("react-select-5-input")).sendKeys(status);
+		driver.findElement(By.id("react-select-4-input")).sendKeys(status);
 		this.selectDropDown(status);
-		driver.findElement(By.id("react-select-6-input")).sendKeys(quotedBy);
+		driver.findElement(By.id("react-select-5-input")).sendKeys(quotedBy);
 		this.selectDropDown(quotedBy);
+		ins.get(1).sendKeys("0165009LS");
+		Thread.sleep(1600);
+		this.selectDropDown("0165009LS");
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div[4]/div[1]/div/div[3]/button[2]")).click();
 		Thread.sleep(5000);
 		driver.navigate().refresh();
@@ -415,31 +424,32 @@ public class QuotePages extends App
 	{
 		Thread.sleep(2000);
 		boolean res = false;
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		this.createQuote();
 		Thread.sleep(1000);
 		this.selectItemToQuote();
-		
 		String itemsCount = "";
 		String expText = "";
+		String tcName ="";
 		if (count==1) {
-			
+			tcName = "verifyDeleteIconInQuoteItems";
 			driver.findElement(By.xpath("//*[@title='Delete Item']")).click();
-			Thread.sleep(1500);
-			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div[1]/div/div[1]/div[5]/div[2]/div[2]/div[3]/button[1]")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[6]/div[2]/div[2]/div[3]/button[1]")).click();
 			Thread.sleep(2700);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
-			itemsCount = driver.findElement(By.xpath("//*[@id='repair-items']")).getText();
-			expText = "";
+			Thread.sleep(2500);
+			itemsCount = driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.tagName("h4")).getText();
+			expText = "Quote Items (0)";
 		} else if(count==2){
+			tcName = "verifyEditIconInQuoteItems";
 			driver.findElement(By.xpath("//*[@title='Edit Item']")).click();
 			Thread.sleep(1000);
 			WebElement qty = driver.findElement(By.xpath("//input[@name='quantity']"));
 			System.out.println("lenght of qty is"+qty.getAttribute("value").length());
-//			System.exit(0);
-			for(int i=0; i<qty.getAttribute("value").length();i++){
+			for(int i=0; i<qty.getAttribute("value").length();i++)
+			{
 				qty.sendKeys(Keys.BACK_SPACE);
 			}
 			expText = "200";
@@ -448,39 +458,45 @@ public class QuotePages extends App
 			driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 			Thread.sleep(2000);
-			itemsCount = driver.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[5]/div[2]/div[1]/div/div[2]/div[2]/div[3]/div[1]/h4")).getText();
+			itemsCount = driver.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[6]/div[2]/div[1]/div/div[2]/div[2]/div[3]/div[1]/h4")).getText();
+			System.out.println("items count "+itemsCount);
 		}
-		if (itemsCount.contains("Quote item(s) Not found")||itemsCount.equalsIgnoreCase("200")) {
+		if (itemsCount.equalsIgnoreCase(expText)||itemsCount.equalsIgnoreCase("200")) {
 			res = true;
-			Object status1[] = {"verifyDeleteIconInQuoteItems", itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status1[] = {tcName, itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status1);
 		} else {
 			res = false;
-			Object status1[] = {"verifyDeleteIconInQuoteItems",itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status1[] = {tcName,itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status1);
 		}
 		return res;
 	}
-	public boolean verifyFiltersInQuoteListView(String compName, String salesPerson, String status, String quotedBy, int count) throws Exception {
+	public boolean verifyFiltersInQuoteListView(String compName, String salesPerson, String status, String quotedBy, int count) throws Exception 
+	{
 		boolean res = false;
-		driver.findElement(By.id("username")).sendKeys("sivakrishna.d@enterpi.com");
-		driver.findElement(By.id("password")).sendKeys("Test@4321");
-		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
+		
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='filter-text']")));
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		driver.findElement(By.className("filter-text")).click();
 //		System.exit(0);
-		driver.findElement(By.id("async-select-example")).sendKeys(compName);
+		Thread.sleep(2000);
+		List<WebElement> ins = driver.findElements(By.id("async-select-example"));
+		ins.get(0).sendKeys(compName);
 		Thread.sleep(3000);
 		this.selectDropDown(compName);
-		driver.findElement(By.id("react-select-4-input")).sendKeys(salesPerson);
+		driver.findElement(By.id("react-select-3-input")).sendKeys(salesPerson);
 		this.selectDropDown(salesPerson);
-		driver.findElement(By.id("react-select-5-input")).sendKeys(status);
+		driver.findElement(By.id("react-select-4-input")).sendKeys(status);
 		this.selectDropDown(status);
-		driver.findElement(By.id("react-select-6-input")).sendKeys(quotedBy);
+		driver.findElement(By.id("react-select-5-input")).sendKeys(quotedBy);
 		this.selectDropDown(quotedBy);
+		ins.get(1).sendKeys("0165009LS");
+		Thread.sleep(1600);
+		this.selectDropDown("0165009LS");
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div[4]/div[1]/div/div[3]/button[2]")).click();
 		Thread.sleep(5000);
 		String gridText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
@@ -488,6 +504,10 @@ public class QuotePages extends App
 			res = false;
 			Object status1[] = {"verifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status1);
+			Thread.sleep(1500);
+			driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+			App.logout();
 		} else {
 			String actText1 = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[2]/span/div[2]")).getText();
 			String actText2 = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[6]/span/div[2]")).getText();
@@ -501,15 +521,15 @@ public class QuotePages extends App
 				res = false;
 				Object status1[] = {"verifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 				this.values(status1);
+				Thread.sleep(1500);
+				driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+				App.logout();
 			}
 		}
 		Thread.sleep(1700);
 		
-		driver.findElement(By.xpath("//*[contains(@title,'Reset Filters')]")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
-		driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
-		List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
-		btns.get(1).click();
+		
 		return res;
 	}
 	public boolean verifyPrintDownLoad() throws Exception {
@@ -525,11 +545,11 @@ public class QuotePages extends App
 		driver.switchTo().window(id1[0].toString());
 		if (ids.size()==2) {
 			res = true;
-			Object status[] = {"verifyPrintFunctionality", "Print working in Quotes Detailed Page.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_009_VerifyPrintFunctionality", "Print working in Quotes Detailed Page.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyPrintFunctionality", "Print Not working..!,in Quotes Detailed Page", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_009_VerifyPrintFunctionality", "Print Not working..!,in Quotes Detailed Page", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -550,10 +570,17 @@ public class QuotePages extends App
 		Thread.sleep(4000);
 		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[@name='checkbox1'][@type='checkbox']")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[7]/div[1]/div/div[4]/div/div/div/div[2]/div[3]/button")).click();
+		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
+		for(int i=0;i<btn.size();i++) 
+		{
+			if (btn.get(i).getText().equalsIgnoreCase("Add Selected 1 Items")) {
+				btn.get(i).click();
+				break;
+			} 
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
-		Thread.sleep(2600);
-		String optionText = driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div[1]/div/div[1]/div[5]/div[2]/div/div[1]")).getText();
+		Thread.sleep(1600);
+		String optionText = driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.xpath("//*[@aria-setsize='2'][@aria-posinset='2']")).getText();
 		if (optionText.contains("Option 2")) {
 			res = true;
 			Object status[] = {"verifyAddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};

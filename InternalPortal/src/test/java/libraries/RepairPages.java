@@ -259,18 +259,21 @@ public class RepairPages extends App
 		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
 		Thread.sleep(2000);
 		this.toastContainer("Proceed");
-		Thread.sleep(6500);
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
+		Thread.sleep(1700);
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
 		Thread.sleep(1200);
 		this.toastContainer("Approve");
-		Thread.sleep(6500);
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@class='Button-Icon-Display']")).click();
 		Thread.sleep(2000);
 		this.wonOrLostButton("Won");
 		Thread.sleep(1200);
 		this.toastContainer("Proceed");
-		Thread.sleep(4400);
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
+		Thread.sleep(1400);
 		List<WebElement> btns = driver.findElements(By.tagName("h4"));
 		for(int i=0;i<btns.size();i++)
 		{
@@ -371,7 +374,7 @@ public class RepairPages extends App
 	public boolean fileUpload() throws Exception 
 	{
 		this.createRMA();
-		driver.findElement(By.xpath("//*[@type='file']")).sendKeys("/home/enterpi/Pictures/Screenshot from 2022-11-09 15-14-23.png");
+		driver.findElement(By.xpath("//*[@type='file']")).sendKeys("/home/enterpi/Pictures/Screenshot from 2023-04-18 10-35-23.png");
 		Thread.sleep(2000);
 		boolean res = false;
 		String expText = " Documents Not Available";
@@ -454,11 +457,12 @@ public class RepairPages extends App
 		return res;
 	}
 	//..................................................................................................................
-	public void toastContainer(String data) 
+	public void toastContainer(String data) throws InterruptedException 
 	{
 		List<WebElement> btns = driver.findElement(By.className("toast-action")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) 
 		{
+			Thread.sleep(1200);
 			if(btns.get(i).getText().toLowerCase().contains(data.toLowerCase())) 
 			{
 				btns.get(i).click();
