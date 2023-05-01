@@ -6,12 +6,13 @@
       <class name="testcases.QuoteTestCases">
         <methods>
           <include name="testCase13"/>
-          <include name="testCase3"/>
           <include name="testCase14"/>
+          <include name="testCase12"/>
           <include name="login"/>
           <include name="logout"/>
           <include name="testCase10"/>
-          <include name="testCase15"/>
+          <include name="testCase17"/>
+          <include name="testCase18"/>
         </methods>
       </class> <!-- testcases.QuoteTestCases -->
     </classes>

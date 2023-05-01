@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +30,8 @@ public class RepairPages extends App
 		driver.findElement(By.id("async-select-example")).sendKeys("Integrated Systems Corporation");
 		Thread.sleep(2300);
 		quotes.selectDropDown("Integrated Systems Corporation");
-		Thread.sleep(2300);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1300);
 		driver.findElement(By.id("react-select-3-input")).sendKeys("Standard");
 		quotes.selectDropDown("Standard");
 		Thread.sleep(2300);
@@ -89,7 +91,7 @@ public class RepairPages extends App
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.id("tab-2")).click();
-		driver.findElement(By.id("async-select-example")).sendKeys("ABB");
+		driver.findElement(By.id("async-select-example")).sendKeys("BACO CONTROLS INC");
 		Thread.sleep(1000);
 		quotes.selectDropDown("ABB");
 		driver.findElement(By.name("custom_part_items.0.part_number")).sendKeys("PN12345");
