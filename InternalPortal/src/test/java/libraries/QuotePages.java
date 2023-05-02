@@ -200,7 +200,6 @@ public class QuotePages extends App
 		Thread.sleep(2400);
 		WebElement rfq = driver.findElement(By.xpath("//*[@title='RFQ Received Date']"));
 		Thread.sleep(1500);
-		
 		Actions act = new Actions(driver);
 		act.moveToElement(rfq).build().perform();
 		Thread.sleep(1000);
@@ -209,7 +208,6 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 		Thread.sleep(2000);
-		
 		Thread.sleep(1700);
 		WebElement qReqBy = driver.findElement(By.xpath("//*[@title='Quote Requested By']"));
 		Actions action = new Actions(driver);

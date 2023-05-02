@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -93,7 +94,7 @@ public class RepairPages extends App
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.id("tab-2")).click();
 		driver.findElement(By.id("async-select-example")).sendKeys("BACO CONTROLS INC");
 		Thread.sleep(1000);
-		quotes.selectDropDown("ABB");
+		quotes.selectDropDown("BACO CONTROLS INC");
 		driver.findElement(By.name("custom_part_items.0.part_number")).sendKeys("PN12345");
 		driver.findElement(By.name("custom_part_items.0.serial_number")).sendKeys("SN12346");
 		driver.findElement(By.name("custom_part_items.0.description")).sendKeys("Test Description");
@@ -145,13 +146,54 @@ public class RepairPages extends App
 		}
 		return res;
 	}
-	public void evaluateItem() throws Exception 	
+	public void assignTechnician() throws Exception 
 	{
 		this.assignLocation();
 		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
 		btn.get(1).click();
+		driver.findElement(By.className("link-icon-text")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ARROW_UP);
+		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		driver.findElement(By.id("react-select-7-input")).sendKeys(Keys.ARROW_DOWN);
+		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
+		for(int i=0;i<btns.size();i++) {
+			if(btns.get(i).getText().equalsIgnoreCase("Assign")) {
+				btns.get(i).click();
+				break;
+			}
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
+		Thread.sleep(2000);
+	}
+	public boolean verifyAssignTechnician() throws Exception {
+		this.assignTechnician();
+		boolean res = false;
+		String expText = "PENDING EVALUATION";
+		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
+		if (actText.toLowerCase().contains(expText.toLowerCase())) {
+			res = true;
+			Object status[] = {"REPAIRS_005_VerifyAssignTechnician", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+		} else {
+			res = false;
+			Object status[] = {"REPAIRS_005_VerifyAssignTechnician", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+		}
+		return res;
+	}
+	public void evaluateItem() throws Exception 	
+	{
+		this.assignTechnician();
+		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
+		btn.get(1).click();
 		driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown--')]")).click();
 		Thread.sleep(1000);
+		driver.findElement(By.id("react-select-8-input")).sendKeys(Keys.ARROW_DOWN);
+		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		driver.findElement(By.name("estimated_hrs")).sendKeys("23");
+		driver.findElement(By.name("price")).sendKeys("198");
 		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		btns.get(7).click();
 		System.out.println("count of btns are "+btns.size());
@@ -163,7 +205,7 @@ public class RepairPages extends App
 	public boolean verifyEvaluateItem() throws Exception {
 		this.evaluateItem();
 		boolean res = false;
-		String expText = "EVALUATION";
+		String expText = "PENDING QUOTE";
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
@@ -248,16 +290,16 @@ public class RepairPages extends App
 	public void assignToQC() throws Exception 
 	{
 		this.createQuoteFromRepair();
-		WebElement rfq = driver.findElement(By.xpath("//*[@title='RFQ Received Date']"));
-		WebElement qReqBy = driver.findElement(By.xpath("//*[@title='Quote Requested By']"));
-		Actions act = new Actions(driver);
-		act.moveToElement(rfq).build().perform();
-		Thread.sleep(1000);
-		List<WebElement> edits = driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElements(By.className("pi-label-edit-icon"));
-		edits.get(0).click();
-		driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElement(By.tagName("button")).click();
-		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
-		Thread.sleep(2000);
+//		WebElement rfq = driver.findElement(By.xpath("//*[@title='RFQ Received Date']"));
+//		WebElement qReqBy = driver.findElement(By.xpath("//*[@title='Quote Requested By']"));
+//		Actions act = new Actions(driver);
+//		act.moveToElement(rfq).build().perform();
+//		Thread.sleep(1000);
+//		List<WebElement> edits = driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElements(By.className("pi-label-edit-icon"));
+//		edits.get(0).click();
+//		driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElement(By.tagName("button")).click();
+//		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
+//		Thread.sleep(2000);
 		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
 		Thread.sleep(2000);
 		this.toastContainer("Proceed");
@@ -422,19 +464,26 @@ public class RepairPages extends App
 		String compName = "123 E Doty Corporation"; String salesP = "Dallas House";
 		String status1 = "Check In Pending";boolean res = false;
 		this.filters(compName, salesP, status1);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-//		System.out.println("comp name is "+txts.size());
-		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String actComp = ls.get(2).getText(); String actSp = ls.get(5).getText();
-		String actStatus = ls.get(6).getText();
-		if (compName.equalsIgnoreCase(actComp)&&salesP.equalsIgnoreCase(actSp)&&status1.equalsIgnoreCase(actStatus)) {
-			res = true;
-			Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+		if (driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText().equalsIgnoreCase("Repair Request Not Found")) {
+			res = false;
+			Object status[] = {"REPAIRS_011_VerifyFilters", "Repair Request Not Found", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			res = false;
-			Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+
+			List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
+//		System.out.println("comp name is "+txts.size());
+			List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+			String actComp = ls.get(2).getText(); String actSp = ls.get(5).getText();
+			String actStatus = ls.get(6).getText();
+			if (compName.equalsIgnoreCase(actComp)&&salesP.equalsIgnoreCase(actSp)&&status1.equalsIgnoreCase(actStatus)) {
+				res = true;
+				Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			} else {
+				res = false;
+				Object status[] = {"REPAIRS_011_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			}
 		}
 		driver.findElement(By.xpath("//*[@title='Reset Filters ']")).click();
 		return res;

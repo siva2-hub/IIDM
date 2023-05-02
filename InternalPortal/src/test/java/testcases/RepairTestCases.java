@@ -44,7 +44,7 @@ public class RepairTestCases extends App
 	@Test(priority = 5)
 	public void testCase5() throws Exception {
 		App.login();
-		boolean res = repairs.verifyEvaluateItem();
+		boolean res = repairs.verifyAssignTechnician();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -52,7 +52,7 @@ public class RepairTestCases extends App
 	@Test(priority = 6)
 	public void testCase6() throws Exception {
 		App.login();
-		boolean res = repairs.verifyAddRepairableItemToQuote();
+		boolean res = repairs.verifyEvaluateItem();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -60,7 +60,7 @@ public class RepairTestCases extends App
 	@Test(priority = 7)
 	public void testCase7() throws Exception {
 		App.login();
-		boolean res = repairs.verifyCreateQuoteFromRepair();
+		boolean res = repairs.verifyAddRepairableItemToQuote();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -68,15 +68,15 @@ public class RepairTestCases extends App
 	@Test(priority = 8)
 	public void testCase8() throws Exception {
 		App.login();
-		boolean res = repairs.verifyAssignToQC();
+		boolean res = repairs.verifyCreateQuoteFromRepair();
 		Assert.assertTrue(res);
 		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 9)
 	public void testCase9() throws Exception {
-		App.login();
-		boolean res = repairs.verifyQCCheckList();
+ 		App.login();
+		boolean res = repairs.verifyAssignToQC();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -84,7 +84,7 @@ public class RepairTestCases extends App
 	@Test(priority = 10)
 	public void testCase10() throws Exception {
 		App.login();
-		boolean res = repairs.verifyQCCheckListStatusAsFail();
+		boolean res = repairs.verifyQCCheckList();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -92,7 +92,7 @@ public class RepairTestCases extends App
 	@Test(priority = 11)
 	public void testCase11() throws Exception {
 		App.login();
-		boolean res = repairs.fileUpload();
+		boolean res = repairs.verifyQCCheckListStatusAsFail();
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -100,13 +100,21 @@ public class RepairTestCases extends App
 	@Test(priority = 12)
 	public void testCase12() throws Exception {
 		App.login();
-		boolean res = repairs.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending");
+		boolean res = repairs.fileUpload();
 		Assert.assertTrue(res);
 		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 13)
 	public void testCase13() throws Exception {
+		App.login();
+		boolean res = repairs.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending");
+		Assert.assertTrue(res);
+		App.logout();
+	}
+	//@Test(enabled = false)
+	@Test(priority = 14)
+	public void testCase14() throws Exception {
 		App.login();
 		boolean res = repairs.verifyFilterStateMaintanance();
 		Assert.assertTrue(res);
