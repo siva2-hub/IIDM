@@ -74,10 +74,10 @@ public class QuoteTestCases extends App{
 	//@Test(enabled = false)
 	@Test(priority=9)
 	public void testCase9() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = quotes.verifyPrintDownLoad();
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority=10)
@@ -167,11 +167,27 @@ public class QuoteTestCases extends App{
 		Assert.assertTrue(res);
 		App.logout();
 	}
-   //@Test(enabled = false)
+	//@Test(enabled = false)
 	@Test(priority=21)
 	public void testCase21() throws Exception {
 		App.login();
 		boolean res = quotes.verifyAddOptionInQuoteDetailedView();
+		Assert.assertTrue(res);
+		App.logout();
+	}
+	//@Test(enabled = false)
+	@Test(priority=22)
+	public void testCase22() throws Exception {
+		App.login();
+		boolean res = quotes.verifyQuoteClone_QuotesForParts();
+		Assert.assertTrue(res);
+		App.logout();
+	}
+	//@Test(enabled = false)
+	@Test(priority=23)
+	public void testCase23() throws Exception {
+		App.login();
+		boolean res=quotes.quoteClone_QuoteForRepairs();
 		Assert.assertTrue(res);
 		App.logout();
 	}

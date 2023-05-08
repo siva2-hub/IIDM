@@ -48,10 +48,10 @@ public class QuotePages extends App
 		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[@name='checkbox1'][@type='checkbox']")).click();
 		Thread.sleep(2000);
 		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
-		System.out.println("count of btns in select Items to repair page "+btn.size());
+//		System.out.println("count of btns in select Items to repair page "+btn.size());
 		for(int i=0;i<btn.size();i++) 
 		{
-			System.out.println(btn.get(i).getText());
+//			System.out.println(btn.get(i).getText());
 			if(btn.get(i).getText().toLowerCase().contains("Add Selected".toLowerCase())) {
 				btn.get(i).click();
 				break;
@@ -255,16 +255,16 @@ public class QuotePages extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		String tcName = "";String path = "";boolean res = false;String actText = "";
 		if (count == 1) {
-			tcName = "searchByQuoteId";
+			tcName = "QUOTES_010_VerifySearchByQuoteId";
 			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[1]";
 		} else if(count == 2) {
-			tcName = "searchByCompanyName";
+			tcName = "QUOTES_011_VerifySearchByCompanyName";
 			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[2]/span/div[2]";
 		}else if(count == 3) {
-			tcName = "searchBySalesPersonName";
+			tcName = "QUOTES_012_VerifySearchBySalesPersonName";
 			path = "/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[7]/span/div[2]";
 		}else if(count == 4) {
-			tcName = "searchByEmail";
+			tcName = "QUOTES_013_VerifySearchByEmail";
 			
 		}
 		driver.findElement(By.className("css-wxvfrp")).sendKeys(searchBy);
@@ -303,7 +303,7 @@ public class QuotePages extends App
 			}
 		}
 		if (count==4) {
-			driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
+//			driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
 			List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
 			btns.get(1).click();
 		} else {
@@ -330,11 +330,11 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("//*[@title='close']")).click();
 		if (compText1.equalsIgnoreCase("Search By Company Name")) {
 			res = true;
-			Object status[] = {"verifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_016_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_016_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -354,11 +354,11 @@ public class QuotePages extends App
 		String xpath = ""; String tcName = "";String expText = "";
 		if (count==1) {
 			xpath = "/html/body/div/div/div[3]/div[2]/button[1]";
-			tcName = "verifyReOpen_ButtonInQuoteDetailePage";
+			tcName = "QUOTES_017_VerifyReOpen_ButtonInQuoteDetailePage";
 			expText = "open";
 		} else if(count==2) {
 			xpath = "/html/body/div/div/div[3]/div[2]/button[2]";
-			tcName = "verifyClose_ButtonInQuoteDetailePage";
+			tcName = "QUOTES_018_VerifyClose_ButtonInQuoteDetailePage";
 			expText = "closed";
 		}
 		driver.findElement(By.xpath(xpath)).click();
@@ -407,11 +407,11 @@ public class QuotePages extends App
 		Thread.sleep(5000);
 		if (driver.findElement(By.xpath("//*[contains(@title,'Reset Filters')]")).isDisplayed()) {
 			res = true;
-			Object status1[] = {"verifyFiltersStateMaintanance", "Filter State Maintanance working.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status1[] = {"QUOTES_015_VerifyFiltersStateMaintanance", "Filter State Maintanance working.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status1);
 		} else {
 			res = true;
-			Object status1[] = {"verifyFiltersStateMaintanance", "Filter State Maintanance not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status1[] = {"QUOTES_015_VerifyFiltersStateMaintanance", "Filter State Maintanance not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status1);
 		}
 		driver.findElement(By.xpath("//*[contains(@title,'Reset Filters')]")).click();
@@ -431,7 +431,7 @@ public class QuotePages extends App
 		String expText = "";
 		String tcName ="";
 		if (count==1) {
-			tcName = "verifyDeleteIconInQuoteItems";
+			tcName = "QUOTES_019_VerifyDeleteIconInQuoteItems";
 			driver.findElement(By.xpath("//*[@title='Delete Item']")).click();
 			Thread.sleep(2000);
 			driver.findElement(By.xpath("/html/body/div/div/div[6]/div[1]/div/div[1]/div[6]/div[2]/div[2]/div[3]/button[1]")).click();
@@ -441,7 +441,7 @@ public class QuotePages extends App
 			itemsCount = driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.tagName("h4")).getText();
 			expText = "Quote Items (0)";
 		} else if(count==2){
-			tcName = "verifyEditIconInQuoteItems";
+			tcName = "QUOTES_020_VerifyEditIconInQuoteItems";
 			driver.findElement(By.xpath("//*[@title='Edit Item']")).click();
 			Thread.sleep(1000);
 			WebElement qty = driver.findElement(By.xpath("//input[@name='quantity']"));
@@ -500,7 +500,7 @@ public class QuotePages extends App
 		String gridText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
 		if (gridText=="") {
 			res = false;
-			Object status1[] = {"verifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status1[] = {"QUOTES_014_VerifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status1);
 			Thread.sleep(1500);
 			driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
@@ -513,11 +513,11 @@ public class QuotePages extends App
 			String actText4 = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[2]/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div[1]/div[4]/span/div[2]")).getText();
 			if (actText1.equalsIgnoreCase(compName)&& actText2.equalsIgnoreCase(salesPerson)&& actText3.equalsIgnoreCase(status)&& actText4.equalsIgnoreCase(quotedBy)) {
 				res = true;
-				Object status1[] = {"verifyFiltersInQuotesListView", "Filter functionality working", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status1[] = {"QUOTES_014_VerifyFiltersInQuotesListView", "Filter functionality working", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 				this.values(status1);
 			} else {
 				res = false;
-				Object status1[] = {"verifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status1[] = {"QUOTES_014_VerifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 				this.values(status1);
 				Thread.sleep(1500);
 				driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
@@ -534,7 +534,7 @@ public class QuotePages extends App
 		this.createQuote();
 		this.selectItemToQuote();
 		boolean res = false;
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/div[1]/button")).click();
+		driver.findElement(By.xpath("//*[contains(@src,'print')]")).click();
 		Thread.sleep(2300);
 		Set<String> ids = driver.getWindowHandles();
 		Object[] id1 = ids.toArray();
@@ -581,11 +581,98 @@ public class QuotePages extends App
 		String optionText = driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.xpath("//*[@aria-setsize='2'][@aria-posinset='2']")).getText();
 		if (optionText.contains("Option 2")) {
 			res = true;
-			Object status[] = {"verifyAddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_021_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"verifyAddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_021_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			this.values(status);
+		}
+		return res;
+	}
+	public String[] quoteClone_QuotesForParts() throws Exception 
+	{
+		this.submitForInternalApproval();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1300);
+		List<WebElement> repIds = driver.findElements(By.id("repair-info-id"));
+		String beforeCloneRepText = repIds.get(0).getText();
+		String beforeCloneCust = repIds.get(1).getText();
+		String beforeCloneItems = driver.findElement(By.id("repair-items")).getText();
+		Thread.sleep(1500);
+		driver.findElement(By.xpath("//*[contains(@src,'clone')]")).click();
+		Thread.sleep(1300);
+		rp.toastContainer("Proceed");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(2000);
+		String[] is = {beforeCloneRepText, beforeCloneItems, beforeCloneCust};
+		return is;
+	}
+	public boolean verifyQuoteClone_QuotesForParts() throws Exception
+	{
+		String is[] = this.quoteClone_QuotesForParts();
+		String beforeCloneRepText = is[0];
+		String beforeCloneItems = is[1];
+		String beforeCloneCust = is[2];
+		List<WebElement> repIds = driver.findElements(By.id("repair-info-id"));
+		String afterCloneRepText = repIds.get(0).getText();
+		String afterCloneCust = repIds.get(1).getText();
+		String afterCloneItems = driver.findElement(By.id("repair-items")).getText();
+		
+		boolean res = false;
+		if (beforeCloneRepText.equals(afterCloneRepText)&&beforeCloneItems.equals(afterCloneItems)&&beforeCloneCust.equals(afterCloneCust)) {
+			String actText = driver.findElement(By.className("quote-num-and-status")).getText();
+			String ExpText = "OPEN";
+			if (actText.toLowerCase().contains(ExpText.toLowerCase())) {
+				res = true;
+				Object status[] = {"QUOTES_022_VerifyQuoteClone_QuotesForParts", actText, ExpText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+				this.values(status);
+			} else {
+				res = false;
+				Object status[] = {"QUOTES_022_VerifyQuoteClone_QuotesForParts", actText, ExpText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+				this.values(status);
+			}
+		} else {
+			System.out.println("Quote Cloned Failed.!");
+			System.out.println("before clone rep info"+beforeCloneRepText);
+			System.out.println("after clone  rep info "+afterCloneRepText);
+			System.out.println("before clone item info "+beforeCloneItems);
+			System.out.println("after clone  item info "+afterCloneItems);
+			System.out.println("before clone cust info "+beforeCloneCust);
+			System.out.println("after clone  cust info "+afterCloneCust);
+			res = false;
+			Object status[] = {"QUOTES_021_VerifyQuoteClone_QuotesForParts", "", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			this.values(status);
+		}
+		return res;
+	}
+	public boolean quoteClone_QuoteForRepairs() throws Exception 
+	{
+		rp = new RepairPages();
+		rp.createQuoteFromRepair();
+		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
+		Thread.sleep(2000);
+		rp.toastContainer("Proceed");
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
+		Thread.sleep(1500);
+		driver.findElement(By.xpath("//*[contains(@src,'clone')]")).click();
+		Thread.sleep(1300);
+		rp.toastContainer("Proceed");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1500);
+		String quoteType = driver.findElement(By.id("repair-info-id")).findElement(By.xpath("//*[contains(@class,'pi-label')]")).findElement(By.xpath("//*[@class='description']")).getText();
+		System.out.println("quote type is "+quoteType);
+		List<WebElement> btms = driver.findElements(By.xpath("//*[contains(@class,'border-bottom')]"));
+		String repRelText = btms.get(1).getText();
+		System.out.println("repair related link id "+repRelText);
+		System.out.println("count of bottoms are "+btms.size());boolean res = false;
+		if (quoteType.toLowerCase().contains("Parts Quote") && !repRelText.contains("Repair ID")) {
+			res = true;
+			Object status[] = {"QUOTES_023_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType, "repair related link "+repRelText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			this.values(status);
+		} else {
+			res = true;
+			Object status[] = {"QUOTES_023_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType, "repair related link "+repRelText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
 		return res;

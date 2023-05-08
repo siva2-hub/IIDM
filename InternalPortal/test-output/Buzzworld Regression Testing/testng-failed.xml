@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Buzzworld Regression Testing]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Pricng Test Cases(failed)">
+    <classes>
+      <class name="testcases.PricingTestCases">
+        <methods>
+          <include name="testCase5"/>
+          <include name="logout"/>
+          <include name="login"/>
+        </methods>
+      </class> <!-- testcases.PricingTestCases -->
+    </classes>
+  </test> <!-- Pricng Test Cases(failed) -->
+  <test thread-count="5" name="Quotes Test Cases(failed)">
+    <classes>
+      <class name="testcases.QuoteTestCases">
+        <methods>
+          <include name="testCase13"/>
+          <include name="testCase14"/>
+          <include name="testCase12"/>
+          <include name="login"/>
+          <include name="logout"/>
+          <include name="testCase10"/>
+          <include name="testCase15"/>
+          <include name="testCase9"/>
+          <include name="testCase22"/>
+        </methods>
+      </class> <!-- testcases.QuoteTestCases -->
+    </classes>
+  </test> <!-- Quotes Test Cases(failed) -->
+</suite> <!-- Failed suite [Buzzworld Regression Testing] -->
