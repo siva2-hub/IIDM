@@ -43,15 +43,15 @@ public class QuotePages extends App
 		driver.findElement(By.id("repair-items")).findElement(By.tagName("button")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
-		driver.findElement(By.className("css-wxvfrp")).sendKeys("0165");
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("0165");
 		Thread.sleep(4000);
-		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[@name='checkbox1'][@type='checkbox']")).click();
+		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//input[starts-with(@name,'checkbox')]")).click();
+//		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[@name='checkbox1'][@type='checkbox']")).click();
+//		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[contains(@class,'data item-selection-grid')]")).findElements(By.tagName("g")).get(0).click();
 		Thread.sleep(2000);
 		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
-//		System.out.println("count of btns in select Items to repair page "+btn.size());
 		for(int i=0;i<btn.size();i++) 
 		{
-//			System.out.println(btn.get(i).getText());
 			if(btn.get(i).getText().toLowerCase().contains("Add Selected".toLowerCase())) {
 				btn.get(i).click();
 				break;
@@ -267,7 +267,7 @@ public class QuotePages extends App
 			tcName = "QUOTES_013_VerifySearchByEmail";
 			
 		}
-		driver.findElement(By.className("css-wxvfrp")).sendKeys(searchBy);
+		driver.findElement(By.xpath("//*[@placeholder='Quote ID / Company Name / Sales Person Name / Email']")).sendKeys(searchBy);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-viewport']")));
 		Thread.sleep(5000);
 		String gridText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();

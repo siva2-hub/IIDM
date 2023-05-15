@@ -74,10 +74,10 @@ public class QuoteTestCases extends App{
 	//@Test(enabled = false)
 	@Test(priority=9)
 	public void testCase9() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = quotes.verifyPrintDownLoad();
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority=10)

@@ -464,7 +464,8 @@ public class RepairPages extends App
 		String compName = "123 E Doty Corporation"; String salesP = "Dallas House";
 		String status1 = "Check In Pending";boolean res = false;
 		this.filters(compName, salesP, status1);
-		if (driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText().equalsIgnoreCase("Repair Request Not Found")) {
+		System.out.println("grid text after apply the filter "+driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText());
+		if (driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText().equalsIgnoreCase("")) {
 			res = false;
 			Object status[] = {"REPAIRS_013_VerifyFilters", "Repair Request Not Found", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
@@ -472,7 +473,7 @@ public class RepairPages extends App
 
 			List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
 //		System.out.println("comp name is "+txts.size());
-			List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+			List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 //			for(int i=0;i<ls.size();i++) 
 //			{
 //				System.out.println("for loop grid list are "+ls.get(i).getText());
@@ -498,7 +499,7 @@ public class RepairPages extends App
 		this.filters("123 E Doty Corporation", "Dallas House", "Check In Pending");
 		WebElement ele = driver.findElement(By.xpath("//*[@title='Filters Applied']"));
 		driver.navigate().refresh();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		ele = driver.findElement(By.xpath("//*[@title='Filters Applied']"));
 		if (ele.isDisplayed()) {
 			res = true;
