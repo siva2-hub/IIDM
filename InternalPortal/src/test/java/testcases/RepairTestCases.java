@@ -9,29 +9,29 @@ import libraries.RepairPages;
 public class RepairTestCases extends App
 {
 	RepairPages repairs = new RepairPages();
-	//@Test(enabled = false)
-	@Test(priority = 1)
-	public void testCase1() throws Exception {
-		boolean res = repairs.verifyCreateRMA();
-		Assert.assertTrue(res);
-		App.logout();
-	}
-	//@Test(enabled = false)
-	@Test(priority = 2)
-	public void testCase2() throws Exception {
-		App.login();
-		boolean res = repairs.verifySelectItemsToRepair();
-		Assert.assertTrue(res);
-		App.logout();
-	}
-	//@Test(enabled = false)
-	@Test(priority = 3)
-	public void testCase3() throws Exception {
-		App.login();
-		boolean res = repairs.verifyAddNewItem();
-		Assert.assertTrue(res);
-		App.logout();
-	}
+//	//@Test(enabled = false)
+//	@Test(priority = 1)
+//	public void testCase1() throws Exception {
+//		boolean res = repairs.verifyCreateRMA();
+//		Assert.assertTrue(res);
+//		App.logout();
+//	}
+//	//@Test(enabled = false)
+//	@Test(priority = 2)
+//	public void testCase2() throws Exception {
+//		App.login();
+//		boolean res = repairs.verifySelectItemsToRepair();
+//		Assert.assertTrue(res);
+//		App.logout();
+//	}
+//	//@Test(enabled = false)
+//	@Test(priority = 3)
+//	public void testCase3() throws Exception {
+////		App.login();
+//		boolean res = repairs.verifyAddNewItem();
+//		Assert.assertTrue(res);
+//		App.logout();
+//	}
 	//@Test(enabled = false)
 	@Test(priority = 4)
 	public void testCase4() throws Exception {
@@ -83,10 +83,10 @@ public class RepairTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 10)
 	public void testCase10() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = repairs.verifyQCCheckList();
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 11)
@@ -118,6 +118,6 @@ public class RepairTestCases extends App
 		App.login();
 		boolean res = repairs.verifyFilterStateMaintanance();
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 }

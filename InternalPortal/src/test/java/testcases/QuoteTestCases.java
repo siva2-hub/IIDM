@@ -191,4 +191,12 @@ public class QuoteTestCases extends App{
 		Assert.assertTrue(res);
 		App.logout();
 	}
+	//@Test(enabled = false)
+		@Test(priority=24)
+		public void testCase24() throws Exception {
+//			App.login();
+			boolean res=quotes.verifyDeclineInQuoteDetailedView();
+			Assert.assertTrue(res);
+//			App.logout();
+		}
 }

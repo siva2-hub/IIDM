@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Buzzworld Regression Testing]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Pricng Test Cases(failed)">
+    <classes>
+      <class name="testcases.PricingTestCases">
+        <methods>
+          <include name="testCase9"/>
+          <include name="testCase11"/>
+          <include name="logout"/>
+          <include name="testCase10"/>
+          <include name="login"/>
+          <include name="testCase13"/>
+          <include name="testCase8"/>
+          <include name="testCase12"/>
+        </methods>
+      </class> <!-- testcases.PricingTestCases -->
+    </classes>
+  </test> <!-- Pricng Test Cases(failed) -->
   <test thread-count="5" name="Repairs Test Cases(failed)">
     <classes>
       <class name="testcases.RepairTestCases">
         <methods>
-          <include name="logout"/>
           <include name="login"/>
-          <include name="testCase14"/>
+          <include name="logout"/>
+          <include name="testCase2"/>
           <include name="testCase13"/>
         </methods>
       </class> <!-- testcases.RepairTestCases -->
@@ -17,18 +33,19 @@
     <classes>
       <class name="testcases.QuoteTestCases">
         <methods>
+          <include name="testCase16"/>
+          <include name="testCase3"/>
           <include name="testCase13"/>
           <include name="testCase14"/>
           <include name="testCase23"/>
           <include name="testCase12"/>
-          <include name="testCase20"/>
-          <include name="logout"/>
           <include name="login"/>
+          <include name="logout"/>
           <include name="testCase21"/>
           <include name="testCase10"/>
-          <include name="testCase15"/>
           <include name="testCase22"/>
           <include name="testCase11"/>
+          <include name="testCase4"/>
         </methods>
       </class> <!-- testcases.QuoteTestCases -->
     </classes>

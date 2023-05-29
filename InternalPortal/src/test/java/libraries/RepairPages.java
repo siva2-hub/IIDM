@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -88,7 +89,7 @@ public class RepairPages extends App
 		this.createRMA();
 		String serialNumber = price.getTime();
 		String actText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
-		driver.findElement(By.id("repair-items")).findElement(By.tagName("button")).click();
+		driver.findElement(By.id("repair-items")).findElement(By.className("Button-Icon-Display")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.id("tab-2")).click();
@@ -122,11 +123,21 @@ public class RepairPages extends App
 	public void assignLocation() throws Exception 
 	{
 		this.selectItemToRepair();
-		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
-		btn.get(1).click();
-		driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown--')]")).click();
+		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
+		btn.get(0).click();
+//		driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown--')]")).click();
 		Thread.sleep(1000);
+		Thread.sleep(1500);
+		Actions act = new Actions(driver);
+//		act.moveToElement(driver.findElement(By.className("mandatory-star"))).perform();
+		WebElement editIcon = driver.findElement(By.xpath("//*[@class='quantity-parent']")).findElement(By.tagName("svg"));
+		act.moveToElement(editIcon).perform();
+		editIcon.click();
+		Thread.sleep(1400);
+//		driver.findElements(By.xpath("//*[@title='Edit']")).get(2).click();
 		driver.findElement(By.name("storage")).sendKeys("New York");
+		driver.findElement(By.name("serial_no")).sendKeys(java.time.LocalTime.now().toString().replace("-","").replace(":", "").replace(".", ""));
+		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		Thread.sleep(1300);
 	}
@@ -149,14 +160,15 @@ public class RepairPages extends App
 	public void assignTechnician() throws Exception 
 	{
 		this.assignLocation();
-		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
-		btn.get(1).click();
-		driver.findElement(By.className("link-icon-text")).click();
+		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
+		btn.get(0).click();
+//		driver.findElement(By.className("button-icon-text")).click();
+//		driver.findElement(By.className("link-icon-text")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
-		driver.findElement(By.id("react-select-7-input")).sendKeys(Keys.ARROW_DOWN);
-		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+//		driver.findElement(By.id("react-select-7-input")).sendKeys(Keys.ARROW_DOWN);
+//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
 		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) {
 			if(btns.get(i).getText().equalsIgnoreCase("Assign")) {
@@ -186,12 +198,15 @@ public class RepairPages extends App
 	public void evaluateItem() throws Exception 	
 	{
 		this.assignTechnician();
-		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
-		btn.get(1).click();
-		driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown--')]")).click();
+		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
+//		btn.get(0).click();
+		driver.findElement(By.className("hides")).click();
+//		driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown--')]")).click();
 		Thread.sleep(1000);
-		driver.findElement(By.id("react-select-8-input")).sendKeys(Keys.ARROW_DOWN);
+		
+		driver.findElement(By.id("react-select-7-input")).sendKeys(Keys.ARROW_DOWN);
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+//		System.exit(0);
 		driver.findElement(By.name("estimated_hrs")).sendKeys("23");
 		driver.findElement(By.name("price")).sendKeys("198");
 		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
@@ -221,7 +236,9 @@ public class RepairPages extends App
 	public void addRepairableItemToQuote(String data) throws Exception 
 	{
 		this.evaluateItem();
-		driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.xpath("//*[@class='cards-btns-group']")).click();
+		driver.findElement(By.xpath("//*[contains(@class,'repair-item-checkbox')]")).click();
+//		driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.xpath("//*[@class='cards-btns-group']")).click();
+		price.clickButton("Add items to quote");
 		Thread.sleep(1000);
 		List<WebElement> btns = driver.findElement(By.className("toast-action")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) 
@@ -256,18 +273,19 @@ public class RepairPages extends App
 	{
 		this.addRepairableItemToQuote("Accept");
 		Thread.sleep(1500);
-		List<WebElement> btns = driver.findElements(By.tagName("h4"));
-		for(int i=0;i<btns.size();i++)
-		{
-			String qId = btns.get(i).getText();
-			String[] ids = qId.split(" ",3);
-			if(qId.toLowerCase().contains("Quote ID".toLowerCase())) 
-			{
-				btns.get(i).click();
-				System.out.println("Quote Id is "+qId);
-				break;
-			}
-		}
+//		List<WebElement> btns = driver.findElements(By.tagName("h4"));
+//		for(int i=0;i<btns.size();i++)
+//		{
+//			String qId = btns.get(i).getText();
+//			String[] ids = qId.split(" ",3);
+//			if(qId.toLowerCase().contains("Quote ID".toLowerCase())) 
+//			{
+//				btns.get(i).click();
+//				System.out.println("Quote Id is "+qId);
+//				break;
+//			}
+//		}
+		driver.findElement(By.xpath("//*[contains(@label,'2023')]")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 	}
 	public boolean verifyCreateQuoteFromRepair() throws Exception 
@@ -300,12 +318,16 @@ public class RepairPages extends App
 //		driver.findElement(By.xpath("//*[@id='repair-info-id']")).findElement(By.tagName("button")).click();
 //		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 //		Thread.sleep(2000);
-		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
+//		driver.findElement(By.xpath("/html/body/div[1]/div/div[5]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/h4/div/div")).click();
+		Thread.sleep(2500);
+//		driver.findElement(By.xpath("//*[contains(@label,'2023')]")).click();
+		Thread.sleep(2000);
+		price.clickButton("Submit for internal approval");
 		Thread.sleep(2000);
 		this.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
 		Thread.sleep(1700);
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button")).click();
+		price.clickButton("Approve");
 		Thread.sleep(1200);
 		this.toastContainer("Approve");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
@@ -318,25 +340,27 @@ public class RepairPages extends App
 		this.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
 		Thread.sleep(1400);
-		List<WebElement> btns = driver.findElements(By.tagName("h4"));
-		for(int i=0;i<btns.size();i++)
-		{
-			String qId = btns.get(i).getText();
-			String[] ids = qId.split(" ",3);
-			if(qId.toLowerCase().contains("Repair ID".toLowerCase())) 
-			{
-				btns.get(i).click();
-				System.out.println("repair id is "+qId);
-				break;
-			}
-		}
+		driver.findElement(By.xpath("//*[contains(@label,'0')]")).click();
+//		List<WebElement> btns = driver.findElements(By.tagName("h4"));
+//		for(int i=0;i<btns.size();i++)
+//		{
+//			String qId = btns.get(i).getText();
+//			String[] ids = qId.split(" ",3);
+//			if(qId.toLowerCase().contains("Repair ID".toLowerCase())) 
+//			{
+//				btns.get(i).click();
+//				System.out.println("repair id is "+qId);
+//				break;
+//			}
+//		}
 		//		System.exit(0);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		Thread.sleep(1500);
 		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.tagName("button"));
-		btn.get(0).click();
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[@class='link-icon-text']")).click();
+//		btn.get(0).click();
+		Thread.sleep(2300);
+//		System.exit(0);
+		driver.findElement(By.xpath("//*[contains(@class,'hides')]")).click();
 		this.toastContainer("Accept");
 		Thread.sleep(1000);
 		this.toastContainer("Accept");

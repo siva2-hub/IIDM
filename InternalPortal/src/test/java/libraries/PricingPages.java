@@ -43,11 +43,12 @@ public class PricingPages extends App
 		}
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 	}
-	public String addProduct(String stockCode, String discountCode, String listPrice) throws Exception
+	public String addProduct(String stockCode, String discountCode, String listPrice, String productClass) throws Exception
 	{
 		this.pricingPage("Pricing");
 		Thread.sleep(2000);
-		this.addImportExporBtns("Add");
+//		this.addImportExporBtns("Add");
+		driver.findElement(By.className("button-icon-text")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("stock_code")));
 		Thread.sleep(2000);
 		driver.findElement(By.name("stock_code")).sendKeys(stockCode);
@@ -56,17 +57,20 @@ public class PricingPages extends App
 		qp.selectDropDown(discountCode);
 		driver.findElement(By.name("list_price")).sendKeys(listPrice);
 		Thread.sleep(1200);
+		driver.findElement(By.id("react-select-4-input")).sendKeys(productClass);
+		Thread.sleep(1200);
+		qp.selectDropDown(productClass);
 		this.addButton("Add Product");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		return stockCode;
 	}
-	public boolean verifyAddProduct(String discountCode, String listPrice) throws Exception
+	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass) throws Exception
 	{
 		boolean res = false;
 		String stockCode = this.getTime();
-		String expStockCode = this.addProduct(stockCode, discountCode, listPrice);
+		String expStockCode = this.addProduct(stockCode, discountCode, listPrice, productClass);
 		Thread.sleep(4000);
-		driver.findElement(By.xpath("//*[@placeholder='Search By Stock Code']")).sendKeys(stockCode);
+		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(stockCode);
 		Thread.sleep(4000);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
 		//		System.out.println("comp name is "+txts.size());
@@ -128,7 +132,8 @@ public class PricingPages extends App
 		Thread.sleep(2000);
 		String dc = "DC"+this.getTime();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='Button-Icon-Display']")));
-		this.addImportExporBtns("Add");
+//		this.addImportExporBtns("Add");
+		driver.findElement(By.className("button-icon-text")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='discount_code']")));
 		driver.findElement(By.name("discount_code")).sendKeys(dc);
 		driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.ARROW_UP.ARROW_RIGHT);
@@ -224,8 +229,9 @@ public class PricingPages extends App
 		Thread.sleep(10000);
 		this.addImportExporBtns("Import");
 		Thread.sleep(2300);
-		WebElement vSel = driver.findElement(By.id("react-select-3-input"));
+		WebElement vSel = driver.findElement(By.id("async-select-example"));
 		vSel.sendKeys(supName);
+		Thread.sleep(2000);
 		vSel.sendKeys(Keys.ENTER);
 		List<WebElement> files = driver.findElements(By.xpath("//*[contains(@class,'file-import-box')]"));
 		List<WebElement> fs = driver.findElements(By.xpath("//input[@type='file']"));
@@ -279,7 +285,7 @@ public class PricingPages extends App
 		}
 		return res;
 	}
-	public Object[] specialPricing(String type, int typeVal, String purchaseDiscount, String fprice) throws Exception
+	public Object[] specialPricing(String type, int typeVal, String purchaseDiscount, String fprice, String buyPrice) throws Exception
 	{
 		String compName = "1155 Distributor Partners-Dallas, LLC";
 		String item = "ZZ52BQ7";
@@ -298,22 +304,24 @@ public class PricingPages extends App
 		dtRange.sendKeys(Keys.ARROW_DOWN);
 		dtRange.sendKeys(Keys.ENTER);
 		driver.findElement(By.name("quote_number")).sendKeys("TestNewQN9090");
-		driver.findElement(By.id("react-select-7-input")).sendKeys("BACO CONTROLS INC");
+		driver.findElements(By.id("async-select-example")).get(1).sendKeys("BACO CONTROLS INC");
 		Thread.sleep(1500);
 		qp.selectDropDown("BACO CONTROLS INC");
-		driver.findElement(By.id("react-select-8-input")).sendKeys(type);
+//		System.exit(0);
+		driver.findElement(By.id("react-select-10-input")).sendKeys(type);
 		Thread.sleep(1500);
 		qp.selectDropDown(type);
 		driver.findElement(By.name("pricing_rules.0.type_value")).sendKeys(String.valueOf(typeVal));
-		driver.findElement(By.id("react-select-10-input")).sendKeys("Specific Item");
+		driver.findElement(By.id("react-select-9-input")).sendKeys("Specific Item");
 		Thread.sleep(1500);
 		qp.selectDropDown("Specific Item");
 		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[contains(@class,'pricing-rules-fields')]")).findElement(By.id("async-select-example")).sendKeys(item);
+		driver.findElements(By.id("async-select-example")).get(2).sendKeys(item);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1500);
 		qp.selectDropDown(item);
 		driver.findElement(By.xpath("//*[@placeholder='Purchase Discount']")).sendKeys(purchaseDiscount);
+		driver.findElement(By.xpath("//*[@placeholder='Buy Price']")).sendKeys(buyPrice);
 		driver.findElement(By.xpath("//*[@placeholder='Fixed Sales Price']")).sendKeys(fprice);
 		String orgName = driver.findElement(By.xpath("//*[contains(@class,'react-select__single-value')]")).getText();
 		this.clickButton("Preview Items");
@@ -323,13 +331,20 @@ public class PricingPages extends App
 		Thread.sleep(1500);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
 		List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		Double actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
-		Double actSellPrice =  Double.parseDouble(ls.get(9).getText().replace("$", ""));
+		double actBuyPrice = 0.0;
+		if(purchaseDiscount.equals("") && buyPrice.equals("")) {
+			actBuyPrice = 0.0;
+		}else {
+			actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
+			
+		}
+		//System.out.println("actual buy price "+actBuyPrice);
+		Double actSellPrice =  Double.parseDouble(ls.get(10).getText().replace("$", ""));
 		Double actFixedPrice = 0.0;
-		if(ls.get(8).getText().equals("")) {
+		if(ls.get(9).getText().equals("")) {
 			actFixedPrice = 0.0;
 		}else {
-			actFixedPrice = Double.parseDouble(ls.get(8).getText().replace("$", ""));
+			actFixedPrice = Double.parseDouble(ls.get(9).getText().replace("$", ""));
 		}
 		System.out.println("actual buy price "+actBuyPrice);
 		System.out.println("actual sell price "+actSellPrice);
@@ -339,7 +354,7 @@ public class PricingPages extends App
 		Thread.sleep(1500);
 		this.pricingPage("Pricing");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		driver.findElement(By.xpath("//*[@placeholder='Search By Stock Code']")).sendKeys(item);
+		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(6000);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
@@ -351,61 +366,102 @@ public class PricingPages extends App
 		String lp1 = listPrice.replace("$", "");
 		Double lp = Double.parseDouble(lp1);
 		DecimalFormat decfor = new DecimalFormat("0.00");
-		String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
-		Double expBuyPrice = Double.parseDouble(ebp);
+//		String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
+		Double expBuyPrice= 0.0;
+		if (buyPrice.equals("")) {
+			 
+		} else {
+
+			 expBuyPrice = Double.parseDouble(buyPrice);
+		}
 		double sellPrice = 0.0;
+		double bPrice = 0.0;
 		if (type.equals("Discount")) {
 			String sp = decfor.format(lp-(lp*typeVal/100));
 			sellPrice = Double.parseDouble(sp);
 		}if(type.equals("Markup")) {
-			String sp = decfor.format(op+(op*typeVal/100));
-			sellPrice = Double.parseDouble(sp);
+			if(buyPrice.equals("")&&purchaseDiscount.equals("")) {
+				
+				String sp = decfor.format(op+(op*typeVal/100));
+				sellPrice = Double.parseDouble(sp);
+				
+			}if(buyPrice.equals("") && !purchaseDiscount.equals("")) 
+			{
+				double val1 = Integer.parseInt(purchaseDiscount);
+				bPrice = (lp-(lp*val1/100));
+				expBuyPrice = bPrice;
+				double val2 = (bPrice*typeVal/100);
+				double val3 = val2+bPrice;
+				String sp = decfor.format(val3);
+				sellPrice = Double.parseDouble(sp);
+			}if(!buyPrice.equals("") && !purchaseDiscount.equals("")) 
+			{
+				double val1 = Integer.parseInt(buyPrice);
+				double val2 = (val1*typeVal/100);
+				double val3 = val1+val2;
+				String sp = decfor.format(val3);
+				sellPrice = Double.parseDouble(sp);
+			}
 		}
 		System.out.println("expected buy price "+expBuyPrice);
 		System.out.println("expected sell price "+sellPrice);
 		Object data[] = {actBuyPrice, expBuyPrice, actSellPrice, sellPrice, actFixedPrice, orgName, lp, item};
 		return data;
 	}
-	public boolean verifyBuyPrice_SellPrice_InSpecialPricing(String type, int typeValue, String purchaseDiscount, String fprice) throws Exception
+	public boolean verifyBuyPrice_SellPrice_InSpecialPricing(String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice, int count) throws Exception
 	{
-		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice);
+		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice, buyPrice);
 		Object abp = vals[0];
 		Object ebp = vals[1];
 		Object asp = vals[2];
 		Object esp = vals[3];
-		boolean res = false;
+		boolean res = false;String tcName= "";
+		if(count==1) {
+			tcName = "PRICING_006_VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_Null_PurchaseDiscount_Not_Null";
+		}if(count==2) {
+			tcName = "PRICING_007_VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscount_Null";
+		}if(count==3) {
+			tcName = "PRICING_008_VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscount_Not_Null";
+		}if(count==4) {
+			tcName = "PRICING_009_VerifyBuyPrice_SellPrice_InSpecialPricing_Type_As_Discount";
+		}
 		if (abp.equals(abp) && asp.equals(esp)) {
 			res = true;
-			Object status[] = {"PRICING_006_VerifyBuyPrice_SellPrice_InSpecialPricing", "actual buy price "+abp+" expected buy price "+ebp,
+			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
 					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricing", "Passed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_006_VerifyBuyPrice_SellPrice_InSpecialPricing", "actual buy price "+abp+" expected buy price "+ebp,
+			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
 					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricing", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
 		return res;
 	}
-	public Object[] addSPItemsToQuotewithAccountType(String type, int typeValue, String purchaseDiscount, String fprice) throws Exception
+	public Object[] addSPItemsToQuotewithAccountType(String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice) throws Exception
 	{
-		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice);
+		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice, buyPrice);
 		Object actSellPrice = vals[2];
 		Object actFixedPrice = vals[4];
 		String orgName = vals[5].toString();
 		Object listPrice = vals[6];
 		String item = vals[7].toString();
 		this.clickButton("Organizations");
-		Thread.sleep(1500);;
-		driver.findElements(By.className("link-icon-text")).get(3).click();
+		Thread.sleep(1500);
+		for(int i=0;i<driver.findElements(By.className("link-icon-text")).size();i++) {
+			if(driver.findElements(By.className("link-icon-text")).get(i).getText().equals("Organizations")) {
+				driver.findElements(By.className("link-icon-text")).get(i).click();
+			}
+		}
+//		driver.findElements(By.className("link-icon-text")).get(3).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2500);
-		String searchText = driver.findElement(By.xpath("//*[@placeholder='Search By Name / Company Name / Account Number / Owner']")).getAttribute("value");
+		String searchText = driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).getAttribute("value");
 		for(int i=0;i<searchText.length();i++) {
-			driver.findElement(By.xpath("//*[@placeholder='Search By Name / Company Name / Account Number / Owner']")).sendKeys(Keys.BACK_SPACE);
+			driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).sendKeys(Keys.BACK_SPACE);
 		}
 		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[@placeholder='Search By Name / Company Name / Account Number / Owner']")).sendKeys(orgName);
+		driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).sendKeys(orgName);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(6600);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
@@ -415,7 +471,7 @@ public class PricingPages extends App
 		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[1]/div/div[2]")).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2500);
-		driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).sendKeys(at);
+		driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).sendKeys(at);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(3600);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
@@ -423,7 +479,7 @@ public class PricingPages extends App
 		String atm  = ls.get(3).getText();
 		this.pricingPage("Pricing");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		driver.findElement(By.xpath("//*[@placeholder='Search By Stock Code']")).sendKeys(item);
+		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(6000);
 		this.clickColoumns();
@@ -469,7 +525,7 @@ public class PricingPages extends App
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
-		driver.findElement(By.xpath("//*[@class='link-icon-text']")).click();
+		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='async-select-example']")));
 		driver.findElement(By.xpath("//*[@id='async-select-example']")).sendKeys(orgName);
 		Thread.sleep(4700);
@@ -513,9 +569,9 @@ public class PricingPages extends App
 		Object data[] = {actSugestedPrice, expSuggestedPrice, actListPrice, expListPrice, actQuotePrice, expQuotePrice};
 		return data;
 	}
-	public boolean verifyaAddSPItemsToQuotewithAccountType(String tcName, String type, int typeValue, String purchaseDiscount, String fprice) throws Exception
+	public boolean verifyaAddSPItemsToQuotewithAccountType(String tcName, String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice) throws Exception
 	{
-		Object values[] = this.addSPItemsToQuotewithAccountType(type, typeValue, purchaseDiscount, fprice);
+		Object values[] = this.addSPItemsToQuotewithAccountType(type, typeValue, purchaseDiscount, fprice, buyPrice);
 		Object actSp = values[0];
 		Object expSp = values[1];
 		Object actlp = values[2];
@@ -536,37 +592,41 @@ public class PricingPages extends App
 		}
 		return res;
 	}
-	public boolean verifyAAddProduct_DuplicateStockCode(int count, String stockCode, String discountCode, String listPrice) throws Exception 
+	public boolean verifyAAddProduct_DuplicateStockCode(int count, String stockCode, String discountCode, String listPrice, String productClass) throws Exception 
 	{
-		this.addProduct(stockCode, discountCode, listPrice);
+		this.addProduct(stockCode, discountCode, listPrice, productClass);
 		Thread.sleep(1600);
 		String actText = "";
 		String tcName = "";
 		String expText = "";
 		if(count==1) {
-			tcName = "PRICING_009_VerifyAddProduct_DuplicateStockCode";
+			tcName = "PRICING_012_VerifyAddProduct_DuplicateStockCode";
 			expText = "The Stock Code already exists.";
 			actText = driver.findElement(By.xpath("//*[@class='server-msg']")).getText();
 		}
 		if(count==2) {
-			tcName = "PRICING_010_VerifyAddProduct_EmptyStockCode";
+			tcName = "PRICING_013_VerifyAddProduct_EmptyStockCode";
 			expText = "Please enter Stock Code";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 		}
 		if(count==3) {
-			tcName = "PRICING_011_VerifyAddProduct_EmptyDiscountCode";
+			tcName = "PRICING_014_VerifyAddProduct_EmptyDiscountCode";
 			expText = "Please select Discount Code";
 			actText = driver.findElement(By.xpath("//*[@class='form-error-msg']")).getText();
 		}
 		if(count==4) {
-			tcName = "PRICING_012_VerifyAddProduct_EmptyListPrice";
+			tcName = "PRICING_015_VerifyAddProduct_EmptyListPrice";
 			expText = "Please enter List Price";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 		}
 		if(count==5) {
-			tcName = "PRICING_013_VerifyAddProduct_InvalidListPrice";
+			tcName = "PRICING_016_VerifyAddProduct_InvalidListPrice";
 			expText = "Please enter valid number";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
+		}if(count==6) {
+			tcName = "PRICING_017_VerifyAddProduct_EmptyProductClass";
+			expText = "Please select Product Class";
+			actText = driver.findElement(By.xpath("//*[@class='form-error-msg']")).getText();
 		}
 		boolean res = false;
 		if (actText.equals(expText)) {
@@ -596,14 +656,14 @@ public class PricingPages extends App
 		}
 		String tcName = "";String actText = "";String expText = "";
 		if(count==1) {
-			tcName = "PRICING_014_VerifyUpdateProduct_EmptyListPrice";
+			tcName = "PRICING_018_VerifyUpdateProduct_EmptyListPrice";
 			driver.findElement(By.name("list_price")).sendKeys("");
 			this.addButton("Update Product");
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 			expText = "Please enter List Price";
 		}
 		if(count==2) {
-			tcName = "PRICING_015_VerifyUpdateProduct_InvalidListPrice";
+			tcName = "PRICING_019_VerifyUpdateProduct_InvalidListPrice";
 			driver.findElement(By.name("list_price")).sendKeys("krishna");
 			this.addButton("Update Product");
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
@@ -619,6 +679,58 @@ public class PricingPages extends App
 		} else {
 			res = false;
 			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			qp.values(status);
+			this.closeIcon();
+		}
+		return res;
+	}
+	public boolean isDifferentPricing() throws Exception
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		Permissions per = new Permissions();
+		per.headerMenu("Admin");
+		per.adminLeftMenu("Vendors");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).sendKeys("BACO001");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		driver.findElement(By.xpath("//*[contains(@src,'editicon')]")).click();
+		Thread.sleep(1500);
+		WebElement checkBox = driver.findElement(By.name("is_different_pricing"));
+		if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
+		} else {
+			checkBox.click();
+		}
+		this.clickButton("Update");
+		this.pricingPage("Pricing");
+		driver.findElement(By.className("sideList-Search")).findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("BACO001");
+		Thread.sleep(3000);
+		WebElement supName1 = driver.findElement(By.className("left-menu")).findElement(By.xpath("//*[@class='active menu-item-single']"));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'editicon')]")));
+		Thread.sleep(2400);
+		supName1 = driver.findElement(By.className("left-menu")).findElement(By.xpath("//*[@class='active menu-item-single']"));
+		String supName = supName1.getText();
+		supName1.click();
+		Thread.sleep(10000);
+		this.addImportExporBtns("Import");
+		Thread.sleep(2300);
+		WebElement vSel = driver.findElement(By.id("async-select-example"));
+		vSel.sendKeys("BACO001");
+		Thread.sleep(2000);
+		vSel.sendKeys(Keys.ENTER);
+		Thread.sleep(1500);
+		String sectionText = driver.findElement(By.tagName("section")).getText();
+		System.out.println("count of section tags are "+driver.findElements(By.tagName("section")).size());
+		System.out.println(sectionText);
+		String vendorText = "This Vendor having Different Pricing By Branch";
+		boolean res = false;
+		if (sectionText.toLowerCase().contains(vendorText.toLowerCase())) {
+			res = true;
+			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "is different pricing option applied", vendorText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			qp.values(status);
+			this.closeIcon();
+		} else {
+			res = false;
+			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "is different pricing option  not applied", vendorText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 			this.closeIcon();
 		}
