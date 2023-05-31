@@ -24,7 +24,7 @@ public class Permissions extends App
 		this.adminLeftMenu(tabName);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));	
 		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("raghu");
+		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("sivakrishna");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		driver.findElement(By.id("tab-1")).click();
 		Thread.sleep(1600);
