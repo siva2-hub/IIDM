@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -733,6 +734,35 @@ public class PricingPages extends App
 			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "is different pricing option  not applied", vendorText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 			this.closeIcon();
+		}
+		return res;
+	}
+	public boolean filters(String disCountCode) throws Exception {
+		this.pricingPage("Pricing");
+		driver.findElement(By.className("filter-text")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("react-select-3-input")).sendKeys(disCountCode);
+		
+		QuotePages quotes = new QuotePages();
+		quotes.selectDropDown(disCountCode);
+		this.clickButton("Appy");
+		Thread.sleep(1600);
+		WebDriverWait js = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1500);
+		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
+		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		String actDisCode = ls.get(3).getText();
+		driver.findElement(By.className("clear-text")).click();
+		boolean res = false;
+		if (actDisCode.equals(disCountCode)) {
+			res = true;
+			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			qp.values(status);
+		} else {
+			res = false;
+			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			qp.values(status);
 		}
 		return res;
 	}

@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +24,7 @@ public class Permissions extends App
 		this.adminLeftMenu(tabName);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));	
 		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("sivakrishna");
+		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("raghu");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		driver.findElement(By.id("tab-1")).click();
 		Thread.sleep(1600);
@@ -88,6 +89,12 @@ public class Permissions extends App
 				System.out.println("label name "+labelsText.get(i).findElements(By.tagName("span")).get(0).getText());
 				path = labelsText.get(i).findElement(By.tagName("input")).getAttribute("name");
 				labelsText.get(i).findElements(By.tagName("span")).get(count).click();
+				if(labelName.equals("Warehouse")) {
+//					JavascriptExecutor js = (JavascriptExecutor)driver;
+//					js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@name='warehouse_sync'][@value='0']")));
+					driver.findElement(By.xpath("/html/body/div/div/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/div/div[1]/div/div/div[2]/div[18]/div[2]/span[2]/div/div/div/label[2]")).click();
+//					System.exit(0);
+				}
 				price.clickButton("Save");
 				Thread.sleep(1500);
 				price.clickButton("Accept");

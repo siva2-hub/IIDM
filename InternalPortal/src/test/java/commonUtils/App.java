@@ -36,7 +36,7 @@ public class App {
 	public static String url = "https://buzzworld-web-iidm.enterpi.com/";
 	public static String mail = "sivakrishna.d@enterpi.com";
 	public static String pwd = "Test@4321";
-	
+
 //	public static String url = "https://www.staging-buzzworld.iidm.com/pricing";
 //	public static String mail = "b.raghuvardhanreddy@enterpi.com";
 //	public static String pwd = "Enter@4321";

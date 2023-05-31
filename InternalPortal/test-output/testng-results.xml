@@ -1,79 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="10" total="11" passed="0" failed="1" skipped="0">
+<testng-results ignored="20" total="21" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-29T18:38:02 IST" name="Default suite" finished-at="2023-05-29T18:39:31 IST" duration-ms="88528">
+  <suite started-at="2023-05-31T18:32:12 IST" name="Default suite" finished-at="2023-05-31T18:32:39 IST" duration-ms="27419">
     <groups>
     </groups>
-    <test started-at="2023-05-29T18:38:02 IST" name="Default test" finished-at="2023-05-29T18:39:31 IST" duration-ms="88528">
-      <class name="testcases.RepairTestCases">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.RepairTestCases@6e6f2380]" started-at="2023-05-29T18:38:02 IST" name="login" finished-at="2023-05-29T18:38:12 IST" duration-ms="9431" status="PASS">
+    <test started-at="2023-05-31T18:32:12 IST" name="Default test" finished-at="2023-05-31T18:32:39 IST" duration-ms="27419">
+      <class name="testcases.PricingTestCases">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PricingTestCases@7d0b7e3c]" started-at="2023-05-31T18:32:12 IST" name="login" finished-at="2023-05-31T18:32:23 IST" duration-ms="11795" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase10()[pri:10, instance:testcases.RepairTestCases@6e6f2380]" started-at="2023-05-29T18:38:12 IST" name="testCase10" finished-at="2023-05-29T18:39:29 IST" duration-ms="77737" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id='repair-items'] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-72-generic', java.version: '17.0.5'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.KFSOXg}, goog:chromeOptions: {debuggerAddress: localhost:38523}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:38523/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 672e8c3f82987cb4440235ac4dba70e4]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id='repair-items'] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-72-generic', java.version: '17.0.5'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.KFSOXg}, goog:chromeOptions: {debuggerAddress: localhost:38523}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:38523/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 672e8c3f82987cb4440235ac4dba70e4
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-at libraries.RepairPages.createQuoteFromRepair(RepairPages.java:289)
-at libraries.RepairPages.assignToQC(RepairPages.java:310)
-at libraries.RepairPages.qcCheckList(RepairPages.java:388)
-at libraries.RepairPages.verifyQCCheckList(RepairPages.java:402)
-at testcases.RepairTestCases.testCase10(RepairTestCases.java:87)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:829)
-at org.testng.TestRunner.run(TestRunner.java:602)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-at org.testng.TestNG.runSuites(TestNG.java:1099)
-at org.testng.TestNG.run(TestNG.java:1067)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        <test-method signature="testCase21()[pri:21, instance:testcases.PricingTestCases@7d0b7e3c]" started-at="2023-05-31T18:32:23 IST" name="testCase21" finished-at="2023-05-31T18:32:38 IST" duration-ms="14137" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCase10 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.RepairTestCases@6e6f2380]" started-at="2023-05-29T18:39:29 IST" name="logout" finished-at="2023-05-29T18:39:31 IST" duration-ms="1314" status="PASS">
+        </test-method> <!-- testCase21 -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PricingTestCases@7d0b7e3c]" started-at="2023-05-31T18:32:38 IST" name="logout" finished-at="2023-05-31T18:32:39 IST" duration-ms="1380" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-      </class> <!-- testcases.RepairTestCases -->
+      </class> <!-- testcases.PricingTestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -19,4 +19,33 @@
        </classes>
    </test>
    
+   <test name="Permission Test Cases in Admin Module" >
+       <classes> 
+          <class name="testcases.PermissionsTestCases_AdminTabs" />
+       </classes>
+   </test>
+   
+    <test name="Permission Test Cases in Pricing Module" >
+       <classes> 
+          <class name="testcases.PermissionsTestCaseForPricingModule" />
+       </classes>
+   </test>
+   
+   <test name="Permission Test Cases in Repair Module" >
+       <classes> 
+          <class name="testcases.PermissionsTestCasesForRepairModule" />
+       </classes>
+   </test>
+   
+   <test name="Permission Test Cases in Quotes Module" >
+       <classes> 
+          <class name="testcases.PermissionsTestCases_QuotesModule" />
+       </classes>
+   </test>
+   
+   <test name="Permission Test Cases in SysPro Module" >
+       <classes> 
+          <class name="testcases.PermissionsTestCases_SysProModule" />
+       </classes>
+   </test>
  </suite>

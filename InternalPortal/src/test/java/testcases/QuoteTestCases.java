@@ -83,7 +83,7 @@ public class QuoteTestCases extends App{
 	@Test(priority=10)
 	public void testCase10() throws Exception {
 		App.login();
-		boolean res = quotes.verifyTopSearchInQuoteListView("2023031500024", 1);
+		boolean res = quotes.verifyTopSearchInQuoteListView("2023053100074", 1);
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -99,7 +99,7 @@ public class QuoteTestCases extends App{
 	@Test(priority=12)
 	public void testCase12() throws Exception {
 		App.login();
-		boolean res = quotes.verifyTopSearchInQuoteListView("Ramsay Taiym", 3);
+		boolean res = quotes.verifyTopSearchInQuoteListView("Frontier", 3);
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -194,7 +194,7 @@ public class QuoteTestCases extends App{
 	//@Test(enabled = false)
 		@Test(priority=24)
 		public void testCase24() throws Exception {
-//			App.login();
+			App.login();
 			boolean res=quotes.verifyDeclineInQuoteDetailedView();
 			Assert.assertTrue(res);
 //			App.logout();

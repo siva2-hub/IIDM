@@ -30,7 +30,7 @@ public class PermissionsTestCasesForRepairModule extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority =3)

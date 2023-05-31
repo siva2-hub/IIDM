@@ -5,49 +5,73 @@
     <classes>
       <class name="testcases.PricingTestCases">
         <methods>
-          <include name="testCase9"/>
+          <include name="testCase6"/>
           <include name="testCase11"/>
-          <include name="logout"/>
+          <include name="testCase9"/>
           <include name="testCase10"/>
           <include name="login"/>
-          <include name="testCase13"/>
+          <include name="logout"/>
+          <include name="testCase7"/>
           <include name="testCase8"/>
-          <include name="testCase12"/>
+          <include name="testCase20"/>
         </methods>
       </class> <!-- testcases.PricingTestCases -->
     </classes>
   </test> <!-- Pricng Test Cases(failed) -->
-  <test thread-count="5" name="Repairs Test Cases(failed)">
-    <classes>
-      <class name="testcases.RepairTestCases">
-        <methods>
-          <include name="login"/>
-          <include name="logout"/>
-          <include name="testCase2"/>
-          <include name="testCase13"/>
-        </methods>
-      </class> <!-- testcases.RepairTestCases -->
-    </classes>
-  </test> <!-- Repairs Test Cases(failed) -->
   <test thread-count="5" name="Quotes Test Cases(failed)">
     <classes>
       <class name="testcases.QuoteTestCases">
         <methods>
-          <include name="testCase16"/>
-          <include name="testCase3"/>
           <include name="testCase13"/>
           <include name="testCase14"/>
-          <include name="testCase23"/>
           <include name="testCase12"/>
-          <include name="login"/>
           <include name="logout"/>
-          <include name="testCase21"/>
+          <include name="login"/>
           <include name="testCase10"/>
-          <include name="testCase22"/>
-          <include name="testCase11"/>
-          <include name="testCase4"/>
         </methods>
       </class> <!-- testcases.QuoteTestCases -->
     </classes>
   </test> <!-- Quotes Test Cases(failed) -->
+  <test thread-count="5" name="Permission Test Cases in Admin Module(failed)">
+    <classes>
+      <class name="testcases.PermissionsTestCases_AdminTabs">
+        <methods>
+          <include name="logout"/>
+          <include name="login"/>
+          <include name="testCase35"/>
+          <include name="testCase23"/>
+          <include name="testCase25"/>
+        </methods>
+      </class> <!-- testcases.PermissionsTestCases_AdminTabs -->
+    </classes>
+  </test> <!-- Permission Test Cases in Admin Module(failed) -->
+  <test thread-count="5" name="Permission Test Cases in Repair Module(failed)">
+    <classes>
+      <class name="testcases.PermissionsTestCasesForRepairModule">
+        <methods>
+          <include name="testCase4"/>
+          <include name="login"/>
+          <include name="logout"/>
+        </methods>
+      </class> <!-- testcases.PermissionsTestCasesForRepairModule -->
+    </classes>
+  </test> <!-- Permission Test Cases in Repair Module(failed) -->
+  <test thread-count="5" name="Permission Test Cases in Quotes Module(failed)">
+    <classes>
+      <class name="testcases.PermissionsTestCases_QuotesModule">
+        <methods>
+          <include name="testCase16"/>
+          <include name="testCase17"/>
+          <include name="testCase14"/>
+          <include name="testCase15"/>
+          <include name="testCase12"/>
+          <include name="testCase13"/>
+          <include name="login"/>
+          <include name="logout"/>
+          <include name="testCase11"/>
+          <include name="testCase18"/>
+        </methods>
+      </class> <!-- testcases.PermissionsTestCases_QuotesModule -->
+    </classes>
+  </test> <!-- Permission Test Cases in Quotes Module(failed) -->
 </suite> <!-- Failed suite [Buzzworld Regression Testing] -->
