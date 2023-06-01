@@ -35,6 +35,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
+	//
 	//	@Test(enabled = false)
 	@Test(priority = 3)
 	public void testCase3() throws Exception{
