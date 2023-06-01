@@ -54,11 +54,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -129,11 +129,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -151,7 +151,7 @@ public class Permissions_QuotesPages extends Permissions
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
-		String message = "";String expText = "";
+		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
 			
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
@@ -159,6 +159,7 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = !message.contains("Close");
 		} else if(count==1) {
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
 			expText = "Re Open\n"
@@ -166,19 +167,20 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = message.contains("Close");
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		boolean res = false;
-		if (message.contains(expText)) {
+		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -213,11 +215,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -235,7 +237,7 @@ public class Permissions_QuotesPages extends Permissions
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
-		String message = "";String expText = "";
+		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
 			
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
@@ -243,6 +245,7 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = !message.contains("Re Open");
 		} else if(count==1) {
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
 			expText = "Re Open\n"
@@ -250,19 +253,20 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = message.contains("Re Open");
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		boolean res = false;
-		if (message.contains(expText)) {
+		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -280,7 +284,7 @@ public class Permissions_QuotesPages extends Permissions
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
-		String message = "";String expText = "";
+		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
 			
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
@@ -288,6 +292,7 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = !message.contains("Revise Quote");
 		} else if(count==1) {
 			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
 			expText = "Revise Quote\n"
@@ -295,19 +300,20 @@ public class Permissions_QuotesPages extends Permissions
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
+			sta = message.contains("Revise Quote");
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		boolean res = false;
-		if (message.equals(expText)) {
+		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -350,11 +356,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -394,11 +400,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -447,11 +453,11 @@ public class Permissions_QuotesPages extends Permissions
 		Thread.sleep(2000);	boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

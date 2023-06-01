@@ -35,11 +35,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -70,11 +70,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -91,11 +91,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -119,11 +119,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

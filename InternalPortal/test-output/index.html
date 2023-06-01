@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\SivaKrishna\AppData\Local\Temp\testng-eclipse--2081971628\testng-customsuite.xml</span>
+                    <span>testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testcases.PermissionsTestCases_Organizations" class="method navigator-link" hash-for-method="testCase11">testCase11</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="testcases.PermissionsTestCases_AdminTabs" class="method navigator-link" hash-for-method="testCase23">testCase23</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,28 +121,24 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">testcases.PermissionsTestCases_Organizations</span>
+              <span class="class-name">testcases.PermissionsTestCases_AdminTabs</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testCase11">
-                  </a> <!-- testCase11 -->
-                  <span class="method-name">testCase11</span>
-                  <div class="stack-trace">java.sql.SQLException: Access denied for user &apos;enterpi&apos;@&apos;localhost&apos; (using password: YES)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:829)
-	at com.mysql.cj.jdbc.ConnectionImpl.&lt;init&gt;(ConnectionImpl.java:449)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:242)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
-	at libraries.QuotePages.values(QuotePages.java:742)
-	at libraries.Permissions_Organizations.exportPermissionAsYesInContacts(Permissions_Organizations.java:66)
-	at testcases.PermissionsTestCases_Organizations.testCase11(PermissionsTestCases_Organizations.java:135)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+                  <a name="testCase23">
+                  </a> <!-- testCase23 -->
+                  <span class="method-name">testCase23</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1577)
+	at org.testng.Assert.assertTrue(Assert.java:56)
+	at org.testng.Assert.assertTrue(Assert.java:66)
+	at testcases.PermissionsTestCases_AdminTabs.testCase23(PermissionsTestCases_AdminTabs.java:282)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
@@ -176,7 +172,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\SivaKrishna\AppData\Local\Temp\testng-eclipse--2081971628\testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse-363788106/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -185,11 +181,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testcases.PermissionsTestCases_Organizations&quot;&gt;
+      &lt;class name=&quot;testcases.PermissionsTestCases_AdminTabs&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;testCase11&quot;/&gt;
+          &lt;include name=&quot;testCase23&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- testcases.PermissionsTestCases_Organizations --&gt;
+      &lt;/class&gt; &lt;!-- testcases.PermissionsTestCases_AdminTabs --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -231,14 +227,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testCase11')
-data.setCell(0, 2, 'testcases.PermissionsTestCases_Organizations')
-data.setCell(0, 3, 20521);
+data.setCell(0, 1, 'testCase23')
+data.setCell(0, 2, 'testcases.PermissionsTestCases_AdminTabs')
+data.setCell(0, 3, 34207);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 20 seconds</span>
+              <span class="suite-total-time">Total running time: 34 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -253,33 +249,79 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">11 ignored methods</span>
+            <span class="header-content">34 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">testcases.PermissionsTestCases_Organizations</span>
+              <span class="ignored-class-name">testcases.PermissionsTestCases_AdminTabs</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">testCase3</span>
+                <span class="ignored-method-name">testCase30</span>
                 <br/>
                 <span class="ignored-method-name">testCase2</span>
                 <br/>
-                <span class="ignored-method-name">testCase9</span>
-                <br/>
-                <span class="ignored-method-name">testCase8</span>
-                <br/>
-                <span class="ignored-method-name">testCase7</span>
-                <br/>
-                <span class="ignored-method-name">testCase12</span>
+                <span class="ignored-method-name">testCase4</span>
                 <br/>
                 <span class="ignored-method-name">testCase6</span>
                 <br/>
-                <span class="ignored-method-name">testCase1</span>
+                <span class="ignored-method-name">testCase16</span>
                 <br/>
-                <span class="ignored-method-name">testCase10</span>
+                <span class="ignored-method-name">testCase14</span>
+                <br/>
+                <span class="ignored-method-name">testCase26</span>
+                <br/>
+                <span class="ignored-method-name">testCase31</span>
+                <br/>
+                <span class="ignored-method-name">testCase35</span>
+                <br/>
+                <span class="ignored-method-name">testCase13</span>
+                <br/>
+                <span class="ignored-method-name">testCase21</span>
+                <br/>
+                <span class="ignored-method-name">testCase33</span>
+                <br/>
+                <span class="ignored-method-name">testCase11</span>
+                <br/>
+                <span class="ignored-method-name">testCase8</span>
+                <br/>
+                <span class="ignored-method-name">testCase17</span>
+                <br/>
+                <span class="ignored-method-name">testCase29</span>
+                <br/>
+                <span class="ignored-method-name">testCase19</span>
+                <br/>
+                <span class="ignored-method-name">testCase3</span>
                 <br/>
                 <span class="ignored-method-name">testCase5</span>
                 <br/>
-                <span class="ignored-method-name">testCase4</span>
+                <span class="ignored-method-name">testCase27</span>
+                <br/>
+                <span class="ignored-method-name">testCase25</span>
+                <br/>
+                <span class="ignored-method-name">testCase15</span>
+                <br/>
+                <span class="ignored-method-name">testCase20</span>
+                <br/>
+                <span class="ignored-method-name">testCase1</span>
+                <br/>
+                <span class="ignored-method-name">testCase34</span>
+                <br/>
+                <span class="ignored-method-name">testCase12</span>
+                <br/>
+                <span class="ignored-method-name">testCase24</span>
+                <br/>
+                <span class="ignored-method-name">testCase32</span>
+                <br/>
+                <span class="ignored-method-name">testCase10</span>
+                <br/>
+                <span class="ignored-method-name">testCase22</span>
+                <br/>
+                <span class="ignored-method-name">testCase7</span>
+                <br/>
+                <span class="ignored-method-name">testCase28</span>
+                <br/>
+                <span class="ignored-method-name">testCase9</span>
+                <br/>
+                <span class="ignored-method-name">testCase18</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -291,7 +333,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testcases.PermissionsTestCases_Organizations</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">testcases.PermissionsTestCases_AdminTabs</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">login</span>
                 <span class="method-start">0 ms</span>
@@ -299,12 +341,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testCase11</span>
-                <span class="method-start">11780 ms</span>
+                <span class="method-name">testCase23</span>
+                <span class="method-start">9669 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">logout</span>
-                <span class="method-start">32311 ms</span>
+                <span class="method-start">43879 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

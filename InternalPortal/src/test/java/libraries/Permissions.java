@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -66,11 +67,11 @@ public class Permissions extends App
 		boolean res = false;
 		if (message.equalsIgnoreCase("Sorry, you do not have permissions to access this page.") && actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -90,10 +91,11 @@ public class Permissions extends App
 				path = labelsText.get(i).findElement(By.tagName("input")).getAttribute("name");
 				labelsText.get(i).findElements(By.tagName("span")).get(count).click();
 				if(labelName.equals("Warehouse")) {
-//					JavascriptExecutor js = (JavascriptExecutor)driver;
-//					js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@name='warehouse_sync'][@value='0']")));
-					driver.findElement(By.xpath("/html/body/div/div/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/div/div[1]/div/div/div[2]/div[18]/div[2]/span[2]/div/div/div/label[2]")).click();
-//					System.exit(0);
+					JavascriptExecutor js = (JavascriptExecutor)driver;
+					js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@name='warehouse_sync'][@value='0']")));
+					Actions act = new Actions(driver);
+					act.moveToElement(driver.findElement(By.xpath("//*[@name='warehouse_sync'][@value='0']"))).perform();
+					act.doubleClick(driver.findElement(By.xpath("//*[@name='warehouse_sync'][@value='0']"))).perform();
 				}
 				price.clickButton("Save");
 				Thread.sleep(1500);
@@ -147,13 +149,13 @@ public class Permissions extends App
 			if (actText.equals(expText)&& editCount==0) {
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Passed", java.time.LocalDate.now().toString()};
+						"Permissions", "Passed"};
 				
 				qp.values(status);
 			} else {
 				res = false;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Failed", java.time.LocalDate.now().toString()};
+						"Permissions", "Failed"};
 				qp.values(status);
 			}
 		} else {
@@ -161,13 +163,13 @@ public class Permissions extends App
 			if (actText.equals(expText)&& editCount==0) {
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Passed", java.time.LocalDate.now().toString()};
+						"Permissions", "Passed"};
 				
 				qp.values(status);
 			} else {
 				res = false;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Failed", java.time.LocalDate.now().toString()};
+						"Permissions", "Failed"};
 				qp.values(status);
 			}
 			this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

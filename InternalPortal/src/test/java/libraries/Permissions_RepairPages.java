@@ -58,11 +58,11 @@ public class Permissions_RepairPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -116,11 +116,11 @@ public class Permissions_RepairPages extends Permissions
 		boolean res = false;
 		if (actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		

@@ -83,14 +83,14 @@ public class PermissionsTestCases_Organizations extends App
 //	@Test(enabled = false)
 	@Test(priority =7)
 	public void testCase7() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = org.exportPermissionAsYesInContacts("PERMNS_084_Verify_Export_Permission_As_No_Organizations", "Admin", "Users", "organizations_export","organizations", "Export", "0");
 		if(res) {
 		}else {
 			App.logout();
 		}
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority =8)
@@ -145,6 +145,54 @@ public class PermissionsTestCases_Organizations extends App
 	public void testCase12() throws Exception {
 		App.login();
 		boolean res = org.exportPermissionAsYesInContacts("PERMNS_089_Verify_Sync_Permission_As_No_Organizations", "Admin", "Users", "organizations_sync","organizations", "Sync", "0");
+		if(res) {
+		}else {
+			App.logout();
+		}
+		Assert.assertTrue(res);
+		App.logout();
+	}
+//	@Test(enabled = false)
+	@Test(priority =13)
+	public void testCase13() throws Exception {
+		App.login();
+		boolean res = org.exportPermissionAsYesInContacts("PERMNS_090_Verify_Sync_Permission_As_No_Warehouse", "Admin", "Users", "warehouse_sync","warehouse", "Sync", "0");
+		if(res) {
+		}else {
+			App.logout();
+		}
+		Assert.assertTrue(res);
+		App.logout();
+	}
+//	@Test(enabled = false)
+	@Test(priority =14)
+	public void testCase14() throws Exception {
+		App.login();
+		boolean res = org.exportPermissionAsYesInContacts("PERMNS_091_Verify_Sync_Permission_As_Yes_Warehouse", "Admin", "Users", "warehouse_sync","warehouse", "Sync", "1");
+		if(res) {
+		}else {
+			App.logout();
+		}
+		Assert.assertTrue(res);
+		App.logout();
+	}
+//	@Test(enabled = false)
+	@Test(priority =15)
+	public void testCase15() throws Exception {
+		App.login();
+		boolean res = org.exportPermissionAsYesInContacts("PERMNS_092_Verify_Sync_Permission_As_No_ProductClass", "Admin", "Users", "product_class_sync","product_class", "Sync", "0");
+		if(res) {
+		}else {
+			App.logout();
+		}
+		Assert.assertTrue(res);
+		App.logout();
+	}
+//	@Test(enabled = false)
+	@Test(priority =16)
+	public void testCase16() throws Exception {
+		App.login();
+		boolean res = org.exportPermissionAsYesInContacts("PERMNS_093_Verify_Sync_Permission_As_Yes_ProductClass", "Admin", "Users", "product_class_sync","product_class", "Sync", "1");
 		if(res) {
 		}else {
 			App.logout();

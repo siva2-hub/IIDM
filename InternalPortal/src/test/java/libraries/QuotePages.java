@@ -741,8 +741,8 @@ public class QuotePages extends App
 		Class.forName("com.mysql.jdbc.Driver");  
 		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
 		Statement stmt=con.createStatement(); 
-		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status,date) "
-				+ "VALUES ('"+ data[0]+ "','"+ data[1] + "','"+ data[2] + "','" + data[3] + "','" + data[4]+ "', '"+data[5]+"')";
+		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
+				+ "VALUES ('"+ data[0]+ "','"+ data[1] + "','"+ data[2] + "','" + data[3] + "','" + data[4]+ "')";
 		stmt.executeUpdate(sql);  
 	}
 }

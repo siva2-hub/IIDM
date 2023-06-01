@@ -52,11 +52,11 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase("Sorry, you do not have permissions to access this page.")) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -119,11 +119,11 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.clickYesButton(itemName, tabName, labelName, count, xpCount, btnCount);
@@ -149,11 +149,11 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (!actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

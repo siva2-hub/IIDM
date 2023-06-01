@@ -30,11 +30,11 @@ public class Permissions_Organizations extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -58,17 +58,30 @@ public class Permissions_Organizations extends Permissions
 		driver.navigate().to(driver.getCurrentUrl().replace("users", urlName));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		String actText = driver.findElement(By.className("Button-Icon-Display")).getText();
+		Thread.sleep(1000);
+		Thread.sleep(1500);boolean sta = false;String  actText = "";
+		if (urlName.equals("warehouse") || urlName.equals("product_class")) {
+			actText = driver.findElement(By.className("add-Icon")).getText();
+		} else {
+
+			actText = driver.findElement(By.className("Button-Icon-Display")).getText();
+		}
+		if (yes.equals("0")) {
+			sta = !actText.contains(expText);
+		} else if (yes.equals("1")){
+			sta = actText.contains(expText);
+		}
 		boolean res = false;
-		if (actText.contains(expText)) {
+		if (sta) {
 			res = true;
-			Object status[] = {tcName, "Top displayed text is "+actText, actText, "Permissions", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, "Top displayed text is "+actText, actText, "Permissions", "Passed" };
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "Top displayed text is "+actText, actText, "Permissions", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, "Top displayed text is "+actText, actText, "Permissions", "Failed" };
 			qp.values(status);
 		}
 		return res;
 	}
+	
 }
