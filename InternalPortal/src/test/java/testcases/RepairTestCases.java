@@ -35,10 +35,10 @@ public class RepairTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 4)
 	public void testCase4() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = repairs.verifyAssignLocation();
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 5)
@@ -118,6 +118,12 @@ public class RepairTestCases extends App
 		App.login();
 		boolean res = repairs.verifyFilterStateMaintanance();
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
+	//@Test(enabled = false)
+		@Test(priority = 15)
+		public void testCase15() throws Exception {
+			repairs.assignToQC_SO_Created();
+			
+		}
 }
