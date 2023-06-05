@@ -35,10 +35,10 @@ public class RepairTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 4)
 	public void testCase4() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = repairs.verifyAssignLocation();
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 5)
@@ -75,7 +75,7 @@ public class RepairTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 9)
 	public void testCase9() throws Exception {
- 		App.login();
+		App.login();
 		boolean res = repairs.verifyAssignToQC();
 		Assert.assertTrue(res);
 		App.logout();
@@ -121,9 +121,18 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	//@Test(enabled = false)
-		@Test(priority = 15)
-		public void testCase15() throws Exception {
-			repairs.assignToQC_SO_Created();
-			
+	@Test(priority = 15)
+	public void testCase15() throws Exception {
+		App.login();
+		boolean res = repairs.verifyAssignToQCIsDisplayedOrNotWhenQuoteStatusHasWon();
+		Assert.assertTrue(res);
+		App.logout();
+	}
+	//@Test(enabled = false)
+		@Test(priority = 16)
+		public void testCase16() throws Exception {
+			App.login();
+			boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
+			Assert.assertTrue(res);
 		}
 }

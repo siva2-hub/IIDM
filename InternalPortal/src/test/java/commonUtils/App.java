@@ -33,10 +33,11 @@ public class App {
 	public static WebDriver driver;
 	public static WebDriverWait wait;
 	
-	public static String url = "https://buzzworld-web-iidm.enterpi.com/";
-	public static String mail = "sivakrishna.d@enterpi.com";
-	public static String pwd = "Test@4321";
-
+	public static String url ;
+	public static String mail ;
+	public static String pwd ;
+	
+//staging credentials
 //	public static String url = "https://www.staging-buzzworld.iidm.com/pricing";
 //	public static String mail = "b.raghuvardhanreddy@enterpi.com";
 //	public static String pwd = "Enter@4321";
@@ -52,11 +53,7 @@ public class App {
 		options.addArguments("--remote-allow-origins=*");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		driver.get(url);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
-		driver.findElement(By.id("username")).sendKeys(mail);
-		driver.findElement(By.id("password")).sendKeys(pwd);
+		App.urlOpen("qa");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 	} 
@@ -66,9 +63,23 @@ public class App {
 		List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
 		btns.get(1).click();
 		driver.close();
-//		App.dbFunction();
 	}
-	
+	public static void urlOpen(String instance) {
+		if (instance.equals("qa")) {
+			url = "https://buzzworld-web-iidm.enterpi.com/";
+			mail = "sivakrishna.d@enterpi.com";
+			pwd = "Test@4321";
+		} else if(instance.equals("stage")) {
+			url = "https://www.staging-buzzworld.iidm.com/pricing";
+			mail = "b.raghuvardhanreddy@enterpi.com";
+			pwd = "Enter@4321";
+		}
+		driver.get(url);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
+		driver.findElement(By.id("username")).sendKeys(mail);
+		driver.findElement(By.id("password")).sendKeys(pwd);
+	}
 	public static void main(String args[]) throws  Exception 
 	{
 		String file = "tcfile.xlsx";

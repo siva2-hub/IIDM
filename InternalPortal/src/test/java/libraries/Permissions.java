@@ -58,7 +58,7 @@ public class Permissions extends App
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String message = driver.findElements(By.tagName("p")).get(0).getText();
 		String url = driver.getCurrentUrl();

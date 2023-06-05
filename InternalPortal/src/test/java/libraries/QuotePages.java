@@ -46,10 +46,7 @@ public class QuotePages extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("0165");
 		Thread.sleep(4000);
-		driver.findElement(By.xpath("//*[contains(@class,'item-selection-grid')]")).findElements(By.tagName("label")).get(0).click();
-//		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//input[starts-with(@name,'checkbox')]")).click();
-//		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[@name='checkbox1'][@type='checkbox']")).click();
-//		driver.findElement(By.id("tab-0-tab")).findElement(By.xpath("//*[contains(@class,'data item-selection-grid')]")).findElements(By.tagName("g")).get(0).click();
+		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
 		Thread.sleep(2000);
 		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		for(int i=0;i<btn.size();i++) 

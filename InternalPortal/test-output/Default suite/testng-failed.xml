@@ -5,9 +5,9 @@
     <classes>
       <class name="testcases.RepairTestCases">
         <methods>
-          <include name="login"/>
           <include name="logout"/>
-          <include name="testCase15"/>
+          <include name="login"/>
+          <include name="testCase16"/>
         </methods>
       </class> <!-- testcases.RepairTestCases -->
     </classes>
