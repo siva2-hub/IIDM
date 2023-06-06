@@ -54,6 +54,5 @@ public class PermissionsTestCasesForRepairModule extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
 	}
 }

@@ -123,16 +123,23 @@ public class RepairTestCases extends App
 	//@Test(enabled = false)
 	@Test(priority = 15)
 	public void testCase15() throws Exception {
-		App.login();
+		//		App.login();
 		boolean res = repairs.verifyAssignToQCIsDisplayedOrNotWhenQuoteStatusHasWon();
 		Assert.assertTrue(res);
-		App.logout();
+		//		App.logout();
 	}
 	//@Test(enabled = false)
 	@Test(priority = 16)
 	public void testCase16() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
 		Assert.assertTrue(res);
+	}
+	//@Test(enabled = false)
+	@Test(priority = 17)
+	public void testCases() throws Exception {
+//		App.login();
+		repairs.repairsModule();
+		
 	}
 }

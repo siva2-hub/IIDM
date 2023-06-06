@@ -65,6 +65,7 @@ public class App {
 		driver.close();
 	}
 	public static void urlOpen(String instance) {
+		
 		if (instance.equals("qa")) {
 			url = "https://buzzworld-web-iidm.enterpi.com/";
 			mail = "sivakrishna.d@enterpi.com";

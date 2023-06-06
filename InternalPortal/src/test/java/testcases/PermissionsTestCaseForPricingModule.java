@@ -35,7 +35,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//
+
 	//	@Test(enabled = false)
 	@Test(priority = 3)
 	public void testCase3() throws Exception{
@@ -62,7 +62,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 5)
 	public void testCase5() throws Exception {
 		App.login();
@@ -75,7 +75,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 6)
 	public void testCase6() throws Exception {
 		App.login();
@@ -88,7 +88,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 7)
 	public void testCase7() throws Exception {
 		App.login();
@@ -101,7 +101,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 8)
 	public void testCase8() throws Exception {
 		App.login();
@@ -114,7 +114,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 9)
 	public void testCase9() throws Exception {
 		App.login();
@@ -127,7 +127,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority =10)
 	public void testCase10() throws Exception {
 		App.login();
@@ -140,7 +140,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority =11)
 	public void testCase11() throws Exception {
 		App.login();
@@ -153,7 +153,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority =12)
 	public void testCase12() throws Exception {
 		App.login();
@@ -166,7 +166,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority =13)
 	public void testCase13() throws Exception {
 		App.login();
@@ -179,7 +179,7 @@ public class PermissionsTestCaseForPricingModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority =14)
 	public void testCase14() throws Exception {
 		App.login();
@@ -190,6 +190,5 @@ public class PermissionsTestCaseForPricingModule extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
 	}
 }
