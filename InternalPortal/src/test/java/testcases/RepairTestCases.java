@@ -129,10 +129,10 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	//@Test(enabled = false)
-		@Test(priority = 16)
-		public void testCase16() throws Exception {
-			App.login();
-			boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
-			Assert.assertTrue(res);
-		}
+	@Test(priority = 16)
+	public void testCase16() throws Exception {
+//		App.login();
+		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
+		Assert.assertTrue(res);
+	}
 }

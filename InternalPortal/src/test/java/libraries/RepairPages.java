@@ -693,6 +693,7 @@ public class RepairPages extends App
 		this.assignToQC_WhenReviseTheQuote();
 		String rMAStatus = driver.findElement(By.className("quote-num-and-status")).getText();
 		String expRMAStatus = "IN PROGRESS";String expItemStatus = "Assign to QC";boolean res =  false;
+		Thread.sleep(1500);
 		String itemStatus = driver.findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]")).get(1).getText();
 		if (rMAStatus.contains(expRMAStatus) && itemStatus.contains(expItemStatus)) {
 			res = true;
