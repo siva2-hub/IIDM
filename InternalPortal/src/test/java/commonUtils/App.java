@@ -47,7 +47,7 @@ public class App {
 //	public static String pwd = "Enter@4321";
 	
 	@BeforeTest
-	public static void login() {
+	public static void login() throws Exception{
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
@@ -55,6 +55,8 @@ public class App {
 		driver.manage().window().maximize();
 		App.urlOpen("qa");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
+		Thread.sleep(2500);
+		driver.navigate().refresh();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 	} 
 	@AfterTest
@@ -67,15 +69,16 @@ public class App {
 	public static void urlOpen(String instance) {
 		
 		if (instance.equals("qa")) {
-			url = "https://buzzworld-web-iidm.enterpi.com/";
+			url = "https://buzzworld-web-iidm.enterpi.com/quote_for_parts";
 			mail = "sivakrishna.d@enterpi.com";
 			pwd = "Test@4321";
 		} else if(instance.equals("stage")) {
-			url = "https://www.staging-buzzworld.iidm.com/pricing";
+			url = "https://www.staging-buzzworld.iidm.com/quote_for_parts";
 			mail = "b.raghuvardhanreddy@enterpi.com";
 			pwd = "Enter@4321";
 		}
 		driver.get(url);
+		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
 		driver.findElement(By.id("username")).sendKeys(mail);

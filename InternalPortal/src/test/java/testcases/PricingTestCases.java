@@ -181,6 +181,6 @@ public class PricingTestCases extends App
 		App.login();
 		boolean res = price.filters("BACO44");
 		Assert.assertTrue(res);
-//		App.logout();
+
 	}
 }

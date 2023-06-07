@@ -691,7 +691,12 @@ public class PricingPages extends App
 		Permissions per = new Permissions();
 		per.headerMenu("Admin");
 		per.adminLeftMenu("Vendors");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Search By Name']")));
+		Thread.sleep(2200);
+		if(!driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).getAttribute("value").equals("")) {
+			driver.findElement(By.xpath("//*[contains(@class,'Cross-svg')]")).click();
+			System.out.println("search ahving data previously");
+		}
 		driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).sendKeys("BACO001");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		driver.findElement(By.xpath("//*[contains(@src,'editicon')]")).click();
@@ -719,10 +724,10 @@ public class PricingPages extends App
 		Thread.sleep(2000);
 		vSel.sendKeys(Keys.ENTER);
 		Thread.sleep(1500);
-		String sectionText = driver.findElement(By.tagName("section")).getText();
+		String sectionText = driver.findElement(By.className("message")).getText();
 		System.out.println("count of section tags are "+driver.findElements(By.tagName("section")).size());
 		System.out.println(sectionText);
-		String vendorText = "This Vendor having Different Pricing By Branch";
+		String vendorText = "This vendor has different pricing by Branch";
 		boolean res = false;
 		if (sectionText.toLowerCase().contains(vendorText.toLowerCase())) {
 			res = true;
@@ -757,11 +762,11 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
-			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_021_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_021_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
 		return res;
