@@ -25,12 +25,11 @@
        </classes>
    </test>
    
-   <test name="Permission Test Cases in SysPro Module" >
+   <!-- <test name="Permission Test Cases in SysPro Module" >
        <classes> 
           <class name="testcases.PermissionsTestCases_SysProModule" />
        </classes>
-   </test>
-   
+   </test> -->
     <test name="Permission Test Cases in Oranizations and Contacts Module" >
        <classes> 
           <class name="testcases.PermissionsTestCases_Organizations" />

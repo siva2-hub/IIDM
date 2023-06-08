@@ -53,7 +53,7 @@ public class App {
 		options.addArguments("--remote-allow-origins=*");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		App.urlOpen("qa");
+		App.urlOpen("stage");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		Thread.sleep(2500);
 		driver.navigate().refresh();

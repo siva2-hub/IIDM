@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -251,10 +250,7 @@ public class PricingPages extends App
 		Thread.sleep(2000);
 		String summaryText = driver.findElement(By.xpath("//*[contains(@class,'Upload-files')]")).getText();
 		System.out.println("summary text is "+summaryText);
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File SrcFile = ts.getScreenshotAs(OutputType.FILE);
-		File destFile = new File("summary_image.png");
-		FileUtils.copyFile(SrcFile, destFile);
+		this.takesScreenShot("summary_page.png");
 		String expText = "Imported Data Successfully";
 		boolean res = false;
 		if (summaryText.equalsIgnoreCase("Summary")) {
@@ -781,11 +777,14 @@ public class PricingPages extends App
 		driver.findElement(By.className("ag-side-button-label")).click();
 		Thread.sleep(1400);
 	}
-	public void clickButton(String btnName) {
+	public void clickButton(String btnName) throws Exception{
 		List<WebElement> btns = driver.findElements(By.tagName("button"));
+		Actions act = new Actions(driver);
 		for(int i=0;i<btns.size();i++) {
 			if(btns.get(i).getText().equals(btnName)) {
-				btns.get(i).click();
+				act.moveToElement(btns.get(i)).build().perform();
+				Thread.sleep(600);
+				act.click(btns.get(i)).build().perform();
 				break;
 			}
 		}
@@ -821,6 +820,13 @@ public class PricingPages extends App
 
 		System.out.println("Current time: "+t2);
 		return t2;
+	}
+	public void takesScreenShot(String fileName) throws Exception
+	{
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File SrcFile = ts.getScreenshotAs(OutputType.FILE);
+		File destFile = new File(fileName);
+		FileUtils.copyFile(SrcFile, destFile);
 	}
 	public void closeIcon() 
 	{

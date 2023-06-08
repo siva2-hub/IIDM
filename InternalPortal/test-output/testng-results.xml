@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-07T18:37:59 IST" name="Default suite" finished-at="2023-06-07T18:40:27 IST" duration-ms="147337">
+  <suite started-at="2023-06-08T18:55:32 IST" name="Default suite" finished-at="2023-06-08T18:57:26 IST" duration-ms="114501">
     <groups>
     </groups>
-    <test started-at="2023-06-07T18:37:59 IST" name="Default test" finished-at="2023-06-07T18:40:27 IST" duration-ms="147337">
+    <test started-at="2023-06-08T18:55:32 IST" name="Default test" finished-at="2023-06-08T18:57:26 IST" duration-ms="114501">
       <class name="testcases.URLRedirectsTestCase">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.URLRedirectsTestCase@2a7f1f10]" started-at="2023-06-07T18:37:59 IST" name="login" finished-at="2023-06-07T18:38:09 IST" duration-ms="9877" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.URLRedirectsTestCase@644baf4a]" started-at="2023-06-08T18:55:32 IST" name="login" finished-at="2023-06-08T18:55:50 IST" duration-ms="18172" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase18()[pri:0, instance:testcases.URLRedirectsTestCase@2a7f1f10]" started-at="2023-06-07T18:38:09 IST" name="testCase18" finished-at="2023-06-07T18:40:25 IST" duration-ms="136136" status="PASS">
+        <test-method signature="testCase3()[pri:3, instance:testcases.URLRedirectsTestCase@644baf4a]" started-at="2023-06-08T18:55:50 IST" name="testCase3" finished-at="2023-06-08T18:57:24 IST" duration-ms="94243" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCase18 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.URLRedirectsTestCase@2a7f1f10]" started-at="2023-06-07T18:40:26 IST" name="logout" finished-at="2023-06-07T18:40:27 IST" duration-ms="1286" status="PASS">
+        </test-method> <!-- testCase3 -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.URLRedirectsTestCase@644baf4a]" started-at="2023-06-08T18:57:24 IST" name="logout" finished-at="2023-06-08T18:57:26 IST" duration-ms="2057" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->

@@ -47,7 +47,8 @@ public class PermissionsTestCases_QuotesModule extends App
 	}
 //	@Test(enabled = false)
 	@Test(priority = 4)
-	public void testCase4() throws Exception {
+	public void testCase4() throws Exception 
+	{
 		App.login();
 		boolean res = quotes.verifyCreateSalesOrderPermissionAsYes("PERMNS_056_Verify_CreateSalesOrder_Permission_As_Yes_Quotes", "Admin", "Users", "Quote for Parts/Repairs",2, 1);
 		if(res) {
@@ -59,7 +60,8 @@ public class PermissionsTestCases_QuotesModule extends App
 	}
 //	@Test(enabled = false)
 	@Test(priority = 5)
-	public void testCase5() throws Exception {
+	public void testCase5() throws Exception 
+	{
 		App.login();
 		boolean res = quotes.verifyQuoteClosePermissionAsYes_Quotes("PERMNS_057_Verify_QuoteClose_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",6, 2);
 		if(res) {

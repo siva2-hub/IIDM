@@ -44,10 +44,16 @@ public class QuotePages extends App
 		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
-		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("0165");
-		Thread.sleep(4000);
-		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
-		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("123");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1800);
+//		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
+		Actions act = new Actions(driver);
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.SPACE).build().perform();
+		Thread.sleep(1000);
 		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		for(int i=0;i<btn.size();i++) 
 		{
@@ -740,7 +746,7 @@ public class QuotePages extends App
 		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
 		Statement stmt=con.createStatement(); 
 		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
-				+ "VALUES ('"+ data[0]+ "','"+ data[1] + "','"+ data[2] + "','" + data[3] + "','" + data[4]+ "')";
+				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "')";
 		stmt.executeUpdate(sql);  
 	}
 }
