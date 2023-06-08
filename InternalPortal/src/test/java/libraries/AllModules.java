@@ -232,6 +232,47 @@ public class AllModules extends App
 			Object status[] = {"REPAIRS_010_VerifyQCCheckList", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
+		//Go To Quote Module
+		act.moveToElement(driver.findElement(By.xpath("//*[contains(@label,'2023')]"))).build().perform();
+		driver.findElement(By.xpath("//*[contains(@label,'2023')]")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
+		Thread.sleep(1600);
+		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
+		//Create Sales Order
+		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer_po_number")));
+		Thread.sleep(1200);
+		driver.findElement(By.name("customer_po_number")).sendKeys("PO1234");
+		String stockItem = driver.findElement(By.xpath("/html/body/div/div/div[6]/div/div[1]/div/div[2]/div[3]")).getText();
+		if (stockItem.equals("Stock Code "+stockCode+" does not exist")) {
+			System.exit(0);
+			driver.findElement(By.xpath("//*[@class='tooltip bottom']")).click();
+		} else {
+			Thread.sleep(1300);
+			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1600);
+		}
+		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) {
+			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+			Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", serverMsg, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+			price.takesScreenShot("create_sales_order.png");
+			driver.findElement(By.xpath("//*[@title='close']")).click();
+		}else {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1600);
+			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			} else {
+				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			}
+		}
+		//Create Job from Repair
+		
 	}
 
 	public void quotesModule(String leadTime, String leadValue, String discount) throws Exception
@@ -416,10 +457,10 @@ public class AllModules extends App
 			Thread.sleep(1600);
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder", "Sales Order Created with status is "+orderStatus, "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			} else {
-				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder", "Sales Order Created with status is "+orderStatus, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			}
 		}

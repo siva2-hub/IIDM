@@ -7,7 +7,7 @@
         <methods>
           <include name="logout"/>
           <include name="login"/>
-          <include name="testCase3"/>
+          <include name="testCase2"/>
         </methods>
       </class> <!-- testcases.URLRedirectsTestCase -->
     </classes>
