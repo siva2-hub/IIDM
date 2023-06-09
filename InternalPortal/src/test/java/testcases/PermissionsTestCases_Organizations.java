@@ -83,14 +83,14 @@ public class PermissionsTestCases_Organizations extends App
 //	@Test(enabled = false)
 	@Test(priority =7)
 	public void testCase7() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = org.exportPermissionAsYesInContacts("PERMNS_084_Verify_Export_Permission_As_No_Organizations", "Admin", "Users", "organizations_export","organizations", "Export", "0");
 		if(res) {
 		}else {
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority =8)
@@ -179,14 +179,14 @@ public class PermissionsTestCases_Organizations extends App
 //	@Test(enabled = false)
 	@Test(priority =15)
 	public void testCase15() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = org.exportPermissionAsYesInContacts("PERMNS_092_Verify_Sync_Permission_As_No_ProductClass", "Admin", "Users", "product_class_sync","product_class", "Sync", "0");
 		if(res) {
 		}else {
 			App.logout();
 		}
 		Assert.assertTrue(res);
-		App.logout();
+//		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority =16)
@@ -198,6 +198,5 @@ public class PermissionsTestCases_Organizations extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
 	}
 }

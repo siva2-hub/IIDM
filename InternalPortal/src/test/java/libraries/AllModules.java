@@ -10,11 +10,57 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
+
 import commonUtils.App;
 
 public class AllModules extends App
 {
 	QuotePages quotes = new QuotePages();   RepairPages repair = new RepairPages();   PricingPages price = new PricingPages();
+	public void logoutCheckURLRedirectsOrNot() throws Exception 
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		String url[] = {"quote_for_parts","organizations", "contacts", "pricing", "discount-codes", "special-pricing", "repair-request", "jobs", "orders"
+				, "part-purchase", "inventory", "account-type", "branches", "classification", "contact_types", "industry", "po_min_qty", "product_class"
+				, "qc_control", "quote-approval", "quote-type", "regions", "sales_potential", "terms-conditions", "territory", "users", "user_roles", 
+				"vendors", "warehouse", "zipcodes", "past-due-invoices", "point-of-sales"};
+		int count =1;
+		for(int i=0;i<url.length; i++) 
+		{
+//			int begIndex = 0;
+//			if(driver.getCurrentUrl().contains("staging"))
+//			{
+//				begIndex = 37;
+//			}else {
+//				begIndex = 39;
+//			}
+			String openURL = driver.getCurrentUrl().replace(driver.getCurrentUrl().substring(39,driver.getCurrentUrl().length()), url[i]);
+			driver.navigate().to(openURL);
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(2500);
+			driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
+			List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
+			btns.get(1).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
+			driver.findElement(By.id("username")).sendKeys(mail);
+			driver.findElement(By.id("password")).sendKeys(pwd);
+			price.clickButton("Sign In");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='down-arrow']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(2000);
+			String openedURL = driver.getCurrentUrl();
+			if (openURL.equals(openedURL)) {
+				Object status[] = {"Check_"+url[i].toUpperCase()+"_URLs_Redirects_To_Same_Or_Not_After_Logout_0"+count, "Actual URL is "+openedURL, "Expected URL is "+openURL,
+						url[i].toUpperCase(), "Passed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			} else {
+				Object status[] = {"Check_"+url[i].toUpperCase()+"_URLs_Redirects_To_Same_Or_Not_After_Logout_0"+count, "Actual URL is "+openedURL, "Expected URL is "+openURL,
+						url[i].toUpperCase(), "Failed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			}
+			count++;
+		}
+	}
 	public void linksRedirectsOrNot() throws Exception 
 	{
 		QuotePages qp = new QuotePages();
@@ -93,6 +139,7 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Assign Technician
+		Thread.sleep(1200);
 		driver.findElement(By.xpath("//*[contains(@class,'hides')]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ARROW_UP);
@@ -238,7 +285,7 @@ public class AllModules extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		Thread.sleep(1600);
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
-		//Create Sales Order
+		//Create Sales Order from Repair
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer_po_number")));
 		Thread.sleep(1200);
@@ -253,6 +300,7 @@ public class AllModules extends App
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(1600);
 		}
+		String orderId = "";
 		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) {
 			String serverMsg = driver.findElement(By.className("server-msg")).getText();
 			Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", serverMsg, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
@@ -263,16 +311,55 @@ public class AllModules extends App
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(1600);
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_011_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			} else {
-				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_011_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			}
 		}
 		//Create Job from Repair
-		
+		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1600);
+		driver.findElement(By.xpath("//*[@class='button-icon-text']")).click();
+		Thread.sleep(1500);
+		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		quotes.selectDropDown(orderId);
+		Thread.sleep(500);
+		driver.findElement(By.id("react-select-16-input")).sendKeys("+"+stockCode);
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1600);
+		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
+		driver.findElement(By.name("job_description")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
+		act.sendKeys(Keys.ENTER).build().perform();
+		price.clickButton("Create Job");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1400);
+		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) {
+			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+			Object status[] = {"QUOTES_012_VerifyCreateJobFromRepair", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+			price.takesScreenShot("create_job.png");
+			driver.findElement(By.xpath("//*[@title='close']")).click();
+		}else {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1600);
+			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+				Object status[] = {"QUOTES_012_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			} else {
+				Object status[] = {"QUOTES_012_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			}
+		}
 	}
 
 	public void quotesModule(String leadTime, String leadValue, String discount) throws Exception
@@ -423,11 +510,11 @@ public class AllModules extends App
 		expText = "WON";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			
+
 			Object status[] = {"QUOTES_008_VerifyQuoteWon", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			
+
 			Object status[] = {"QUOTES_008_VerifyQuoteWon", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
@@ -446,6 +533,7 @@ public class AllModules extends App
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(1600);
 		}
+		String orderId = "";
 		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) {
 			String serverMsg = driver.findElement(By.className("server-msg")).getText();
 			Object status[] = {"QUOTES_009_VerifyCreateSalesOrder", serverMsg, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
@@ -455,12 +543,54 @@ public class AllModules extends App
 		}else {
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(1600);
+			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order "+orderId+" Created with Order status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			} else {
-				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_009_VerifyCreateSalesOrder_FromQuote", "Sales Order "+orderId+" Created with Order status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			}
+		}
+		//Create Job from Quote
+		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1600);
+		driver.findElement(By.xpath("//*[@class='button-icon-text']")).click();
+		Thread.sleep(1500);
+		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		quotes.selectDropDown(orderId);
+		Thread.sleep(500);
+		driver.findElement(By.id("react-select-18-input")).sendKeys(stockCode);
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1600);
+		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
+		driver.findElement(By.name("job_description")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
+		act.sendKeys(Keys.ENTER).build().perform();
+		price.clickButton("Create Job");
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1400);
+		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
+		{
+			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+			Object status[] = {"QUOTES_010_VerifyCreateJobFromQuote", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+			price.takesScreenShot("create_job.png");
+			driver.findElement(By.xpath("//*[@title='close']")).click();
+		}else {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1600);
+			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+				Object status[] = {"QUOTES_010_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
+				quotes.values(status);
+			} else {
+				Object status[] = {"QUOTES_010_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			}
 		}

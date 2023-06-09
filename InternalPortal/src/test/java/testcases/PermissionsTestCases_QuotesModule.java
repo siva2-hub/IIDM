@@ -225,7 +225,6 @@ public class PermissionsTestCases_QuotesModule extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
 	}
 
 }

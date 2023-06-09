@@ -90,6 +90,5 @@ public class PermissionsTestCases_SysProModule extends App
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
 	}
 }

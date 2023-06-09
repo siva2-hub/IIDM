@@ -37,7 +37,7 @@ public class Permissions extends App
 		String path = "";String  url = "";
 		for(int i=0; i<labelsText.size(); i++) 
 		{
-//			System.out.println(labelsText.get(i).findElements(By.tagName("span")).get(0).getText());// edit=4 :: view=3 :: none=2
+			//System.out.println(labelsText.get(i).findElements(By.tagName("span")).get(0).getText());// edit=4 :: view=3 :: none=2
 			if(labelsText.get(i).findElements(By.tagName("span")).get(0).getText().equalsIgnoreCase(labelName)) 
 			{
 				System.out.println("label name "+labelsText.get(i).findElements(By.tagName("span")).get(0).getText());

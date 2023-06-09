@@ -55,9 +55,8 @@ public class App {
 		driver.manage().window().maximize();
 		App.urlOpen("qa");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
-		Thread.sleep(2500);
-		driver.navigate().refresh();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
+		Thread.sleep(1800);
 	} 
 	@AfterTest
 	public static void logout() throws Exception {

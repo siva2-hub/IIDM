@@ -197,6 +197,5 @@ public class QuoteTestCases extends App{
 			App.login();
 			boolean res=quotes.verifyDeclineInQuoteDetailedView();
 			Assert.assertTrue(res);
-//			App.logout();
 		}
 }

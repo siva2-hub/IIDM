@@ -376,7 +376,7 @@ public class PermissionsTestCases_AdminTabs extends App
 		App.login(); 
 		boolean res = p.adminTabwithViewPermission("PERMNS_035_Verify_AccountType_When_QC_Control_Permission_As_View","Admin", "Users", "QC Control", 3);
 		Assert.assertTrue(res);
-//		App.logout();
+
 	}
 
 }

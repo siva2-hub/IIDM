@@ -44,7 +44,7 @@ public class QuotePages extends App
 		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
-		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("123");
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("0165");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1800);
@@ -745,7 +745,7 @@ public class QuotePages extends App
 		Class.forName("com.mysql.jdbc.Driver");  
 		//personal laptop account details "jdbc:mysql://localhost:3306/demo","root","siva7661@"
 		//office system details "jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234"
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","siva7661@");  
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
 		Statement stmt=con.createStatement(); 
 		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
 				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "')";

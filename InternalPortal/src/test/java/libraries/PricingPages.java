@@ -468,6 +468,11 @@ public class PricingPages extends App
 		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[1]/div/div[2]")).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2500);
+		if (driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).getAttribute("value").length()==0) {
+			
+		} else {
+			driver.findElement(By.xpath("//*[@class='Cross-svg close-icon-container']")).click();
+		}
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).sendKeys(at);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(3600);
@@ -492,14 +497,14 @@ public class PricingPages extends App
 		Object expSuggestedPrice = 0.0;
 		//		if(actFixedPrice.equals(0.0)) {
 		if(atm.equals("MRO")) {
-			accountType = Double.parseDouble(ls.get(5).getText().replace("$", ""));
+			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
 		}
 		if(atm.equals("PO")) {
-			accountType = Double.parseDouble(ls.get(4).getText().replace("$", ""));
+			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
-			accountType = Double.parseDouble(ls.get(6).getText().replace("$", ""));
+			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
 		}if(atm.equals("RS")) {
-			accountType = Double.parseDouble(ls.get(7).getText().replace("$", ""));
+			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
 		}
 		System.out.println("act type is "+atm+ " price value "+accountType);
 		//			expQuotePrice = actSellPrice;
@@ -768,14 +773,14 @@ public class PricingPages extends App
 		return res;
 	}
 	public void clickColoumns() throws Exception{
-		driver.findElement(By.className("ag-side-button-label")).click();
-		Thread.sleep(1400);
-		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(1).click();
-		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(3).click();
-		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(5).click();
-		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(4).click();
-		driver.findElement(By.className("ag-side-button-label")).click();
-		Thread.sleep(1400);
+//		driver.findElement(By.className("ag-side-button-label")).click();
+//		Thread.sleep(1400);
+//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(1).click();
+//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(3).click();
+//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(5).click();
+//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(4).click();
+//		driver.findElement(By.className("ag-side-button-label")).click();
+//		Thread.sleep(1400);
 	}
 	public void clickButton(String btnName) throws Exception{
 		List<WebElement> btns = driver.findElements(By.tagName("button"));
@@ -802,7 +807,7 @@ public class PricingPages extends App
 	}
 	public void addImportExporBtns(String btnName) 
 	{
-		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='Button-Icon-Display']")).findElements(By.className("link-icon-text"));
+		List<WebElement> btns = driver.findElement(By.xpath("//*[contains(@class,'Button-Icon-Display')]")).findElements(By.className("link-icon-text"));
 		for(int i=0;i<btns.size();i++) 
 		{
 			if (btns.get(i).getText().equals(btnName)) 
