@@ -27,13 +27,6 @@ public class AllModules extends App
 		int count =1;
 		for(int i=0;i<url.length; i++) 
 		{
-//			int begIndex = 0;
-//			if(driver.getCurrentUrl().contains("staging"))
-//			{
-//				begIndex = 37;
-//			}else {
-//				begIndex = 39;
-//			}
 			String openURL = driver.getCurrentUrl().replace(driver.getCurrentUrl().substring(39,driver.getCurrentUrl().length()), url[i]);
 			driver.navigate().to(openURL);
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
@@ -88,7 +81,7 @@ public class AllModules extends App
 			count++;
 		}
 	}
-	public void repairsModule() throws Exception
+	public void repairsModule(String stCode) throws Exception
 	{
 		//Create RMA
 		repair.createRMA();
@@ -104,8 +97,28 @@ public class AllModules extends App
 		}
 		//Add Items To Repair
 		actText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
-		quotes.selectItemToQuote();
-		Thread.sleep(2000);
+		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys(stCode);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1800);
+		Actions act = new Actions(driver);
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.SPACE).build().perform();
+		Thread.sleep(1000);
+		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
+		for(int i=0;i<btn.size();i++) 
+		{
+			if(btn.get(i).getText().toLowerCase().contains("Add Selected".toLowerCase())) {
+				btn.get(i).click();
+				break;
+			}
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
+		Thread.sleep(2600);
 		expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (!actText.equals(expText)) {
 			Object status[] = {"REPAIRS_002_VerifySelectItemToRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
@@ -115,11 +128,11 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Assign Location
-		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
+		btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
 		btn.get(0).click();
 		Thread.sleep(1000);
 		Thread.sleep(1500);
-		Actions act = new Actions(driver);
+		act = new Actions(driver);
 		WebElement editIcon = driver.findElement(By.xpath("//*[@class='quantity-parent']")).findElement(By.tagName("svg"));
 		act.moveToElement(editIcon).perform();
 		editIcon.click();
@@ -132,10 +145,10 @@ public class AllModules extends App
 		expText = "CHECKED-IN";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			Object status[] = {"REPAIRS_004_VerifyAssignLocation", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_003_VerifyAssignLocation", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_004_VerifyAssignLocation", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_003_VerifyAssignLocation", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Assign Technician
@@ -156,10 +169,10 @@ public class AllModules extends App
 		expText = "PENDING EVALUATION";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			Object status[] = {"REPAIRS_005_VerifyAssignTechnician", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_004_VerifyAssignTechnician", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_005_VerifyAssignTechnician", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_004_VerifyAssignTechnician", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Item Evaluation
@@ -179,10 +192,10 @@ public class AllModules extends App
 		expText = "PENDING QUOTE";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			Object status[] = {"REPAIRS_006_VerifyEvaluateItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_005_VerifyEvaluateItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_006_VerifyEvaluateItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_005_VerifyEvaluateItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Add Repairable Items To Quote
@@ -198,11 +211,11 @@ public class AllModules extends App
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 
-			Object status[] = {"REPAIRS_007_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_006_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 
-			Object status[] = {"REPAIRS_007_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_006_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Go to Quotes for Repair Module
@@ -213,10 +226,10 @@ public class AllModules extends App
 		expText = "OPEN";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			Object status[] = {"REPAIRS_008_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_007_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_008_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_007_VerifyCreateQuoteFromRepair", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Assign To QC
@@ -244,22 +257,21 @@ public class AllModules extends App
 		Thread.sleep(2300);
 		driver.findElement(By.xpath("//*[contains(@class,'hides')]")).click();
 		repair.toastContainer("Accept");
-		Thread.sleep(1000);
-		repair.toastContainer("Accept");
 		Thread.sleep(2200);
 		expText = "PENDING QC";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 
-			Object status[] = {"REPAIRS_009_VerifyAssignToQC", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_008_VerifyAssignToQC", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 
-			Object status[] = {"REPAIRS_009_VerifyAssignToQC", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_008_VerifyAssignToQC", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//QC CheckList
 		driver.findElement(By.xpath("//*[@title='QC Checklist']")).click();
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='react-select-9-input']")));
 		Thread.sleep(1300);
 		driver.findElement(By.id("react-select-9-input")).sendKeys("Quality control report");
 		Thread.sleep(1000);
@@ -273,27 +285,36 @@ public class AllModules extends App
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 
-			Object status[] = {"REPAIRS_010_VerifyQCCheckList", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_009_VerifyQCCheckList", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_010_VerifyQCCheckList", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_009_VerifyQCCheckList", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Go To Quote Module
 		act.moveToElement(driver.findElement(By.xpath("//*[contains(@label,'2023')]"))).build().perform();
 		driver.findElement(By.xpath("//*[contains(@label,'2023')]")).click();
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
-		Thread.sleep(1600);
+		Thread.sleep(2600);
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
 		//Create Sales Order from Repair
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer_po_number")));
-		Thread.sleep(1200);
-		driver.findElement(By.name("customer_po_number")).sendKeys("PO1234");
+		Thread.sleep(1500);
 		String stockItem = driver.findElement(By.xpath("/html/body/div/div/div[6]/div/div[1]/div/div[2]/div[3]")).getText();
-		if (stockItem.equals("Stock Code "+stockCode+" does not exist")) {
-			System.exit(0);
+		driver.findElement(By.name("customer_po_number")).sendKeys("PO1234");
+		if (stockItem.contains("does not exist")) {
 			driver.findElement(By.xpath("//*[@class='tooltip bottom']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1500);
+			driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/section/div[3]/button")).click();
+			Thread.sleep(5500);
+			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			Thread.sleep(1600);
 		} else {
 			Thread.sleep(1300);
 			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
@@ -313,10 +334,10 @@ public class AllModules extends App
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-				Object status[] = {"QUOTES_011_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			} else {
-				Object status[] = {"QUOTES_011_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromRepair", "Sales Order "+orderId+" Created with status is "+orderStatus, "", "SalesOrderPage", "Failed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			}
 		}
@@ -353,10 +374,10 @@ public class AllModules extends App
 			Thread.sleep(1600);
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-				Object status[] = {"QUOTES_012_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_011_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			} else {
-				Object status[] = {"QUOTES_012_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {"QUOTES_011_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 			}
 		}
@@ -456,6 +477,7 @@ public class AllModules extends App
 		Thread.sleep(2000);
 		repair.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		Thread.sleep(2500);
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		expText = "PENDING APPROVAL";
@@ -474,6 +496,7 @@ public class AllModules extends App
 		Thread.sleep(1200);
 		repair.toastContainer("Approve");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		Thread.sleep(1800);
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		expText = "APPROVED";
@@ -489,6 +512,7 @@ public class AllModules extends App
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@role='menuitem']")).click();
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		Thread.sleep(2500);
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		expText = "DELIVERED TO CUSTOMER";
@@ -506,7 +530,8 @@ public class AllModules extends App
 		Thread.sleep(1200);
 		repair.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
-		Thread.sleep(1400);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
+		Thread.sleep(1900);
 		expText = "WON";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {

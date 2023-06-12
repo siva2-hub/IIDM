@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -466,13 +467,13 @@ public class PricingPages extends App
 		String at  = ls.get(4).getText();
 		System.out.println("account type "+at);
 		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[1]/div/div[2]")).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@placeholder,'Search By Name')]")));
 		Thread.sleep(2500);
-		if (driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).getAttribute("value").length()==0) {
-			
-		} else {
+		if(driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).getAttribute("value")!="") 
+		{	
 			driver.findElement(By.xpath("//*[@class='Cross-svg close-icon-container']")).click();
-		}
+		} 
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).sendKeys(at);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(3600);
@@ -495,22 +496,25 @@ public class PricingPages extends App
 		Object accountType = 0.0;
 		Object expQuotePrice = 0.0;
 		Object expSuggestedPrice = 0.0;
-		//		if(actFixedPrice.equals(0.0)) {
+		Actions act = new Actions(driver);
+		act.dragAndDrop(driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-left-spacer')]"))
+				, driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-right-spacer')]"))).build().perform();
+		Thread.sleep(1500);
 		if(atm.equals("MRO")) {
-			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
+//			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1731px; width: 180px;']")).getText().replace("$", ""));
 		}
 		if(atm.equals("PO")) {
-			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
+//			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1551px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
-			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
+//			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1911px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("RS")) {
-			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
+//			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 2091px; width: 180px;']")).getText().replace("$", ""));
 		}
 		System.out.println("act type is "+atm+ " price value "+accountType);
-		//			expQuotePrice = actSellPrice;
-		//		}else {
-		//			accountType=actFixedPrice;
-		//			expQuotePrice = actFixedPrice;
 		System.out.println("no act type fixed price value "+actFixedPrice);
 		//		}
 		if (actFixedPrice.equals(0.0)) {
@@ -539,17 +543,23 @@ public class PricingPages extends App
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
-		driver.findElement(By.id("repair-items")).findElement(By.tagName("button")).click();
+//		QuotePages quotes = new QuotePages();
+		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys(item);
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("ZZ52BQ7");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(4500);
-		System.out.println("count of tags are the "+driver.findElement(By.id("tab-0-tab")).findElements(By.tagName("input")).size());
-		driver.findElement(By.name("checkbox0")).click();
-		Thread.sleep(2000);
+		Thread.sleep(1800);
+//		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
+//		Actions act = new Actions(driver);
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.SPACE).build().perform();
+		Thread.sleep(1000);
 		List<WebElement> btn = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
-		for(int i=0;i<btn.size();i++) {
+		for(int i=0;i<btn.size();i++) 
+		{
 			if(btn.get(i).getText().toLowerCase().contains("Add Selected".toLowerCase())) {
 				btn.get(i).click();
 				break;

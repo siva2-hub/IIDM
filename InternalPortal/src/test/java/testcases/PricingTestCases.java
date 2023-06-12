@@ -90,10 +90,10 @@ public class PricingTestCases extends App
 //	@Test(enabled = false)
 	@Test(priority = 10)
 	public void testCase10() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority = 11)

@@ -119,20 +119,17 @@ public class Permissions extends App
 				actText="";
 			}
 		}else if(labelName.equals("User Roles")) {
-			actText = driver.findElement(By.xpath("//*[@data-size='large']")).getAttribute("data-disabled");
-			if(actText.equals("true")) {
-				actText="";
-			}
+			actText = String.valueOf(driver.findElements(By.xpath("//*[contains(@src,'addIcon')]")).size());
+			expText = "0";
 		}else if(labelName.equals("Terms & Conditions")) {
 			actText = driver.findElements(By.xpath("//*[@class='lead']")).get(3).findElement(By.xpath("//*[contains(@class,'ql-editor')]")).getAttribute("contenteditable");
 			if(actText.equals("false")) {
 				actText="";
 			}
 		} else if(labelName.equals("QC Control")) {
-			actText = driver.findElement(By.xpath("//*[@data-size='large']")).getAttribute("data-disabled");
-			if(actText.equals("true")) {
-				actText="";
-			}
+			Thread.sleep(1600);
+			actText = driver.findElement(By.xpath("//*[@style='padding-left: 4px;']")).getText();
+			expText = "";
 		} else {
 			expText = "Filters";
 			actText = driver.findElement(By.className("add-Icon")).getText();
