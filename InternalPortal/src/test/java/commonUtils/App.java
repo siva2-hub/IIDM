@@ -51,9 +51,10 @@ public class App {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
+//		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		App.urlOpen("stage");
+		App.urlOpen("qa");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		Thread.sleep(1800);

@@ -18,7 +18,7 @@ public class URLRedirectsTestCase extends App
 	//@Test(enabled = false)
 	@Test(priority = 2)
 	public void testCase2() throws Exception {
-		all.repairsModule("ACC-AIR-001");
+		all.repairsModule("CMT-CTRL-01");
 	}
 	//@Test(enabled = false)
 	@Test(priority = 3)

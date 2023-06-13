@@ -68,7 +68,7 @@ public class PricingPages extends App
 	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass) throws Exception
 	{
 		boolean res = false;
-		String stockCode = this.getTime();
+		String stockCode = java.time.LocalTime.now().toString().substring(0, 8).replace(":", "");
 		String expStockCode = this.addProduct(stockCode, discountCode, listPrice, productClass);
 		Thread.sleep(4000);
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(stockCode);
@@ -502,17 +502,17 @@ public class PricingPages extends App
 		Thread.sleep(1500);
 		if(atm.equals("MRO")) {
 //			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1731px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1508px; width: 180px;']")).getText().replace("$", ""));
 		}
 		if(atm.equals("PO")) {
 //			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1551px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1688px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
 //			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1911px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1868px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("RS")) {
 //			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 2091px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 2048px; width: 180px;']")).getText().replace("$", ""));
 		}
 		System.out.println("act type is "+atm+ " price value "+accountType);
 		System.out.println("no act type fixed price value "+actFixedPrice);

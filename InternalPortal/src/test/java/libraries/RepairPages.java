@@ -500,8 +500,11 @@ public class RepairPages extends App
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("0165");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2000);
-		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
-		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(4).findElement(By.tagName("label")).click();
+		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.SPACE).build().perform();
+		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.SPACE).build().perform();
 		Thread.sleep(1000);
 		price.clickButton("Add Selected 2 Parts");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
@@ -590,7 +593,7 @@ public class RepairPages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
-		driver.findElement(By.xpath("//*[@class='Button-Icon-Display']")).click();
+		driver.findElement(By.xpath("//*[@class='link-icon-text']")).click();
 		Thread.sleep(2000);
 		//Quote Won
 		this.wonOrLostButton("Won");
@@ -671,7 +674,7 @@ public class RepairPages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElements(By.tagName("button")).get(1).click();
-		driver.findElement(By.xpath("//*[@class='Button-Icon-Display']")).click();
+		driver.findElement(By.xpath("//*[@class='link-icon-text']")).click();
 		Thread.sleep(2000);
 		//Quote Won
 		this.wonOrLostButton("Won");
@@ -691,7 +694,7 @@ public class RepairPages extends App
 		String rMAStatus = driver.findElement(By.className("quote-num-and-status")).getText();
 		String expRMAStatus = "IN PROGRESS";String expItemStatus = "Assign to QC";boolean res =  false;
 		Thread.sleep(1500);
-		String itemStatus = driver.findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]")).get(1).getText();
+		String itemStatus = driver.findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]")).get(3).getText();
 		if (rMAStatus.contains(expRMAStatus) && itemStatus.contains(expItemStatus)) {
 			res = true;
 			Object status[] = {"REPAIRS_016_VerifyAssignToQC_WhenReviseTheQuote", "act item status is "+itemStatus+"exp item status is "+expItemStatus,
