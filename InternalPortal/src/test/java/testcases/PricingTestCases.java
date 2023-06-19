@@ -1,7 +1,5 @@
 package testcases;
 
-import java.util.Set;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -173,7 +171,7 @@ public class PricingTestCases extends App
 	@Test(priority = 20)
 	public void testCase20() throws Exception {
 		App.login();
-		boolean res = price.isDifferentPricing();
+		boolean res = price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
 		Assert.assertTrue(res);
 		App.logout();
 	}
@@ -181,8 +179,15 @@ public class PricingTestCases extends App
 	@Test(priority = 21)
 	public void testCase21() throws Exception {
 		App.login();
+		boolean res = price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+		Assert.assertTrue(res);
+		App.logout();
+	}
+//	@Test(enabled = false)
+	@Test(priority = 22)
+	public void testCase22() throws Exception {
+		App.login();
 		boolean res = price.filters("BACO44");
 		Assert.assertTrue(res);
-
 	}
 }

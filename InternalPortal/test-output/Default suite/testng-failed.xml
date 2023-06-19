@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.AdminPages_TestCases">
+      <class name="testcases.URLRedirectsTestCase">
         <methods>
-          <include name="login"/>
           <include name="logout"/>
-          <include name="testCase1"/>
+          <include name="login"/>
+          <include name="testCase2"/>
         </methods>
-      </class> <!-- testcases.AdminPages_TestCases -->
+      </class> <!-- testcases.URLRedirectsTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

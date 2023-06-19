@@ -17,10 +17,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
@@ -37,15 +39,6 @@ public class App {
 	public static String mail ;
 	public static String pwd ;
 	
-//staging credentials
-//	public static String url = "https://www.staging-buzzworld.iidm.com/pricing";
-//	public static String mail = "b.raghuvardhanreddy@enterpi.com";
-//	public static String pwd = "Enter@4321";
-	
-//	public static String url = "http://192.168.1.176:3000/pricing";
-//	public static String mail = "b.raghuvardhanreddy@enterpi.com";
-//	public static String pwd = "Enter@4321";
-	
 	@BeforeTest
 	public static void login() throws Exception{
 		WebDriverManager.chromedriver().setup();
@@ -54,7 +47,7 @@ public class App {
 //		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		App.urlOpen("qa");
+		App.urlOpen("stage");
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		Thread.sleep(1800);

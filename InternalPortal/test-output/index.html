@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testcases.AdminPages_TestCases" class="method navigator-link" hash-for-method="testCase1">testCase1</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="testcases.URLRedirectsTestCase" class="method navigator-link" hash-for-method="testCase2">testCase2</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,42 +121,24 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">testcases.AdminPages_TestCases</span>
+              <span class="class-name">testcases.URLRedirectsTestCase</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testCase1">
-                  </a> <!-- testCase1 -->
-                  <span class="method-name">testCase1</span>
-                  <div class="stack-trace">org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //*[container(@class,&apos;container&apos;)] because of the following error:
-SyntaxError: Failed to execute &apos;evaluate&apos; on &apos;Document&apos;: The string &apos;//*[container(@class,&apos;container&apos;)]&apos; is not a valid XPath expression.
-  (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#invalid_selector_exception
+                  <a name="testCase2">
+                  </a> <!-- testCase2 -->
+                  <span class="method-name">testCase2</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@viewBox=&apos;0 0 16 16&apos;] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [962bebf117b14cb7ad1d4c2fbbe992d8, findChildElement {id=4e3f24b0-778d-4a53-9442-291338dc0c2f, using=xpath, value=//*[container(@class,&apos;container&apos;)]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.lANEmR}, goog:chromeOptions: {debuggerAddress: localhost:35485}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:35485/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 962bebf117b14cb7ad1d4c2fbbe992d8
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebElement.findElement(RemoteWebElement.java:227)
-	at libraries.AdminPages.addAndEditsInAdminPages(AdminPages.java:21)
-	at testcases.AdminPages_TestCases.testCase1(AdminPages_TestCases.java:16)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ExqKDP}, goog:chromeOptions: {debuggerAddress: localhost:44827}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:44827/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 303cbd495cecfee5dd9eb3bcf4ef24c0
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at libraries.AllModules.repairsModule(AllModules.java:416)
+	at testcases.URLRedirectsTestCase.testCase2(URLRedirectsTestCase.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -194,7 +176,7 @@ Session ID: 962bebf117b14cb7ad1d4c2fbbe992d8
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse-180660861/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse-887687539/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -203,11 +185,11 @@ Session ID: 962bebf117b14cb7ad1d4c2fbbe992d8
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testcases.AdminPages_TestCases&quot;&gt;
+      &lt;class name=&quot;testcases.URLRedirectsTestCase&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;testCase1&quot;/&gt;
+          &lt;include name=&quot;testCase2&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- testcases.AdminPages_TestCases --&gt;
+      &lt;/class&gt; &lt;!-- testcases.URLRedirectsTestCase --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -249,14 +231,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testCase1')
-data.setCell(0, 2, 'testcases.AdminPages_TestCases')
-data.setCell(0, 3, 5163);
+data.setCell(0, 1, 'testCase2')
+data.setCell(0, 2, 'testcases.URLRedirectsTestCase')
+data.setCell(0, 3, 136356);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 seconds</span>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -271,9 +253,20 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">3 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">testcases.URLRedirectsTestCase</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">testCase3</span>
+                <br/>
+                <span class="ignored-method-name">testCase4</span>
+                <br/>
+                <span class="ignored-method-name">testCase18</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -282,7 +275,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testcases.AdminPages_TestCases</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">testcases.URLRedirectsTestCase</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">login</span>
                 <span class="method-start">0 ms</span>
@@ -290,14 +283,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testCase1</span>
-                <span class="method-start">12852 ms</span>
+                <span class="method-name">testCase2</span>
+                <span class="method-start">19863 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">logout</span>
-                <span class="method-start">18025 ms</span>
+                <span class="method-start">156235 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -23,13 +23,13 @@ public class Permissions_SysPro_Pages extends Permissions
 		}
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		String message = "";
-		String actText = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]")).getText();
+		String actText = driver.findElement(By.xpath("/html/body/div/div/div[3]")).getText();
 		boolean sta = false;
 		if (count==3) {
 			int ct = driver.findElement(By.xpath("/html/body/div/div/div[4]/div/div/div/div[2]")).findElements(By.tagName("img")).size();
 			sta = (ct==0);
 		} else if(count==2){
-			sta = actText.equals("");
+			sta = actText.equals("Inventory");
 			message = driver.findElements(By.tagName("p")).get(0).getText();
 		}
 		boolean res = false;

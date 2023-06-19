@@ -137,6 +137,7 @@ public class RepairPages extends App
 		driver.findElement(By.name("serial_no")).sendKeys(java.time.LocalTime.now().toString().replace("-","").replace(":", "").replace(".", ""));
 		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Assign Technician']")));
 		Thread.sleep(1300);
 	}
 	public boolean verifyAssignLocation() throws Exception {
@@ -158,18 +159,18 @@ public class RepairPages extends App
 	public void assignTechnician() throws Exception 
 	{
 		this.assignLocation();
-		List<WebElement> btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
-		btn.get(0).click();
+		driver.findElement(By.xpath("//*[text()='Assign Technician']")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ARROW_UP);
+		driver.findElement(By.xpath("//*[contains(@class,'react-select__indicator')]")).click();
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
-		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
-		for(int i=0;i<btns.size();i++) {
-			if(btns.get(i).getText().equalsIgnoreCase("Assign")) {
-				btns.get(i).click();
-				break;
-			}
-		}
+//		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
+//		for(int i=0;i<btns.size();i++) {
+//			if(btns.get(i).getText().equalsIgnoreCase("Assign")) {
+//				btns.get(i).click();
+//				break;
+//			}
+//		}
+		driver.findElement(By.xpath("//*[text()='Assign']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		Thread.sleep(2000);
 	}

@@ -349,10 +349,10 @@ public class PermissionsTestCases_AdminTabs extends App
 	//	@Test(enabled = false)
 	@Test(priority = 32)
 	public void testCase32() throws Exception{
-//		App.login(); 
+		App.login(); 
 		boolean res = p.adminTabwithViewPermission("PERMNS_032_Verify_User Roles_Permission_As_View","Admin", "Users", "User Roles", 3);
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 	//	@Test(enabled = false)
 	@Test(priority = 33)
@@ -369,14 +369,6 @@ public class PermissionsTestCases_AdminTabs extends App
 		boolean res = p.adminTabwithViewPermission("PERMNS_034_Verify_QC Control_Permission_As_View","Admin", "Users", "QC Control", 3);
 		Assert.assertTrue(res);
 		App.logout();
-	}
-	//	@Test(enabled = false)
-	@Test(priority = 35)
-	public void testCase35() throws Exception{
-		App.login(); 
-		boolean res = p.adminTabwithViewPermission("PERMNS_035_Verify_AccountType_When_QC_Control_Permission_As_View","Admin", "Users", "QC Control", 3);
-		Assert.assertTrue(res);
-
 	}
 
 }

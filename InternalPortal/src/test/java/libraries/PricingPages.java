@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -237,15 +236,18 @@ public class PricingPages extends App
 		List<WebElement> files = driver.findElements(By.xpath("//*[contains(@class,'file-import-box')]"));
 		List<WebElement> fs = driver.findElements(By.xpath("//input[@type='file']"));
 		System.out.println("count files type is "+files.size());
-		files.get(0).findElement(By.name("checkbox")).click();
+		driver.findElements(By.xpath("//*[text()='Append to Existing List']")).get(0).click();
 		Thread.sleep(2000);
 		fs.get(0).sendKeys(dcFile);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		files.get(1).findElement(By.name("checkbox")).click();
+//		files.get(1).findElement(By.name("checkbox")).click();
+		driver.findElements(By.xpath("//*[text()='Append to Existing List']")).get(1).click();
 		Thread.sleep(3000);
 		fs.get(1).sendKeys(pricingFile);
-		Thread.sleep(5000);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(2000);
+		
 		this.addButton("Import");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2000);
@@ -318,7 +320,7 @@ public class PricingPages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1500);
 		qp.selectDropDown(item);
-		driver.findElement(By.xpath("//*[@placeholder='Purchase Discount']")).sendKeys(purchaseDiscount);
+		driver.findElement(By.xpath("//*[@label='Purchase Discount']")).sendKeys(purchaseDiscount);
 		driver.findElement(By.xpath("//*[@placeholder='Buy Price']")).sendKeys(buyPrice);
 		driver.findElement(By.xpath("//*[@placeholder='Fixed Sales Price']")).sendKeys(fprice);
 		String orgName = driver.findElement(By.xpath("//*[contains(@class,'react-select__single-value')]")).getText();
@@ -696,7 +698,7 @@ public class PricingPages extends App
 		}
 		return res;
 	}
-	public boolean isDifferentPricing() throws Exception
+	public boolean isDifferentPricing(String tcName, boolean isDifferent) throws Exception
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		Permissions per = new Permissions();
@@ -715,8 +717,13 @@ public class PricingPages extends App
 		WebElement checkBox = driver.findElement(By.name("is_different_pricing"));
 		if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
 		} else {
-			checkBox.click();
+			if (isDifferent) {
+				
+				driver.findElement(By.xpath("//*[contains(@class, 'checkbox-form-field')]")).click();
+			} else {
+			}
 		}
+		
 		this.clickButton("Update");
 		this.pricingPage("Pricing");
 		driver.findElement(By.className("sideList-Search")).findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("BACO001");
@@ -737,17 +744,21 @@ public class PricingPages extends App
 		Thread.sleep(1500);
 		String sectionText = driver.findElement(By.className("message")).getText();
 		System.out.println("count of section tags are "+driver.findElements(By.tagName("section")).size());
-		System.out.println(sectionText);
-		String vendorText = "This vendor has different pricing by Branch";
+		System.out.println(sectionText);String vendorText = "";
+		if (isDifferent) {
+			vendorText = "This vendor has different pricing by Branch";
+		} else {
+			vendorText = "";
+		}
 		boolean res = false;
-		if (sectionText.toLowerCase().contains(vendorText.toLowerCase())) {
+		if (sectionText.toLowerCase().equals(vendorText.toLowerCase())) {
 			res = true;
-			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "is different pricing option applied", vendorText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, "is different pricing option applied", "displayed msg is "+sectionText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {"PRICING_020_Verify_isDifferentPricing_CheckBox_InVendors", "is different pricing option  not applied", vendorText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, "is different pricing option  not applied", "displayed msg is "+sectionText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 			this.closeIcon();
 		}
@@ -773,11 +784,11 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
-			Object status[] = {"PRICING_021_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_022_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_021_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_022_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
 		return res;
@@ -845,6 +856,8 @@ public class PricingPages extends App
 	}
 	public void closeIcon() 
 	{
-		driver.findElement(By.xpath("//*[@title='close']")).click();
+		Actions act = new Actions(driver);
+		act.moveToElement(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
+		act.click(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
 	}
 }

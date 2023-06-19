@@ -1,10 +1,15 @@
 package libraries;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Permissions_RepairPages extends Permissions
 {
@@ -33,9 +38,17 @@ public class Permissions_RepairPages extends Permissions
 	}
 	public boolean verifyRepairPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count)  throws Exception
 	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String actURL[] = this.repairPermissionAsNone(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
+		try {
+			driver.findElement(By.className("clear-text")).isDisplayed();
+			driver.findElement(By.className("clear-text")).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));
 		System.out.println(labelName+" url is "+actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);String message = "";String expText = "";
 		if (count==2) {
@@ -52,7 +65,8 @@ public class Permissions_RepairPages extends Permissions
 			}else {
 				message = driver.findElement(By.className("add-Icon")).getText();
 			}
-			expText = "Filters";
+			expText = "Display All Items\n"
+					+ "Filters";
 		}
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		boolean res = false;
@@ -106,7 +120,9 @@ public class Permissions_RepairPages extends Permissions
 		String expText = "";
 		RepairPages repair = new RepairPages();
 		repair.evaluateItem();
-		driver.findElement(By.name("checkbox0")).click();
+		Thread.sleep(1600);
+		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
+		Thread.sleep(1000);
 		String actText = driver.findElement(By.id("repair-items")).findElement(By.xpath("//*[@class='cards-btns-group']")).getText();
 		if (count==1) {
 			expText = "Add items to quote";
