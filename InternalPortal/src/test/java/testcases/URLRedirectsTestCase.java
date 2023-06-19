@@ -14,7 +14,6 @@ public class URLRedirectsTestCase extends App
 		all = new AllModules();
 		all.linksRedirectsOrNot();
 	}
-
 	//@Test(enabled = false)
 	@Test(priority = 2)
 	public void testCase2() throws Exception {
