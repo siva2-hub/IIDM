@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Permission Test Cases in Admin Module</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>31/4/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>33/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Jun 09 16:18:53 IST 2023</td>
+<td>Started on:</td><td>Wed Jun 28 14:38:00 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>1767 seconds (1767538 ms)</td>
+<tr><td>Total time:</td><td>1375 seconds (1375438 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -77,99 +77,16 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='testcases.PermissionsTestCases_AdminTabs.testCase34()'><b>testCase34</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@data-size=&apos;large&apos;]&quot;}
-  (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [eebe6ca8c318b934dbde88375175a5e0, findElement {using=xpath, value=//*[@data-size=&apos;large&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.99iub7}, goog:chromeOptions: {debuggerAddress: localhost:43493}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:43493/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: eebe6ca8c318b934dbde88375175a5e0
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at libraries.Permissions.adminTabwithViewPermission(Permissions.java:132)
-	at testcases.PermissionsTestCases_AdminTabs.testCase34(PermissionsTestCases_AdminTabs.java:369)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace117641171", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace117641171'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@data-size=&apos;large&apos;]&quot;}
-  (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [eebe6ca8c318b934dbde88375175a5e0, findElement {using=xpath, value=//*[@data-size=&apos;large&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.99iub7}, goog:chromeOptions: {debuggerAddress: localhost:43493}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:43493/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: eebe6ca8c318b934dbde88375175a5e0
-	at jdk.internal.reflect.GeneratedConstructorAccessor14.newInstance(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at libraries.Permissions.adminTabwithViewPermission(Permissions.java:132)
-	at testcases.PermissionsTestCases_AdminTabs.testCase34(PermissionsTestCases_AdminTabs.java:369)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-	at org.testng.TestNG.runSuites(TestNG.java:1099)
-	at org.testng.TestNG.run(TestNG.java:1067)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>73</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase23()'><b>testCase23</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td><div><pre>java.lang.AssertionError: expected [true] but found [false]
-	at testcases.PermissionsTestCases_AdminTabs.testCase23(PermissionsTestCases_AdminTabs.java:282)
+	at testcases.PermissionsTestCases_AdminTabs.testCase34(PermissionsTestCases_AdminTabs.java:370)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2072210678", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace2072210678'><pre>java.lang.AssertionError: expected [true] but found [false]
+... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace251099771", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace251099771'><pre>java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:110)
 	at org.testng.Assert.failNotEquals(Assert.java:1577)
 	at org.testng.Assert.assertTrue(Assert.java:56)
 	at org.testng.Assert.assertTrue(Assert.java:66)
-	at testcases.PermissionsTestCases_AdminTabs.testCase23(PermissionsTestCases_AdminTabs.java:282)
+	at testcases.PermissionsTestCases_AdminTabs.testCase34(PermissionsTestCases_AdminTabs.java:370)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -199,195 +116,7 @@ Session ID: eebe6ca8c318b934dbde88375175a5e0
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>46</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase32()'><b>testCase32</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@data-size=&apos;large&apos;]&quot;}
-  (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [e1f3cffdef03312a7a3c78c73972a211, findElement {using=xpath, value=//*[@data-size=&apos;large&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.RXofPj}, goog:chromeOptions: {debuggerAddress: localhost:35923}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:35923/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: e1f3cffdef03312a7a3c78c73972a211
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at libraries.Permissions.adminTabwithViewPermission(Permissions.java:122)
-	at testcases.PermissionsTestCases_AdminTabs.testCase32(PermissionsTestCases_AdminTabs.java:353)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 31 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1557182934", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1557182934'><pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@data-size=&apos;large&apos;]&quot;}
-  (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [e1f3cffdef03312a7a3c78c73972a211, findElement {using=xpath, value=//*[@data-size=&apos;large&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.RXofPj}, goog:chromeOptions: {debuggerAddress: localhost:35923}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:35923/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: e1f3cffdef03312a7a3c78c73972a211
-	at jdk.internal.reflect.GeneratedConstructorAccessor14.newInstance(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at libraries.Permissions.adminTabwithViewPermission(Permissions.java:122)
-	at testcases.PermissionsTestCases_AdminTabs.testCase32(PermissionsTestCases_AdminTabs.java:353)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-	at org.testng.TestNG.runSuites(TestNG.java:1099)
-	at org.testng.TestNG.run(TestNG.java:1067)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>26</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase35()'><b>testCase35</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td><div><pre>org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
-Host info: host: &apos;enterpi-H110M-H&apos;, ip: &apos;127.0.1.1&apos;
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:561)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:229)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:157)
-	at org.openqa.selenium.chromium.ChromiumDriver.&lt;init&gt;(ChromiumDriver.java:101)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:82)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:71)
-	at commonUtils.App.login(App.java:54)
-	at testcases.PermissionsTestCases_AdminTabs.testCase35(PermissionsTestCases_AdminTabs.java:376)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: org.openqa.selenium.TimeoutException: java.util.concurrent.TimeoutException
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: driver.version: ChromeDriver
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:65)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:56)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.execute(NettyHttpHandler.java:49)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:56)
-	at org.openqa.selenium.remote.http.netty.NettyClient.execute(NettyClient.java:99)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:124)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:106)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:67)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:156)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	... 35 more
-Caused by: java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.asynchttpclient.netty.NettyResponseFuture.get(NettyResponseFuture.java:206)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:59)
-	... 48 more
-... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace622984838", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace622984838'><pre>org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
-Host info: host: &apos;enterpi-H110M-H&apos;, ip: &apos;127.0.1.1&apos;
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:561)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:229)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:157)
-	at org.openqa.selenium.chromium.ChromiumDriver.&lt;init&gt;(ChromiumDriver.java:101)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:82)
-	at org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:71)
-	at commonUtils.App.login(App.java:54)
-	at testcases.PermissionsTestCases_AdminTabs.testCase35(PermissionsTestCases_AdminTabs.java:376)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-	at org.testng.TestNG.runSuites(TestNG.java:1099)
-	at org.testng.TestNG.run(TestNG.java:1067)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.TimeoutException: java.util.concurrent.TimeoutException
-Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-73-generic&apos;, java.version: &apos;17.0.5&apos;
-Driver info: driver.version: ChromeDriver
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:65)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:56)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.execute(NettyHttpHandler.java:49)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:56)
-	at org.openqa.selenium.remote.http.netty.NettyClient.execute(NettyClient.java:99)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:124)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:106)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:67)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:156)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	... 35 more
-Caused by: java.util.concurrent.TimeoutException
-	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
-	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
-	at org.asynchttpclient.netty.NettyResponseFuture.get(NettyResponseFuture.java:206)
-	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:59)
-	... 48 more
-</pre></div></td>
-<td>192</td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
@@ -399,159 +128,169 @@ Caused by: java.util.concurrent.TimeoutException
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase14()'><b>testCase14</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase1()'><b>testCase1</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>42</td>
+<td>28</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase27()'><b>testCase27</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>45</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase26()'><b>testCase26</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase23()'><b>testCase23</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
 <td>41</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase22()'><b>testCase22</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase32()'><b>testCase32</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>44</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase31()'><b>testCase31</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase19()'><b>testCase19</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>47</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase2()'><b>testCase2</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase17()'><b>testCase17</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>41</td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
 <td title='testcases.PermissionsTestCases_AdminTabs.testCase7()'><b>testCase7</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>42</td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase4()'><b>testCase4</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase22()'><b>testCase22</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>42</td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase21()'><b>testCase21</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase27()'><b>testCase27</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>47</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase6()'><b>testCase6</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase9()'><b>testCase9</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>44</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase15()'><b>testCase15</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase3()'><b>testCase3</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>42</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase1()'><b>testCase1</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>32</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase18()'><b>testCase18</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>46</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase24()'><b>testCase24</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>52</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase16()'><b>testCase16</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>44</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase10()'><b>testCase10</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>42</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase29()'><b>testCase29</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>47</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase8()'><b>testCase8</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase25()'><b>testCase25</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>52</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase11()'><b>testCase11</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>43</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase13()'><b>testCase13</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>44</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase20()'><b>testCase20</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>44</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase5()'><b>testCase5</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>42</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase12()'><b>testCase12</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>42</td>
-<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
-<tr>
-<td title='testcases.PermissionsTestCases_AdminTabs.testCase30()'><b>testCase30</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
-<td></td>
-<td>46</td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
 <td title='testcases.PermissionsTestCases_AdminTabs.testCase33()'><b>testCase33</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>63</td>
+<td>41</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase6()'><b>testCase6</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase30()'><b>testCase30</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>41</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase2()'><b>testCase2</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase3()'><b>testCase3</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase20()'><b>testCase20</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase31()'><b>testCase31</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase13()'><b>testCase13</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase19()'><b>testCase19</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase4()'><b>testCase4</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase26()'><b>testCase26</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase16()'><b>testCase16</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase15()'><b>testCase15</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>41</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase18()'><b>testCase18</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase8()'><b>testCase8</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase21()'><b>testCase21</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase14()'><b>testCase14</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase10()'><b>testCase10</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>38</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase9()'><b>testCase9</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase17()'><b>testCase17</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase29()'><b>testCase29</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase5()'><b>testCase5</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase12()'><b>testCase12</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase25()'><b>testCase25</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 <tr>
 <td title='testcases.PermissionsTestCases_AdminTabs.testCase28()'><b>testCase28</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
 <td></td>
-<td>49</td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase24()'><b>testCase24</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>40</td>
+<td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
+<tr>
+<td title='testcases.PermissionsTestCases_AdminTabs.testCase11()'><b>testCase11</b><br>Test class: testcases.PermissionsTestCases_AdminTabs</td>
+<td></td>
+<td>39</td>
 <td>testcases.PermissionsTestCases_AdminTabs@69e153c5</td></tr>
 </table><p>
 </body>
