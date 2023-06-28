@@ -22,7 +22,7 @@ public class URLRedirectsTestCase extends App
 	//@Test(enabled = false)
 	@Test(priority = 3)
 	public void testCase3() throws Exception {
-		all.quotesModule("Weeks", "21", "32.23");
+		all.quotesModule("Week(s)", "21", "32.23");
 	}
 	//@Test(enabled = false)
 	@Test(priority = 4)

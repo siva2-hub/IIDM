@@ -36,14 +36,14 @@ public class PermissionsTestCases_QuotesModule extends App
 //	@Test(enabled = false)
 	@Test(priority = 3)
 	public void testCase3() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = quotes.verifyCreateSalesOrderPermissionAsYes("PERMNS_055_Verify_CreateSalesOrder_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",2, 2);
 		if(res) {
 		}else {
 			App.logout();
 		}
 		Assert.assertTrue(res);
-//		App.logout();
+		App.logout();
 	}
 //	@Test(enabled = false)
 	@Test(priority = 4)

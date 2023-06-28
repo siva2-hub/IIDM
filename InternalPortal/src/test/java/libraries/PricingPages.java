@@ -47,19 +47,23 @@ public class PricingPages extends App
 	{
 		this.pricingPage("Pricing");
 		Thread.sleep(2000);
-//		this.addImportExporBtns("Add");
+		//		this.addImportExporBtns("Add");
 		driver.findElement(By.className("button-icon-text")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("stock_code")));
 		Thread.sleep(2000);
 		driver.findElement(By.name("stock_code")).sendKeys(stockCode);
-		driver.findElement(By.id("react-select-3-input")).sendKeys(discountCode);
+		driver.findElement(By.name("stock_code")).click();
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(discountCode).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
+		//		driver.findElement(By.id("react-select-3-input")).sendKeys(discountCode);
 		Thread.sleep(1200);
-		qp.selectDropDown(discountCode);
+		//		qp.selectDropDown(discountCode);
 		driver.findElement(By.name("list_price")).sendKeys(listPrice);
 		Thread.sleep(1200);
-		driver.findElement(By.id("react-select-4-input")).sendKeys(productClass);
-		Thread.sleep(1200);
-		qp.selectDropDown(productClass);
+		driver.findElement(By.name("list_price")).click();
+		act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(productClass).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
 		this.addButton("Add Product");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		return stockCode;
@@ -85,6 +89,51 @@ public class PricingPages extends App
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
+//		//Add Discount Code
+//		this.verifyAddDiscountCode();
+//
+//		//Update Product
+//		this.verifyUpdateProduct();
+//
+//		//Update Discount Code
+//		this.verifyUpdateDiscountCode();
+//
+//		//Import File
+//		this.importFile();
+//
+//		//Sell Price and Buy Price in Special pricing
+//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
+//
+//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
+//
+//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
+//
+//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
+//
+//		//Checking  Quote Price and Suggested Price in Quote Detailed View
+//		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
+//		//
+//		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
+//
+//		//Pricing --> Add Product Page Validations
+//		this.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");  //Add product with duplicate stock code
+//		this.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");  //Add product with empty stock code
+//		this.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");  //Add product with empty discount code
+//		this.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");  //Add product with empty List price
+//		this.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");  //Add product with invalid List price
+//		this.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");  //Add product with empty Product Class
+//
+//		//Update Product Page Validations
+//		this.verifyUpdateProductValidations(1);
+//		this.verifyUpdateProductValidations(2);
+//
+//		//Is different Pricing
+//		this.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+//		this.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+//
+//		//Filters
+//		this.filters("BACO44");
+
 		return res;
 	}
 	public String updateProduct() throws Exception 
@@ -130,17 +179,23 @@ public class PricingPages extends App
 	{
 		this.pricingPage("Discount Codes");
 		Thread.sleep(2000);
-		String dc = "DC"+this.getTime();
+		String dc = java.time.LocalTime.now().toString().substring(0, 8).replace(":", "");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='Button-Icon-Display']")));
-//		this.addImportExporBtns("Add");
-		driver.findElement(By.className("button-icon-text")).click();
+		//		this.addImportExporBtns("Add");
+		driver.findElement(By.xpath("//*[text()= 'Add']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='discount_code']")));
 		driver.findElement(By.name("discount_code")).sendKeys(dc);
-		driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.ARROW_UP.ARROW_RIGHT);
-		driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
-		driver.findElement(By.id("react-select-4-input")).sendKeys("8");
-		driver.findElement(By.id("react-select-4-input")).sendKeys(Keys.ENTER);
-		driver.findElement(By.id("react-select-5-input")).sendKeys("11");
+		driver.findElement(By.name("discount_code")).click();
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys(Keys.ARROW_RIGHT).build().perform(); act.sendKeys(Keys.ARROW_LEFT).build().perform();
+		act.sendKeys(Keys.ENTER).build().perform();
+		act.sendKeys(Keys.TAB).build().perform();
+		for(int i=0; i<15; i++) {
+			act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
+		}
+		act.sendKeys(Keys.ENTER).build().perform(); act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys("11").build().perform();
 		qp.selectDropDown("11");
 		driver.findElement(By.xpath("//*[@placeholder='Our Price']")).sendKeys("0.25");
 		driver.findElement(By.xpath("//*[@placeholder='MRO']")).sendKeys("0.50");
@@ -241,15 +296,15 @@ public class PricingPages extends App
 		fs.get(0).sendKeys(dcFile);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		files.get(1).findElement(By.name("checkbox")).click();
+		//		files.get(1).findElement(By.name("checkbox")).click();
 		driver.findElements(By.xpath("//*[text()='Append to Existing List']")).get(1).click();
 		Thread.sleep(3000);
 		fs.get(1).sendKeys(pricingFile);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2000);
-		
+
 		this.addButton("Import");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'Upload-files')]")));
 		Thread.sleep(2000);
 		String summaryText = driver.findElement(By.xpath("//*[contains(@class,'Upload-files')]")).getText();
 		System.out.println("summary text is "+summaryText);
@@ -257,10 +312,21 @@ public class PricingPages extends App
 		String expText = "Imported Data Successfully";
 		boolean res = false;
 		if (summaryText.equalsIgnoreCase("Summary")) {
-			driver.findElement(By.id("react-select-5-input")).sendKeys("5");
-			driver.findElement(By.id("react-select-5-input")).sendKeys(Keys.ENTER);
-			driver.findElement(By.id("react-select-6-input")).sendKeys("10");
-			driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ENTER);
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ENTER);
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ARROW_RIGHT);
+			Actions act = new Actions(driver);
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ARROW_LEFT);
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ENTER);
+			act.sendKeys(Keys.ENTER).build().perform();
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(2).sendKeys(Keys.ENTER);
+			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(2).sendKeys(Keys.ARROW_RIGHT);
+			for(int i=0; i<15; i++) {
+				act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
+			}
+			act.sendKeys(Keys.ENTER).build().perform();
+			//			driver.findElement(By.id("react-select-5-input")).sendKeys(Keys.ENTER);
+			//			driver.findElement(By.id("react-select-6-input")).sendKeys("10");
+			//			driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ENTER);
 			driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("button")).click();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(2000);
@@ -287,7 +353,7 @@ public class PricingPages extends App
 	}
 	public Object[] specialPricing(String type, int typeVal, String purchaseDiscount, String fprice, String buyPrice) throws Exception
 	{
-		String compName = "1155 Distributor Partners-Dallas, LLC";
+		String compName = "Zummo Meat Co Inc";
 		String item = "ZZ52BQ7";
 		this.pricingPage("Non Standard Pricing");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
@@ -307,12 +373,17 @@ public class PricingPages extends App
 		driver.findElements(By.id("async-select-example")).get(1).sendKeys("BACO CONTROLS INC");
 		Thread.sleep(1500);
 		qp.selectDropDown("BACO CONTROLS INC");
-//		System.exit(0);
-		driver.findElement(By.id("react-select-10-input")).sendKeys(type);
+		//		System.exit(0);
+		driver.findElement(By.xpath("//*[@label='Purchase Discount']")).click();
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.TAB).build().perform(); 
+		act.sendKeys(type).build().perform();
+		//		driver.findElement(By.id("react-select-10-input")).sendKeys(type);
 		Thread.sleep(1500);
 		qp.selectDropDown(type);
 		driver.findElement(By.name("pricing_rules.0.type_value")).sendKeys(String.valueOf(typeVal));
-		driver.findElement(By.id("react-select-9-input")).sendKeys("Specific Item");
+		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(4).click();
+		act.sendKeys("Specific Item");
 		Thread.sleep(1500);
 		qp.selectDropDown("Specific Item");
 		Thread.sleep(1500);
@@ -327,24 +398,27 @@ public class PricingPages extends App
 		this.clickButton("Preview Items");
 		Thread.sleep(1300);
 		rp.toastContainer("Override");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style='left: 655px; width: 140px;']")));
+		Thread.sleep(2500);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		//		List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		double actBuyPrice = 0.0;
 		if(purchaseDiscount.equals("") && buyPrice.equals("")) {
 			actBuyPrice = 0.0;
 		}else {
-			actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
-			
+			//			actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
+			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 655px; width: 140px;']")).getText().replace("$", ""));
+
 		}
 		//System.out.println("actual buy price "+actBuyPrice);
-		Double actSellPrice =  Double.parseDouble(ls.get(10).getText().replace("$", ""));
+		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1622px; width: 117px;']")).getText().replace("$", ""));
 		Double actFixedPrice = 0.0;
-		if(ls.get(9).getText().equals("")) {
+		//checking with actFixedPrice
+		if(driver.findElement(By.xpath("//*[@style='left: 1453px; width: 169px;']")).getText().equals("")) 
+		{
 			actFixedPrice = 0.0;
 		}else {
-			actFixedPrice = Double.parseDouble(ls.get(9).getText().replace("$", ""));
+			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1453px; width: 169px;']")).getText().replace("$", ""));
 		}
 		System.out.println("actual buy price "+actBuyPrice);
 		System.out.println("actual sell price "+actSellPrice);
@@ -358,7 +432,7 @@ public class PricingPages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(6000);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		String listPrice = ls.get(2).getText();
 		String ourPrice = ls.get(8).getText();
 		String op1 = ourPrice.replace("$", "");
@@ -366,13 +440,13 @@ public class PricingPages extends App
 		String lp1 = listPrice.replace("$", "");
 		Double lp = Double.parseDouble(lp1);
 		DecimalFormat decfor = new DecimalFormat("0.00");
-//		String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
+		//		String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
 		Double expBuyPrice= 0.0;
 		if (buyPrice.equals("")) {
-			 
+
 		} else {
 
-			 expBuyPrice = Double.parseDouble(buyPrice);
+			expBuyPrice = Double.parseDouble(buyPrice);
 		}
 		double sellPrice = 0.0;
 		double bPrice = 0.0;
@@ -381,10 +455,10 @@ public class PricingPages extends App
 			sellPrice = Double.parseDouble(sp);
 		}if(type.equals("Markup")) {
 			if(buyPrice.equals("")&&purchaseDiscount.equals("")) {
-				
+
 				String sp = decfor.format(op+(op*typeVal/100));
 				sellPrice = Double.parseDouble(sp);
-				
+
 			}if(buyPrice.equals("") && !purchaseDiscount.equals("")) 
 			{
 				double val1 = Integer.parseInt(purchaseDiscount);
@@ -453,7 +527,7 @@ public class PricingPages extends App
 				driver.findElements(By.className("link-icon-text")).get(i).click();
 			}
 		}
-//		driver.findElements(By.className("link-icon-text")).get(3).click();
+		//		driver.findElements(By.className("link-icon-text")).get(3).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(2500);
 		String searchText = driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).getAttribute("value");
@@ -471,17 +545,21 @@ public class PricingPages extends App
 		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[1]/div/div[2]")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@placeholder,'Search By Name')]")));
 		Thread.sleep(2500);
-		if(driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).getAttribute("value")!="") 
-		{	
-			driver.findElement(By.xpath("//*[@class='Cross-svg close-icon-container']")).click();
-		} 
+		try {
+			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
+			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
+			Thread.sleep(2000);
+		} catch (Exception e) {}
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).sendKeys(at);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(3600);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div[4]/div[3]/div/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[4]")));
+		System.out.println("visible.........");	
+		//		System.exit(typeValue);
+		Thread.sleep(2600);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String atm  = ls.get(3).getText();
+		//		ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		String atm  = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[3]/div/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[4]")).getText();
 		this.pricingPage("Pricing");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
@@ -503,17 +581,17 @@ public class PricingPages extends App
 				, driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-right-spacer')]"))).build().perform();
 		Thread.sleep(1500);
 		if(atm.equals("MRO")) {
-//			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1508px; width: 180px;']")).getText().replace("$", ""));
+			//			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1688px; width: 180px;']")).getText().replace("$", ""));
 		}
 		if(atm.equals("PO")) {
-//			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1688px; width: 180px;']")).getText().replace("$", ""));
+			//			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1508px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
-//			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
+			//			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
 			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1868px; width: 180px;']")).getText().replace("$", ""));
 		}if(atm.equals("RS")) {
-//			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
+			//			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
 			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 2048px; width: 180px;']")).getText().replace("$", ""));
 		}
 		System.out.println("act type is "+atm+ " price value "+accountType);
@@ -539,22 +617,23 @@ public class PricingPages extends App
 		Thread.sleep(4700);
 		qp.selectDropDown(orgName);
 		driver.findElement(By.name("project_name")).sendKeys("Test");
-		driver.findElement(By.id("react-select-18-input")).sendKeys("Parts Quote");
+		driver.findElement(By.name("project_name")).click();
+		act.sendKeys(Keys.TAB).build().perform();
+		act.sendKeys("Parts Quote").build().perform();  act.sendKeys(Keys.ENTER).build().perform();
+		//		driver.findElement(By.id("react-select-18-input")).sendKeys("Parts Quote");
 		Thread.sleep(2500);
-		qp.selectDropDown("Parts Quote");
-		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
-//		QuotePages quotes = new QuotePages();
+		//		QuotePages quotes = new QuotePages();
 		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("ZZ52BQ7");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='ZZ52BQ7']")));
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1800);
-//		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
-//		Actions act = new Actions(driver);
+		//		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
+		//		Actions act = new Actions(driver);
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
 		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.SPACE).build().perform();
@@ -569,9 +648,9 @@ public class PricingPages extends App
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
 		Thread.sleep(2600);
-		Double actSugestedPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@id=\"repair-items\"]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div[2]/h4")).getText().replace("$", ""));
-		Double actListPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@id=\"repair-items\"]/div[2]/div[1]/div/div[2]/div[2]/div[3]/div[2]/h4")).getText().replace("$", ""));
-		Double actQuotePrice = Double.parseDouble(driver.findElement(By.xpath("//*[@id=\"repair-items\"]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div[1]/h4")).getText().replace("$", ""));
+		Double actSugestedPrice = Double.parseDouble(driver.findElements(By.xpath("//*[@class='d-flex align-center g-16 ']")).get(0).findElement(By.tagName("h4")).getText().replace("$", ""));
+		Double actListPrice = Double.parseDouble(driver.findElements(By.xpath("//*[@class='d-flex align-center g-16 ']")).get(2).findElement(By.tagName("h4")).getText().replace("$", ""));
+		Double actQuotePrice = Double.parseDouble(driver.findElements(By.xpath("//*[@class='d-flex align-center g-16  ']")).get(0).findElement(By.tagName("h4")).getText().replace("$", ""));
 		System.out.println("act sugested price "+actSugestedPrice);
 		System.out.println("act list price "+actListPrice);
 		System.out.println("act quote price "+actQuotePrice);
@@ -706,24 +785,33 @@ public class PricingPages extends App
 		per.adminLeftMenu("Vendors");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Search By Name']")));
 		Thread.sleep(2200);
-		if(!driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).getAttribute("value").equals("")) {
-			driver.findElement(By.xpath("//*[contains(@class,'Cross-svg')]")).click();
-			System.out.println("search ahving data previously");
-		}
+		try {
+			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
+			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
+			Thread.sleep(2000);
+		} catch (Exception e) {}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Search By Name']")));
+		System.out.println("search ahving data previously");
 		driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).sendKeys("BACO001");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text()='BACO001']")));
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[contains(@src,'editicon')]")).click();
 		Thread.sleep(1500);
 		WebElement checkBox = driver.findElement(By.name("is_different_pricing"));
 		if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
+			if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
+
+			} else {
+				driver.findElement(By.xpath("//*[contains(@class, 'checkbox-form-field')]")).click();
+			}
 		} else {
-			if (isDifferent) {
-				
+			if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
 				driver.findElement(By.xpath("//*[contains(@class, 'checkbox-form-field')]")).click();
 			} else {
 			}
 		}
-		
+
 		this.clickButton("Update");
 		this.pricingPage("Pricing");
 		driver.findElement(By.className("sideList-Search")).findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("BACO001");
@@ -741,8 +829,12 @@ public class PricingPages extends App
 		vSel.sendKeys("BACO001");
 		Thread.sleep(2000);
 		vSel.sendKeys(Keys.ENTER);
-		Thread.sleep(1500);
-		String sectionText = driver.findElement(By.className("message")).getText();
+		Thread.sleep(1500);String sectionText = "";
+		try {
+			sectionText = driver.findElement(By.className("message")).getText();
+		} catch (Exception e) {
+			sectionText = "";
+		}
 		System.out.println("count of section tags are "+driver.findElements(By.tagName("section")).size());
 		System.out.println(sectionText);String vendorText = "";
 		if (isDifferent) {
@@ -766,13 +858,18 @@ public class PricingPages extends App
 	}
 	public boolean filters(String disCountCode) throws Exception {
 		this.pricingPage("Pricing");
-		driver.findElement(By.className("filter-text")).click();
+		Actions act = new Actions(driver);
+		driver.findElement(By.xpath("//*[text()= 'Filters']")).click();
+		Thread.sleep(2500);
+
+		driver.findElements(By.xpath("//*[contains(@class, 'react-select__indicator')]")).get(3).click();
+		act.sendKeys(disCountCode).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
 		Thread.sleep(2000);
-		driver.findElement(By.id("react-select-3-input")).sendKeys(disCountCode);
-		
+		//		driver.findElement(By.id("react-select-3-input")).sendKeys(disCountCode);
+
 		QuotePages quotes = new QuotePages();
 		quotes.selectDropDown(disCountCode);
-		this.clickButton("Appy");
+		driver.findElement(By.xpath("//*[text()= 'Appy']")).click();
 		Thread.sleep(1600);
 		WebDriverWait js = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
@@ -780,7 +877,7 @@ public class PricingPages extends App
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
 		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		String actDisCode = ls.get(3).getText();
-		driver.findElement(By.className("clear-text")).click();
+		driver.findElement(By.xpath("//*[text()= 'Clear']")).click();
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
@@ -794,14 +891,14 @@ public class PricingPages extends App
 		return res;
 	}
 	public void clickColoumns() throws Exception{
-//		driver.findElement(By.className("ag-side-button-label")).click();
-//		Thread.sleep(1400);
-//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(1).click();
-//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(3).click();
-//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(5).click();
-//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(4).click();
-//		driver.findElement(By.className("ag-side-button-label")).click();
-//		Thread.sleep(1400);
+		//		driver.findElement(By.className("ag-side-button-label")).click();
+		//		Thread.sleep(1400);
+		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(1).click();
+		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(3).click();
+		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(5).click();
+		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(4).click();
+		//		driver.findElement(By.className("ag-side-button-label")).click();
+		//		Thread.sleep(1400);
 	}
 	public void clickButton(String btnName) throws Exception{
 		List<WebElement> btns = driver.findElements(By.tagName("button"));

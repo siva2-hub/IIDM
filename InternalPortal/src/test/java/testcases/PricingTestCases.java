@@ -19,7 +19,7 @@ public class PricingTestCases extends App
 //	@Test(enabled = false)
 	@Test(priority = 2)
 	public void testCase2() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = price.verifyAddDiscountCode();
 		Assert.assertTrue(res);
 		App.logout();
@@ -61,7 +61,7 @@ public class PricingTestCases extends App
 //	@Test(enabled = false)
 	@Test(priority = 7)
 	public void testCase7() throws Exception {
-		App.login();
+//		App.login();
 		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
 		boolean res =price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
 		Assert.assertTrue(res);
@@ -90,7 +90,7 @@ public class PricingTestCases extends App
 //	@Test(enabled = false)
 	@Test(priority = 10)
 	public void testCase10() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
 		Assert.assertTrue(res);
 		App.logout();

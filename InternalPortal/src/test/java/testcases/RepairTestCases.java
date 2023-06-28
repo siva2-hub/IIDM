@@ -4,20 +4,28 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import commonUtils.App;
+import libraries.AllModules;
 import libraries.RepairPages;
 
 public class RepairTestCases extends App
 {
 	RepairPages repairs = new RepairPages();
+	AllModules all = new AllModules();
 	//@Test(enabled = false)
-	@Test(priority = 1)
+	@Test(priority = 0)
+	public void testCases() throws Exception {
+		all.repairsModule("00-83000019");
+		App.login();
+	}
+	@Test(enabled = false)
+//	@Test(priority = 1)
 	public void testCase1() throws Exception {
 		boolean res = repairs.verifyCreateRMA();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 2)
+	@Test(enabled = false)
+//	@Test(priority = 2)
 	public void testCase2() throws Exception {
 		App.login();
 		boolean res = repairs.verifySelectItemsToRepair();
@@ -25,63 +33,63 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	//@Test(enabled = false)
-	@Test(priority = 3)
-	public void testCase3() throws Exception {
+	@Test(priority = 23)
+	public void testCase23() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAddNewItem();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 4)
+	@Test(enabled = false)
+//	@Test(priority = 4)
 	public void testCase4() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignLocation();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 5)
+	@Test(enabled = false)
+//	@Test(priority = 5)
 	public void testCase5() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignTechnician();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 6)
+	@Test(enabled = false)
+//	@Test(priority = 6)
 	public void testCase6() throws Exception {
 		App.login();
 		boolean res = repairs.verifyEvaluateItem();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 7)
+	@Test(enabled = false)
+//	@Test(priority = 7)
 	public void testCase7() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAddRepairableItemToQuote();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 8)
+	@Test(enabled = false)
+//	@Test(priority = 8)
 	public void testCase8() throws Exception {
 		App.login();
 		boolean res = repairs.verifyCreateQuoteFromRepair();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 9)
+	@Test(enabled = false)
+//	@Test(priority = 9)
 	public void testCase9() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQC();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 10)
+	@Test(enabled = false)
+//	@Test(priority = 10)
 	public void testCase10() throws Exception {
 		App.login();
 		boolean res = repairs.verifyQCCheckList();
@@ -90,31 +98,31 @@ public class RepairTestCases extends App
 	}
 	//@Test(enabled = false)
 	@Test(priority = 11)
-	public void testCase11() throws Exception {
+	public void testCase17() throws Exception {
 		App.login();
 		boolean res = repairs.verifyQCCheckListStatusAsFail();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 12)
-	public void testCase12() throws Exception {
+	@Test(enabled = false)
+//	@Test(priority = 12)
+	public void testCase18() throws Exception {
 		App.login();
 		boolean res = repairs.fileUpload();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 13)
-	public void testCase13() throws Exception {
+	@Test(enabled = false)
+//	@Test(priority = 13)
+	public void testCase19() throws Exception {
 		App.login();
 		boolean res = repairs.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 14)
-	public void testCase14() throws Exception {
+	@Test(enabled = false)
+//	@Test(priority = 14)
+	public void testCase20() throws Exception {
 		App.login();
 		boolean res = repairs.verifyFilterStateMaintanance();
 		Assert.assertTrue(res);
@@ -122,7 +130,7 @@ public class RepairTestCases extends App
 	}
 	//@Test(enabled = false)
 	@Test(priority = 15)
-	public void testCase15() throws Exception {
+	public void testCase21() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQCIsDisplayedOrNotWhenQuoteStatusHasWon();
 		Assert.assertTrue(res);
@@ -130,15 +138,10 @@ public class RepairTestCases extends App
 	}
 	//@Test(enabled = false)
 	@Test(priority = 16)
-	public void testCase16() throws Exception {
-//		App.login();
+	public void testCase22() throws Exception {
+		App.login();
 		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
 		Assert.assertTrue(res);
 	}
-	//@Test(enabled = false)
-	@Test(priority = 17)
-	public void testCases() throws Exception {
-		App.login();
-		repairs.repairsModule();	
-	}
+
 }

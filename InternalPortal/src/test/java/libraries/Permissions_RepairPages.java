@@ -48,29 +48,32 @@ public class Permissions_RepairPages extends Permissions
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));
+		boolean check = false;
 		System.out.println(labelName+" url is "+actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);String message = "";String expText = "";
 		if (count==2) {
 			message = driver.findElements(By.tagName("p")).get(0).getText();
 			expText = "Sorry, you do not have permissions to access this page.";
+			check = message.equalsIgnoreCase(expText);
 			
 		} else if(count==3) {
-			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));
 			PricingPages price = new PricingPages();
-			price.clickButton("Create");
+			driver.findElement(By.xpath("//*[text() = 'Create']")).click();
+			Thread.sleep(1400);
 			if(driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown')]")).getText().contains("RMA")) {
-				price.clickButton("Create");
+				driver.findElement(By.xpath("//*[text() = 'Create']")).click();
+				Thread.sleep(1400);
 				message = "RMA displayed On Create";
 			}else {
 				message = driver.findElement(By.className("add-Icon")).getText();
 			}
-			expText = "Display All Items\n"
-					+ "Filters";
+			expText = "Create RMA";
+			check = !message.contains(expText);
 		}
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		boolean res = false;
-		if (message.equalsIgnoreCase(expText)) {
+		if (check) {
 			res = true;
 			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
 			qp.values(status);
