@@ -188,17 +188,21 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyEditIIDMCostPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); Actions act = new Actions(driver);
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
 		quotes.createQuote();
 		Thread.sleep(1600);
 		quotes.selectItemToQuote();
-		driver.findElement(By.xpath("//*[@title='Edit Item']")).click();
+		wait.until(ExpectedConditions.visibilityOf(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)));
+		Thread.sleep(1000);
+		act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+		act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
 		Thread.sleep(1500);String expText = "";
 		String actText = driver.findElement(By.name("iidm_cost")).getAttribute("disabled");
 		driver.findElement(By.xpath("//*[@title='close']")).click();
 		System.out.println("Status iidm cost is "+actText);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);boolean sta = false;
 		if (count==2) {

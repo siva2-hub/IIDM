@@ -381,7 +381,7 @@ public class AllModules extends App
 			quotes.values(status);
 
 			//Update IIDM Cost
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'email_invoices')]")));
+			wait.until(ExpectedConditions.visibilityOf(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)));
 			Thread.sleep(1000);
 			act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 			act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
