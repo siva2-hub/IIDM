@@ -2,20 +2,82 @@
 <testng-results ignored="17" total="18" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-28T18:38:40 IST" name="Default suite" finished-at="2023-06-28T18:40:22 IST" duration-ms="102759">
+  <suite started-at="2023-06-28T19:04:18 IST" name="Default suite" finished-at="2023-06-28T19:05:39 IST" duration-ms="81853">
     <groups>
     </groups>
-    <test started-at="2023-06-28T18:38:40 IST" name="Default test" finished-at="2023-06-28T18:40:22 IST" duration-ms="102759">
+    <test started-at="2023-06-28T19:04:18 IST" name="Default test" finished-at="2023-06-28T19:05:39 IST" duration-ms="81853">
       <class name="testcases.PermissionsTestCases_QuotesModule">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T18:38:40 IST" name="login" finished-at="2023-06-28T18:38:51 IST" duration-ms="11131" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T19:04:18 IST" name="login" finished-at="2023-06-28T19:04:29 IST" duration-ms="11108" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase6()[pri:6, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T18:38:51 IST" name="testCase6" finished-at="2023-06-28T18:40:21 IST" duration-ms="90264" status="PASS">
+        <test-method signature="testCase7()[pri:7, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T19:04:29 IST" name="testCase7" finished-at="2023-06-28T19:05:39 IST" duration-ms="70665" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCase6 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T18:40:21 IST" name="logout" finished-at="2023-06-28T18:40:22 IST" duration-ms="1311" status="PASS">
+        </test-method> <!-- testCase7 -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PermissionsTestCases_QuotesModule@2eae8e6e]" started-at="2023-06-28T19:05:39 IST" name="logout" finished-at="2023-06-28T19:05:39 IST" duration-ms="16" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchSessionException">
+            <message>
+              <![CDATA[invalid session id
+Build info: version: '4.8.0', revision: '267030adea'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-75-generic', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1c87ec01c9cb6919971743b518f1eea5, findElement {using=xpath, value=//*[@class='down-arrow']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.MtNKYk}, goog:chromeOptions: {debuggerAddress: localhost:33997}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:33997/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 1c87ec01c9cb6919971743b518f1eea5]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: '4.8.0', revision: '267030adea'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-75-generic', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1c87ec01c9cb6919971743b518f1eea5, findElement {using=xpath, value=//*[@class='down-arrow']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.MtNKYk}, goog:chromeOptions: {debuggerAddress: localhost:33997}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:33997/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 1c87ec01c9cb6919971743b518f1eea5
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+at commonUtils.App.logout(App.java:57)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:644)
+at org.testng.TestRunner.afterRun(TestRunner.java:914)
+at org.testng.TestRunner.run(TestRunner.java:605)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
