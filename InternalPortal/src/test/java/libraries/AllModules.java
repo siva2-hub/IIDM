@@ -97,9 +97,9 @@ public class AllModules extends App
 			// TODO: handle exception
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));;
+		Thread.sleep(1600);
 		String isSelected = driver.findElement(By.xpath("//*[@data-size='large']")).getAttribute("data-checked");
 		System.out.println("Is Selected status is "+isSelected);
-//		System.exit(0);
 		if (isSelected=="null") {
 			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
@@ -309,11 +309,9 @@ public class AllModules extends App
 		expText = "ADDED TO QUOTE";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-
 			Object status[] = {"REPAIRS_007_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-
 			Object status[] = {"REPAIRS_007_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
@@ -360,7 +358,6 @@ public class AllModules extends App
 		act.click(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
 		Thread.sleep(2500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'delete-icon')]")));
-
 		act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 		act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
@@ -571,8 +568,15 @@ public class AllModules extends App
 			Thread.sleep(1600);
 		}
 		String orderId = "";
-		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) {
-			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+		String serverMsg = "";boolean server = false;
+		try {
+			Thread.sleep(1600);
+			driver.findElement(By.className("server-msg")).isDisplayed();
+			serverMsg= driver.findElement(By.className("server-msg")).getText();
+		} catch (Exception e) {
+			server = true;
+		}
+		if(server) {
 			Object status[] = {"REPAIRS_014_VerifyCreateSalesOrder_FromRepair", serverMsg, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 			price.takesScreenShot("create_sales_order.png");

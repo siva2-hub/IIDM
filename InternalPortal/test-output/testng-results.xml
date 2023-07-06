@@ -2,35 +2,37 @@
 <testng-results ignored="3" total="4" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-06T19:53:40 IST" name="Default suite" finished-at="2023-07-06T19:57:34 IST" duration-ms="233522">
+  <suite started-at="2023-07-06T20:13:33 IST" name="Default suite" finished-at="2023-07-06T20:18:19 IST" duration-ms="286265">
     <groups>
     </groups>
-    <test started-at="2023-07-06T19:53:40 IST" name="Default test" finished-at="2023-07-06T19:57:34 IST" duration-ms="233522">
+    <test started-at="2023-07-06T20:13:33 IST" name="Default test" finished-at="2023-07-06T20:18:19 IST" duration-ms="286265">
       <class name="testcases.URLRedirectsTestCase">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T19:53:40 IST" name="login" finished-at="2023-07-06T19:53:51 IST" duration-ms="11248" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T20:13:33 IST" name="login" finished-at="2023-07-06T20:13:55 IST" duration-ms="21509" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase2()[pri:2, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T19:53:52 IST" name="testCase2" finished-at="2023-07-06T19:57:33 IST" duration-ms="221109" status="FAIL">
+        <test-method signature="testCase2()[pri:2, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T20:13:55 IST" name="testCase2" finished-at="2023-07-06T20:18:18 IST" duration-ms="263615" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.name: customer_po_number (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //*[@viewBox='0 0 16 16'] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ElxmFl}, goog:chromeOptions: {debuggerAddress: localhost:34257}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34257/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ujb2un}, goog:chromeOptions: {debuggerAddress: localhost:40443}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40443/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e98475cb0581bb9da51f0e8322c7e73c]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.name: customer_po_number (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@viewBox='0 0 16 16'] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ElxmFl}, goog:chromeOptions: {debuggerAddress: localhost:34257}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34257/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ujb2un}, goog:chromeOptions: {debuggerAddress: localhost:40443}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40443/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e98475cb0581bb9da51f0e8322c7e73c
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-at libraries.AllModules.repairsModule(AllModules.java:553)
+at libraries.AllModules.createJob(AllModules.java:1011)
+at libraries.AllModules.verifyCreateJob(AllModules.java:1042)
+at libraries.AllModules.repairsModule(AllModules.java:620)
 at testcases.URLRedirectsTestCase.testCase2(URLRedirectsTestCase.java:20)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -66,7 +68,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase2 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T19:57:33 IST" name="logout" finished-at="2023-07-06T19:57:34 IST" duration-ms="1091" status="FAIL">
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.URLRedirectsTestCase@7526515b]" started-at="2023-07-06T20:18:18 IST" name="logout" finished-at="2023-07-06T20:18:19 IST" duration-ms="1068" status="FAIL">
           <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
               <![CDATA[element click intercepted: Element <span class="down-arrow">...</span> is not clickable at point (1816, 30). Other element would receive the click: <img src="/static/media/cross.7d8ff3e3.svg" alt="create-job">
@@ -74,10 +76,10 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [1e19f4172c8e55d8f256767e6ec1fcfe, clickElement {id=debfa124-0ce3-4125-afb4-66224144ad15}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ElxmFl}, goog:chromeOptions: {debuggerAddress: localhost:34257}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34257/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on LINUX (1e19f4172c8e55d8f256767e6ec1fcfe)] -> xpath: //*[@class='down-arrow']]
-Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe]]>
+Command: [e98475cb0581bb9da51f0e8322c7e73c, clickElement {id=42545445-a43d-4cb1-aa98-89871a354e64}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ujb2un}, goog:chromeOptions: {debuggerAddress: localhost:40443}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40443/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on LINUX (e98475cb0581bb9da51f0e8322c7e73c)] -> xpath: //*[@class='down-arrow']]
+Session ID: e98475cb0581bb9da51f0e8322c7e73c]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <span class="down-arrow">...</span> is not clickable at point (1816, 30). Other element would receive the click: <img src="/static/media/cross.7d8ff3e3.svg" alt="create-job">
@@ -85,10 +87,10 @@ Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe]]>
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [1e19f4172c8e55d8f256767e6ec1fcfe, clickElement {id=debfa124-0ce3-4125-afb4-66224144ad15}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ElxmFl}, goog:chromeOptions: {debuggerAddress: localhost:34257}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34257/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on LINUX (1e19f4172c8e55d8f256767e6ec1fcfe)] -> xpath: //*[@class='down-arrow']]
-Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe
+Command: [e98475cb0581bb9da51f0e8322c7e73c, clickElement {id=42545445-a43d-4cb1-aa98-89871a354e64}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ujb2un}, goog:chromeOptions: {debuggerAddress: localhost:40443}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40443/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on LINUX (e98475cb0581bb9da51f0e8322c7e73c)] -> xpath: //*[@class='down-arrow']]
+Session ID: e98475cb0581bb9da51f0e8322c7e73c
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)

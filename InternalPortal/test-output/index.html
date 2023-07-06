@@ -129,15 +129,17 @@
                   <a name="testCase2">
                   </a> <!-- testCase2 -->
                   <span class="method-name">testCase2</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.name: customer_po_number (tried for 20 second(s) with 500 milliseconds interval)
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@viewBox=&apos;0 0 16 16&apos;] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-76-generic&apos;, java.version: &apos;17.0.5&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ElxmFl}, goog:chromeOptions: {debuggerAddress: localhost:34257}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34257/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ujb2un}, goog:chromeOptions: {debuggerAddress: localhost:40443}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40443/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e98475cb0581bb9da51f0e8322c7e73c
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at libraries.AllModules.repairsModule(AllModules.java:553)
+	at libraries.AllModules.createJob(AllModules.java:1011)
+	at libraries.AllModules.verifyCreateJob(AllModules.java:1042)
+	at libraries.AllModules.repairsModule(AllModules.java:620)
 	at testcases.URLRedirectsTestCase.testCase2(URLRedirectsTestCase.java:20)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -176,7 +178,7 @@ Session ID: 1e19f4172c8e55d8f256767e6ec1fcfe
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse--2035722154/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse--242520855/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -233,12 +235,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testCase2')
 data.setCell(0, 2, 'testcases.URLRedirectsTestCase')
-data.setCell(0, 3, 221109);
+data.setCell(0, 3, 263615);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -284,13 +286,13 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">testCase2</span>
-                <span class="method-start">11288 ms</span>
+                <span class="method-start">21552 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">logout</span>
-                <span class="method-start">232413 ms</span>
+                <span class="method-start">285179 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
