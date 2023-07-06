@@ -43,7 +43,7 @@ public class PricingTestCases extends App
 //	@Test(enabled = false)
 	@Test(priority = 5)
 	public void testCase5() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = price.importFile();
 		Assert.assertTrue(res);
 		App.logout();

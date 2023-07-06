@@ -19,12 +19,21 @@ public class RepairPages extends App
 	WebDriverWait wait;
 	QuotePages quotes = new QuotePages();
 	PricingPages price = new PricingPages();
-	public void repairPage() 
+	public void repairPage() throws InterruptedException 
 	{
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[4]")).click();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'All Repair Request']")));
-		driver.findElement(By.xpath("//*[text() = 'All Repair Request']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'All Repairs Requests']")));
+		driver.findElement(By.xpath("//*[text() = 'All Repairs Requests']")).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Filters']")));
+		Thread.sleep(1500);
+		try {
+			driver.findElement(By.xpath("//*[text()='Clear']")).isDisplayed();
+			driver.findElement(By.xpath("//*[text()='Clear']")).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 	}
 	public void createRMA() throws Exception 
@@ -34,10 +43,9 @@ public class RepairPages extends App
 		driver.findElement(By.xpath("//*[text() = 'Create RMA']")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.id("async-select-example")).sendKeys("Zummo Meat Co Inc");
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Zummo Meat Co Inc')]")));
 		quotes.selectDropDown("Zummo Meat Co Inc");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'opacity-on-load')]")));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'opacity-on-load')]")));
 		Thread.sleep(1500);
 		driver.findElement(By.id("async-select-example")).click();

@@ -89,50 +89,50 @@ public class PricingPages extends App
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
-//		//Add Discount Code
-//		this.verifyAddDiscountCode();
-//
-//		//Update Product
-//		this.verifyUpdateProduct();
-//
-//		//Update Discount Code
-//		this.verifyUpdateDiscountCode();
-//
-//		//Import File
-//		this.importFile();
-//
-//		//Sell Price and Buy Price in Special pricing
-//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
-//
-//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
-//
-//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
-//
-//		this.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
-//
-//		//Checking  Quote Price and Suggested Price in Quote Detailed View
-//		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
-//		//
-//		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
-//
-//		//Pricing --> Add Product Page Validations
-//		this.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");  //Add product with duplicate stock code
-//		this.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");  //Add product with empty stock code
-//		this.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");  //Add product with empty discount code
-//		this.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");  //Add product with empty List price
-//		this.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");  //Add product with invalid List price
-//		this.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");  //Add product with empty Product Class
-//
-//		//Update Product Page Validations
-//		this.verifyUpdateProductValidations(1);
-//		this.verifyUpdateProductValidations(2);
-//
-//		//Is different Pricing
-//		this.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
-//		this.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
-//
-//		//Filters
-//		this.filters("BACO44");
+		//Add Discount Code
+		this.verifyAddDiscountCode();
+
+		//Update Product
+		this.verifyUpdateProduct();
+
+		//Update Discount Code
+		this.verifyUpdateDiscountCode();
+
+		//Import File
+		this.importFile();
+
+		//Sell Price and Buy Price in Special pricing
+		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
+
+		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
+
+		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
+
+		this.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
+
+		//Checking  Quote Price and Suggested Price in Quote Detailed View
+		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
+		//
+		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
+
+		//Pricing --> Add Product Page Validations
+		this.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");  //Add product with duplicate stock code
+		this.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");  //Add product with empty stock code
+		this.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");  //Add product with empty discount code
+		this.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");  //Add product with empty List price
+		this.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");  //Add product with invalid List price
+		this.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");  //Add product with empty Product Class
+
+		//Update Product Page Validations
+		this.verifyUpdateProductValidations(1);
+		this.verifyUpdateProductValidations(2);
+
+		//Is different Pricing
+		this.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+		this.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+
+		//Filters
+		this.filters("BACO44");
 
 		return res;
 	}
@@ -194,9 +194,8 @@ public class PricingPages extends App
 		for(int i=0; i<15; i++) {
 			act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
 		}
-		act.sendKeys(Keys.ENTER).build().perform(); act.sendKeys(Keys.TAB).build().perform();
-		act.sendKeys("11").build().perform();
-		qp.selectDropDown("11");
+		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
+		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElement(By.xpath("//*[@placeholder='Our Price']")).sendKeys("0.25");
 		driver.findElement(By.xpath("//*[@placeholder='MRO']")).sendKeys("0.50");
 		driver.findElement(By.xpath("//*[@placeholder='OEM']")).sendKeys("0.75");
@@ -312,21 +311,20 @@ public class PricingPages extends App
 		String expText = "Imported Data Successfully";
 		boolean res = false;
 		if (summaryText.equalsIgnoreCase("Summary")) {
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ENTER);
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ARROW_RIGHT);
 			Actions act = new Actions(driver);
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ARROW_LEFT);
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(1).sendKeys(Keys.ENTER);
+			Thread.sleep(1500);
+			act.doubleClick(driver.findElement(By.xpath("//*[text() = 'Start Date']"))).build().perform();
+			//Start Date
+			act.sendKeys(Keys.TAB).build().perform();
+			act.sendKeys(Keys.ARROW_DOWN).build().perform(); act.sendKeys(Keys.ARROW_UP).build().perform();
 			act.sendKeys(Keys.ENTER).build().perform();
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(2).sendKeys(Keys.ENTER);
-			driver.findElements(By.xpath("//*[contains(@id, 'react-select-')]")).get(2).sendKeys(Keys.ARROW_RIGHT);
+			//End Date
+			 act.sendKeys(Keys.ENTER).build().perform();
+			driver.findElements(By.xpath("//*[contains(@style, 'box-sizing: content-box;')]")).get(2).sendKeys(Keys.ENTER);
 			for(int i=0; i<15; i++) {
 				act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
 			}
 			act.sendKeys(Keys.ENTER).build().perform();
-			//			driver.findElement(By.id("react-select-5-input")).sendKeys(Keys.ENTER);
-			//			driver.findElement(By.id("react-select-6-input")).sendKeys("10");
-			//			driver.findElement(By.id("react-select-6-input")).sendKeys(Keys.ENTER);
 			driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("button")).click();
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 			Thread.sleep(2000);
