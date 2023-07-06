@@ -17,7 +17,7 @@ public class URLRedirectsTestCase extends App
 	//@Test(enabled = false)
 	@Test(priority = 2)
 	public void testCase2() throws Exception {
-		all.repairsModule("00-83000019");
+		all.repairsModule("NS23-TS01B-V2");
 	}
 	//@Test(enabled = false)
 	@Test(priority = 3)
@@ -25,7 +25,7 @@ public class URLRedirectsTestCase extends App
 		all.quotesModule("Week(s)", "21", "32.23");
 	}
 	//@Test(enabled = false)
-	@Test(priority = 4)
+	@Test(priority = 4
 	public void testCase4() throws Exception {
 		all.logoutCheckURLRedirectsOrNot();
 	}
