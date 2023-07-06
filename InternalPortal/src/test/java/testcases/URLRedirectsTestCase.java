@@ -25,7 +25,7 @@ public class URLRedirectsTestCase extends App
 		all.quotesModule("Week(s)", "21", "32.23");
 	}
 	//@Test(enabled = false)
-	@Test(priority = 4
+	@Test(priority = 4)
 	public void testCase4() throws Exception {
 		all.logoutCheckURLRedirectsOrNot();
 	}
