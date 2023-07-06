@@ -15,7 +15,7 @@ public class SendReportsToGMail {
         // Step 1: Establish a database connection
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/testing", "enterpi", "enterpi@1234")) {
             // Step 2: Retrieve data from the table
-            String query = "SELECT * FROM buzzworld_automation_logs";
+            String query = "SELECT * FROM buzzworld_automation_logs ORDER BY test_case_name";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             

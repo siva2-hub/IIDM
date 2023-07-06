@@ -367,7 +367,7 @@ public class AllModules extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'email_invoices')]")));
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[contains(@src,'email_invoices')]")).click();
-		Thread.sleep(4200);
+		Thread.sleep(4500);
 		String pastPriceText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
 		System.out.println("Past Price Text "+pastPriceText);
 		driver.findElements(By.xpath("//*[contains(@src, 'cross')]")).get(1).click();
@@ -473,7 +473,8 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[text() = 'Save']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Assign to QC']")));
 		act.moveToElement(driver.findElement(By.xpath("//*[text() = 'Assign to QC']"))).build().perform();
-		act.click(driver.findElement(By.xpath("//*[text() = 'Assign to QC']"))).build().perform();
+		Thread.sleep(1500);
+		driver.findElement(By.xpath("//*[text() = 'Assign to QC']")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[contains(@class,'dropdown-indicator')]")).click();
 		act.sendKeys(Keys.ENTER).build().perform();
@@ -483,7 +484,6 @@ public class AllModules extends App
 		expText = "PENDING QC";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-
 			Object status[] = {"REPAIRS_011_VerifyAssignToQC", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
