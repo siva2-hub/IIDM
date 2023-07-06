@@ -84,11 +84,23 @@ public class AllModules extends App
 	{
 		//Display All Items Check-box
 		driver.findElement(By.xpath("//*[text()='Repairs']")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'All Repairs Requests']")));
+		Thread.sleep(1300);
+		driver.findElement(By.xpath("//*[text() = 'All Repairs Requests']")).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Filters']")));
+		Thread.sleep(1500);
+		try {
+			driver.findElement(By.xpath("//*[text()='Clear']")).isDisplayed();
+			driver.findElement(By.xpath("//*[text()='Clear']")).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));;
 		String isSelected = driver.findElement(By.xpath("//*[@data-size='large']")).getAttribute("data-checked");
 		System.out.println("Is Selected status is "+isSelected);
 //		System.exit(0);
-		if (isSelected=="true") {
+		if (isSelected=="null") {
 			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
@@ -165,34 +177,24 @@ public class AllModules extends App
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys(stCode);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(1800);
-		int tCount = 0;
-		int eCount = 0;
-		int qcCount1 = 0;
-		int qcCount2 = 0;
-		if (driver.findElements(By.xpath("//*[@aria-labelledby='tab-0']")).get(1).getText().contains("Items Not Found")) {
-			Thread.sleep(1000);
-			tCount = 7;
-			eCount = 8;
-			qcCount1 = 10;
-			qcCount2 = 11;
-			driver.findElement(By.className("second-msg")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add New Part']")));
+		try {
+			Thread.sleep(4500);
+			driver.findElement(By.xpath("//*[text() = '? Click here to add them']")).isDisplayed();
+			Thread.sleep(400);
+			driver.findElement(By.xpath("//*[text() = '? Click here to add them']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Part Number']")));
+			Thread.sleep(500);
 			driver.findElement(By.id("async-select-example")).sendKeys("WAGO");
 			Thread.sleep(1200);
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'WAGO')]")));
 			quotes.selectDropDown("WAGO CORPORATION");
+			Thread.sleep(500);
 			driver.findElement(By.xpath("//*[@placeholder='Part Number']")).sendKeys(stCode);
 			driver.findElement(By.xpath("//*[@placeholder='Serial No']")).sendKeys(java.time.LocalTime.now().toString().substring(0, 8).replace(":", ""));
 			driver.findElement(By.xpath("//*[text()='Add New Part']")).click();
 			Thread.sleep(1500);
-		} else {
-			tCount = 6;
-			eCount = 7;
-			qcCount1 = 9;
-			qcCount2 = 10;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			Actions act = new Actions(driver);
 			driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
 			act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
@@ -206,7 +208,6 @@ public class AllModules extends App
 					break;
 				}
 			}
-
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
 		Thread.sleep(2600);
@@ -254,7 +255,6 @@ public class AllModules extends App
 		driver.findElement(By.name("storage")).click();
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.SPACE).build().perform();
-//		driver.findElement(By.id("react-select-"+tCount+"-input")).sendKeys(Keys.ARROW_UP);
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
 		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) {
@@ -340,25 +340,27 @@ public class AllModules extends App
 		act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
 		Thread.sleep(1200);
-//		driver.findElement(By.xpath("//*[@placeholder='Quote Price']")).sendKeys("149.20");
-//		for(int s=0; s<driver.findElement(By.xpath("//*[@placeholder='List Price']")).getAttribute("value").length(); s++) {
-//			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.BACK_SPACE);
-//		}
-//		driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys("159.20");
-//		driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
-//		String beforeIIDMCost = driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).getAttribute("value");
 		//Update source
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
 		Thread.sleep(1200);
 		act.sendKeys(Keys.ENTER).build().perform();
+		if(driver.findElement(By.name("list_price")).getAttribute("value").equals("0.00")) {
+			driver.findElement(By.xpath("//*[@placeholder='Quote Price']")).sendKeys("1795");
+			for(int s=0; s<driver.findElement(By.xpath("//*[@placeholder='List Price']")).getAttribute("value").length(); s++) {
+				driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.BACK_SPACE);
+			}
+			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.CONTROL, "a");
+			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys("1795");
+			driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
+		}
 		//Update leadTime
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
 		Thread.sleep(1200);
 		act.sendKeys(Keys.ENTER).build().perform();
-		act.doubleClick(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
+		act.click(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
 		Thread.sleep(2500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'delete-icon')]")));
-		act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+
 		act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 		act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
@@ -368,7 +370,12 @@ public class AllModules extends App
 		Thread.sleep(4200);
 		String pastPriceText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
 		System.out.println("Past Price Text "+pastPriceText);
-		driver.findElements(By.xpath("//*[contains(@src,'cross')]")).get(1).click();
+		driver.findElements(By.xpath("//*[contains(@src, 'cross')]")).get(1).click();
+		Thread.sleep(1500);
+		act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
+		Thread.sleep(2000);	
 		if (pastPriceText.equals("") || pastPriceText.equals("Data Not Found")) {
 			Object status[] = {"REPAIRS_009_Verify_Past_Repair_Prices", pastPriceText, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
@@ -376,38 +383,37 @@ public class AllModules extends App
 			driver.findElement(By.xpath("//*[contains(@src,'cross')]")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Submit for internal approval']")));
 		} else {
-			price.closeIcon();
+			
 			Object status[] = {"REPAIRS_009_Verify_Past_Repair_Prices", pastPriceText, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
-
-			//Update IIDM Cost
-			wait.until(ExpectedConditions.visibilityOf(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)));
-			Thread.sleep(1000);
-			act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
-			act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
-			Thread.sleep(1200);
-			driver.findElement(By.xpath("//*[@placeholder='Quote Price']")).sendKeys("149.20");
-			for(int s=0; s<driver.findElement(By.xpath("//*[@placeholder='List Price']")).getAttribute("value").length(); s++) {
-				driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.BACK_SPACE);
-			}
-			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys("159.20");
-			driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
+//
+//			//Update IIDM Cost
+//			wait.until(ExpectedConditions.visibilityOf(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)));
+//			Thread.sleep(1000);
+//			act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+//			act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
+//			Thread.sleep(1200);
+//			driver.findElement(By.xpath("//*[@placeholder='Quote Price']")).sendKeys("1795");
+//			for(int s=0; s<driver.findElement(By.xpath("//*[@placeholder='List Price']")).getAttribute("value").length(); s++) {
+//				driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.BACK_SPACE);
+//			}
+//			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys("1795");
+//			driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
 			String beforeIIDMCost = driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).getAttribute("value");
-			//Update source
-			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
-			Thread.sleep(1200);
-			act.sendKeys(Keys.ENTER).build().perform();
-			//Update leadTime
-			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
-			Thread.sleep(1200);
-			act.sendKeys(Keys.ENTER).build().perform();
-			act.doubleClick(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
-			Thread.sleep(2500);
-			driver.findElement(By.xpath("//*[contains(@src,'IIDMCostIcon')]")).click();
-			Thread.sleep(1500);
+//			//Update source
+//			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
+//			Thread.sleep(1200);
+//			act.sendKeys(Keys.ENTER).build().perform();
+//			//Update leadTime
+//			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
+//			Thread.sleep(1200);
+//			driver.findElement(By.xpath("//*[contains(@src,'IIDMCostIcon')]")).click();
+//			Thread.sleep(1500);
 			String afterIIDMCost = driver.findElements(By.xpath("//*[@class='d-flex align-center g-16  ']")).get(1).findElement(By.tagName("h4")).getText();
-			
+			driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
+			Thread.sleep(2000);	
 			if (!beforeIIDMCost.equals(afterIIDMCost)) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'email_invoices')]")));
 				Thread.sleep(1200);
@@ -459,8 +465,20 @@ public class AllModules extends App
 		driver.findElements(By.xpath("//*[contains(@class,'border-bottom')]")).get(1).findElement(By.tagName("h4")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		Thread.sleep(2300);
-		driver.findElement(By.xpath("//*[contains(@class,'hides')]")).click();
-		repair.toastContainer("Accept");
+		//Repair Summary
+		driver.findElement(By.xpath("//*[contains(@src, 'repair_summary')]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[contains(@class,'dropdown-indicator')]")).click();
+		act.sendKeys(Keys.ENTER).build().perform();
+		driver.findElement(By.xpath("//*[text() = 'Save']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Assign to QC']")));
+		act.moveToElement(driver.findElement(By.xpath("//*[text() = 'Assign to QC']"))).build().perform();
+		act.click(driver.findElement(By.xpath("//*[text() = 'Assign to QC']"))).build().perform();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[contains(@class,'dropdown-indicator')]")).click();
+		act.sendKeys(Keys.ENTER).build().perform();
+		driver.findElement(By.xpath("//*[text() = 'Assign']")).click();
+//		repair.toastContainer("Accept");
 		Thread.sleep(2200);
 		expText = "PENDING QC";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
@@ -647,19 +665,36 @@ public class AllModules extends App
 //			}
 //		}
 	}
-
+	public void clearButtonTopSearch() {
+		try {
+			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
+			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public void quotesModule(String leadTime, String leadValue, String discount) throws Exception
 	{
+		this.clearButtonTopSearch();
 		//Search Functionality
+		try {
+			driver.findElement(By.xpath("//*[text() = 'Clear']")).isDisplayed();
+			driver.findElement(By.xpath("//*[text() = 'Clear']")).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		//Search with Quote Id
 		quotes.verifyTopSearchInQuoteListView("2023053100074", 1);
+		this.clearButtonTopSearch();
 		//Search with Company Name
 		quotes.verifyTopSearchInQuoteListView("123 E Doty Corporation", 2);
+		this.clearButtonTopSearch();
 		//Search with Sales Person
 		quotes.verifyTopSearchInQuoteListView("Frontier", 3);
+		this.clearButtonTopSearch();
 		//Search with Email
 		quotes.verifyTopSearchInQuoteListView("pete.soto@motion-ind.com", 4);
-		
+		this.clearButtonTopSearch();
 		//Filters In Quote List View
 		quotes.verifyFiltersInQuoteListView("Zummo Meat Co Inc", "Jeremy Morgan", "Approved", "Swetha Epi", 1);
 		//Filter's State Maintenance
@@ -698,8 +733,7 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
-		//Edit Icon 
-		quotes.verifyDeleteIcon(2);
+		
 		//Print and Download
 		quotes.verifyPrintDownLoad();
 		
@@ -733,6 +767,8 @@ public class AllModules extends App
 			Object status[] = {"QUOTES_003_VerifyLeadTimeDisplayedOrNot", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
+		//Edit Icon 
+				quotes.verifyDeleteIcon(2);
 		//Bulk Edit
 		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
 		driver.findElement(By.xpath("//*[@class='quote-option-del-icon edit-icon']")).click();
