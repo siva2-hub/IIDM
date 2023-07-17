@@ -24,7 +24,7 @@ public class QuotePages extends App
 	PricingPages price ;
 	public void createQuote() throws Exception 
 	{	rp = new RepairPages();	
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
+		driver.findElement(By.xpath("//*[text() = 'Quotes']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
 			driver.findElement(By.xpath("//*[contains(@class,'Cross-svg close-icon-container')]")).isDisplayed();
@@ -256,7 +256,7 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
 		Thread.sleep(2000);
 		rp.toastContainer("Proceed");
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for Internal Approval"));
 	}
 	public boolean verifyReviseQuote() throws Exception {
 		this.quoteApprove();

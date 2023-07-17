@@ -122,7 +122,28 @@ public class Permissions_RepairPages extends Permissions
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String expText = "";
 		RepairPages repair = new RepairPages();
-		repair.evaluateItem();
+		if (count==1) {
+			
+			repair.evaluateItem();
+		} else {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'All Repairs Requests']")));
+			Thread.sleep(1300);
+			driver.findElement(By.xpath("//*[text() = 'All Repairs Requests']")).click();
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Filters']")));
+			Thread.sleep(1500);
+			try {
+				driver.findElement(By.xpath("//*[text()='Clear']")).isDisplayed();
+				driver.findElement(By.xpath("//*[text()='Clear']")).click();
+			} catch (Exception e) {
+				System.out.println("try block error is "+e.getMessage());
+			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Pending Quote']")));
+			Thread.sleep(1600);
+			driver.findElement(By.xpath("//*[text() = 'Pending Quote']")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'Toe-Tag-Scanner')]")));
+			Thread.sleep(500);
+		}
 		Thread.sleep(1600);
 		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
 		Thread.sleep(1000);

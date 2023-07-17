@@ -102,11 +102,15 @@ public class Permissions_PricingPages extends Permissions
 		Thread.sleep(2000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String actText = "";
-		if (labelName.equals("Non Standard Pricing")) {
-			driver.findElement(By.className("card-title")).click();
-			Thread.sleep(2000);
+		if (labelName.equals("Non Standard Pricing")) 
+		{
+			Thread.sleep(1500);
+			driver.findElement(By.xpath("//*[@class = 'card-title']")).click();
+			Thread.sleep(2500);
 			actText = driver.findElement(By.xpath("//*[@style='padding: 8px 41px;']")).getText();
-			driver.findElement(By.xpath("//*[@title='close']")).click();
+			Thread.sleep(1400);
+			driver.findElement(By.xpath("//*[contains(@src, 'chevron_left')]")).click();
+			Thread.sleep(1400);
 		} else {
 			actText = driver.findElement(By.className("Button-Icon-Display")).getText();
 		}

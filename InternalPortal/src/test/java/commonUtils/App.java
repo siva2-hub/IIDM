@@ -25,7 +25,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -42,12 +41,17 @@ public class App {
 	@BeforeTest
 	public static void login() throws Exception{
 		WebDriverManager.chromedriver().setup();
+		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 //		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		App.urlOpen("stage");
+		
+		
+		urlOpen("qa");
+		Actions act = new Actions(driver);
+//		act.sendKeys(Keys.CONTROL ,Keys.SHIFT , "I").build().perform();
 		driver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[3]/button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		Thread.sleep(1800);
@@ -67,8 +71,8 @@ public class App {
 			pwd = "Test@4321";
 		} else if(instance.equals("stage")) {
 			url = "https://www.staging-buzzworld.iidm.com/quote_for_parts";
-			mail = "b.raghuvardhanreddy@enterpi.com";
-			pwd = "Enter@4321";
+			mail = "sivadara17@gmail.com";
+			pwd = "Test@4321";
 		}
 		driver.get(url);
 		

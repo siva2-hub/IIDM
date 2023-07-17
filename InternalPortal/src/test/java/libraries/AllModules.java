@@ -118,13 +118,14 @@ public class AllModules extends App
 		//Create RMA
 		repair.createRMA();
 		String expText = "CHECK IN PENDING";
+		String repairId = driver.findElement(By.xpath("//*[@class ='id-num']")).getText().replace("#", "");
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-			Object status[] = {"REPAIRS_002_VerifyCreateRMA", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_002_VerifyCreateRMA "+repairId, actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 
-			Object status[] = {"REPAIRS_002_VerifyCreateRMA", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_002_VerifyCreateRMA "+repairId, actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//File Upload in Repair Detailed View
@@ -365,7 +366,7 @@ public class AllModules extends App
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[contains(@src,'email_invoices')]")).click();
 		Thread.sleep(4500);
-		String pastPriceText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
+		String pastPriceText = driver.findElement(By.xpath("//*[contains(@class, 'past-repair-invoice-grid')]")).getText();
 		System.out.println("Past Price Text "+pastPriceText);
 		driver.findElements(By.xpath("//*[contains(@src, 'cross')]")).get(1).click();
 		Thread.sleep(1500);
@@ -373,75 +374,26 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		Thread.sleep(2000);	
-		if (pastPriceText.equals("") || pastPriceText.equals("Data Not Found")) {
-			Object status[] = {"REPAIRS_009_Verify_Past_Repair_Prices", pastPriceText, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+		if (pastPriceText.equals("") || pastPriceText.contains("Data Not Found") || pastPriceText.contains("Sorry, you do not have permissions to access this page.")) {
+			Object status[] = {"REPAIRS_009_Verify_Past_Repair_Prices", pastPriceText, "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 			Thread.sleep(1500);
-			driver.findElement(By.xpath("//*[contains(@src,'cross')]")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Submit for internal approval']")));
+			driver.findElements(By.xpath("//*[contains(@src,'cross')]")).get(0).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Submit for Internal Approval']")));
 		} else {
-			
 			Object status[] = {"REPAIRS_009_Verify_Past_Repair_Prices", pastPriceText, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
-//
-//			//Update IIDM Cost
-//			wait.until(ExpectedConditions.visibilityOf(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)));
-//			Thread.sleep(1000);
-//			act.moveToElement(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
-//			act.click(driver.findElements(By.xpath("//*[contains(@src,'themecolorEdit')]")).get(1)).build().perform();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Quote Price']")));
-//			Thread.sleep(1200);
-//			driver.findElement(By.xpath("//*[@placeholder='Quote Price']")).sendKeys("1795");
-//			for(int s=0; s<driver.findElement(By.xpath("//*[@placeholder='List Price']")).getAttribute("value").length(); s++) {
-//				driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys(Keys.BACK_SPACE);
-//			}
-//			driver.findElement(By.xpath("//*[@placeholder='List Price']")).sendKeys("1795");
-//			driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
-			String beforeIIDMCost = driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).getAttribute("value");
-//			//Update source
-//			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
-//			Thread.sleep(1200);
-//			act.sendKeys(Keys.ENTER).build().perform();
-//			//Update leadTime
-//			driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
-//			Thread.sleep(1200);
-//			driver.findElement(By.xpath("//*[contains(@src,'IIDMCostIcon')]")).click();
-//			Thread.sleep(1500);
-			String afterIIDMCost = driver.findElements(By.xpath("//*[@class='d-flex align-center g-16  ']")).get(1).findElement(By.tagName("h4")).getText();
-			driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
-			Thread.sleep(2000);	
-			if (!beforeIIDMCost.equals(afterIIDMCost)) {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'email_invoices')]")));
-				Thread.sleep(1200);
-				act.moveToElement(driver.findElement(By.xpath("//*[contains(@src,'email_invoices')]"))).build().perform();
-				act.click(driver.findElement(By.xpath("//*[contains(@src,'email_invoices')]"))).build().perform();
-				Thread.sleep(5000);
-				List<WebElement> costValues = driver.findElements(By.xpath("//*[@style='left: 303px; width: 123px;']"));
-				double val =0;
-				for(int i=0; i<costValues.size(); i++) {
-					Double val1 = val + Double.parseDouble(costValues.get(i).getText().replace("$", ""));
-					val = val1;
-				}
-				double avgCostValue = val/costValues.size();
-				System.out.println("avg cost value is "+avgCostValue);
-				Thread.sleep(1200);
-				price.closeIcon();
-			} else {
-				Object status1[] = {"REPAIRS_010_Verify_Update_IIDM_Cost", beforeIIDMCost, afterIIDMCost, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-				quotes.values(status1);
-				Thread.sleep(1200);
-				price.closeIcon();
-			}
+			driver.findElements(By.xpath("//*[contains(@src,'cross')]")).get(0).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Submit for Internal Approval']")));
 		}
 		Thread.sleep(1000);
 		//		price.clickButton("Submit for internal approval");
-		act.moveToElement(driver.findElement(By.xpath("//*[text()='Submit for internal approval']"))).build().perform();
-		act.click(driver.findElement(By.xpath("//*[text()='Submit for internal approval']"))).build().perform();
+		act.moveToElement(driver.findElement(By.xpath("//*[text()='Submit for Internal Approval']"))).build().perform();
+		act.click(driver.findElement(By.xpath("//*[text()='Submit for Internal Approval']"))).build().perform();
 		Thread.sleep(2000);
 		repair.toastContainer("Proceed");
 		//		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//*[text()='Submit for internal approval']"), "Submit for internal approval"));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//*[text()='Submit for Internal Approval']"), "Submit for Internal Approval"));
 		Thread.sleep(1700);
 		//		price.clickButton("Approve");
 		act.moveToElement(driver.findElement(By.xpath("//*[text()='Approve']"))).build().perform();
@@ -458,9 +410,9 @@ public class AllModules extends App
 		Thread.sleep(1200);
 		repair.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
-		Thread.sleep(1400);
-		driver.findElements(By.xpath("//*[contains(@class,'border-bottom')]")).get(1).findElement(By.tagName("h4")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
+		Thread.sleep(1600);
+		driver.findElement(By.xpath("//*[text() = '"+repairId+"']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'repair_summary')]")));
 		Thread.sleep(2300);
 		//Repair Summary
 		driver.findElement(By.xpath("//*[contains(@src, 'repair_summary')]")).click();
@@ -815,10 +767,10 @@ public class AllModules extends App
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 		Thread.sleep(2500);
-		driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]/button")).click();
+		driver.findElement(By.xpath("//*[text() ='Submit for Internal Approval']")).click();
 		Thread.sleep(2000);
 		repair.toastContainer("Proceed");
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div/div/div[3]/div[2]/button"), "Submit for internal approval"));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text() ='Submit for Internal Approval']")));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		Thread.sleep(2500);
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();

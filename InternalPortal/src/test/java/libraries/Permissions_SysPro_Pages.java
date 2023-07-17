@@ -15,10 +15,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		Thread.sleep(2000);
 		if (count==3) {
-			driver.findElement(By.id("async-select-example")).sendKeys("CMT-G01");
+			String stockCode = "CMT-G01";
+			driver.findElement(By.id("async-select-example")).sendKeys(stockCode);
 			QuotePages quotes = new QuotePages();
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+stockCode+"')]")));
 			quotes.selectDropDown("CMT-G01");
 		}
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
@@ -26,7 +27,13 @@ public class Permissions_SysPro_Pages extends Permissions
 		String actText = driver.findElement(By.xpath("/html/body/div/div/div[3]")).getText();
 		boolean sta = false;
 		if (count==3) {
-			int ct = driver.findElement(By.xpath("/html/body/div/div/div[4]/div/div/div/div[2]")).findElements(By.tagName("img")).size();
+			int ct = 1;
+			try {
+				Thread.sleep(500);
+				driver.findElement(By.xpath("//*[@title= 'Add Item In Syspro']")).isDisplayed();
+			} catch (Exception e) {
+				ct=0;
+			}
 			sta = (ct==0);
 		} else if(count==2){
 			sta = actText.equals("Inventory");

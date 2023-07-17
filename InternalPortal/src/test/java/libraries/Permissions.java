@@ -1,10 +1,16 @@
 package libraries;
 
+import java.awt.Window;
 import java.time.Duration;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,9 +30,14 @@ public class Permissions extends App
 		this.headerMenu(itemName);
 		this.adminLeftMenu(tabName);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));	
-		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("siva");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		Thread.sleep(1500); String name = "";
+		if (driver.getCurrentUrl().contains("stag")) {
+			name = "sivad";
+		} else {
+			name = "sivak";
+		}
+		driver.findElement(By.xpath("//*[@placeholder='Search']")).sendKeys(name);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+name+"')]")));
 		driver.findElement(By.id("tab-1")).click();
 		Thread.sleep(1600);
 	}
@@ -55,6 +66,18 @@ public class Permissions extends App
 	}
 	public boolean verifyAdminTabs_None(String tcName,String itemName, String tabName, String labelName, int count) throws Exception
 	{
+		//Pop Up message
+		Actions act = new Actions(driver);
+//        JOptionPane.showMessageDialog(null, "<html><p style = \"color: red;\">Executing Test Case is </p><br>"
+//                + "<p style = \"color: red;\"><b>"+tcName+"</p></html>"+act.sendKeys(Keys.ESCAPE));
+//        Thread.sleep(1200);
+//        JButton btn = new JButton("Close");
+//        Window w = SwingUtilities.getWindowAncestor(btn);
+//        if (w != null) {
+//            w.setVisible(false);
+//         }
+        JOptionPane.getRootFrame().dispose();
+        PricingPages price = new PricingPages();
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -73,12 +96,15 @@ public class Permissions extends App
 			res = false;
 			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed"};
 			qp.values(status);
+			price.takesScreenShot(tcName+".png");
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
 	public boolean adminTabwithViewPermission(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
 	{
+		//Pop Up message
+//        JOptionPane.showMessageDialog(null, tcName); 
 		this.userTab(itemName, tabName);
 		List<WebElement> labelsText = driver.findElement(By.xpath("//*[@class='permission-outer-border']")).findElements(By.xpath("//*[@class='permission']"));
 		String path = "";String  url = "";
@@ -154,6 +180,7 @@ public class Permissions extends App
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
 						"Permissions", "Failed"};
 				qp.values(status);
+				price.takesScreenShot(tcName+".png");
 			}
 		} else {
 
@@ -168,6 +195,7 @@ public class Permissions extends App
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
 						"Permissions", "Failed"};
 				qp.values(status);
+				price.takesScreenShot(tcName+".png");
 			}
 			this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		}
