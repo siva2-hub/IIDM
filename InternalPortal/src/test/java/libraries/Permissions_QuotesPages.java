@@ -81,6 +81,9 @@ public class Permissions_QuotesPages extends Permissions
 				path = labelsText.get(i).findElement(By.tagName("input")).getAttribute("name");
 				xpath1 = "/html/body/div/div/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/div/div[4]/div/div/div[2]/div/div["+childCount+"]/span[2]/div/div/div/label["+count+"]";
 				String xpath = "/html/body/div/div/div[4]/div[2]/div[2]/div/div/div/div[3]/div[1]/div/div/div[4]/div/div/div[2]/div/div["+childCount+"]/span[2]/div/div/div/label["+count+"]";
+				JavascriptExecutor js = (JavascriptExecutor)driver;
+				js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath(xpath)));
+				Thread.sleep(500);
 				driver.findElement(By.xpath(xpath)).click();
 				price.clickButton("Save");
 				Thread.sleep(1500);
@@ -133,24 +136,37 @@ public class Permissions_QuotesPages extends Permissions
 		Thread.sleep(1500);
 		String message = "";String expText = "";boolean sta = false;
 		if(childCount==2) {
-			message = driver.findElement(By.xpath("/html/body/div/div/div[3]/div[2]")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
 			if(count==1) 
 			{
 
 				expText = "Clone\n"
 						+ "Print\n"
 						+ "Download";
-				sta = message.contains("Create Sales Order");
+				try {
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("//*[text()='Create Sales Order']")).isDisplayed();
+					sta = true;
+				} catch (Exception e) {
+					sta = false;
+				}
+				 
 			}else if(count==2) {
 				expText = "Create Sales Order\n"
 						+ "Clone\n"
 						+ "Print\n"
 						+ "Download";
-				sta = !message.contains("Create Sales Order");
+				try {
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("//*[text()='Create Sales Order']")).isDisplayed();
+					sta = false;
+				} catch (Exception e) {
+					sta = true;
+				}
 			}
 
 		}else if(childCount==5) {
-			message = driver.findElement(By.className("add-Icon")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2])")).getText();
 			expText = "Filters";
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -203,20 +219,32 @@ public class Permissions_QuotesPages extends Permissions
 		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
 
-			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/div/div[3]/div[1]/div[2]")).getText();
 			expText = "Re Open\n"
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
-			sta = !message.contains("Close");
+			try {
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[text()='Close']")).isDisplayed();
+				sta = false;
+			} catch (Exception e) {
+				sta = true;
+			}
 		} else if(count==1) {
-			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/div/div[3]/div[1]/div[2]")).getText();
 			expText = "Re Open\n"
 					+ "Close\n"
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
-			sta = message.contains("Close");
+			try {
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[text()='Close']")).isDisplayed();
+				sta = true;
+			} catch (Exception e) {
+				sta = false;
+			}
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
@@ -303,20 +331,32 @@ public class Permissions_QuotesPages extends Permissions
 		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
 
-			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
 			expText = "Close\n"
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
-			sta = !message.contains("Re Open");
+			try {
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[text()='Re Open']")).isDisplayed();
+				sta = false;
+			} catch (Exception e) {
+				sta = true;
+			}
 		} else if(count==1) {
-			message = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
+			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
 			expText = "Re Open\n"
 					+ "Close\n"
 					+ "Clone\n"
 					+ "Print\n"
 					+ "Download";
-			sta = message.contains("Re Open");
+			try {
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[text()='Re Open']")).isDisplayed();
+				sta = false;
+			} catch (Exception e) {
+				sta = true;
+			}
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
@@ -605,11 +645,21 @@ public class Permissions_QuotesPages extends Permissions
 		Thread.sleep(1600);
 		String actText = ""; boolean sta = false;
 		if (perName.equals("None")) {
-			actText = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
-			sta = !actText.contains("Approve");
+			actText = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
+			try {
+				driver.findElement(By.xpath("//*[text()='Approve']")).isDisplayed();
+				sta = false;
+			} catch (Exception e) {
+				sta = true;
+			}
 		} else {
-			actText = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[2]")).getText();
-			sta = actText.contains("Approve");
+			actText = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
+			try {
+				driver.findElement(By.xpath("//*[text()='Approve']")).isDisplayed();
+				sta = true;
+			} catch (Exception e) {
+				sta = false;
+			}
 		}
 		driver.navigate().to(vals[0].replace("users", vals[1]));
 		System.out.println("special pricing url is "+vals[0].replace("users", vals[1]));
