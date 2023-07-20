@@ -935,12 +935,11 @@ public class PricingPages extends App
 	}
 	public String getTime() {
 		LocalTime time = LocalTime.now();
-		System.out.println(String.valueOf(time));
-		String t1 =String.valueOf(time).replace(":", "");
-		String t2 = t1.replace(".", "");
+		System.out.println(String.valueOf(time).substring(0, 5));
+		String t1 =String.valueOf(time).replace(":", "").substring(0, 6);
 
-		System.out.println("Current time: "+t2);
-		return t2;
+		System.out.println("Current time: "+t1);
+		return t1;
 	}
 	public void takesScreenShot(String fileName) throws Exception
 	{
