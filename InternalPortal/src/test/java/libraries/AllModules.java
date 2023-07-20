@@ -98,23 +98,30 @@ public class AllModules extends App
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));;
 		Thread.sleep(1600);
-		String isSelected = driver.findElement(By.xpath("//*[@data-size='large']")).getAttribute("data-checked");
+		boolean isSelected = false;
+		try {
+			driver.findElement(By.xpath("//*[@data-checked='true']")).isDisplayed();
+			isSelected = true;
+		} catch (Exception e) {
+			isSelected = false;
+		}
+		
 		System.out.println("Is Selected status is "+isSelected);
-		if (isSelected=="null") {
-			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+		if (isSelected) {
+			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_001_Verify_Display All Items", "By default isSeleted status is "+isSelected, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 			driver.findElement(By.xpath("//*[@data-size='large']")).click();
 		}
 		//Filters In Repair List View
 		RepairPages repair = new RepairPages();
 		repair.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending");
-		
+
 		//Filter's State Maintenance
 		repair.verifyFilterStateMaintanance();
-		
+
 		//Create RMA
 		repair.createRMA();
 		String expText = "CHECK IN PENDING";
@@ -130,7 +137,8 @@ public class AllModules extends App
 		}
 		//File Upload in Repair Detailed View
 		repair.fileUpload();
-		
+		//Add New Item
+		//		repair.verifyAddNewItem();
 		//Delete Row option in Add New Item Page
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add Items']")));
 		driver.findElement(By.xpath("//*[text()='Add Items']")).click();
@@ -428,7 +436,7 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[contains(@class,'dropdown-indicator')]")).click();
 		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElement(By.xpath("//*[text() = 'Assign']")).click();
-//		repair.toastContainer("Accept");
+		//		repair.toastContainer("Accept");
 		Thread.sleep(2200);
 		expText = "PENDING QC";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
@@ -440,7 +448,10 @@ public class AllModules extends App
 			Object status[] = {"REPAIRS_011_VerifyAssignToQC", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
+		//QC CheckList status Fail
+		repair.verifyQCCheckList("Fail");
 		//QC CheckList
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[contains(@src,'qc_checklist')]")).click();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[text()='Save']")));
 		Thread.sleep(1300);
@@ -448,14 +459,14 @@ public class AllModules extends App
 		act.sendKeys("Quality control report");
 		Thread.sleep(1000);
 		act.sendKeys(Keys.ENTER).build().perform();
-//		quotes.selectDropDown("Quality control report");
+		//		quotes.selectDropDown("Quality control report");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1000);
 		driver.findElements(By.xpath("//*[contains(@class,'react-select__indicator')]")).get(2).click();
-//		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
+		//		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.ENTER).build().perform();
 		Thread.sleep(1000);
-//		quotes.selectDropDown("Pass");
+		//		quotes.selectDropDown("Pass");
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.xpath("//*[@type='submit']")).click();
 		Thread.sleep(1400);
 		expText = "COMPLETED";
@@ -470,7 +481,7 @@ public class AllModules extends App
 		}
 		//Repair Report
 		driver.findElement(By.xpath("//*[@style='padding-left: 8px;']")).findElement(By.tagName("button")).click();
-		
+
 		Thread.sleep(3500);
 		Set<String> wCount = driver.getWindowHandles();
 		Object[] ids = wCount.toArray();
@@ -501,22 +512,29 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer_po_number")));
 		Thread.sleep(1500);
-		String stockItem = driver.findElement(By.xpath("/html/body/div/div/div[6]/div/div[1]/div/div[2]/div[3]")).getText();
+		boolean test = false;
+		try {
+			Thread.sleep(1500);
+			driver.findElement(By.xpath("//*[text() = 'item_notes']")).isDisplayed();
+			test = true;
+		} catch (Exception e) {
+
+		}
 		driver.findElement(By.name("customer_po_number")).sendKeys("PO1234");
-		if (stockItem.contains("does not exist")) {
+		if (test) {
 			driver.findElement(By.xpath("//*[@class='tooltip bottom']")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(2500);
 			driver.findElement(By.xpath("//*[@style='display: flex; gap: 16px;']")).click();
 			Thread.sleep(5500);
-			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			driver.findElements(By.xpath("//*[text() = 'Create']")).get(1).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(1600);
 		} else {
 			Thread.sleep(1300);
-			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			driver.findElements(By.xpath("//*[text() = 'Create']")).get(1).click();
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(1600);
 		}
 		String orderId = "";
@@ -525,8 +543,9 @@ public class AllModules extends App
 			Thread.sleep(1600);
 			driver.findElement(By.className("server-msg")).isDisplayed();
 			serverMsg= driver.findElement(By.className("server-msg")).getText();
-		} catch (Exception e) {
 			server = true;
+		} catch (Exception e) {
+			server = false;
 		}
 		if(server) {
 			Object status[] = {"REPAIRS_014_VerifyCreateSalesOrder_FromRepair", serverMsg, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
@@ -534,7 +553,7 @@ public class AllModules extends App
 			price.takesScreenShot("create_sales_order.png");
 			driver.findElement(By.xpath("//*[@title='close']")).click();
 		}else {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(1600);
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
@@ -547,7 +566,15 @@ public class AllModules extends App
 			}
 		}
 		//Back To Repair Module for check the Parts Purchase Icon is displayed or not
-		driver.findElements(By.xpath("//*[contains(@class,'border-bottom')]")).get(1).findElement(By.tagName("h4")).click();
+		List<WebElement> tabIds = driver.findElement(By.xpath("//*[@style = 'margin-left: 24px;']")).findElements(By.tagName("h4"));
+		String jobId = "";
+		if (tabIds.size()==3) {
+			jobId = tabIds.get(2).getText();
+			Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", "Job created with Job Id is "+jobId, "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			quotes.values(status);
+			tabIds.get(0).click();
+		} else {
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		boolean partsPurchseIcon = false;
 		Thread.sleep(2300);
@@ -560,66 +587,75 @@ public class AllModules extends App
 		if (partsPurchseIcon) {
 			driver.findElement(By.xpath("//*[contains(@src,'partspurchase')]")).click();
 			Thread.sleep(1200);
-			price.closeIcon();
+			//			price.closeIcon();
 			Object status[] = {"REPAIRS_015_Verify_Parts_Purchase_Icon_isDisplayed_OrNot", "Parts Purchase Icon is Displayed", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 			//Create Job from Repair
-			this.verifyCreateJob("REPAIRS_016_VerifyCreateJobFromRepair", orderId, 2);
+			if (tabIds.size()==3) {
+				this.createPartsPurchase("PARTSPURCHASE_001_VerifyCreate_PartsPurchase", jobId,1);
+			}else {
+				this.verifyCreateJob("REPAIRS_016_VerifyCreateJobFromRepair", orderId, 2);
+			}
 		} else {
 			Object status[] = {"REPAIRS_015_Verify_Parts_Purchase_Icon_isDisplayed_OrNot", "Parts Purchase Icon is not Displayed ", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 			//Create Job from Repair
-			this.verifyCreateJob("REPAIRS_016_VerifyCreateJobFromRepair", orderId, 2);
+			if (tabIds.size()==3) {
+
+			}else {
+
+				this.verifyCreateJob("REPAIRS_016_VerifyCreateJobFromRepair", orderId, 2);
+			}
 		}
 		//Create Job from Repair
-//		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1600);
-//		driver.findElement(By.xpath("//*[text()='Create Job']")).click();
-//		Thread.sleep(1500);
-//		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		quotes.selectDropDown(orderId);
-//		Thread.sleep(500);
-//		driver.findElements(By.xpath("//*[contains(@class,'react-select__indicator')]")).get(2).click();
-//		act.sendKeys(Keys.TAB);
-//		act.sendKeys(stCode);
-//		Thread.sleep(1000);
-//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1600);
-//		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
-//		Thread.sleep(800);
-//		act.doubleClick(driver.findElement(By.name("job_description"))).build().perform();
-//		Thread.sleep(800);
-//		act.sendKeys(Keys.TAB).build().perform();
-//		act.sendKeys(java.time.LocalDate.now().toString().substring(5, 7)).build().perform();
-//		Thread.sleep(800);
-//		act.sendKeys(Keys.ENTER).build().perform();
-//		price.clickButton("Create Job");
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1400);
-//		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
-//		{
-//			String serverMsg = driver.findElement(By.className("server-msg")).getText();
-//			Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-//			quotes.values(status);
-//			price.takesScreenShot("create_job.png");
-//			driver.findElement(By.xpath("//*[@title='close']")).click();
-//		}else 
-//		{
-//			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//			Thread.sleep(1600);
-//			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
-//			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-//				Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
-//				quotes.values(status);
-//			} else {
-//				Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-//				quotes.values(status);
-//			}
-//		}
+		//		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1600);
+		//		driver.findElement(By.xpath("//*[text()='Create Job']")).click();
+		//		Thread.sleep(1500);
+		//		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
+		//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		quotes.selectDropDown(orderId);
+		//		Thread.sleep(500);
+		//		driver.findElements(By.xpath("//*[contains(@class,'react-select__indicator')]")).get(2).click();
+		//		act.sendKeys(Keys.TAB);
+		//		act.sendKeys(stCode);
+		//		Thread.sleep(1000);
+		//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1600);
+		//		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
+		//		Thread.sleep(800);
+		//		act.doubleClick(driver.findElement(By.name("job_description"))).build().perform();
+		//		Thread.sleep(800);
+		//		act.sendKeys(Keys.TAB).build().perform();
+		//		act.sendKeys(java.time.LocalDate.now().toString().substring(5, 7)).build().perform();
+		//		Thread.sleep(800);
+		//		act.sendKeys(Keys.ENTER).build().perform();
+		//		price.clickButton("Create Job");
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1400);
+		//		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
+		//		{
+		//			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+		//			Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+		//			quotes.values(status);
+		//			price.takesScreenShot("create_job.png");
+		//			driver.findElement(By.xpath("//*[@title='close']")).click();
+		//		}else 
+		//		{
+		//			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//			Thread.sleep(1600);
+		//			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+		//			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+		//				Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
+		//				quotes.values(status);
+		//			} else {
+		//				Object status[] = {"REPAIRS_016_VerifyCreateJobFromRepair", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+		//				quotes.values(status);
+		//			}
+		//		}
 	}
 	public void clearButtonTopSearch() {
 		try {
@@ -657,7 +693,7 @@ public class AllModules extends App
 		quotes.verifyFiltersStateMaintanance("Zummo Meat Co Inc",	 "Jeremy Morgan", "Approved", "Swetha Epi", 1);
 		//Reset and Clear Buttons in Filter's Page
 		quotes.verifyResetandClearButtonInFiltersPage("Zummo Meat Co Inc", 1);
-		
+
 		//Create Quote
 		quotes.createQuote();
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
@@ -689,10 +725,10 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
-		
+
 		//Print and Download
 		quotes.verifyPrintDownLoad();
-		
+
 		//Check the Lead Time Displayed Or Not
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add Options']")));
 		Thread.sleep(1000);
@@ -705,7 +741,7 @@ public class AllModules extends App
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(leadTime).build().perform();
 		Thread.sleep(1500);
-//		driver.findElement(By.id("react-select-7-input")).sendKeys(leadTime);
+		//		driver.findElement(By.id("react-select-7-input")).sendKeys(leadTime);
 		quotes.selectDropDown(leadTime);
 		driver.findElement(By.name("lead_time_value")).sendKeys(leadValue);
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
@@ -724,7 +760,7 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Edit Icon 
-				quotes.verifyDeleteIcon(2);
+		quotes.verifyDeleteIcon(2);
 		//Bulk Edit
 		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
 		driver.findElement(By.xpath("//*[@class='quote-option-del-icon edit-icon']")).click();
@@ -806,8 +842,7 @@ public class AllModules extends App
 		price.clickButton("Approve");
 		Thread.sleep(1200);
 		repair.toastContainer("Approve");
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//*[text() = 'Approve']"), "Approve"));
 		Thread.sleep(2800);
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		expText = "APPROVED";
@@ -840,8 +875,7 @@ public class AllModules extends App
 		repair.wonOrLostButton("Won");
 		Thread.sleep(1200);
 		repair.toastContainer("Proceed");
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//*[text() = 'Won']"), "Won"));
 		Thread.sleep(1900);
 		expText = "WON";
 		actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
@@ -866,7 +900,7 @@ public class AllModules extends App
 		} else {
 			Thread.sleep(1300);
 			driver.findElement(By.xpath("/html/body/div[1]/div/div[6]/div/div[1]/div/div[3]/button")).click();
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(1600);
 		}
 		String orderId = "";
@@ -877,7 +911,7 @@ public class AllModules extends App
 			price.takesScreenShot("create_sales_order.png");
 			driver.findElement(By.xpath("//*[@title='close']")).click();
 		}else {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 			Thread.sleep(1600);
 			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
@@ -895,47 +929,47 @@ public class AllModules extends App
 		}
 
 		//Create Job from Quote
-//		this.verifyCreateJob("QUOTES_011_VerifyCreateJobFromQuote", orderId, 2);
-//		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1600);
-//		driver.findElement(By.xpath("//*[@class='button-icon-text']")).click();
-//		Thread.sleep(1500);
-//		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		quotes.selectDropDown(orderId);
-//		Thread.sleep(500);
-//		driver.findElement(By.id("react-select-18-input")).sendKeys(stockCode);
-//		Thread.sleep(1000);
-//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1600);
-//		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
-//		driver.findElement(By.name("job_description")).click();
-//		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
-//		act.sendKeys(Keys.ENTER).build().perform();
-//		price.clickButton("Create Job");
-//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//		Thread.sleep(1400);
-//		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
-//		{
-//			String serverMsg = driver.findElement(By.className("server-msg")).getText();
-//			Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-//			quotes.values(status);
-//			price.takesScreenShot("create_job.png");
-//			driver.findElement(By.xpath("//*[@title='close']")).click();
-//		}else {
-//			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-//			Thread.sleep(1600);
-//			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
-//			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
-//				quotes.values(status);
-//			} else {
-//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-//				quotes.values(status);
-//			}
-//		}
+		//		this.verifyCreateJob("QUOTES_011_VerifyCreateJobFromQuote", orderId, 2);
+		//		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1600);
+		//		driver.findElement(By.xpath("//*[@class='button-icon-text']")).click();
+		//		Thread.sleep(1500);
+		//		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		quotes.selectDropDown(orderId);
+		//		Thread.sleep(500);
+		//		driver.findElement(By.id("react-select-18-input")).sendKeys(stockCode);
+		//		Thread.sleep(1000);
+		//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1600);
+		//		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
+		//		driver.findElement(By.name("job_description")).click();
+		//		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
+		//		act.sendKeys(Keys.ENTER).build().perform();
+		//		price.clickButton("Create Job");
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//		Thread.sleep(1400);
+		//		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
+		//		{
+		//			String serverMsg = driver.findElement(By.className("server-msg")).getText();
+		//			Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+		//			quotes.values(status);
+		//			price.takesScreenShot("create_job.png");
+		//			driver.findElement(By.xpath("//*[@title='close']")).click();
+		//		}else {
+		//			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		//			Thread.sleep(1600);
+		//			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
+		//			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+		//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
+		//				quotes.values(status);
+		//			} else {
+		//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
+		//				quotes.values(status);
+		//			}
+		//		}
 	}
 	public Object[] createJob(String orderId) throws Exception
 	{
@@ -946,22 +980,23 @@ public class AllModules extends App
 		Thread.sleep(1500);
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(0).click();
 		act.sendKeys(orderId).build().perform();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(). '"+orderId+"')]")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		act.sendKeys(Keys.ENTER).build().perform();
-//		quotes.selectDropDown(orderId);
+		//		quotes.selectDropDown(orderId);
 		Thread.sleep(500);
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
 		Thread.sleep(1300);
 		act.sendKeys(Keys.ENTER).build().perform();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		Thread.sleep(1600);
 		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
 		driver.findElement(By.name("job_description")).click();
 		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
 		act.sendKeys(Keys.ENTER).build().perform();
 		price.clickButton("Create Job");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		boolean createJob = false; String serverMsg = "";
 		try {
 			driver.findElement(By.xpath("//*[@class='side-drawer open']")).isDisplayed();
@@ -1016,58 +1051,66 @@ public class AllModules extends App
 	public void createPartsPurchase(String tcName, String jobId, int count) throws Exception 
 	{
 		Actions act = new Actions(driver);
-		if (count==1) {
-			driver.findElement(By.xpath("//*[text()= 'Parts Purchase']")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()= 'Create Parts Purchase']")));
-			driver.findElement(By.xpath("//*[text()= 'Create Parts Purchase']")).click();
-		} else {
-		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
-		//Requested By
-		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(0).click();
-		act.sendKeys(Keys.ARROW_DOWN).build().perform();
-		act.sendKeys(Keys.ENTER).build().perform();
-		//Technician
-		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
-		act.sendKeys(Keys.ARROW_DOWN).build().perform();
-		act.sendKeys(Keys.ENTER).build().perform();
-		//Urgency
-		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
-		act.sendKeys("Standard").build().perform();
-		act.sendKeys(Keys.ENTER).build().perform();
+		//		if (count==1) {
+		//			driver.findElement(By.xpath("//*[text()= 'Parts Purchase']")).click();
+		//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()= 'Create Parts Purchase']")));
+		//			driver.findElement(By.xpath("//*[text()= 'Create Parts Purchase']")).click();
+		//		} else {
+		//		}
+		//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		//		//Requested By
+		//		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(0).click();
+		//		act.sendKeys(Keys.ARROW_DOWN).build().perform();
+		//		act.sendKeys(Keys.ENTER).build().perform();
+		//		//Technician
+		//		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
+		//		act.sendKeys(Keys.ARROW_DOWN).build().perform();
+		//		act.sendKeys(Keys.ENTER).build().perform();
+		//		//Urgency
+		//		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
+		//		act.sendKeys("Standard").build().perform();
+		//		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElement(By.xpath("//*[text()= 'Next']")).click();
-		
-		driver.findElement(By.name("vendor_name")).sendKeys("Abb");
+
+		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
+		act.sendKeys("omron").build().perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'OMRON')]")));
+		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElement(By.name("vendor_contact_name")).sendKeys("testAbb");
-		driver.findElement(By.name("email")).sendKeys("test@enterpi.com");
-		driver.findElement(By.name("vendor_phone")).sendKeys("1234567898");
-		driver.findElement(By.name("vendor_quote_number")).sendKeys("98948h3");
-		driver.findElement(By.name("shipping_costs")).sendKeys("129");
+		//		driver.findElement(By.name("email")).sendKeys("test@enterpi.com");
+		//		driver.findElement(By.name("vendor_phone")).sendKeys("1234567898");
+		//		driver.findElement(By.name("vendor_quote_number")).sendKeys("98948h3");
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[text()= 'Item Information']")).click();
-		
+		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(3).click();
+		act.sendKeys("omron").build().perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'omron')]")));
+		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(3).click();
 		act.sendKeys("BACO").build().perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		act.sendKeys(Keys.ENTER).build().perform();
-		
-		driver.findElement(By.xpath("//*[@placeholder= 'Enter Mfg Part Number']")).sendKeys("baco14524");
-		driver.findElement(By.xpath("//*[@placeholder= 'Enter Quantity']")).sendKeys("1");
+		act.sendKeys("omron").build().perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'OMRON')]")));
+		act.sendKeys(Keys.ENTER).build().perform();
+
+		//		driver.findElement(By.xpath("//*[@placeholder= 'Enter Mfg Part Number']")).sendKeys("baco14524");
+		//		driver.findElement(By.xpath("//*[@placeholder= 'Enter Quantity']")).sendKeys("1");
 		driver.findElement(By.xpath("//*[@placeholder= 'Enter Cost']")).sendKeys("138");
 		driver.findElement(By.xpath("//*[@placeholder= 'Enter Vendor Part Number']")).sendKeys("2321354");
-		
+
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(4).click();
 		act.sendKeys(jobId).build().perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox= '0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		act.sendKeys(Keys.ENTER).build().perform();
 		act.moveToElement(driver.findElement(By.xpath("//*[text()= 'Create']"))).build().perform();
-//		act.doubleClick(driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]/div[5]/div/div[1]/div/div[2]/div/div/div[4]/div[1]/div/button"))).build().perform();
+		//		act.doubleClick(driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]/div[5]/div/div[1]/div/div[2]/div/div/div[4]/div[1]/div/button"))).build().perform();
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[2]/div[5]/div/div[1]/div/div[2]/div/div/div[4]/div[1]/div/button")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		boolean createPp = false; String serverMsg = "";
 		try {
 			driver.findElement(By.xpath("//*[@class='side-drawer open']")).isDisplayed();
