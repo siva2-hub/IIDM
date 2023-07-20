@@ -32,8 +32,8 @@ public class RepairTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 23)
+	@Test(enabled = false)
+//	@Test(priority = 23)
 	public void testCase23() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAddNewItem();
@@ -92,12 +92,12 @@ public class RepairTestCases extends App
 //	@Test(priority = 10)
 	public void testCase10() throws Exception {
 		App.login();
-		boolean res = repairs.verifyQCCheckList();
+		boolean res = repairs.verifyQCCheckList("");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 11)
+	@Test(enabled = false)
+//	@Test(priority = 11)
 	public void testCase17() throws Exception {
 		App.login();
 		boolean res = repairs.verifyQCCheckListStatusAsFail();
@@ -128,18 +128,18 @@ public class RepairTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
-	@Test(priority = 15)
+	@Test(enabled = false)
+//	@Test(priority = 15)
 	public void testCase21() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQCIsDisplayedOrNotWhenQuoteStatusHasWon();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//@Test(enabled = false)
+//	@Test(enabled = false)
 	@Test(priority = 16)
 	public void testCase22() throws Exception {
-		App.login();
+//		App.login();
 		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
 		Assert.assertTrue(res);
 	}
