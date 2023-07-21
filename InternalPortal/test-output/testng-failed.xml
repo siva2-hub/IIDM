@@ -3,13 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcases.URLRedirectsTestCase">
+      <class name="testcases.QuoteTestCases">
         <methods>
+          <include name="testCase27"/>
+          <include name="testCase25"/>
+          <include name="testCase12"/>
           <include name="logout"/>
           <include name="login"/>
-          <include name="testCase2"/>
+          <include name="testCase0"/>
         </methods>
-      </class> <!-- testcases.URLRedirectsTestCase -->
+      </class> <!-- testcases.QuoteTestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
