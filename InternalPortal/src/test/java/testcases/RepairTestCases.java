@@ -18,14 +18,14 @@ public class RepairTestCases extends App
 		App.login();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 1)
+	//	@Test(priority = 1)
 	public void testCase1() throws Exception {
 		boolean res = repairs.verifyCreateRMA();
 		Assert.assertTrue(res);
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 2)
+	//	@Test(priority = 2)
 	public void testCase2() throws Exception {
 		App.login();
 		boolean res = repairs.verifySelectItemsToRepair();
@@ -33,7 +33,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 23)
+	//	@Test(priority = 23)
 	public void testCase23() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAddNewItem();
@@ -41,7 +41,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 4)
+	//	@Test(priority = 4)
 	public void testCase4() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignLocation();
@@ -49,7 +49,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 5)
+	//	@Test(priority = 5)
 	public void testCase5() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignTechnician();
@@ -57,7 +57,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 6)
+	//	@Test(priority = 6)
 	public void testCase6() throws Exception {
 		App.login();
 		boolean res = repairs.verifyEvaluateItem();
@@ -65,7 +65,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 7)
+	//	@Test(priority = 7)
 	public void testCase7() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAddRepairableItemToQuote();
@@ -73,7 +73,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 8)
+	//	@Test(priority = 8)
 	public void testCase8() throws Exception {
 		App.login();
 		boolean res = repairs.verifyCreateQuoteFromRepair();
@@ -81,7 +81,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 9)
+	//	@Test(priority = 9)
 	public void testCase9() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQC();
@@ -89,7 +89,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 10)
+	//	@Test(priority = 10)
 	public void testCase10() throws Exception {
 		App.login();
 		boolean res = repairs.verifyQCCheckList("");
@@ -97,7 +97,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 11)
+	//	@Test(priority = 11)
 	public void testCase17() throws Exception {
 		App.login();
 		boolean res = repairs.verifyQCCheckListStatusAsFail();
@@ -105,7 +105,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 12)
+	//	@Test(priority = 12)
 	public void testCase18() throws Exception {
 		App.login();
 		boolean res = repairs.fileUpload();
@@ -113,7 +113,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 13)
+	//	@Test(priority = 13)
 	public void testCase19() throws Exception {
 		App.login();
 		boolean res = repairs.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending");
@@ -121,7 +121,7 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 14)
+	//	@Test(priority = 14)
 	public void testCase20() throws Exception {
 		App.login();
 		boolean res = repairs.verifyFilterStateMaintanance();
@@ -129,17 +129,17 @@ public class RepairTestCases extends App
 		App.logout();
 	}
 	@Test(enabled = false)
-//	@Test(priority = 15)
+	//	@Test(priority = 15)
 	public void testCase21() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQCIsDisplayedOrNotWhenQuoteStatusHasWon();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 16)
 	public void testCase22() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();
 		Assert.assertTrue(res);
 	}

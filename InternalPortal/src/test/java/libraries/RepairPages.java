@@ -396,9 +396,9 @@ public class RepairPages extends App
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.xpath("//*[@type='submit']")).click();
 		Thread.sleep(1400);
 	}
-	public boolean verifyQCCheckList() throws Exception 
+	public boolean verifyQCCheckList(String data) throws Exception 
 	{
-		this.qcCheckList("Pass");
+		this.qcCheckList(data);
 		boolean res = false;
 		String expText = "COMPLETED";
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
