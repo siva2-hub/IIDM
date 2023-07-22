@@ -13,7 +13,7 @@ public class PermissionsTestCasesForRepairModule extends App
 	@Test(priority =1)
 	public void testCase1() throws Exception {
 		//Check the repair request permission as None
-		boolean res = repair.verifyRepairPermissionAsNone("PERMNS_049_Verify_Repair Request_Permission_As_None", "Admin", "Users", "Repair Request", 2);
+		repair.verifyRepairPermissionAsNone("PERMNS_049_Verify_Repair Request_Permission_As_None", "Admin", "Users", "Repair Request", 2);
 
 		//Check the repair request permission as View
 		repair.verifyRepairPermissionAsNone("PERMNS_050_Verify_Repair Request_Permission_As_View", "Admin", "Users", "Repair Request", 3);

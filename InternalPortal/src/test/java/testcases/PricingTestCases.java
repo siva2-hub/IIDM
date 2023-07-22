@@ -9,47 +9,94 @@ import libraries.PricingPages;
 public class PricingTestCases extends App
 {
 	PricingPages price = new PricingPages();
-//	@Test(enabled = false)
+	//	@Test(enabled = false)
 	@Test(priority = 1)
 	public void testCase1() throws Exception {
-		boolean res = price.verifyAddProduct( "BACO55", "120.12", "BA05");
-		Assert.assertTrue(res);
-		App.logout();
+		//
+		price.verifyAddProduct( "BACO55", "120.12", "BA05");
+		//	
+		price.verifyAddDiscountCode();
+		//	
+		price.verifyUpdateProduct();
+		//	
+		price.verifyUpdateDiscountCode();
+		//
+		price.importFile();
+		//
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
+		//
+		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
+		//
+		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
+		//
+		price.verifyUpdateProductValidations(1);
+		//
+		price.verifyUpdateProductValidations(2);
+		//
+		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+		//
+		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+		//
+		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+		//
+		price.filters("BACO44");
+
+
+		//		Assert.assertTrue(res);
+		//		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 2)
+	@Test(enabled = false)
+	//	@Test(priority = 2)
 	public void testCase2() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = price.verifyAddDiscountCode();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 3)
+	@Test(enabled = false)
+	//	@Test(priority = 3)
 	public void testCase3() throws Exception {
 		App.login();
 		boolean res = price.verifyUpdateProduct();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 4)
+	@Test(enabled = false)
+	//	@Test(priority = 4)
 	public void testCase4() throws Exception {
 		App.login();
 		boolean res = price.verifyUpdateDiscountCode();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 5)
+	@Test(enabled = false)
+	//	@Test(priority = 5)
 	public void testCase5() throws Exception {
-//		App.login();
+		//		App.login();
 		boolean res = price.importFile();
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 6)
+	@Test(enabled = false)
+	//	@Test(priority = 6)
 	public void testCase6() throws Exception {
 		App.login();
 		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_Null_PurchaseDiscount_Not_Null
@@ -57,19 +104,19 @@ public class PricingTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	
-//	@Test(enabled = false)
-	@Test(priority = 7)
+
+	@Test(enabled = false)
+	//	@Test(priority = 7)
 	public void testCase7() throws Exception {
-//		App.login();
+		//		App.login();
 		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
 		boolean res =price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	
-//	@Test(enabled = false)
-	@Test(priority = 8)
+
+	@Test(enabled = false)
+	//	@Test(priority = 8)
 	public void testCase8() throws Exception {
 		App.login();
 		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
@@ -77,9 +124,9 @@ public class PricingTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	
-//	@Test(enabled = false)
-	@Test(priority = 9)
+
+	@Test(enabled = false)
+	//	@Test(priority = 9)
 	public void testCase9() throws Exception {
 		App.login();
 		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
@@ -87,104 +134,104 @@ public class PricingTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 10)
+	@Test(enabled = false)
+	//	@Test(priority = 10)
 	public void testCase10() throws Exception {
-//		App.login();
+		//		App.login();
 		boolean res = price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 11)
+	@Test(enabled = false)
+	//	@Test(priority = 11)
 	public void testCase11() throws Exception {
 		App.login();
 		boolean res = price.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 12)
+	@Test(enabled = false)
+	//	@Test(priority = 12)
 	public void testCase12() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 13)
+	@Test(enabled = false)
+	//	@Test(priority = 13)
 	public void testCase13() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 14)
+	@Test(enabled = false)
+	//	@Test(priority = 14)
 	public void testCase14() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 15)
+	@Test(enabled = false)
+	//	@Test(priority = 15)
 	public void testCase15() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 16)
+	@Test(enabled = false)
+	//	@Test(priority = 16)
 	public void testCase16() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 17)
+	@Test(enabled = false)
+	//	@Test(priority = 17)
 	public void testCase17() throws Exception {
 		App.login();
 		boolean res = price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 18)
+	@Test(enabled = false)
+	//	@Test(priority = 18)
 	public void testCase18() throws Exception {
 		App.login();
 		boolean res = price.verifyUpdateProductValidations(1);
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 19)
+	@Test(enabled = false)
+	//	@Test(priority = 19)
 	public void testCase19() throws Exception {
 		App.login();
 		boolean res = price.verifyUpdateProductValidations(2);
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 20)
+	@Test(enabled = false)
+	//	@Test(priority = 20)
 	public void testCase20() throws Exception {
 		App.login();
 		boolean res = price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 21)
+	@Test(enabled = false)
+	//	@Test(priority = 21)
 	public void testCase21() throws Exception {
 		App.login();
 		boolean res = price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
 		Assert.assertTrue(res);
 		App.logout();
 	}
-//	@Test(enabled = false)
-	@Test(priority = 22)
+	@Test(enabled = false)
+	//	@Test(priority = 22)
 	public void testCase22() throws Exception {
 		App.login();
 		boolean res = price.filters("BACO44");

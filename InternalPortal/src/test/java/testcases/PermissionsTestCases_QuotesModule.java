@@ -48,6 +48,22 @@ public class PermissionsTestCases_QuotesModule extends App
 		//		Assert.assertTrue(res);
 		//		App.logout();
 	}
+
+	//	@Test(enabled = false)
+	@Test(priority = 5)
+	public void testCase5() throws Exception 
+	{
+		//App.login();
+		//Check the Quote close as No permission in Quotes
+		quotes.verifyQuoteClosePermissionAsYes_Quotes("PERMNS_057_Verify_QuoteClose_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",6, 2);
+		//
+		quotes.verifyQuoteClosePermissionAsYes_Quotes("PERMNS_058_Verify_QuoteClose_Permission_As_Yes_Quotes", "Admin", "Users", "Quote for Parts/Repairs",6, 1);
+		//
+		quotes.verifyQuoteReOpenPermissionAsYes_Quotes("PERMNS_062_Verify_ReOpen_Permission_As_Yes_Quotes", "Admin", "Users", "Quote for Parts/Repairs",7, 1);
+		//
+		quotes.verifyQuoteReOpenPermissionAsYes_Quotes("PERMNS_061_Verify_ReOpen_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",7, 2);
+	}
+
 	@Test(enabled = false)
 	//	@Test(priority =2)
 	public void testCase2() throws Exception {
@@ -85,27 +101,7 @@ public class PermissionsTestCases_QuotesModule extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//	@Test(enabled = false)
-	@Test(priority = 5)
-	public void testCase5() throws Exception 
-	{
-		//		App.login();
-		//Check the Quote close as No permission in Quotes
-		quotes.verifyQuoteClosePermissionAsYes_Quotes("PERMNS_057_Verify_QuoteClose_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",6, 2);
-		//
-		quotes.verifyQuoteClosePermissionAsYes_Quotes("PERMNS_058_Verify_QuoteClose_Permission_As_Yes_Quotes", "Admin", "Users", "Quote for Parts/Repairs",6, 1);
-		//
-		quotes.verifyQuoteReOpenPermissionAsYes_Quotes("PERMNS_062_Verify_ReOpen_Permission_As_Yes_Quotes", "Admin", "Users", "Quote for Parts/Repairs",7, 1);
-		//
-		quotes.verifyQuoteReOpenPermissionAsYes_Quotes("PERMNS_061_Verify_ReOpen_Permission_As_No_Quotes", "Admin", "Users", "Quote for Parts/Repairs",7, 2);
 
-		//		if(res) {
-		//		}else {
-		//			App.logout();
-		//		}
-		//		Assert.assertTrue(res);
-		//				App.logout();
-	}
 	@Test(enabled = false)
 	//	@Test(priority = 6)
 	public void testCase6() throws Exception {

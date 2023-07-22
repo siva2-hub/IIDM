@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import commonUtils.App;
+
 public class Permissions_QuotesPages extends Permissions
 {
 	public String[] quoteForPartsPermissionAsNone(String itemName, String tabName, String labelName,  int tabCount ,int count) throws Exception
@@ -38,6 +40,9 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyQuotesPermissionAsNone(String tcName, String itemName, String tabName, String labelName,  int tabCount ,int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.quoteForPartsPermissionAsNone(itemName, tabName, labelName, tabCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
@@ -56,11 +61,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -97,9 +102,12 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyCreateSalesOrderPermissionAsYes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		RepairPages repair = new RepairPages();
 		//		quotes.submitForCustomerApproval();
 		//		PricingPages price = new PricingPages();
 		//		price.clickButton("Won");
@@ -134,15 +142,15 @@ public class Permissions_QuotesPages extends Permissions
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'print')]")));
 		}
 		Thread.sleep(1500);
-		String message = "";String expText = "";boolean sta = false;
+		String message = ""; boolean sta = false;
 		if(childCount==2) {
 			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
 			if(count==1) 
 			{
 
-				expText = "Clone\n"
-						+ "Print\n"
-						+ "Download";
+				//				expText = "Clone\n"
+				//						+ "Print\n"
+				//						+ "Download";
 				try {
 					Thread.sleep(1000);
 					driver.findElement(By.xpath("//*[text()='Create Sales Order']")).isDisplayed();
@@ -150,12 +158,12 @@ public class Permissions_QuotesPages extends Permissions
 				} catch (Exception e) {
 					sta = false;
 				}
-				 
+
 			}else if(count==2) {
-				expText = "Create Sales Order\n"
-						+ "Clone\n"
-						+ "Print\n"
-						+ "Download";
+				//				expText = "Create Sales Order\n"
+				//						+ "Clone\n"
+				//						+ "Print\n"
+				//						+ "Download";
 				try {
 					Thread.sleep(1000);
 					driver.findElement(By.xpath("//*[text()='Create Sales Order']")).isDisplayed();
@@ -167,7 +175,7 @@ public class Permissions_QuotesPages extends Permissions
 
 		}else if(childCount==5) {
 			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2])")).getText();
-			expText = "Filters";
+			//			expText = "Filters";
 		}
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
 		System.out.println("special pricing url is "+actURL[0].replace("users", actURL[1]));
@@ -176,11 +184,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -188,6 +196,9 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyQuoteClosePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -216,14 +227,14 @@ public class Permissions_QuotesPages extends Permissions
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'print')]")));
 		Thread.sleep(1500);
-		String message = "";String expText = "";boolean sta = false;
+		String message = "";boolean sta = false;
 		if (count==2) {
 
 			message = driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/div/div[3]/div[1]/div[2]")).getText();
-			expText = "Re Open\n"
-					+ "Clone\n"
-					+ "Print\n"
-					+ "Download";
+			//			expText = "Re Open\n"
+			//					+ "Clone\n"
+			//					+ "Print\n"
+			//					+ "Download";
 			try {
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[text()='Close']")).isDisplayed();
@@ -233,11 +244,11 @@ public class Permissions_QuotesPages extends Permissions
 			}
 		} else if(count==1) {
 			message = driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/div/div[3]/div[1]/div[2]")).getText();
-			expText = "Re Open\n"
-					+ "Close\n"
-					+ "Clone\n"
-					+ "Print\n"
-					+ "Download";
+			//			expText = "Re Open\n"
+			//					+ "Close\n"
+			//					+ "Clone\n"
+			//					+ "Print\n"
+			//					+ "Download";
 			try {
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[text()='Close']")).isDisplayed();
@@ -253,11 +264,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -265,10 +276,13 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyEditIIDMCostPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); Actions act = new Actions(driver);
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		//		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
 		//		quotes.createQuote();
 		//		Thread.sleep(1600);
 		//		quotes.selectItemToQuote();
@@ -305,11 +319,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -317,9 +331,12 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyQuoteReOpenPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		//		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Rejected']")));
 			driver.findElement(By.xpath("//*[text() = 'Rejected']")).click();
@@ -328,14 +345,14 @@ public class Permissions_QuotesPages extends Permissions
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'print')]")));
 		Thread.sleep(1500);
-		String message = "";String expText = "";boolean sta = false;
+		String message = ""; boolean sta = false;
 		if (count==2) {
 
 			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
-			expText = "Close\n"
-					+ "Clone\n"
-					+ "Print\n"
-					+ "Download";
+			//			expText = "Close\n"
+			//					+ "Clone\n"
+			//					+ "Print\n"
+			//					+ "Download";
 			try {
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[text()='Re Open']")).isDisplayed();
@@ -345,11 +362,11 @@ public class Permissions_QuotesPages extends Permissions
 			}
 		} else if(count==1) {
 			message = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[1]/div[2]")).getText();
-			expText = "Re Open\n"
-					+ "Close\n"
-					+ "Clone\n"
-					+ "Print\n"
-					+ "Download";
+			//			expText = "Re Open\n"
+			//					+ "Close\n"
+			//					+ "Clone\n"
+			//					+ "Print\n"
+			//					+ "Download";
 			try {
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[text()='Re Open']")).isDisplayed();
@@ -365,11 +382,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -377,9 +394,12 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyReviseQuotePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		//		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
 		if (count==2) {
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Open']")));
@@ -402,7 +422,7 @@ public class Permissions_QuotesPages extends Permissions
 		}
 
 		Thread.sleep(1500);
-		boolean message = false;String expText = "";boolean sta = false;
+		boolean message = false;boolean sta = false;
 		if (count==2) {
 			try {
 				message = driver.findElement(By.xpath("//*[text()='Revise Quote']")).isDisplayed();
@@ -425,11 +445,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Permissions", "Passed"};
+			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Permissions", "Failed"};
+			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -486,9 +506,12 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifySendToCustomerPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		RepairPages repair = new RepairPages();
 		if (count==2) {
 			try {
 				Thread.sleep(500);
@@ -514,8 +537,8 @@ public class Permissions_QuotesPages extends Permissions
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'print')]")));
 		}
-		
-		boolean message = false;String expText = "";boolean sta = false;
+
+		boolean message = false; boolean sta = false;
 		if (count==2) {
 			try {
 				message = driver.findElement(By.xpath("//*[text()='Submit for Customer Approval']")).isDisplayed();
@@ -538,11 +561,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Permissions", "Passed"};
+			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Permissions", "Failed"};
+			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -550,9 +573,12 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyPayTermsPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] =this.createSalesOrderPermissionAsYes(itemName, tabName, labelName, childCount, count);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		QuotePages quotes = new QuotePages();RepairPages repair = new RepairPages();
+		QuotePages quotes = new QuotePages();
 		if (count==2) {
 			quotes.createQuote();
 			quotes.selectItemToQuote();
@@ -595,11 +621,11 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -607,7 +633,10 @@ public class Permissions_QuotesPages extends Permissions
 	}
 	public boolean verifyQuoteApprovalLimitPermissionAsNone_Quotes(String tcName, String itemName, String tabName, String labelName,String perName) throws Exception
 	{
-		QuotePages quotes = new QuotePages();
+		//Pop Up message
+		App.displayPopUp(tcName);
+
+		//		QuotePages quotes = new QuotePages();
 		this.userTab(itemName, tabName);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		List<WebElement> labelsText = driver.findElements(By.xpath("//*[@class='permission-outer-border']")).get(3).findElements(By.xpath("//*[@class='permission']"));
@@ -666,11 +695,11 @@ public class Permissions_QuotesPages extends Permissions
 		Thread.sleep(2000);	boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

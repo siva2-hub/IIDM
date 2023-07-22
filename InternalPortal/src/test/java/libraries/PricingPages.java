@@ -70,6 +70,9 @@ public class PricingPages extends App
 	}
 	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass) throws Exception
 	{
+		//Warning Pop Up
+		App.displayPopUp("PRICING_001_VerifyAddProduct");
+
 		boolean res = false;
 		String stockCode = java.time.LocalTime.now().toString().substring(0, 8).replace(":", "");
 		String expStockCode = this.addProduct(stockCode, discountCode, listPrice, productClass);
@@ -190,12 +193,15 @@ public class PricingPages extends App
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.ARROW_RIGHT).build().perform(); act.sendKeys(Keys.ARROW_LEFT).build().perform();
 		act.sendKeys(Keys.ENTER).build().perform();
-		act.sendKeys(Keys.TAB).build().perform();
+		driver.findElement(By.name("discount_code")).click();
+		act.sendKeys(Keys.TAB).build().perform(); act.sendKeys(Keys.TAB).build().perform();
 		for(int i=0; i<15; i++) {
 			act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
 		}
-		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
 		act.sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(1000);
+		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(1).click();
+		driver.findElement(By.xpath("//*[contains(@class, 'css-4mp3pp-menu')]")).click();
 		driver.findElement(By.xpath("//*[@placeholder='Our Price']")).sendKeys("0.25");
 		driver.findElement(By.xpath("//*[@placeholder='MRO']")).sendKeys("0.50");
 		driver.findElement(By.xpath("//*[@placeholder='OEM']")).sendKeys("0.75");
@@ -319,7 +325,7 @@ public class PricingPages extends App
 			act.sendKeys(Keys.ARROW_DOWN).build().perform(); act.sendKeys(Keys.ARROW_UP).build().perform();
 			act.sendKeys(Keys.ENTER).build().perform();
 			//End Date
-			 act.sendKeys(Keys.ENTER).build().perform();
+			act.sendKeys(Keys.ENTER).build().perform();
 			driver.findElements(By.xpath("//*[contains(@style, 'box-sizing: content-box;')]")).get(2).sendKeys(Keys.ENTER);
 			for(int i=0; i<15; i++) {
 				act.sendKeys(Keys.ARROW_DOWN).build().perform(); 
@@ -367,10 +373,11 @@ public class PricingPages extends App
 		dtRange.sendKeys(Keys.ENTER);
 		dtRange.sendKeys(Keys.ARROW_DOWN);
 		dtRange.sendKeys(Keys.ENTER);
+		String supplier = "BACO CONTROLS INC";
 		driver.findElement(By.name("quote_number")).sendKeys("TestNewQN9090");
-		driver.findElements(By.id("async-select-example")).get(1).sendKeys("BACO CONTROLS INC");
+		driver.findElements(By.id("async-select-example")).get(1).sendKeys(supplier);
 		Thread.sleep(1500);
-		qp.selectDropDown("BACO CONTROLS INC");
+		qp.selectDropDown(supplier);
 		//		System.exit(0);
 		driver.findElement(By.xpath("//*[@label='Purchase Discount']")).click();
 		Actions act = new Actions(driver);
@@ -386,53 +393,59 @@ public class PricingPages extends App
 		qp.selectDropDown("Specific Item");
 		Thread.sleep(1500);
 		driver.findElements(By.id("async-select-example")).get(2).sendKeys(item);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*contains(text(), '"+item+"')")));
 		Thread.sleep(1500);
 		qp.selectDropDown(item);
 		driver.findElement(By.xpath("//*[@label='Purchase Discount']")).sendKeys(purchaseDiscount);
-		driver.findElement(By.xpath("//*[@placeholder='Buy Price']")).sendKeys(buyPrice);
-		driver.findElement(By.xpath("//*[@placeholder='Fixed Sales Price']")).sendKeys(fprice);
+		driver.findElement(By.xpath("//*[contains(@placeholder, 'Buy Price')]")).sendKeys(buyPrice);
+		driver.findElement(By.xpath("//*[contains(@placeholder,'Fixed Sales Price')]")).sendKeys(fprice);
 		String orgName = driver.findElement(By.xpath("//*[contains(@class,'react-select__single-value')]")).getText();
 		this.clickButton("Preview Items");
 		Thread.sleep(1300);
 		rp.toastContainer("Override");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style='left: 655px; width: 140px;']")));
-		Thread.sleep(2500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+supplier+"')]")));
+		Thread.sleep(2000);
 		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//		List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		//List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		double actBuyPrice = 0.0;
-		if(purchaseDiscount.equals("") && buyPrice.equals("")) {
+		if(purchaseDiscount.equals("") && buyPrice.equals("")) 
+		{
 			actBuyPrice = 0.0;
 		}else {
-			//			actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
-			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 655px; width: 140px;']")).getText().replace("$", ""));
-
+			Thread.sleep(1500);
+			//actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
+			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 654px; width: 140px;']")).getText().replace("$", ""));
 		}
+		act.dragAndDrop(driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-left-spacer')]"))
+				, driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-right-spacer')]"))).build().perform();
+		Thread.sleep(1500);
 		//System.out.println("actual buy price "+actBuyPrice);
-		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1622px; width: 117px;']")).getText().replace("$", ""));
+		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1621px; width: 117px;']")).getText().replace("$", ""));
 		Double actFixedPrice = 0.0;
+		Thread.sleep(1500);
 		//checking with actFixedPrice
-		if(driver.findElement(By.xpath("//*[@style='left: 1453px; width: 169px;']")).getText().equals("")) 
+		if(driver.findElement(By.xpath("//*[@style='left: 1452px; width: 169px;']")).getText().equals("")) 
 		{
 			actFixedPrice = 0.0;
 		}else {
-			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1453px; width: 169px;']")).getText().replace("$", ""));
+			Thread.sleep(1500);
+			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1452px; width: 169px;']")).getText().replace("$", ""));
 		}
 		System.out.println("actual buy price "+actBuyPrice);
 		System.out.println("actual sell price "+actSellPrice);
 		Thread.sleep(2500);
 		driver.findElement(By.xpath("/html/body/div[1]/div/div[5]/div/div[1]/div/div[3]/button")).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 		Thread.sleep(1500);
 		this.pricingPage("Pricing");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(6000);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
+		Thread.sleep(2000);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String listPrice = ls.get(2).getText();
-		String ourPrice = ls.get(8).getText();
+		//		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		String listPrice = driver.findElement(By.xpath("//*[@style= 'left: 469px; width: 180px;']")).getText();
+		String ourPrice = driver.findElement(By.xpath("left: 1507px; width: 180px;")).getText();
 		String op1 = ourPrice.replace("$", "");
 		Double op = Double.parseDouble(op1);
 		String lp1 = listPrice.replace("$", "");

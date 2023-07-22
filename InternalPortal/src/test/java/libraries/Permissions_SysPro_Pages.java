@@ -6,10 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import commonUtils.App;
+
 public class Permissions_SysPro_Pages extends Permissions
 {
 	public boolean verifyInventoryPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -42,11 +47,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -54,6 +59,9 @@ public class Permissions_SysPro_Pages extends Permissions
 	}
 	public boolean verifyJobsPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -66,7 +74,7 @@ public class Permissions_SysPro_Pages extends Permissions
 			expText = actText;
 			sta = actText.equals("");
 			System.out.println("act Text "+actText);
-			
+
 		} else if(count==2){
 			actText = driver.findElements(By.tagName("p")).get(0).getText();
 			expText = driver.findElement(By.xpath("/html/body/div/div/div[3]/div/div[2]")).getText();
@@ -77,11 +85,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed"};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed"};
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -89,6 +97,9 @@ public class Permissions_SysPro_Pages extends Permissions
 	}
 	public boolean verifyOrdersPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -98,11 +109,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
@@ -110,6 +121,9 @@ public class Permissions_SysPro_Pages extends Permissions
 	}
 	public boolean verifyPartsPurchasePermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -126,11 +140,11 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Passed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Permissions", "Failed"};
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
 			qp.values(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

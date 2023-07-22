@@ -67,17 +67,9 @@ public class Permissions extends App
 	public boolean verifyAdminTabs_None(String tcName,String itemName, String tabName, String labelName, int count) throws Exception
 	{
 		//Pop Up message
-		Actions act = new Actions(driver);
-//        JOptionPane.showMessageDialog(null, "<html><p style = \"color: red;\">Executing Test Case is </p><br>"
-//                + "<p style = \"color: red;\"><b>"+tcName+"</p></html>"+act.sendKeys(Keys.ESCAPE));
-//        Thread.sleep(1200);
-//        JButton btn = new JButton("Close");
-//        Window w = SwingUtilities.getWindowAncestor(btn);
-//        if (w != null) {
-//            w.setVisible(false);
-//         }
-        JOptionPane.getRootFrame().dispose();
-        PricingPages price = new PricingPages();
+		App.displayPopUp(tcName);
+		
+		PricingPages price = new PricingPages();
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -104,13 +96,13 @@ public class Permissions extends App
 	public boolean adminTabwithViewPermission(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
 	{
 		//Pop Up message
-//        JOptionPane.showMessageDialog(null, tcName); 
+		App.displayPopUp(tcName);
 		this.userTab(itemName, tabName);
 		List<WebElement> labelsText = driver.findElement(By.xpath("//*[@class='permission-outer-border']")).findElements(By.xpath("//*[@class='permission']"));
 		String path = "";String  url = "";
 		for(int i=0; i<labelsText.size(); i++) 
 		{
-//			System.out.println(labelsText.get(i).findElements(By.tagName("span")).get(0).getText());// edit=4 :: view=3 :: none=2
+			//			System.out.println(labelsText.get(i).findElements(By.tagName("span")).get(0).getText());// edit=4 :: view=3 :: none=2
 			if(labelsText.get(i).findElements(By.tagName("span")).get(0).getText().equalsIgnoreCase(labelName)) 
 			{
 				System.out.println("label name "+labelsText.get(i).findElements(By.tagName("span")).get(0).getText());
@@ -139,7 +131,7 @@ public class Permissions extends App
 			actText = driver.findElement(By.className("add-Icon")).getText();
 			editCount = driver.findElements(By.xpath("//*[@name='right'][@class='ag-pinned-right-cols-container']")).size();
 		}else if(labelName.equals("Quote Approval")) {
-			
+
 			actText = driver.findElement(By.xpath("//*[@tabindex=-1]")).getAttribute("disabled");
 			if(actText.equals("true")) {
 				actText="";
@@ -173,7 +165,7 @@ public class Permissions extends App
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
 						"Permissions", "Passed"};
-				
+
 				qp.values(status);
 			} else {
 				res = false;
@@ -188,7 +180,7 @@ public class Permissions extends App
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
 						"Permissions", "Passed"};
-				
+
 				qp.values(status);
 			} else {
 				res = false;
@@ -201,7 +193,7 @@ public class Permissions extends App
 		}
 		return res;
 	}
-	
+
 	public void headerMenu(String itemName) throws Exception
 	{
 		List<WebElement> headerList = driver.findElement(By.xpath("//*[@class='header-left']")).findElements(By.xpath("//*[contains(@class,'menu-item')]"));

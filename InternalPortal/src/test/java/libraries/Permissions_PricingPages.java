@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import commonUtils.App;
+
 public class Permissions_PricingPages extends Permissions
 {
 	public void pricingPermissionAsNone(String itemName, String tabName, String labelName, int count) throws Exception 
@@ -40,6 +42,8 @@ public class Permissions_PricingPages extends Permissions
 	}
 	public boolean verifyPricingermissionsAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
 
 		String actURL[] = this.pricingPermissions(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
@@ -95,6 +99,9 @@ public class Permissions_PricingPages extends Permissions
 	}
 	public boolean verifyPricingExportImportPermissions(String tcName, String itemName, String tabName, String labelName, int count, int xpCount, String btnName, int btnCount) throws Exception
 	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.pricingChildPermissions(itemName, tabName, labelName, count, xpCount, btnCount);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -102,6 +109,7 @@ public class Permissions_PricingPages extends Permissions
 		Thread.sleep(2000);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String actText = "";
+		Thread.sleep(1500);
 		if (labelName.equals("Non Standard Pricing")) 
 		{
 			Thread.sleep(1500);
@@ -133,7 +141,11 @@ public class Permissions_PricingPages extends Permissions
 		this.clickYesButton(itemName, tabName, labelName, count, xpCount, btnCount);
 		return res;
 	}
-	public boolean verifyPricingPermissionsAsView(String tcName, String itemName, String tabName, String labelName, int count) throws Exception{
+	public boolean verifyPricingPermissionsAsView(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
+	{
+		//Pop Up message
+		App.displayPopUp(tcName);
+
 		String actURL[] = this.pricingPermissions(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
@@ -163,8 +175,8 @@ public class Permissions_PricingPages extends Permissions
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	
-//	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	//	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public void clickYesButton(String itemName, String tabName, String labelName, int count, int xpCount, int btnCount) throws Exception{
 		this.userTab(itemName, tabName);
 		List<WebElement> labelsText = driver.findElements(By.xpath("//*[@class='permission-outer-border']")).get(4).findElements(By.xpath("//*[@class='permission']"));

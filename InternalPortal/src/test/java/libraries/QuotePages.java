@@ -35,11 +35,11 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("//*[text() = 'OPEN']")).click();
 	} catch (Exception e) 
 	{
+		String custName = "Motion Industries - Grand Prairie";
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='async-select-example']")));
-		driver.findElement(By.xpath("//*[@id='async-select-example']")).sendKeys("Motion Industries - Grand Prairie");
-		Thread.sleep(4700);
-		//		Motion Industries - Grand Prairie
+		driver.findElement(By.xpath("//*[@id='async-select-example']")).sendKeys(custName);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//*[contains(text(), '"+custName+"')]")));
 		this.selectDropDown("Motion Industries - Grand Prairie");
 		driver.findElement(By.name("project_name")).sendKeys("Test");
 		driver.findElement(By.xpath("//*[contains(@id,'react-select')]")).sendKeys("Parts Quote");
@@ -351,7 +351,7 @@ public class QuotePages extends App
 		}
 		if (count==4) {
 			//			driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
-			List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
+			//			List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
 			//			btns.get(1).click();
 		} else {
 			try {
@@ -453,7 +453,7 @@ public class QuotePages extends App
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
 		driver.findElement(By.xpath("//*[text()='Quotes']")).click();
@@ -816,14 +816,14 @@ public class QuotePages extends App
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 			Thread.sleep(1800);
-			int tCount = 0;
-			int eCount = 0;
-			//		int qcCount1 = 0;
-			//		int qcCount2 = 0;
+			//			int tCount = 0;
+			//			int eCount = 0;
+			//			//		int qcCount1 = 0;
+			//			//		int qcCount2 = 0;
 			if (driver.findElements(By.xpath("//*[@aria-labelledby='tab-0']")).get(1).getText().contains("Items Not Found")) {
 				Thread.sleep(1000);
-				tCount = 7;
-				eCount = 8;
+//				tCount = 7;
+//				eCount = 8;
 				//			qcCount1 = 10;
 				//			qcCount2 = 11;
 				driver.findElement(By.className("second-msg")).click();
@@ -837,8 +837,8 @@ public class QuotePages extends App
 				driver.findElement(By.xpath("//*[text()='Add New Part']")).click();
 				Thread.sleep(1500);
 			} else {
-				tCount = 6;
-				eCount = 7;
+//				tCount = 6;
+//				eCount = 7;
 				//			qcCount1 = 9;
 				//			qcCount2 = 10;
 				Actions act = new Actions(driver);
@@ -1073,7 +1073,7 @@ public class QuotePages extends App
 		Class.forName("com.mysql.jdbc.Driver");  
 		//personal laptop account details "jdbc:mysql://localhost:3306/demo","root","siva7661@"
 		//office system details "jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234"
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","siva7661@");  
 		Statement stmt=con.createStatement(); 
 		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
 				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "')";

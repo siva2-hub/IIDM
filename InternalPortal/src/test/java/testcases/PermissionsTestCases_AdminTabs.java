@@ -1,5 +1,8 @@
 package testcases;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,7 +16,6 @@ public class PermissionsTestCases_AdminTabs extends App
 	@Test(priority = 1)
 	public void testCase1() throws Exception{
 		//Check the Account Types as None permission
-        
 		p.verifyAdminTabs_None("PERMNS_001_Verify_AccountType_Permission_As_None", "Admin", "Users", "Account Type", 2);
 		//
 		p.verifyAdminTabs_None("PERMNS_002_Verify_Branches_Permission_As_None", "Admin", "Users", "Branches", 2);
@@ -86,7 +88,7 @@ public class PermissionsTestCases_AdminTabs extends App
 		p.adminTabwithViewPermission("PERMNS_034_Verify_QC Control_Permission_As_View","Admin", "Users", "QC Control", 3);
 		//
 		p.adminTabwithViewPermission("PERMNS_094_Verify_Product Category_Permission_As_View","Admin", "Users", "Product Category", 3);
-		
+
 
 		//		if(res) {
 		//
