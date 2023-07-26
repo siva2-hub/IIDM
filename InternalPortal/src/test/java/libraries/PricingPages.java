@@ -443,7 +443,7 @@ public class PricingPages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 		Thread.sleep(2000);
 		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
+		//List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		String listPrice = driver.findElement(By.xpath("//*[@style= 'left: 469px; width: 180px;']")).getText();
 		String ourPrice = driver.findElement(By.xpath("left: 1507px; width: 180px;")).getText();
 		String op1 = ourPrice.replace("$", "");
@@ -451,7 +451,7 @@ public class PricingPages extends App
 		String lp1 = listPrice.replace("$", "");
 		Double lp = Double.parseDouble(lp1);
 		DecimalFormat decfor = new DecimalFormat("0.00");
-		//		String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
+		//String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
 		Double expBuyPrice= 0.0;
 		if (buyPrice.equals("")) {
 
@@ -675,6 +675,9 @@ public class PricingPages extends App
 	}
 	public boolean verifyaAddSPItemsToQuotewithAccountType(String tcName, String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice) throws Exception
 	{
+		//Warning Pop up
+		App.displayPopUp(tcName);
+
 		Object values[] = this.addSPItemsToQuotewithAccountType(type, typeValue, purchaseDiscount, fprice, buyPrice);
 		Object actSp = values[0];
 		Object expSp = values[1];
@@ -967,4 +970,5 @@ public class PricingPages extends App
 		act.moveToElement(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
 		act.click(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
 	}
+	
 }

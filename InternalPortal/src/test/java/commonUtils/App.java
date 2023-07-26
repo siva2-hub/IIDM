@@ -73,8 +73,8 @@ public class App {
 			pwd = "Test@4321";
 		} else if(instance.equals("stage")) {
 			url = "https://www.staging-buzzworld.iidm.com/quote_for_parts";
-			mail = "sivadara17@gmail.com";
-			pwd = "Test@4321";
+			mail = "defaultuser@enterpi.com";
+			pwd = "Enter@4321";
 		}
 		driver.get(url);
 
@@ -141,7 +141,8 @@ public class App {
 		wb.write(fo);
 		fo.close();
 	}
-	public static void displayPopUp(String data) {
+	public static void displayPopUp(String data) 
+	{
 		JOptionPane jop = new JOptionPane();
 		jop.setMessageType(JOptionPane.PLAIN_MESSAGE);
 		jop.setMessage("<html><ul><h4 style=\"color: blue;\">"+data+"</h4></ul></html>");
@@ -159,5 +160,15 @@ public class App {
 		}).start();
 
 		dialog.setVisible(true);
+	}
+	public static void spinner() 
+	{
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
+		try {
+			
+			Thread.sleep(1200);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
