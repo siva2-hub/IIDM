@@ -49,8 +49,6 @@ public class App {
 		//		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-
-
 		urlOpen("qa");
 		Actions act = new Actions(driver);
 		//		act.sendKeys(Keys.CONTROL ,Keys.SHIFT , "I").build().perform();

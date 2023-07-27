@@ -108,6 +108,7 @@ public class FiltersPages extends App
 		driver.findElement(By.xpath("//*[contains(@class, 'css-4mp3pp-menu')]")).click();
 		//Clicking on apply button
 		this.applyButton();
+		Thread.sleep(1000);
 		if (count==2) {
 			act.dragAndDropBy(driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-left-spacer')]"))
 					,500, 0).build().perform();
