@@ -29,18 +29,20 @@ public class QuotePages extends App
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
 	}
-	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+	App.spinner();
 	try {
-		driver.findElement(By.xpath("//*[text() = 'OPEN']")).isDisplayed();
-		driver.findElement(By.xpath("//*[text() = 'OPEN']")).click();
+		driver.findElement(By.xpath("//*[text() = 'OPEN12']")).isDisplayed();
+		driver.findElement(By.xpath("//*[text() = 'OPEN12']")).click();
 	} catch (Exception e) 
 	{
 		String custName = "Motion Industries - Grand Prairie";
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='async-select-example']")));
 		driver.findElement(By.xpath("//*[@id='async-select-example']")).sendKeys(custName);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//*[contains(text(), '"+custName+"')]")));
-		this.selectDropDown("Motion Industries - Grand Prairie");
+		App.spinner();
+		Thread.sleep(1200);
+		driver.findElement(By.xpath("//*[contains(@class, 'css-4mp3pp-menu')]")).click();
+		App.spinner();Thread.sleep(1000);
 		driver.findElement(By.name("project_name")).sendKeys("Test");
 		driver.findElement(By.xpath("//*[contains(@id,'react-select')]")).sendKeys("Parts Quote");
 		Thread.sleep(2500);
@@ -156,7 +158,8 @@ public class QuotePages extends App
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@role='menuitem']")).click();
-		Thread.sleep(2500);
+		App.spinner();
+		Thread.sleep(1000);
 	}
 	public boolean verifyQuoteWon(int count) throws Exception {
 		this.submitForCustomerApproval();
@@ -176,7 +179,7 @@ public class QuotePages extends App
 		rp.wonOrLostButton(won);
 		Thread.sleep(1200);
 		rp.toastContainer("Proceed");
-		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button[1]"), "Won"));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("//*[text() = 'Won']"), "Won"));
 		Thread.sleep(1400);
 		boolean res = false;
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
@@ -366,13 +369,19 @@ public class QuotePages extends App
 		boolean res = false;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
+			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
 			Thread.sleep(1600);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		try {
+			driver.findElement(By.xpath("//*[text()='Clear']")).isDisplayed();
 			driver.findElement(By.xpath("//*[text()='Clear']")).click();
-		} catch (Exception e) {}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		App.spinner();
 		driver.findElement(By.className("filter-text")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='async-select-example']")));
 		Actions act = new Actions(driver);

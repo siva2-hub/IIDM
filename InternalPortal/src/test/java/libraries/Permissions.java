@@ -68,12 +68,12 @@ public class Permissions extends App
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
-		
+
 		PricingPages price = new PricingPages();
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
-		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		Thread.sleep(3000);
+		driver.get(actURL[0].replace("users", actURL[1]));
+		App.spinner();
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String message = driver.findElements(By.tagName("p")).get(0).getText();
 		String url = driver.getCurrentUrl();
@@ -98,6 +98,7 @@ public class Permissions extends App
 		//Pop Up message
 		App.displayPopUp(tcName);
 		this.userTab(itemName, tabName);
+
 		List<WebElement> labelsText = driver.findElement(By.xpath("//*[@class='permission-outer-border']")).findElements(By.xpath("//*[@class='permission']"));
 		String path = "";String  url = "";
 		for(int i=0; i<labelsText.size(); i++) 
@@ -124,12 +125,12 @@ public class Permissions extends App
 		}
 		String vals[] = {url, path};
 		driver.navigate().to(vals[0].replace("users", vals[1]));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(2000);
+		App.spinner();
+		Thread.sleep(1200);
 		String expText = "";String actText = "";int editCount = 0;
 		if (labelName.equals("PO Min Qty")) {
 			actText = driver.findElement(By.className("add-Icon")).getText();
-			editCount = driver.findElements(By.xpath("//*[@name='right'][@class='ag-pinned-right-cols-container']")).size();
+			editCount = this.editIconDisplayedOrNot();
 		}else if(labelName.equals("Quote Approval")) {
 
 			actText = driver.findElement(By.xpath("//*[@tabindex=-1]")).getAttribute("disabled");
@@ -151,7 +152,7 @@ public class Permissions extends App
 		} else {
 			expText = "Filters";
 			actText = driver.findElement(By.className("add-Icon")).getText();
-			editCount = driver.findElements(By.xpath("//*[@name='right'][@class='ag-pinned-right-cols-container']")).size();
+			editCount = this.editIconDisplayedOrNot();
 		}		
 		System.out.println("icons/actual Text is"+actText+"expected text is"+expText);
 		Thread.sleep(2000);
@@ -193,7 +194,17 @@ public class Permissions extends App
 		}
 		return res;
 	}
-
+	public int editIconDisplayedOrNot() {
+		int editCount = 0;
+		try {
+			App.spinner();
+			driver.findElement(By.xpath("//*[contains(@src, 'editicon')]")).isDisplayed();
+			editCount = 1;
+		} catch (Exception e) {
+			editCount =0;
+		}
+		return editCount;
+	}
 	public void headerMenu(String itemName) throws Exception
 	{
 		List<WebElement> headerList = driver.findElement(By.xpath("//*[@class='header-left']")).findElements(By.xpath("//*[contains(@class,'menu-item')]"));

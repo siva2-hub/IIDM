@@ -688,6 +688,7 @@ public class AllModules extends App
 		try {
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
+			App.spinner();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -700,46 +701,64 @@ public class AllModules extends App
 			driver.findElement(By.xpath("//*[text() = 'Clear']")).isDisplayed();
 			driver.findElement(By.xpath("//*[text() = 'Clear']")).click();
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		//Search with Quote Id
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_014_VerifySearchByQuoteId");
 		quotes.verifyTopSearchInQuoteListView("2023053100074", 1);
 		this.clearButtonTopSearch();
 		//Search with Company Name
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_015_VerifySearchByCompanyName");
 		quotes.verifyTopSearchInQuoteListView("123 E Doty Corporation", 2);
 		this.clearButtonTopSearch();
 		//Search with Sales Person
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_016_VerifySearchBySalesPersonName");
 		quotes.verifyTopSearchInQuoteListView("Frontier", 3);
 		this.clearButtonTopSearch();
 		//Search with Email
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_017_VerifySearchByEmail");
 		quotes.verifyTopSearchInQuoteListView("pete.soto@motion-ind.com", 4);
 		this.clearButtonTopSearch();
 		//Filters In Quote List View
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_018_VerifyFiltersInQuotesListView");
 		quotes.verifyFiltersInQuoteListView("Zummo Meat Co Inc", "Jeremy Morgan", "Approved", "Swetha Epi", 1);
 		//Filter's State Maintenance
-		quotes.verifyFiltersStateMaintanance("Zummo Meat Co Inc",	 "Jeremy Morgan", "Approved", "Swetha Epi", 1);
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_019_VerifyFiltersStateMaintanance");
+		quotes.verifyFiltersStateMaintanance("Zummo Meat Co Inc", "Jeremy Morgan", "Approved", "Swetha Epi", 1);
 		//Reset and Clear Buttons in Filter's Page
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_020_VerifyResetandClearButtonInFiltersPage");
 		quotes.verifyResetandClearButtonInFiltersPage("Zummo Meat Co Inc", 1);
-
 		//Create Quote
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_001_VerifyCreateQuote");
 		quotes.createQuote();
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		String expText = "OPEN";
-		if (actText.toLowerCase().contains(expText.toLowerCase())) {
-
+		if (actText.toLowerCase().contains(expText.toLowerCase())) 
+		{
 			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
-
 			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		//Add(Select) Items To Quote
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_023_VerifyDeleteIconInQuoteItems");
 		actText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		quotes.selectItemToQuote();
 		//Delete Icon
 		quotes.verifyDeleteIcon(1);
 		actText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_002_VerifySelectItemToQuote");
 		quotes.selectItemToQuote();
 		expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (actText!=expText) {
@@ -754,9 +773,13 @@ public class AllModules extends App
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
 
 		//Print and Download
-		quotes.verifyPrintDownLoad();
+		//Warning Pop Up
+		//		App.displayPopUp("QUOTES_013_VerifyPrintFunctionality");
+		//		quotes.verifyPrintDownLoad();
 
 		//Check the Lead Time Displayed Or Not
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_003_VerifyLeadTimeDisplayedOrNot");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add Options']")));
 		Thread.sleep(1000);
 		Actions act = new Actions(driver);
@@ -787,6 +810,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Edit Icon 
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_004_VerifyBulkEdit");
 		quotes.verifyDeleteIcon(2);
 		//Bulk Edit
 		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
@@ -807,6 +832,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Proceed To Submit For Internal Approval
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_005_VerifySubmitForInternalApproval");
 		Thread.sleep(2400);
 		WebElement rfq = driver.findElement(By.xpath("//*[@title='RFQ Received Date']"));
 		Thread.sleep(1500);
@@ -848,6 +875,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Display the Revise Quote When Quote As Pending Approval
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_006_Verify_Display_TheReviseQuote_When_Quote_Is_Pending_Approval");
 		boolean revise = false;
 		try {
 			revise = driver.findElement(By.xpath("//*[text()='Revise Quote']")).isDisplayed();	
@@ -865,6 +894,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Approve The Quote
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_007_VerifyApproveButton");
 		Thread.sleep(1500);
 		price.clickButton("Approve");
 		Thread.sleep(1200);
@@ -882,6 +913,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Send To Customer
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_008_VerifySubmitForCustomerApproval");
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).findElement(By.tagName("button")).click();
 		driver.findElement(By.xpath("//*[@role='menuitem']")).click();
@@ -899,6 +932,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Quote Won
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_009_VerifyQuoteWon");
 		repair.wonOrLostButton("Won");
 		Thread.sleep(1200);
 		repair.toastContainer("Proceed");
@@ -916,6 +951,8 @@ public class AllModules extends App
 			quotes.values(status);
 		}
 		//Create Sales Order
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_010_VerifyCreateSalesOrder_FromQuote");
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("customer_po_number")));
 		Thread.sleep(1200);
@@ -943,6 +980,8 @@ public class AllModules extends App
 			orderId = driver.findElement(By.className("id-num")).getText().replace("#", "");
 			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
 			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
+				//Warning Pop Up
+				App.displayPopUp("QUOTES_011_VerifyCreateJobFromQuote");
 				Object status[] = {"QUOTES_010_VerifyCreateSalesOrder_FromQuote", "Sales Order "+orderId+" Created with Order status is "+orderStatus, "", "SalesOrderPage", "Passed", java.time.LocalDate.now().toString()};
 				quotes.values(status);
 				//Create Job from Quote
@@ -954,49 +993,6 @@ public class AllModules extends App
 				this.verifyCreateJob("QUOTES_011_VerifyCreateJobFromQuote", orderId, 2);
 			}
 		}
-
-		//Create Job from Quote
-		//		this.verifyCreateJob("QUOTES_011_VerifyCreateJobFromQuote", orderId, 2);
-		//		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[6]")).click();
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//		Thread.sleep(1600);
-		//		driver.findElement(By.xpath("//*[@class='button-icon-text']")).click();
-		//		Thread.sleep(1500);
-		//		driver.findElement(By.id("async-select-example")).sendKeys(orderId);
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//		quotes.selectDropDown(orderId);
-		//		Thread.sleep(500);
-		//		driver.findElement(By.id("react-select-18-input")).sendKeys(stockCode);
-		//		Thread.sleep(1000);
-		//		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//		Thread.sleep(1600);
-		//		driver.findElement(By.name("job_description")).sendKeys("Test Job Description");
-		//		driver.findElement(By.name("job_description")).click();
-		//		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.ARROW_RIGHT).build().perform();
-		//		act.sendKeys(Keys.ENTER).build().perform();
-		//		price.clickButton("Create Job");
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//		Thread.sleep(1400);
-		//		if(driver.findElements(By.xpath("//*[@class='side-drawer open']")).size()!=0) 
-		//		{
-		//			String serverMsg = driver.findElement(By.className("server-msg")).getText();
-		//			Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", serverMsg, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-		//			quotes.values(status);
-		//			price.takesScreenShot("create_job.png");
-		//			driver.findElement(By.xpath("//*[@title='close']")).click();
-		//		}else {
-		//			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//			Thread.sleep(1600);
-		//			String orderStatus = driver.findElement(By.xpath("//*[@title='[object Object]']")).getText();
-		//			if (orderStatus.toLowerCase().equals("OPEN ORDER".toLowerCase())) {
-		//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Passed", java.time.LocalDate.now().toString()};
-		//				quotes.values(status);
-		//			} else {
-		//				Object status[] = {"QUOTES_011_VerifyCreateJobFromQuote", "Job Created with status is "+orderStatus, "", "JobsPage", "Failed", java.time.LocalDate.now().toString()};
-		//				quotes.values(status);
-		//			}
-		//		}
 	}
 	public Object[] createJob(String orderId) throws Exception
 	{

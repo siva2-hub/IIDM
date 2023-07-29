@@ -10,7 +10,7 @@ import libraries.QuotePages;
 public class QuoteTestCases extends App{
 	QuotePages quotes = new QuotePages();
 	AllModules all = new AllModules();
-	
+
 	//@Test(enabled = false)
 	@Test(priority = 1)
 	public void testCase0() throws Exception {
@@ -39,13 +39,13 @@ public class QuoteTestCases extends App{
 	//@Test(enabled = false)
 	@Test(priority=21)
 	public void testCase25() throws Exception {
-//		App.login();
+		App.login();
 		boolean res = quotes.verifyAddOptionInQuoteDetailedView();
 		Assert.assertTrue(res);
 		App.logout();
 	}
 
-	
+
 	@Test(enabled = false)
 	//	@Test(priority=1)
 	public void testCase1() throws Exception {
