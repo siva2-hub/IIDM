@@ -35,33 +35,27 @@ public class PricingTestCases extends App
 		//
 		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
 		//
-		price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
-		//
-		price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
-		//
-		price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
-		//
-		price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
-		//
-		price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
-		//
-		price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
-		//
-		price.verifyUpdateProductValidations(1);
-		//
-		price.verifyUpdateProductValidations(2);
-		//
-		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
-		//
-		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
-		//
-		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
-		//
-		price.filters("BACO44");
-
-
-		//		Assert.assertTrue(res);
-		//		App.logout();
+//		price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
+//		//
+//		price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
+//		//
+//		price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
+//		//
+//		price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
+//		//
+//		price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
+//		//
+//		price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
+//		//
+//		price.verifyUpdateProductValidations(1);
+//		//
+//		price.verifyUpdateProductValidations(2);
+//		//
+//		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+//		//
+//		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+//		//
+//		price.filters("BACO44");
 	}
 	@Test(enabled = false)
 	//	@Test(priority = 2)

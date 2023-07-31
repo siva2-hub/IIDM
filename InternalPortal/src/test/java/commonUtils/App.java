@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
 import java.util.Date;
@@ -83,6 +84,7 @@ public class App {
 	}
 	public static void main(String args[]) throws  Exception 
 	{
+		System.exit(0);
 		String file = "tcfile.xlsx";
 		FileOutputStream fo = new FileOutputStream(file);
 		@SuppressWarnings("resource")
@@ -139,6 +141,25 @@ public class App {
 		wb.write(fo);
 		fo.close();
 	}
+	public static String clickLabel(String val) throws SQLException 
+	{
+		String sql = "SELECT label_path FROM Clicking_Label WHERE label_name='"+val+"';";
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/testing", "enterpi", "enterpi@1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		String labelVal = "";
+		while(rs.next()) {
+			labelVal = rs.getString("label_path");
+			System.out.println(labelVal);
+		}
+		return labelVal;
+	}
+	public static void horizentalScroll() throws SQLException 
+	{
+		Actions act = new Actions(driver);
+		act.dragAndDrop(driver.findElement(By.xpath(App.clickLabel("scroll_from")))
+				, driver.findElement(By.xpath(App.clickLabel("scroll_to")))).build().perform();
+	}
 	public static void displayPopUp(String data) 
 	{
 		JOptionPane jop = new JOptionPane();
@@ -159,14 +180,21 @@ public class App {
 
 		dialog.setVisible(true);
 	}
+	public static void clearTopSearch() 
+	{
+		try {
+			driver.findElement(By.xpath(App.clickLabel("cross_symbol_search"))).isDisplayed();
+			driver.findElement(By.xpath(App.clickLabel("cross_symbol_search"))).click();
+			Thread.sleep(2000);
+		} catch (Exception e) {}
+		App.spinner();
+	}
 	public static void spinner() 
 	{
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style = 'animation-delay: 0ms;']")));
 		try {
-			
 			Thread.sleep(1200);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 }

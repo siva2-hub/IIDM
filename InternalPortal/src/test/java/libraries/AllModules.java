@@ -773,9 +773,9 @@ public class AllModules extends App
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
 
 		//Print and Download
-		//Warning Pop Up
-		//		App.displayPopUp("QUOTES_013_VerifyPrintFunctionality");
-		//		quotes.verifyPrintDownLoad();
+//		Warning Pop Up
+		App.displayPopUp("QUOTES_013_VerifyPrintFunctionality");
+		quotes.verifyPrintDownLoad();
 
 		//Check the Lead Time Displayed Or Not
 		//Warning Pop Up
@@ -860,6 +860,7 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[text() ='Submit for Internal Approval']")).click();
 		Thread.sleep(2000);
 		repair.toastContainer("Proceed");
+		App.spinner();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text() ='Submit for Internal Approval']")));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='quote-num-and-status']")));
 		Thread.sleep(2500);

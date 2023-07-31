@@ -330,9 +330,9 @@ public class QuotePages extends App
 			//			App.logout();
 		} else {
 			if (count==4) {
-				driver.findElement(By.xpath("//*[@class='ag-react-container']")).click();
+				driver.findElement(By.xpath("//*[contains(@src, 'vendor_logo')]")).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
-				path = "/html/body/div/div/div[6]/div[1]/div/div[1]/div[1]/div[2]/div[5]/div/p";
+				path = "/html/body/div/div/div[4]/div[1]/div/div[1]/div[1]/div[2]/div[6]/div/div/p";
 				actText = driver.findElement(By.xpath(path)).getText();
 				String act2 = actText;
 				String act1 = searchBy;
@@ -353,9 +353,15 @@ public class QuotePages extends App
 			}
 		}
 		if (count==4) {
-			//			driver.findElement(By.xpath("//*[@class='down-arrow']")).click();
-			//			List<WebElement> btns = driver.findElements(By.xpath("//*[@role='menuitem']"));
-			//			btns.get(1).click();
+			driver.findElement(By.xpath("//*[text() = 'Quotes']")).click();
+			App.spinner();
+			try {
+				driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
+				driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
+				App.spinner();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		} else {
 			try {
 				driver.findElement(By.className("Cross-svg")).click();
@@ -498,6 +504,7 @@ public class QuotePages extends App
 		//		this.selectDropDown("0165009LS");
 		price = new PricingPages();
 		price.clickButton("Apply");
+		App.spinner();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Repairs']")));
 		driver.findElement(By.xpath("//*[text()='Repairs']")).click();
 		driver.findElement(By.xpath("//*[text()='Quotes']")).click();
@@ -507,7 +514,7 @@ public class QuotePages extends App
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-viewport']")));
+		App.spinner();
 		Thread.sleep(1600);
 		boolean filterCheck = false;
 		try {
@@ -663,8 +670,8 @@ public class QuotePages extends App
 		return res;
 	}
 	public boolean verifyPrintDownLoad() throws Exception {
-		//		this.createQuote();
-		//		this.selectItemToQuote();
+				this.createQuote();
+				this.selectItemToQuote();
 		boolean res = false;
 		driver.findElement(By.xpath("//*[contains(@src,'print')]")).click();
 		Thread.sleep(2300);
@@ -1082,7 +1089,7 @@ public class QuotePages extends App
 		Class.forName("com.mysql.jdbc.Driver");  
 		//personal laptop account details "jdbc:mysql://localhost:3306/demo","root","siva7661@"
 		//office system details "jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234"
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","siva7661@");  
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
 		Statement stmt=con.createStatement(); 
 		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
 				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "')";

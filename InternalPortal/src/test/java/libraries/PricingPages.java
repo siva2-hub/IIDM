@@ -6,6 +6,8 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -41,7 +43,7 @@ public class PricingPages extends App
 				break;
 			}
 		}
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 	}
 	public String addProduct(String stockCode, String discountCode, String listPrice, String productClass) throws Exception
 	{
@@ -65,7 +67,7 @@ public class PricingPages extends App
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(productClass).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
 		this.addButton("Add Product");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-center-cols-container']")));
+		App.spinner();
 		return stockCode;
 	}
 	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass) throws Exception
@@ -414,38 +416,36 @@ public class PricingPages extends App
 		}else {
 			Thread.sleep(1500);
 			//actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
-			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 654px; width: 140px;']")).getText().replace("$", ""));
+			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("buy_price"))).getText().replace("$", ""));
 		}
-		act.dragAndDrop(driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-left-spacer')]"))
-				, driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-right-spacer')]"))).build().perform();
+		App.horizentalScroll();
 		Thread.sleep(1500);
 		//System.out.println("actual buy price "+actBuyPrice);
-		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1621px; width: 117px;']")).getText().replace("$", ""));
+		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("sell_price"))).getText().replace("$", ""));
 		Double actFixedPrice = 0.0;
 		Thread.sleep(1500);
 		//checking with actFixedPrice
-		if(driver.findElement(By.xpath("//*[@style='left: 1452px; width: 169px;']")).getText().equals("")) 
+		if(driver.findElement(By.xpath(App.clickLabel("fixed_price"))).getText().equals("")) 
 		{
 			actFixedPrice = 0.0;
 		}else {
 			Thread.sleep(1500);
-			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1452px; width: 169px;']")).getText().replace("$", ""));
+			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("fixed_price"))).getText().replace("$", ""));
 		}
 		System.out.println("actual buy price "+actBuyPrice);
 		System.out.println("actual sell price "+actSellPrice);
 		Thread.sleep(2500);
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[5]/div/div[1]/div/div[3]/button")).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
+		//click on Apply Rule button
+		driver.findElement(By.xpath(App.clickLabel("apply_rule"))).click();
+		App.spinner();
 		Thread.sleep(1500);
 		this.pricingPage("Pricing");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
-		Thread.sleep(2000);
-		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String listPrice = driver.findElement(By.xpath("//*[@style= 'left: 469px; width: 180px;']")).getText();
-		String ourPrice = driver.findElement(By.xpath("left: 1507px; width: 180px;")).getText();
+		App.spinner();
+		Thread.sleep(1500);
+		String listPrice = driver.findElement(By.xpath(App.clickLabel("list_price"))).getText();
+		App.horizentalScroll();
+		String ourPrice = driver.findElement(By.xpath(App.clickLabel("our_price"))).getText();
 		String op1 = ourPrice.replace("$", "");
 		Double op = Double.parseDouble(op1);
 		String lp1 = listPrice.replace("$", "");
@@ -532,82 +532,58 @@ public class PricingPages extends App
 		Object listPrice = vals[6];
 		String item = vals[7].toString();
 		this.clickButton("Organizations");
+		Thread.sleep(1200);
+		driver.findElements(By.xpath("//*[text() = 'Organizations']")).get(1).click();
+		App.spinner();
+		Thread.sleep(1200);
+		//organizations search
+		App.clearTopSearch(); App.spinner();
 		Thread.sleep(1500);
-		for(int i=0;i<driver.findElements(By.className("link-icon-text")).size();i++) {
-			if(driver.findElements(By.className("link-icon-text")).get(i).getText().equals("Organizations")) {
-				driver.findElements(By.className("link-icon-text")).get(i).click();
-			}
-		}
-		//		driver.findElements(By.className("link-icon-text")).get(3).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(2500);
-		String searchText = driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).getAttribute("value");
-		for(int i=0;i<searchText.length();i++) {
-			driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).sendKeys(Keys.BACK_SPACE);
-		}
-		Thread.sleep(1500);
-		driver.findElement(By.xpath("//*[@placeholder='Name / Company Name / Account Number / Owner']")).sendKeys(orgName);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(6600);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String at  = ls.get(4).getText();
+		driver.findElement(By.xpath(App.clickLabel("org_top_search"))).sendKeys(orgName);
+		App.spinner();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+orgName+"')]")));
+		Thread.sleep(2000);
+		String at  = driver.findElement(By.xpath(App.clickLabel("act_type_org_grid"))).getText();
 		System.out.println("account type "+at);
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[1]/div/div[2]")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@placeholder,'Search By Name')]")));
+		//Click on Admin tab for Account Types
+		driver.findElement(By.xpath("//*[text() = 'Admin']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(App.clickLabel("act_type_search"))));
 		Thread.sleep(2500);
-		try {
-			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
-			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
-			Thread.sleep(2000);
-		} catch (Exception e) {}
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//*[contains(@placeholder,'Search By Name')]")).sendKeys(at);
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div[4]/div[3]/div/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[4]")));
-		System.out.println("visible.........");	
-		//		System.exit(typeValue);
-		Thread.sleep(2600);
-		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//		ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String atm  = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[3]/div/div/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[4]")).getText();
+		App.clearTopSearch();
+		Thread.sleep(1200);
+		//Account type search
+		driver.findElement(By.xpath(App.clickLabel("act_type_search"))).sendKeys(at);
+		Thread.sleep(1000);
+		App.spinner();
+		Thread.sleep(1200);
+		String atm  = driver.findElement(By.xpath(App.clickLabel("act_type_mapped_act_types"))).getText();
+		// go to pricing module
 		this.pricingPage("Pricing");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		Thread.sleep(6000);
+		App.clearTopSearch();
+		App.spinner();
+		driver.findElement(By.xpath(App.clickLabel("pricing_top_search"))).sendKeys(item);
+		App.spinner();
+		Thread.sleep(1200);
 		this.clickColoumns();
-		txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		System.out.println("gird Data is ");
-		System.out.println("count of grid id "+ls.size());
-		for(int i=0;i<ls.size();i++) {
-			System.out.println(ls.get(i).getText());
-		}
 		Object accountType = 0.0;
 		Object expQuotePrice = 0.0;
 		Object expSuggestedPrice = 0.0;
 		Actions act = new Actions(driver);
-		act.dragAndDrop(driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-left-spacer')]"))
-				, driver.findElement(By.xpath("//*[contains(@class,'ag-horizontal-right-spacer')]"))).build().perform();
+		App.horizentalScroll();
 		Thread.sleep(1500);
 		if(atm.equals("MRO")) {
-			//			accountType = Double.parseDouble(ls.get(9).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1688px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("mro_pricing"))).getText().replace("$", ""));
 		}
+		//our price or PO both are same
 		if(atm.equals("PO")) {
-			//			accountType = Double.parseDouble(ls.get(8).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1508px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("our_price"))).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
-			//			accountType = Double.parseDouble(ls.get(10).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 1868px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("oem_pricing"))).getText().replace("$", ""));
 		}if(atm.equals("RS")) {
-			//			accountType = Double.parseDouble(ls.get(11).getText().replace("$", ""));
-			accountType = Double.parseDouble(driver.findElement(By.xpath("//*[@style='left: 2048px; width: 180px;']")).getText().replace("$", ""));
+			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("rs_pricing"))).getText().replace("$", ""));
 		}
 		System.out.println("act type is "+atm+ " price value "+accountType);
 		System.out.println("no act type fixed price value "+actFixedPrice);
-		//		}
 		if (actFixedPrice.equals(0.0)) {
 			expQuotePrice = actSellPrice;
 		} else {
@@ -619,15 +595,15 @@ public class PricingPages extends App
 			expSuggestedPrice = accountType;
 		}
 		System.out.println("fixed sales price value "+actFixedPrice);
-		driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div[5]")).click();
+		//go to quotes module
+		driver.findElement(By.xpath("//*[text() = 'Quotes']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+		App.spinner(); Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@class='button-icon-text ']")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='async-select-example']")));
 		driver.findElement(By.xpath("//*[@id='async-select-example']")).sendKeys(orgName);
 		Thread.sleep(4700);
 		qp.selectDropDown(orgName);
-		driver.findElement(By.name("project_name")).sendKeys("Test");
 		driver.findElement(By.name("project_name")).click();
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys("Parts Quote").build().perform();  act.sendKeys(Keys.ENTER).build().perform();
@@ -797,42 +773,35 @@ public class PricingPages extends App
 		Permissions per = new Permissions();
 		per.headerMenu("Admin");
 		per.adminLeftMenu("Vendors");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Search By Name']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(App.clickLabel("vendor_search_admin"))));
 		Thread.sleep(2200);
-		try {
-			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
-			driver.findElement(By.xpath("//*[@style='padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).click();
-			Thread.sleep(2000);
-		} catch (Exception e) {}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@placeholder='Search By Name']")));
-		System.out.println("search ahving data previously");
-		driver.findElement(By.xpath("//*[@placeholder='Search By Name']")).sendKeys("BACO001");
+		App.clearTopSearch();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(App.clickLabel("vendor_search_admin"))));
+		driver.findElement(By.xpath(App.clickLabel("vendor_search_admin"))).sendKeys("BACO001");
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text()='BACO001']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='BACO001']")));
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//*[contains(@src,'editicon')]")).click();
+		driver.findElement(By.xpath(App.clickLabel("grid_edit_icon"))).click();
 		Thread.sleep(1500);
 		WebElement checkBox = driver.findElement(By.name("is_different_pricing"));
-		if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
-			if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
-
-			} else {
-				driver.findElement(By.xpath("//*[contains(@class, 'checkbox-form-field')]")).click();
+		if (isDifferent) {
+			if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {} 
+			else {
+				checkBox.click();
 			}
 		} else {
 			if (checkBox.getAttribute("aria-checked").equalsIgnoreCase("true")) {
-				driver.findElement(By.xpath("//*[contains(@class, 'checkbox-form-field')]")).click();
-			} else {
-			}
+				checkBox.click();
+			} else {}
 		}
-
 		this.clickButton("Update");
 		this.pricingPage("Pricing");
 		driver.findElement(By.className("sideList-Search")).findElement(By.xpath("//*[@placeholder='Search']")).sendKeys("BACO001");
 		Thread.sleep(3000);
 		WebElement supName1 = driver.findElement(By.className("left-menu")).findElement(By.xpath("//*[@class='active menu-item-single']"));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'editicon')]")));
-		Thread.sleep(2400);
+		App.spinner();
+		Thread.sleep(1200);
 		supName1 = driver.findElement(By.className("left-menu")).findElement(By.xpath("//*[@class='active menu-item-single']"));
 		String supName = supName1.getText();
 		supName1.click();
@@ -873,25 +842,20 @@ public class PricingPages extends App
 	public boolean filters(String disCountCode) throws Exception {
 		this.pricingPage("Pricing");
 		Actions act = new Actions(driver);
-		driver.findElement(By.xpath("//*[text()= 'Filters']")).click();
+		driver.findElement(By.xpath(App.clickLabel("filter_btn"))).click();
 		Thread.sleep(2500);
 
 		driver.findElements(By.xpath("//*[contains(@class, 'react-select__indicator')]")).get(3).click();
 		act.sendKeys(disCountCode).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
 		Thread.sleep(2000);
-		//		driver.findElement(By.id("react-select-3-input")).sendKeys(disCountCode);
-
 		QuotePages quotes = new QuotePages();
 		quotes.selectDropDown(disCountCode);
-		driver.findElement(By.xpath("//*[text()= 'Appy']")).click();
+		driver.findElement(By.xpath("//*[text()= 'Apply']")).click();
 		Thread.sleep(1600);
-		WebDriverWait js = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		Thread.sleep(1500);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String actDisCode = ls.get(3).getText();
-		driver.findElement(By.xpath("//*[text()= 'Clear']")).click();
+		String actDisCode = driver.findElement(By.xpath(App.clickLabel("discount_code_pricing"))).getText();
+		driver.findElement(By.xpath(App.clickLabel("filter_clear"))).click();
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
@@ -970,5 +934,5 @@ public class PricingPages extends App
 		act.moveToElement(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
 		act.click(driver.findElement(By.xpath("//*[@title='close']"))).build().perform();
 	}
-	
+
 }
