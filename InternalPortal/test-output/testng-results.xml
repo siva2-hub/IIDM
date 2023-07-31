@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="21" total="22" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-29T16:46:38 IST" name="Default suite" finished-at="2023-07-29T16:51:16 IST" duration-ms="277966">
+  <suite started-at="2023-07-31T19:06:59 IST" name="Default suite" finished-at="2023-07-31T19:08:34 IST" duration-ms="95167">
     <groups>
     </groups>
-    <test started-at="2023-07-29T16:46:38 IST" name="Default test" finished-at="2023-07-29T16:51:16 IST" duration-ms="277966">
-      <class name="testcases.PermissionsTestCases_AdminTabs">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PermissionsTestCases_AdminTabs@25ce9dc4]" started-at="2023-07-29T16:46:38 IST" name="login" finished-at="2023-07-29T16:46:52 IST" duration-ms="14106" status="PASS">
+    <test started-at="2023-07-31T19:06:59 IST" name="Default test" finished-at="2023-07-31T19:08:34 IST" duration-ms="95167">
+      <class name="testcases.PricingTestCases">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:06:59 IST" name="login" finished-at="2023-07-31T19:07:11 IST" duration-ms="11800" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase1()[pri:1, instance:testcases.PermissionsTestCases_AdminTabs@25ce9dc4]" started-at="2023-07-29T16:46:52 IST" name="testCase1" finished-at="2023-07-29T16:51:14 IST" duration-ms="262143" status="FAIL">
+        <test-method signature="testCase1()[pri:1, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:07:11 IST" name="testCase1" finished-at="2023-07-31T19:08:33 IST" duration-ms="81889" status="FAIL">
           <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/div[3]/div/div[2]"}
-  (Session info: chrome=115.0.5790.110)
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//*[@style='left: 486px; width: 149px;']"}
+  (Session info: chrome=106.0.5249.119)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c077a9347bcd19879b5faa0417faf147, findElement {using=xpath, value=/html/body/div/div/div[3]/div/div[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.110, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Users\SIVAKR~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:62950}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62950/devtoo..., se:cdpVersion: 115.0.5790.110, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c077a9347bcd19879b5faa0417faf147]]>
+Command: [f7d9d988ba9dd7efbd29c9041f897319, findElement {using=xpath, value=//*[@style='left: 486px; width: 149px;']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.2SToi5}, goog:chromeOptions: {debuggerAddress: localhost:41163}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41163/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: f7d9d988ba9dd7efbd29c9041f897319]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/div[3]/div/div[2]"}
-  (Session info: chrome=115.0.5790.110)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@style='left: 486px; width: 149px;']"}
+  (Session info: chrome=106.0.5249.119)
 For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c077a9347bcd19879b5faa0417faf147, findElement {using=xpath, value=/html/body/div/div/div[3]/div/div[2]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.110, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Users\SIVAKR~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:62950}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62950/devtoo..., se:cdpVersion: 115.0.5790.110, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c077a9347bcd19879b5faa0417faf147
-at jdk.internal.reflect.GeneratedConstructorAccessor15.newInstance(Unknown Source)
+Command: [f7d9d988ba9dd7efbd29c9041f897319, findElement {using=xpath, value=//*[@style='left: 486px; width: 149px;']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.2SToi5}, goog:chromeOptions: {debuggerAddress: localhost:41163}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41163/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: f7d9d988ba9dd7efbd29c9041f897319
+at jdk.internal.reflect.GeneratedConstructorAccessor21.newInstance(Unknown Source)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -49,8 +49,9 @@ at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(Elemen
 at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at libraries.Permissions.verifyAdminTabs_None(Permissions.java:80)
-at testcases.PermissionsTestCases_AdminTabs.testCase1(PermissionsTestCases_AdminTabs.java:29)
+at libraries.PricingPages.addSPItemsToQuotewithAccountType(PricingPages.java:546)
+at libraries.PricingPages.verifyaAddSPItemsToQuotewithAccountType(PricingPages.java:657)
+at testcases.PricingTestCases.testCase1(PricingTestCases.java:34)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -85,11 +86,11 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase1 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PermissionsTestCases_AdminTabs@25ce9dc4]" started-at="2023-07-29T16:51:14 IST" name="logout" finished-at="2023-07-29T16:51:16 IST" duration-ms="1634" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:08:33 IST" name="logout" finished-at="2023-07-31T19:08:34 IST" duration-ms="1422" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-      </class> <!-- testcases.PermissionsTestCases_AdminTabs -->
+      </class> <!-- testcases.PricingTestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
