@@ -180,6 +180,17 @@ public class App {
 
 		dialog.setVisible(true);
 	}
+	public static void clearFilter() 
+	{
+		try {
+			driver.findElement(By.xpath(App.clickLabel("filter_clear"))).isDisplayed();
+			driver.findElement(By.xpath(App.clickLabel("filter_clear"))).click();
+			App.spinner();
+			Thread.sleep(1200);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	public static void clearTopSearch() 
 	{
 		try {

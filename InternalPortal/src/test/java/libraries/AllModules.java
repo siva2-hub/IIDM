@@ -153,8 +153,8 @@ public class AllModules extends App
 		}
 		//File Upload in Repair Detailed View
 		//Warning Pop Up
-		//		App.displayPopUp("");
-		//				repair.fileUpload();
+		App.displayPopUp("");
+		repair.fileUpload();
 		//Add New Item
 		repair.verifyAddNewItem();
 		//Delete Row option in Add New Item Page
@@ -773,7 +773,7 @@ public class AllModules extends App
 		String stockCode = driver.findElement(By.xpath("//*[@class=' width-25 flexed']")).findElement(By.tagName("h4")).getText();
 
 		//Print and Download
-//		Warning Pop Up
+		//		Warning Pop Up
 		App.displayPopUp("QUOTES_013_VerifyPrintFunctionality");
 		quotes.verifyPrintDownLoad();
 

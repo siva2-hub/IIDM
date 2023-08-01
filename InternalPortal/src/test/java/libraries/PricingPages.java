@@ -495,11 +495,6 @@ public class PricingPages extends App
 	}
 	public boolean verifyBuyPrice_SellPrice_InSpecialPricing(String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice, int count) throws Exception
 	{
-		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice, buyPrice);
-		Object abp = vals[0];
-		Object ebp = vals[1];
-		Object asp = vals[2];
-		Object esp = vals[3];
 		boolean res = false;String tcName= "";
 		if(count==1) {
 			tcName = "PRICING_006_VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_Null_PurchaseDiscount_Not_Null";
@@ -510,6 +505,14 @@ public class PricingPages extends App
 		}if(count==4) {
 			tcName = "PRICING_009_VerifyBuyPrice_SellPrice_InSpecialPricing_Type_As_Discount";
 		}
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+		
+		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice, buyPrice);
+		Object abp = vals[0];
+		Object ebp = vals[1];
+		Object asp = vals[2];
+		Object esp = vals[3];
 		if (abp.equals(abp) && asp.equals(esp)) {
 			res = true;
 			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
@@ -536,6 +539,8 @@ public class PricingPages extends App
 		driver.findElements(By.xpath("//*[text() = 'Organizations']")).get(1).click();
 		App.spinner();
 		Thread.sleep(1200);
+		//clear the filter if already applied
+		App.clearFilter();
 		//organizations search
 		App.clearTopSearch(); App.spinner();
 		Thread.sleep(1500);
@@ -564,7 +569,6 @@ public class PricingPages extends App
 		driver.findElement(By.xpath(App.clickLabel("pricing_top_search"))).sendKeys(item);
 		App.spinner();
 		Thread.sleep(1200);
-		this.clickColoumns();
 		Object accountType = 0.0;
 		Object expQuotePrice = 0.0;
 		Object expSuggestedPrice = 0.0;
@@ -574,7 +578,7 @@ public class PricingPages extends App
 		if(atm.equals("MRO")) {
 			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("mro_pricing"))).getText().replace("$", ""));
 		}
-		//our price or PO both are same
+		//our price and PO both are same
 		if(atm.equals("PO")) {
 			accountType = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("our_price"))).getText().replace("$", ""));
 		}if(atm.equals("OEM")) {
@@ -677,37 +681,63 @@ public class PricingPages extends App
 	}
 	public boolean verifyAAddProduct_DuplicateStockCode(int count, String stockCode, String discountCode, String listPrice, String productClass) throws Exception 
 	{
+		String tcName = "";
+		switch (count) {
+		case 1:
+			tcName = "PRICING_012_VerifyAddProduct_DuplicateStockCode";
+			break;
+		case 2:
+			tcName = "PRICING_013_VerifyAddProduct_EmptyStockCode";
+			break;
+		case 3:
+			tcName = "PRICING_014_VerifyAddProduct_EmptyDiscountCode";
+			break;
+		case 4:
+			tcName = "PRICING_015_VerifyAddProduct_EmptyListPrice";
+			break;
+		case 5:
+			tcName = "PRICING_016_VerifyAddProduct_InvalidListPrice";
+			break;
+		case 6:
+			tcName = "PRICING_017_VerifyAddProduct_EmptyProductClass";
+			break;
+		default:
+			break;
+		}
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+		
 		this.addProduct(stockCode, discountCode, listPrice, productClass);
 		Thread.sleep(1600);
 		String actText = "";
-		String tcName = "";
+
 		String expText = "";
 		if(count==1) {
-			tcName = "PRICING_012_VerifyAddProduct_DuplicateStockCode";
+			//			tcName = "PRICING_012_VerifyAddProduct_DuplicateStockCode";
 			expText = "The Stock Code already exists.";
 			actText = driver.findElement(By.xpath("//*[@class='server-msg']")).getText();
 		}
 		if(count==2) {
-			tcName = "PRICING_013_VerifyAddProduct_EmptyStockCode";
+			//			tcName = "PRICING_013_VerifyAddProduct_EmptyStockCode";
 			expText = "Please enter Stock Code";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 		}
 		if(count==3) {
-			tcName = "PRICING_014_VerifyAddProduct_EmptyDiscountCode";
+			//			tcName = "PRICING_014_VerifyAddProduct_EmptyDiscountCode";
 			expText = "Please select Discount Code";
 			actText = driver.findElement(By.xpath("//*[@class='form-error-msg']")).getText();
 		}
 		if(count==4) {
-			tcName = "PRICING_015_VerifyAddProduct_EmptyListPrice";
+			//			tcName = "PRICING_015_VerifyAddProduct_EmptyListPrice";
 			expText = "Please enter List Price";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 		}
 		if(count==5) {
-			tcName = "PRICING_016_VerifyAddProduct_InvalidListPrice";
+			//			tcName = "PRICING_016_VerifyAddProduct_InvalidListPrice";
 			expText = "Please enter valid number";
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 		}if(count==6) {
-			tcName = "PRICING_017_VerifyAddProduct_EmptyProductClass";
+			//			tcName = "PRICING_017_VerifyAddProduct_EmptyProductClass";
 			expText = "Please select Product Class";
 			actText = driver.findElement(By.xpath("//*[@class='form-error-msg']")).getText();
 		}
@@ -726,27 +756,36 @@ public class PricingPages extends App
 		return res;
 	}
 	public boolean verifyUpdateProductValidations(int count) throws Exception{
-		this.pricingPage("Pricing");
+		this.pricingPage("Pricing"); String tcName = "";
+		if(count==1) {
+			tcName = "PRICING_018_VerifyUpdateProduct_EmptyListPrice";
+		}
+		if(count==2) {
+			tcName = "PRICING_019_VerifyUpdateProduct_InvalidListPrice";
+		}
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'edit-icon-cell')]")));
 		Thread.sleep(1300);
 		driver.findElement(By.xpath("//*[contains(@class,'edit-icon-cell')]")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("list_price")));
 		String text = driver.findElement(By.name("list_price")).getAttribute("value");
-		double lp=Double.parseDouble(text);
+		//		double lp=Double.parseDouble(text);
 		for(int i=0;i<text.length();i++) 
 		{
 			driver.findElement(By.name("list_price")).sendKeys(Keys.BACK_SPACE);
 		}
-		String tcName = "";String actText = "";String expText = "";
+		String actText = "";String expText = "";
 		if(count==1) {
-			tcName = "PRICING_018_VerifyUpdateProduct_EmptyListPrice";
+
 			driver.findElement(By.name("list_price")).sendKeys("");
 			this.addButton("Update Product");
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
 			expText = "Please enter List Price";
 		}
 		if(count==2) {
-			tcName = "PRICING_019_VerifyUpdateProduct_InvalidListPrice";
+
 			driver.findElement(By.name("list_price")).sendKeys("krishna");
 			this.addButton("Update Product");
 			actText = driver.findElement(By.xpath("//*[@class='css-4rxcpg']")).getText();
@@ -769,6 +808,9 @@ public class PricingPages extends App
 	}
 	public boolean isDifferentPricing(String tcName, boolean isDifferent) throws Exception
 	{
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		Permissions per = new Permissions();
 		per.headerMenu("Admin");
@@ -841,6 +883,9 @@ public class PricingPages extends App
 	}
 	public boolean filters(String disCountCode) throws Exception {
 		this.pricingPage("Pricing");
+		//Warning Pop Up
+		App.displayPopUp("PRICING_022_Verify_Filters_In_Pricing");
+
 		Actions act = new Actions(driver);
 		driver.findElement(By.xpath(App.clickLabel("filter_btn"))).click();
 		Thread.sleep(2500);
@@ -867,16 +912,6 @@ public class PricingPages extends App
 			qp.values(status);
 		}
 		return res;
-	}
-	public void clickColoumns() throws Exception{
-		//		driver.findElement(By.className("ag-side-button-label")).click();
-		//		Thread.sleep(1400);
-		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(1).click();
-		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(3).click();
-		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(5).click();
-		//		driver.findElements(By.xpath("//*[@aria-label='Press SPACE to toggle visibility (visible)']")).get(4).click();
-		//		driver.findElement(By.className("ag-side-button-label")).click();
-		//		Thread.sleep(1400);
 	}
 	public void clickButton(String btnName) throws Exception{
 		List<WebElement> btns = driver.findElements(By.tagName("button"));

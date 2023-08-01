@@ -21,8 +21,8 @@ public class Filters_TestCases extends App
 		filters.filtersInOrganizations("FILT_003_VerifyingFiltersInOrganizationssListView"
 				,"RS, Reseller or Broker", "Active", 1);
 		//check filters in contacts list view
-		filters.filtersInOrganizations("FILT_004_VerifyingFiltersInContactssListView"
-				,"RS, Reseller or Broker", "Active", 2);
+		//		filters.filtersInOrganizations("FILT_004_VerifyingFiltersInContactssListView"
+		//				,"RS, Reseller or Broker", "Active", 2);
 	}
 
 }

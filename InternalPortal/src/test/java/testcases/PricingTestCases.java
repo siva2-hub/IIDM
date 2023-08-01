@@ -13,49 +13,49 @@ public class PricingTestCases extends App
 	@Test(priority = 1)
 	public void testCase1() throws Exception {
 		//
-//		price.verifyAddProduct( "BACO55", "120.12", "BA05");
-//		//	
-//		price.verifyAddDiscountCode();
-//		//	
-//		price.verifyUpdateProduct();
-//		//	
-//		price.verifyUpdateDiscountCode();
-//		//
-//		price.importFile();
-//		//
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
+		price.verifyAddProduct( "BACO55", "120.12", "BA05");
+		//	
+		price.verifyAddDiscountCode();
+		//	
+		price.verifyUpdateProduct();
+		//	
+		price.verifyUpdateDiscountCode();
+		//
+		price.importFile();
+		//
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
 		//
 		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
 		//
 		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
 		//
-//		price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
-//		//
-//		price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
-//		//
-//		price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
-//		//
-//		price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
-//		//
-//		price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
-//		//
-//		price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
-//		//
-//		price.verifyUpdateProductValidations(1);
-//		//
-//		price.verifyUpdateProductValidations(2);
-//		//
-//		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
-//		//
-//		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
-//		//
-//		price.filters("BACO44");
+		price.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");
+		//
+		price.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");
+		//
+		price.verifyUpdateProductValidations(1);
+		//
+		price.verifyUpdateProductValidations(2);
+		//
+		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
+		//
+		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
+		//
+		price.filters("BACO44");
 	}
 	@Test(enabled = false)
 	//	@Test(priority = 2)
