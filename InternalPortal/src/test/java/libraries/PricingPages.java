@@ -302,12 +302,12 @@ public class PricingPages extends App
 		Thread.sleep(2000);
 		fs.get(0).sendKeys(dcFile);
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		//		files.get(1).findElement(By.name("checkbox")).click();
 		driver.findElements(By.xpath("//*[text()='Append to Existing List']")).get(1).click();
 		Thread.sleep(3000);
 		fs.get(1).sendKeys(pricingFile);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		Thread.sleep(2000);
 
 		this.addButton("Import");
@@ -334,7 +334,7 @@ public class PricingPages extends App
 			}
 			act.sendKeys(Keys.ENTER).build().perform();
 			driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("button")).click();
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+			App.spinner();
 			Thread.sleep(2000);
 			String actText = driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("h3")).getText();
 			if (actText.equals(expText)) {
@@ -362,7 +362,7 @@ public class PricingPages extends App
 		String compName = "Zummo Meat Co Inc";
 		String item = "ZZ52BQ7";
 		this.pricingPage("Non Standard Pricing");
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		this.clickButton("Configure");
 		Thread.sleep(2000);
 		List<WebElement> inputs = driver.findElements(By.id("async-select-example"));
@@ -454,9 +454,7 @@ public class PricingPages extends App
 		//String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
 		Double expBuyPrice= 0.0;
 		if (buyPrice.equals("")) {
-
 		} else {
-
 			expBuyPrice = Double.parseDouble(buyPrice);
 		}
 		double sellPrice = 0.0;
