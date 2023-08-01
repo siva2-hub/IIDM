@@ -2,39 +2,40 @@
 <testng-results ignored="21" total="22" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-31T19:06:59 IST" name="Default suite" finished-at="2023-07-31T19:08:34 IST" duration-ms="95167">
+  <suite started-at="2023-08-01T12:30:21 IST" name="Default suite" finished-at="2023-08-01T12:31:28 IST" duration-ms="66633">
     <groups>
     </groups>
-    <test started-at="2023-07-31T19:06:59 IST" name="Default test" finished-at="2023-07-31T19:08:34 IST" duration-ms="95167">
+    <test started-at="2023-08-01T12:30:21 IST" name="Default test" finished-at="2023-08-01T12:31:28 IST" duration-ms="66633">
       <class name="testcases.PricingTestCases">
-        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:06:59 IST" name="login" finished-at="2023-07-31T19:07:11 IST" duration-ms="11800" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:testcases.PricingTestCases@69e153c5]" started-at="2023-08-01T12:30:21 IST" name="login" finished-at="2023-08-01T12:30:33 IST" duration-ms="11651" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="testCase1()[pri:1, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:07:11 IST" name="testCase1" finished-at="2023-07-31T19:08:33 IST" duration-ms="81889" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method signature="testCase1()[pri:1, instance:testcases.PricingTestCases@69e153c5]" started-at="2023-08-01T12:30:33 IST" name="testCase1" finished-at="2023-08-01T12:31:28 IST" duration-ms="54902" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//*[@style='left: 486px; width: 149px;']"}
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
   (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [f7d9d988ba9dd7efbd29c9041f897319, findElement {using=xpath, value=//*[@style='left: 486px; width: 149px;']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.2SToi5}, goog:chromeOptions: {debuggerAddress: localhost:41163}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41163/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: f7d9d988ba9dd7efbd29c9041f897319]]>
+Command: [9083a651384f0ad91743067618b774fd, findElement {using=class name, value=button-icon-text}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.wgBEAr}, goog:chromeOptions: {debuggerAddress: localhost:45591}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:45591/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 9083a651384f0ad91743067618b774fd]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@style='left: 486px; width: 149px;']"}
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
   (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: '4.8.0', revision: '267030adea'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [f7d9d988ba9dd7efbd29c9041f897319, findElement {using=xpath, value=//*[@style='left: 486px; width: 149px;']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.2SToi5}, goog:chromeOptions: {debuggerAddress: localhost:41163}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41163/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: f7d9d988ba9dd7efbd29c9041f897319
-at jdk.internal.reflect.GeneratedConstructorAccessor21.newInstance(Unknown Source)
+Command: [9083a651384f0ad91743067618b774fd, findElement {using=class name, value=button-icon-text}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.wgBEAr}, goog:chromeOptions: {debuggerAddress: localhost:45591}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:45591/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 9083a651384f0ad91743067618b774fd
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -49,9 +50,9 @@ at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(Elemen
 at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at libraries.PricingPages.addSPItemsToQuotewithAccountType(PricingPages.java:546)
-at libraries.PricingPages.verifyaAddSPItemsToQuotewithAccountType(PricingPages.java:657)
-at testcases.PricingTestCases.testCase1(PricingTestCases.java:34)
+at libraries.PricingPages.addProduct(PricingPages.java:53)
+at libraries.PricingPages.verifyAAddProduct_DuplicateStockCode(PricingPages.java:707)
+at testcases.PricingTestCases.testCase1(PricingTestCases.java:42)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -82,11 +83,77 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase1 -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PricingTestCases@7674f035]" started-at="2023-07-31T19:08:33 IST" name="logout" finished-at="2023-07-31T19:08:34 IST" duration-ms="1422" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:testcases.PricingTestCases@69e153c5]" started-at="2023-08-01T12:31:28 IST" name="logout" finished-at="2023-08-01T12:31:28 IST" duration-ms="7" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
+            <message>
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=106.0.5249.119)
+Build info: version: '4.8.0', revision: '267030adea'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [9083a651384f0ad91743067618b774fd, findElement {using=xpath, value=//*[@class='down-arrow']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.wgBEAr}, goog:chromeOptions: {debuggerAddress: localhost:45591}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:45591/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 9083a651384f0ad91743067618b774fd]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=106.0.5249.119)
+Build info: version: '4.8.0', revision: '267030adea'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-78-generic', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [9083a651384f0ad91743067618b774fd, findElement {using=xpath, value=//*[@class='down-arrow']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.wgBEAr}, goog:chromeOptions: {debuggerAddress: localhost:45591}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:45591/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 9083a651384f0ad91743067618b774fd
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+at commonUtils.App.logout(App.java:62)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:644)
+at org.testng.TestRunner.afterRun(TestRunner.java:914)
+at org.testng.TestRunner.run(TestRunner.java:605)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->

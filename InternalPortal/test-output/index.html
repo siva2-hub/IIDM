@@ -129,16 +129,17 @@
                   <a name="testCase1">
                   </a> <!-- testCase1 -->
                   <span class="method-name">testCase1</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@style=&apos;left: 486px; width: 149px;&apos;]&quot;}
+                  <div class="stack-trace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
   (Session info: chrome=106.0.5249.119)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-78-generic&apos;, java.version: &apos;17.0.5&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [f7d9d988ba9dd7efbd29c9041f897319, findElement {using=xpath, value=//*[@style=&apos;left: 486px; width: 149px;&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.2SToi5}, goog:chromeOptions: {debuggerAddress: localhost:41163}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41163/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: f7d9d988ba9dd7efbd29c9041f897319
-	at jdk.internal.reflect.GeneratedConstructorAccessor21.newInstance(Unknown Source)
+Command: [9083a651384f0ad91743067618b774fd, findElement {using=class name, value=button-icon-text}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.wgBEAr}, goog:chromeOptions: {debuggerAddress: localhost:45591}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:45591/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 9083a651384f0ad91743067618b774fd
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -153,9 +154,9 @@ Session ID: f7d9d988ba9dd7efbd29c9041f897319
 	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at libraries.PricingPages.addSPItemsToQuotewithAccountType(PricingPages.java:546)
-	at libraries.PricingPages.verifyaAddSPItemsToQuotewithAccountType(PricingPages.java:657)
-	at testcases.PricingTestCases.testCase1(PricingTestCases.java:34)
+	at libraries.PricingPages.addProduct(PricingPages.java:53)
+	at libraries.PricingPages.verifyAAddProduct_DuplicateStockCode(PricingPages.java:707)
+	at testcases.PricingTestCases.testCase1(PricingTestCases.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -193,7 +194,7 @@ Session ID: f7d9d988ba9dd7efbd29c9041f897319
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse-212740793/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse--821805490/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -250,12 +251,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testCase1')
 data.setCell(0, 2, 'testcases.PricingTestCases')
-data.setCell(0, 3, 81889);
+data.setCell(0, 3, 54902);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 54 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -278,6 +279,14 @@ return data;
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">testCase16</span>
                 <br/>
+                <span class="ignored-method-name">testCase15</span>
+                <br/>
+                <span class="ignored-method-name">testCase14</span>
+                <br/>
+                <span class="ignored-method-name">testCase13</span>
+                <br/>
+                <span class="ignored-method-name">testCase12</span>
+                <br/>
                 <span class="ignored-method-name">testCase22</span>
                 <br/>
                 <span class="ignored-method-name">testCase11</span>
@@ -288,35 +297,27 @@ return data;
                 <br/>
                 <span class="ignored-method-name">testCase20</span>
                 <br/>
-                <span class="ignored-method-name">testCase15</span>
-                <br/>
-                <span class="ignored-method-name">testCase14</span>
-                <br/>
-                <span class="ignored-method-name">testCase13</span>
-                <br/>
-                <span class="ignored-method-name">testCase12</span>
-                <br/>
                 <span class="ignored-method-name">testCase19</span>
                 <br/>
                 <span class="ignored-method-name">testCase18</span>
                 <br/>
-                <span class="ignored-method-name">testCase17</span>
-                <br/>
                 <span class="ignored-method-name">testCase9</span>
                 <br/>
-                <span class="ignored-method-name">testCase4</span>
-                <br/>
-                <span class="ignored-method-name">testCase3</span>
-                <br/>
-                <span class="ignored-method-name">testCase2</span>
-                <br/>
-                <span class="ignored-method-name">testCase8</span>
+                <span class="ignored-method-name">testCase17</span>
                 <br/>
                 <span class="ignored-method-name">testCase7</span>
                 <br/>
-                <span class="ignored-method-name">testCase6</span>
+                <span class="ignored-method-name">testCase8</span>
                 <br/>
                 <span class="ignored-method-name">testCase5</span>
+                <br/>
+                <span class="ignored-method-name">testCase6</span>
+                <br/>
+                <span class="ignored-method-name">testCase3</span>
+                <br/>
+                <span class="ignored-method-name">testCase4</span>
+                <br/>
+                <span class="ignored-method-name">testCase2</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -337,11 +338,13 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">testCase1</span>
-                <span class="method-start">11823 ms</span>
+                <span class="method-start">11693 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">logout</span>
-                <span class="method-start">93729 ms</span>
+                <span class="method-start">66615 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
