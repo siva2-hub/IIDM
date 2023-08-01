@@ -176,17 +176,23 @@ public class App {
 		final JDialog dialog = jop.createDialog(null, "Executed Test Case is...");
 		// Set a 2 second timer
 		new Thread(new Runnable() {
-		    @Override
-		    public void run() {
-		        try {
-		            Thread.sleep(2500);
-		        } catch (Exception e) {
-		        }
-		        dialog.dispose();
-		    }
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2500);
+				} catch (Exception e) {
+				}
+				dialog.dispose();
+			}
 		}).start();
 
 		dialog.setVisible(true);
+	}
+	public static String getGridData(int count) 
+	{
+		//list price value from first row
+		String lp = driver.findElement(By.xpath("//*[@row-index = '0']")).findElements(By.xpath("//*[starts-with(@style, 'left')]")).get(count).getText();
+		return lp;
 	}
 	public static void clearFilter() 
 	{

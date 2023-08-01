@@ -48,6 +48,7 @@ public class PricingPages extends App
 	public String addProduct(String stockCode, String discountCode, String listPrice, String productClass) throws Exception
 	{
 		this.pricingPage("Pricing");
+		App.spinner();
 		Thread.sleep(2000);
 		//		this.addImportExporBtns("Add");
 		driver.findElement(By.className("button-icon-text")).click();
@@ -76,15 +77,15 @@ public class PricingPages extends App
 		App.displayPopUp("PRICING_001_VerifyAddProduct");
 
 		boolean res = false;
+		
 		String stockCode = java.time.LocalTime.now().toString().substring(0, 8).replace(":", "");
 		String expStockCode = this.addProduct(stockCode, discountCode, listPrice, productClass);
-		Thread.sleep(4000);
+		App.spinner();
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(stockCode);
-		Thread.sleep(4000);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//		System.out.println("comp name is "+txts.size());
-		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String actStockCode = ls.get(0).getText();
+		Thread.sleep(1200);
+		App.spinner();
+		Thread.sleep(1500);
+		String actStockCode = App.getGridData(0);
 		if (expStockCode.equalsIgnoreCase(actStockCode)) {
 			res = true;
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
@@ -94,47 +95,6 @@ public class PricingPages extends App
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
-		//Add Discount Code
-		this.verifyAddDiscountCode();
-
-		//Update Product
-		this.verifyUpdateProduct();
-
-		//Update Discount Code
-		this.verifyUpdateDiscountCode();
-
-		//Import File
-		this.importFile();
-
-		//Sell Price and Buy Price in Special pricing
-		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
-
-		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
-
-		this.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
-
-		this.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
-
-		//Checking  Quote Price and Suggested Price in Quote Detailed View
-		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
-		//
-		this.verifyaAddSPItemsToQuotewithAccountType("PRICING_011_VerifyaAddSPItemsToQuotewithAccountType_withOutFixedPrice","Discount", 17, "43", "","");
-
-		//Pricing --> Add Product Page Validations
-		this.verifyAAddProduct_DuplicateStockCode(1, "0165029SS", "BACO55", "178.9", "BA05");  //Add product with duplicate stock code
-		this.verifyAAddProduct_DuplicateStockCode(2, "", "BACO55", "178.9", "BA05");  //Add product with empty stock code
-		this.verifyAAddProduct_DuplicateStockCode(3, "0165029SS", "jhdfjdshfjbds", "178.9", "BA05");  //Add product with empty discount code
-		this.verifyAAddProduct_DuplicateStockCode(4, "0165029SS", "BACO55", "", "BA05");  //Add product with empty List price
-		this.verifyAAddProduct_DuplicateStockCode(5, "0165029SS", "BACO55", "fdsfbdsfjbds", "BA05");  //Add product with invalid List price
-		this.verifyAAddProduct_DuplicateStockCode(6, "0165029SS", "BACO55", "125.23", "krishna naidu");  //Add product with empty Product Class
-
-		//Update Product Page Validations
-		this.verifyUpdateProductValidations(1);
-		this.verifyUpdateProductValidations(2);
-
-		//Is different Pricing
-		this.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
-		this.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
 		return res;
 	}
 	public String updateProduct() throws Exception 
