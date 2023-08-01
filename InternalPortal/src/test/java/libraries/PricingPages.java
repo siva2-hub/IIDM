@@ -135,10 +135,6 @@ public class PricingPages extends App
 		//Is different Pricing
 		this.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
 		this.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
-
-		//Filters
-		this.filters("BACO44");
-
 		return res;
 	}
 	public String updateProduct() throws Exception 
@@ -407,8 +403,6 @@ public class PricingPages extends App
 		rp.toastContainer("Override");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+supplier+"')]")));
 		Thread.sleep(2000);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//List<WebElement> ls = txts.get(0).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
 		double actBuyPrice = 0.0;
 		if(purchaseDiscount.equals("") && buyPrice.equals("")) 
 		{
@@ -505,7 +499,7 @@ public class PricingPages extends App
 		}
 		//Warning Pop Up
 		App.displayPopUp(tcName);
-		
+
 		Object vals[] = this.specialPricing(type, typeValue, purchaseDiscount, fprice, buyPrice);
 		Object abp = vals[0];
 		Object ebp = vals[1];
@@ -704,7 +698,7 @@ public class PricingPages extends App
 		}
 		//Warning Pop Up
 		App.displayPopUp(tcName);
-		
+
 		this.addProduct(stockCode, discountCode, listPrice, productClass);
 		Thread.sleep(1600);
 		String actText = "";
@@ -879,38 +873,7 @@ public class PricingPages extends App
 		}
 		return res;
 	}
-	public boolean filters(String disCountCode) throws Exception {
-		this.pricingPage("Pricing");
-		//Warning Pop Up
-		App.displayPopUp("PRICING_022_Verify_Filters_In_Pricing");
 
-		Actions act = new Actions(driver);
-		driver.findElement(By.xpath(App.clickLabel("filter_btn"))).click();
-		Thread.sleep(2500);
-
-		driver.findElements(By.xpath("//*[contains(@class, 'react-select__indicator')]")).get(3).click();
-		act.sendKeys(disCountCode).build().perform(); act.sendKeys(Keys.ENTER).build().perform();
-		Thread.sleep(2000);
-		QuotePages quotes = new QuotePages();
-		quotes.selectDropDown(disCountCode);
-		driver.findElement(By.xpath("//*[text()= 'Apply']")).click();
-		Thread.sleep(1600);
-		App.spinner();
-		Thread.sleep(1500);
-		String actDisCode = driver.findElement(By.xpath(App.clickLabel("discount_code_pricing"))).getText();
-		driver.findElement(By.xpath(App.clickLabel("filter_clear"))).click();
-		boolean res = false;
-		if (actDisCode.equals(disCountCode)) {
-			res = true;
-			Object status[] = {"PRICING_022_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
-		} else {
-			res = false;
-			Object status[] = {"PRICING_022_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
-		}
-		return res;
-	}
 	public void clickButton(String btnName) throws Exception{
 		List<WebElement> btns = driver.findElements(By.tagName("button"));
 		Actions act = new Actions(driver);

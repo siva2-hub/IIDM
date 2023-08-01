@@ -54,8 +54,7 @@ public class PricingTestCases extends App
 		price.isDifferentPricing("PRICING_020_Verify_isDifferentPricing_CheckBox_Yes_InVendors", true);
 		//
 		price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
-		//
-		price.filters("BACO44");
+
 	}
 	@Test(enabled = false)
 	//	@Test(priority = 2)
@@ -223,12 +222,5 @@ public class PricingTestCases extends App
 		boolean res = price.isDifferentPricing("PRICING_021_Verify_isDifferentPricing_CheckBox_No_InVendors", false);
 		Assert.assertTrue(res);
 		App.logout();
-	}
-	@Test(enabled = false)
-	//	@Test(priority = 22)
-	public void testCase22() throws Exception {
-		App.login();
-		boolean res = price.filters("BACO44");
-		Assert.assertTrue(res);
 	}
 }

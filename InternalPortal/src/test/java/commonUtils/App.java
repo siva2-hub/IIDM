@@ -84,6 +84,7 @@ public class App {
 	}
 	public static void main(String args[]) throws  Exception 
 	{
+		App.adminTabs();
 		System.exit(0);
 		String file = "tcfile.xlsx";
 		FileOutputStream fo = new FileOutputStream(file);
@@ -154,6 +155,13 @@ public class App {
 		}
 		return labelVal;
 	}
+	public static ResultSet adminTabs() throws SQLException {
+		String sql = "SELECT admin_tab_names,tc_name FROM Clicking_Label WHERE admin_tab_names IS not null;";
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/testing", "enterpi", "enterpi@1234");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		return rs;
+	}
 	public static void horizentalScroll() throws SQLException 
 	{
 		Actions act = new Actions(driver);
@@ -196,7 +204,8 @@ public class App {
 		try {
 			driver.findElement(By.xpath(App.clickLabel("cross_symbol_search"))).isDisplayed();
 			driver.findElement(By.xpath(App.clickLabel("cross_symbol_search"))).click();
-			Thread.sleep(2000);
+			App.spinner();
+			Thread.sleep(1200);
 		} catch (Exception e) {}
 		App.spinner();
 	}

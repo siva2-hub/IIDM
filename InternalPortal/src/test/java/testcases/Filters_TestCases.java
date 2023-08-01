@@ -1,9 +1,12 @@
 package testcases;
 
+import java.sql.ResultSet;
+
 import org.testng.annotations.Test;
 
 import commonUtils.App;
 import libraries.FiltersPages;
+import libraries.PricingPages;
 
 public class Filters_TestCases extends App
 {
@@ -12,17 +15,52 @@ public class Filters_TestCases extends App
 	@Test(priority = 1)
 	public void testCase1() throws Exception 
 	{
+		//check filters in pricing list view
+		try {
+			filters.filtersInPricingListView("BACO44");
+		} catch (Exception e) {
+			PricingPages price = new PricingPages();
+			try {				
+				price.closeIcon();
+			} catch (Exception e2) {
+			}
+		}
 		//check filters in parts purchase list view
 		filters.filtersInPartsPucrhase("Braden Morris", "Emergency Breakdown",
-				"FILT_001_VerifyingFiltersInPartsPurchaseListView");
+				"FILT_003_VerifyingFiltersInPartsPurchaseListView");
 		//check filters in discount codes List view
 		filters.filtersInDiscountCodes("FILT_002_VerifyingFiltersInDiscountCodesListView", "1672236325");
 		//check filters in organizations list view
-		filters.filtersInOrganizations("FILT_003_VerifyingFiltersInOrganizationssListView"
+		filters.filtersInOrganizations("FILT_004_VerifyingFiltersInOrganizationssListView"
 				,"RS, Reseller or Broker", "Active", 1);
 		//check filters in contacts list view
-		//		filters.filtersInOrganizations("FILT_004_VerifyingFiltersInContactssListView"
-		//				,"RS, Reseller or Broker", "Active", 2);
+		try {
+			filters.filtersInOrganizations("FILT_005_VerifyingFiltersInContactssListView"
+					,"RS, Reseller or Broker", "Active", 2);
+		} catch (Exception e) {
+			PricingPages price = new PricingPages();
+			try {				
+				price.closeIcon();
+			} catch (Exception e2) {
+			}
+		}
+		
+		//check filters in Admin tabs list view
+		ResultSet rs  = App.adminTabs();
+		String sts = "";
+		while(rs.next()) {
+			String labelVal = rs.getString("admin_tab_names");
+			String tcName = rs.getString("tc_name");
+			if (labelVal.equals("Territories")) {
+				sts = "Little Rock";
+			} else if(labelVal.equals("Zip Codes")){
+				sts = "Jack Carberry";
+			}else {
+				sts = "Active";
+			}
+			filters.filtersInAdminmModule(labelVal, sts, tcName);
+		}
 	}
+	//
 
 }
