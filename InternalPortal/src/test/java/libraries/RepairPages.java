@@ -131,11 +131,11 @@ public class RepairPages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (!actText.equals(expText)) {
 			res = true;
-			Object status[] = {"REPAIRS_023_VerifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"REPAIRS_023_VerifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;
@@ -217,7 +217,7 @@ public class RepairPages extends App
 		//		btn.get(0).click();
 		driver.findElement(By.className("hides")).click();
 		Thread.sleep(1000);
-		driver.findElement(By.id("react-select-7-input")).sendKeys(Keys.ARROW_DOWN);
+		driver.findElement(By.xpath("//*[contains(@class,'auto__dropdown-indicator')]")).click();
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
 		driver.findElement(By.name("estimated_hrs")).sendKeys("23");
 		driver.findElement(By.name("price")).sendKeys("198");
@@ -461,11 +461,11 @@ public class RepairPages extends App
 		}
 		if (sta) {
 			res = true;
-			Object status[] = {"REPAIRS_018_VerifyFileUpload", "Document Uploaded successfully", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploaded successfully", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		} else {
 			res = false;
-			Object status[] = {"REPAIRS_018_VerifyFileUpload", "Document Uploading Failed.!", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploading Failed.!", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
 			quotes.values(status);
 		}
 		return res;

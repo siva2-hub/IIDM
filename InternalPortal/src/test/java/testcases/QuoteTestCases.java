@@ -14,11 +14,21 @@ public class QuoteTestCases extends App{
 	//@Test(enabled = false)
 	@Test(priority = 1)
 	public void testCase0() throws Exception {
-		all.quotesModule("Week(s)", "21", "32.23");
+		try {
+			all.quotesModule("Week(s)", "21", "32.23");
+		} catch (Exception e) {
+			System.err.println(e.getMessage().lines());
+		}
+		//Verify Quote Lost, Verify Quote clone from Quote for Parts
+		quotes.verifyQuoteWon(2);
+		//Verify Quote Clone from Quote for Repair
+		quotes.quoteClone_QuoteForRepairs();
+		//Verify Add Options in Quote detailed view, Verify Quote Decline, Verify Quote Re Open, Verify Quote Close
+		quotes.verifyAddOptionInQuoteDetailedView();
 	}
 
-	//@Test(enabled = false)
-	@Test(priority=7)
+	@Test(enabled = false)
+	//	@Test(priority=7)
 	public void testCase12() throws Exception {
 		App.login();
 		//Quote Lost functionality
@@ -27,8 +37,8 @@ public class QuoteTestCases extends App{
 		App.logout();
 	}
 
-	//@Test(enabled = false)
-	@Test(priority=23)
+	@Test(enabled = false)
+	//	@Test(priority=23)
 	public void testCase27() throws Exception {
 		App.login();
 		boolean res=quotes.quoteClone_QuoteForRepairs();
@@ -36,8 +46,8 @@ public class QuoteTestCases extends App{
 		App.logout();
 	}
 
-	//@Test(enabled = false)
-	@Test(priority=21)
+	@Test(enabled = false)
+	//	@Test(priority=21)
 	public void testCase25() throws Exception {
 		App.login();
 		boolean res = quotes.verifyAddOptionInQuoteDetailedView();

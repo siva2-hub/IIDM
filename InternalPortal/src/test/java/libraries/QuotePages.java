@@ -162,8 +162,6 @@ public class QuotePages extends App
 		Thread.sleep(1000);
 	}
 	public boolean verifyQuoteWon(int count) throws Exception {
-		this.submitForCustomerApproval();
-		Thread.sleep(1000);
 		String won = "";
 		String tcName = "";
 		String expText = "";
@@ -176,6 +174,11 @@ public class QuotePages extends App
 			tcName = "QUOTES_012_Verify_Quote_Lost";
 			expText = "LOST";
 		}
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
+		this.submitForCustomerApproval();
+		Thread.sleep(1000);
 		rp.wonOrLostButton(won);
 		Thread.sleep(1200);
 		rp.toastContainer("Proceed");
@@ -670,8 +673,8 @@ public class QuotePages extends App
 		return res;
 	}
 	public boolean verifyPrintDownLoad() throws Exception {
-				this.createQuote();
-				this.selectItemToQuote();
+		//		this.createQuote();
+		//		this.selectItemToQuote();
 		boolean res = false;
 		driver.findElement(By.xpath("//*[contains(@src,'print')]")).click();
 		Thread.sleep(2300);
@@ -695,13 +698,8 @@ public class QuotePages extends App
 		boolean res = false;
 		driver.findElement(By.xpath("//*[text()='Quotes']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		try {
-			driver.findElement(By.xpath("//*[contains(@class,'Cross-svg close-icon-container')]")).isDisplayed();
-			driver.findElement(By.xpath("//*[contains(@class,'Cross-svg close-icon-container')]")).click();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
+		App.clearTopSearch(); App.spinner(); Thread.sleep(1200);
+		App.clearFilter(); App.spinner(); Thread.sleep(1200);
 		this.createQuote();
 		this.selectItemToQuote();
 		Actions act = new Actions(driver);
@@ -744,12 +742,19 @@ public class QuotePages extends App
 			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 			this.values(status);
 		}
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_028_Verify_Decline_QuotesForParts");
+
 		//Decline Quote
 		this.verifyDeclineInQuoteDetailedView();
 
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_021_VerifyReOpen_ButtonInQuoteDetailePage");
 		//Re Open Quote
 		this.verifyClosenadReOpenButtons( 1);
 
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_022_VerifyClose_ButtonInQuoteDetailePage");
 		//Close Quote
 		this.verifyClosenadReOpenButtons( 2);
 
@@ -757,9 +762,7 @@ public class QuotePages extends App
 	}
 	public String[] quoteClone_QuotesForParts() throws Exception 
 	{
-		//		this.submitForInternalApproval();
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
-		//		Thread.sleep(1300);
+
 		List<WebElement> repIds = driver.findElements(By.id("repair-info-id"));
 		String beforeCloneRepText = repIds.get(0).getText();
 		String beforeCloneCust = repIds.get(1).getText();
@@ -775,6 +778,10 @@ public class QuotePages extends App
 	}
 	public boolean verifyQuoteClone_QuotesForParts() throws Exception
 	{
+		String tcName = "QUOTES_026_VerifyQuoteClone_QuotesForParts";
+		//Warning Pop Up
+		App.displayPopUp(tcName);
+
 		String is[] = this.quoteClone_QuotesForParts();
 		String beforeCloneRepText = is[0];
 		String beforeCloneItems = is[1];
@@ -790,11 +797,11 @@ public class QuotePages extends App
 			String ExpText = "OPEN";
 			if (actText.toLowerCase().contains(ExpText.toLowerCase())) {
 				res = true;
-				Object status[] = {"QUOTES_026_VerifyQuoteClone_QuotesForParts", actText, ExpText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
 				this.values(status);
 			} else {
 				res = false;
-				Object status[] = {"QUOTES_026_VerifyQuoteClone_QuotesForParts", actText, ExpText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
 				this.values(status);
 			}
 		} else {
@@ -814,12 +821,10 @@ public class QuotePages extends App
 	public boolean quoteClone_QuoteForRepairs() throws Exception 
 	{
 		rp = new RepairPages();
+		//Warning Pop Up
+		App.displayPopUp("QUOTES_027_VerifyQuoteClone_QuotesForRepairs");
 		//		rp.createQuoteFromRepair();
 		try {
-			driver.findElement(By.xpath("//*[text() = 'Repairs']")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'All Repairs Requests']")));
-			driver.findElement(By.xpath("//*[text() = 'All Repairs Requests']")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'vendor_logo')]")));
 			driver.findElement(By.xpath("//*[text() = 'Check In Pending1']")).isDisplayed();
 			driver.findElement(By.xpath("//*[text() = 'Check In Pending']")).click();
 		} catch (Exception e) {
@@ -832,16 +837,8 @@ public class QuotePages extends App
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@style='animation-delay: 0ms;']")));
 			Thread.sleep(1800);
-			//			int tCount = 0;
-			//			int eCount = 0;
-			//			//		int qcCount1 = 0;
-			//			//		int qcCount2 = 0;
 			if (driver.findElements(By.xpath("//*[@aria-labelledby='tab-0']")).get(1).getText().contains("Items Not Found")) {
 				Thread.sleep(1000);
-//				tCount = 7;
-//				eCount = 8;
-				//			qcCount1 = 10;
-				//			qcCount2 = 11;
 				driver.findElement(By.className("second-msg")).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add New Part']")));
 				driver.findElement(By.id("async-select-example")).sendKeys("WAGO");
@@ -853,10 +850,6 @@ public class QuotePages extends App
 				driver.findElement(By.xpath("//*[text()='Add New Part']")).click();
 				Thread.sleep(1500);
 			} else {
-//				tCount = 6;
-//				eCount = 7;
-				//			qcCount1 = 9;
-				//			qcCount2 = 10;
 				Actions act = new Actions(driver);
 				driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
 				act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
@@ -870,7 +863,6 @@ public class QuotePages extends App
 						break;
 					}
 				}
-
 			}
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Assign Location']")));
@@ -885,7 +877,6 @@ public class QuotePages extends App
 		editIcon.click();
 		Thread.sleep(1400);
 		if (driver.findElement(By.name("serial_no")).getAttribute("value").length()==0) {
-
 			driver.findElement(By.name("serial_no")).sendKeys(java.time.LocalTime.now().toString().substring(0, 8).replace(":", ""));
 			driver.findElement(By.xpath("//*[@title='Save Changes']")).click();
 		} else {

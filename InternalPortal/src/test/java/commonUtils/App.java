@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -84,6 +85,7 @@ public class App {
 	}
 	public static void main(String args[]) throws  Exception 
 	{
+		
 		App.adminTabs();
 		System.exit(0);
 		String file = "tcfile.xlsx";
@@ -222,5 +224,15 @@ public class App {
 			Thread.sleep(1200);
 		} catch (Exception e) {
 		}
+	}
+	public static void values1(Object data[]) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");  
+		//personal laptop account details "jdbc:mysql://localhost:3306/demo","root","siva7661@"
+		//office system details "jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234"
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","enterpi","enterpi@1234");  
+		Statement stmt=con.createStatement(); 
+		String sql = "INSERT INTO buzzworld_automation_logs (test_case_name,actual_text,expected_text,page_name,status) "
+				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "')";
+		stmt.executeUpdate(sql);  
 	}
 }

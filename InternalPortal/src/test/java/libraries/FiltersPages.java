@@ -42,8 +42,8 @@ public class FiltersPages extends App
 		this.applyButton();
 		try {
 			driver.findElement(By.xpath("//*[contains(@src, 'Vendor_listview')]")).isDisplayed();
-			String actTech = driver.findElement(By.xpath("//*[@style = 'left: 131px; width: 133px;']")).getText();
-			String actUrgency = driver.findElement(By.xpath("//*[@style = 'left: 426px; width: 218px; cursor: pointer;']")).getText();
+			String actTech = App.getGridData(1);
+			String actUrgency = App.getGridData(3);
 			System.out.println("actual technician "+actTech +""+actUrgency);
 			if (actTech.contains(tech) && actUrgency.contains(urgency)) 
 			{
@@ -77,7 +77,7 @@ public class FiltersPages extends App
 		this.applyButton();
 		try {
 			driver.findElement(By.xpath("//*[contains(@src, 'editicon')]")).isDisplayed();
-			String actPOMinQty = driver.findElement(By.xpath("//*[@style = 'left: 176px; width: 164px;']")).getText();
+			String actPOMinQty = App.getGridData(1);
 			if (actPOMinQty.contains(minQty) ) 
 			{
 				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty, "DiscountCodesPage", "Passed", java.time.LocalDate.now().toString()};
@@ -119,7 +119,6 @@ public class FiltersPages extends App
 			driver.findElements(By.xpath("//*[contains(@class,'react-select__dropdown-indicator')]")).get(2).click();
 		} else if(count==1) {
 			driver.findElements(By.xpath("//*[contains(@class,'react-select__dropdown-indicator')]")).get(4).click();
-
 		}
 		act.sendKeys(stats).build().perform();
 		Thread.sleep(1000);
@@ -138,7 +137,7 @@ public class FiltersPages extends App
 			String actAtType = "";
 			if(count==2) {
 			}else {
-				actAtType= driver.findElement(By.xpath(App.clickLabel("act_type_org_grid"))).getText();
+				actAtType= App.getGridData(5);
 			}
 			String actStats = driver.findElement(By.xpath("//*[@class = 'ag-react-container']")).getText();
 			if (actAtType.contains(actType) || actStats.equalsIgnoreCase(stats)) 
@@ -222,16 +221,16 @@ public class FiltersPages extends App
 		Thread.sleep(1600);
 		App.spinner();
 		Thread.sleep(1500);
-		String actDisCode = driver.findElement(By.xpath(App.clickLabel("discount_code_pricing"))).getText();
+		String actDisCode = App.getGridData(3);
 		driver.findElement(By.xpath(App.clickLabel("filter_clear"))).click();
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
-			Object status[] = {"PRICING_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
 			qp.values(status);
 		}
 		return res;
@@ -273,9 +272,9 @@ public class FiltersPages extends App
 		this.applyButton(); App.spinner(); Thread.sleep(1200);
 		App.horizentalScroll();
 		if (tabName.equals("Territories")) {
-			actText = driver.findElement(By.xpath("//*[@style = 'left: 1132px; width: 150px;']")).getText();
+			actText = App.getGridData(5);
 		} else if(tabName.equals("Zip Codes")) {
-			actText = driver.findElement(By.xpath("//*[@style = 'left: 452px; width: 150px;']")).getText();
+			actText = App.getGridData(3);
 		} else {
 			actText = driver.findElement(By.xpath(App.clickLabel("status_text_grid"))).getText();
 		}

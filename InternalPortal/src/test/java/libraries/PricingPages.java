@@ -77,7 +77,7 @@ public class PricingPages extends App
 		App.displayPopUp("PRICING_001_VerifyAddProduct");
 
 		boolean res = false;
-		
+
 		String stockCode = java.time.LocalTime.now().toString().substring(0, 8).replace(":", "");
 		String expStockCode = this.addProduct(stockCode, discountCode, listPrice, productClass);
 		App.spinner();
@@ -175,11 +175,8 @@ public class PricingPages extends App
 		String dc = this.addDiscountCode();boolean res = false;
 		System.out.println("dc was added.......!");
 		driver.findElement(By.xpath("//*[@class='quote-search-width']")).findElement(By.xpath("//*[@placeholder='Search By Discount Code']")).sendKeys(dc);
-		Thread.sleep(4000);
-		List<WebElement> txts = driver.findElement(By.xpath("//*[@class='ag-center-cols-container']")).findElements(By.xpath("//*[@row-index='0']"));
-		//		System.out.println("comp name is "+txts.size());
-		List<WebElement> ls = txts.get(1).findElements(By.xpath("//*[contains(@class,'ag-cell ag-cell')]"));
-		String actStockCode = ls.get(0).getText();
+		App.spinner(); Thread.sleep(1500);
+		String actStockCode = App.getGridData(0);
 		if (dc.equalsIgnoreCase(actStockCode)) {
 			res = true;
 			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
@@ -369,13 +366,11 @@ public class PricingPages extends App
 			actBuyPrice = 0.0;
 		}else {
 			Thread.sleep(1500);
-			//actBuyPrice = Double.parseDouble(ls.get(4).getText().replace("$", ""));
-			actBuyPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("buy_price"))).getText().replace("$", ""));
+			actBuyPrice = Double.parseDouble(App.getGridData(4).replace("$", ""));
 		}
 		App.horizentalScroll();
 		Thread.sleep(1500);
-		//System.out.println("actual buy price "+actBuyPrice);
-		Double actSellPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("sell_price"))).getText().replace("$", ""));
+		Double actSellPrice = Double.parseDouble(App.getGridData(10).replace("$", ""));
 		Double actFixedPrice = 0.0;
 		Thread.sleep(1500);
 		//checking with actFixedPrice
@@ -384,7 +379,7 @@ public class PricingPages extends App
 			actFixedPrice = 0.0;
 		}else {
 			Thread.sleep(1500);
-			actFixedPrice = Double.parseDouble(driver.findElement(By.xpath(App.clickLabel("fixed_price"))).getText().replace("$", ""));
+			actFixedPrice = Double.parseDouble(App.getGridData(9).replace("$", ""));
 		}
 		System.out.println("actual buy price "+actBuyPrice);
 		System.out.println("actual sell price "+actSellPrice);
@@ -393,19 +388,18 @@ public class PricingPages extends App
 		driver.findElement(By.xpath(App.clickLabel("apply_rule"))).click();
 		App.spinner();
 		Thread.sleep(1500);
+		//Go to pricing module
 		this.pricingPage("Pricing");
 		driver.findElement(By.xpath("//*[contains(@placeholder,'Stock Code / Description')]")).sendKeys(item);
 		App.spinner();
 		Thread.sleep(1500);
-		String listPrice = driver.findElement(By.xpath(App.clickLabel("list_price"))).getText();
-		App.horizentalScroll();
-		String ourPrice = driver.findElement(By.xpath(App.clickLabel("our_price"))).getText();
+		String listPrice = App.getGridData(2);
+		String ourPrice = App.getGridData(8);
 		String op1 = ourPrice.replace("$", "");
 		Double op = Double.parseDouble(op1);
 		String lp1 = listPrice.replace("$", "");
 		Double lp = Double.parseDouble(lp1);
 		DecimalFormat decfor = new DecimalFormat("0.00");
-		//String ebp = decfor.format(lp-((lp*Integer.parseInt(purchaseDiscount))/100));
 		Double expBuyPrice= 0.0;
 		if (buyPrice.equals("")) {
 		} else {
@@ -413,15 +407,15 @@ public class PricingPages extends App
 		}
 		double sellPrice = 0.0;
 		double bPrice = 0.0;
+		Thread.sleep(1200);
 		if (type.equals("Discount")) {
 			String sp = decfor.format(lp-(lp*typeVal/100));
 			sellPrice = Double.parseDouble(sp);
 		}if(type.equals("Markup")) {
 			if(buyPrice.equals("")&&purchaseDiscount.equals("")) {
-
-				String sp = decfor.format(op+(op*typeVal/100));
+				double d = op+(op*typeVal/100);
+				String sp = decfor.format(d);
 				sellPrice = Double.parseDouble(sp);
-
 			}if(buyPrice.equals("") && !purchaseDiscount.equals("")) 
 			{
 				double val1 = Integer.parseInt(purchaseDiscount);
@@ -500,7 +494,7 @@ public class PricingPages extends App
 		App.spinner();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+orgName+"')]")));
 		Thread.sleep(2000);
-		String at  = driver.findElement(By.xpath(App.clickLabel("act_type_org_grid"))).getText();
+		String at  = App.getGridData(5);
 		System.out.println("account type "+at);
 		//Click on Admin tab for Account Types
 		driver.findElement(By.xpath("//*[text() = 'Admin']")).click();
@@ -509,18 +503,19 @@ public class PricingPages extends App
 		App.clearTopSearch();
 		Thread.sleep(1200);
 		//Account type search
+		App.clearFilter(); App.spinner(); Thread.sleep(1200);
 		driver.findElement(By.xpath(App.clickLabel("act_type_search"))).sendKeys(at);
 		Thread.sleep(1000);
 		App.spinner();
-		Thread.sleep(1200);
-		String atm  = driver.findElement(By.xpath(App.clickLabel("act_type_mapped_act_types"))).getText();
+		Thread.sleep(1500);
+		String atm  = App.getGridData(3);
 		// go to pricing module
 		this.pricingPage("Pricing");
 		App.clearTopSearch();
 		App.spinner();
 		driver.findElement(By.xpath(App.clickLabel("pricing_top_search"))).sendKeys(item);
 		App.spinner();
-		Thread.sleep(1200);
+		Thread.sleep(1500);
 		Object accountType = 0.0;
 		Object expQuotePrice = 0.0;
 		Object expSuggestedPrice = 0.0;
@@ -563,20 +558,14 @@ public class PricingPages extends App
 		driver.findElement(By.name("project_name")).click();
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys("Parts Quote").build().perform();  act.sendKeys(Keys.ENTER).build().perform();
-		//		driver.findElement(By.id("react-select-18-input")).sendKeys("Parts Quote");
 		Thread.sleep(2500);
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("repair-items")));
-		//		QuotePages quotes = new QuotePages();
 		driver.findElement(By.id("repair-items")).findElement(By.className("button-icon-text")).click();
-		//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='side-drawer open']")));
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).sendKeys("ZZ52BQ7");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='ZZ52BQ7']")));
-		//		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
 		Thread.sleep(1800);
-		//		driver.findElements(By.xpath("//*[contains(@class,'item-selection-grid')]")).get(0).findElement(By.tagName("label")).click();
-		//		Actions act = new Actions(driver);
 		driver.findElement(By.xpath("//*[@placeholder='Search By Part Number']")).click();
 		act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.SPACE).build().perform();

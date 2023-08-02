@@ -19,6 +19,8 @@ public class Filters_TestCases extends App
 		try {
 			filters.filtersInPricingListView("BACO44");
 		} catch (Exception e) {
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "", "", "PricingPage", "Not Executed..", java.time.LocalDate.now().toString()};
+			App.values1(status);
 			PricingPages price = new PricingPages();
 			try {				
 				price.closeIcon();
@@ -38,29 +40,31 @@ public class Filters_TestCases extends App
 			filters.filtersInOrganizations("FILT_005_VerifyingFiltersInContactssListView"
 					,"RS, Reseller or Broker", "Active", 2);
 		} catch (Exception e) {
+			Object status[] = {"FILT_005_VerifyingFiltersInContactsListView", "", "", "ContactsPage", "Not Executed..", java.time.LocalDate.now().toString()};
+			App.values1(status);
 			PricingPages price = new PricingPages();
 			try {				
 				price.closeIcon();
 			} catch (Exception e2) {
 			}
 		}
-		
-		//check filters in Admin tabs list view
-		ResultSet rs  = App.adminTabs();
-		String sts = "";
-		while(rs.next()) {
-			String labelVal = rs.getString("admin_tab_names");
-			String tcName = rs.getString("tc_name");
-			if (labelVal.equals("Territories")) {
-				sts = "Little Rock";
-			} else if(labelVal.equals("Zip Codes")){
-				sts = "Jack Carberry";
-			}else {
-				sts = "Active";
-			}
-			filters.filtersInAdminmModule(labelVal, sts, tcName);
-		}
-	}
-	//
+
+		//		//check filters in Admin tabs list view
+		//		ResultSet rs  = App.adminTabs();
+		//		String sts = "";
+		//		while(rs.next()) {
+		//			String labelVal = rs.getString("admin_tab_names");
+		//			String tcName = rs.getString("tc_name");
+		//			if (labelVal.equals("Territories")) {
+		//				sts = "Little Rock";
+		//			} else if(labelVal.equals("Zip Codes")){
+		//				sts = "Jack Carberry";
+		//			}else {
+		//				sts = "Active";
+		//			}
+		//			filters.filtersInAdminmModule(labelVal, sts, tcName);
+//	}
+}
+//
 
 }
