@@ -117,6 +117,8 @@ public class PricingPages extends App
 	}
 	public boolean verifyUpdateProduct() throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp("PRICING_002_VerifyUpdateProduct");
 		boolean res = false;
 		String beforeEdit = this.updateProduct();
 		Thread.sleep(4000);
@@ -172,6 +174,8 @@ public class PricingPages extends App
 
 	public boolean verifyAddDiscountCode() throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp("PRICING_003_VerifyAddDiscountCode");
 		String dc = this.addDiscountCode();boolean res = false;
 		System.out.println("dc was added.......!");
 		driver.findElement(By.xpath("//*[@class='quote-search-width']")).findElement(By.xpath("//*[@placeholder='Search By Discount Code']")).sendKeys(dc);
@@ -209,6 +213,8 @@ public class PricingPages extends App
 	}
 	public boolean verifyUpdateDiscountCode() throws Exception 
 	{
+		//Warning Pop Up
+		App.displayPopUp("PRICING_004_VerifyUpdateDiscountCode");
 		String beforeUpdate = this.updateDiscountCode();boolean res = false;
 		Thread.sleep(4000);
 		driver.findElement(By.xpath("//*[contains(@class,'edit-icon-cell')]")).click();
@@ -230,6 +236,9 @@ public class PricingPages extends App
 	}
 	public boolean importFile() throws Exception 
 	{
+		//Warning Pop Up 
+		App.displayPopUp("PRICING_005_VerifyImport");
+		
 		String dcFile = "/home/enterpi/Downloads/apr2023PricingFile/Saginaw DiscountCodeImport2023.csv";
 		String pricingFile = "/home/enterpi/Downloads/apr2023PricingFile/Saginaw PriceList-Import-2023.csv";
 		this.pricingPage("Pricing");

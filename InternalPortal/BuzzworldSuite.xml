@@ -1,22 +1,30 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Buzzworld Regression Testing" >
-	<!-- 
+<suite name="Buzzworld Regression Test Suite" >
+	
+   <!-- 
    <test name="Pricng Test Cases" >
        <classes> 
           <class name="testcases.PricingTestCases" />
        </classes>
    </test>
    -->
+   
    <test name="Repairs Test Cases" >
        <classes> 
           <class name="testcases.RepairTestCases" />
        </classes>
    </test>
-   
-   <!-- <test name="Quotes Test Cases" >
+ 
+   <test name="Quotes Test Cases" >
        <classes> 
           <class name="testcases.QuoteTestCases" />
        </classes>
    </test>
-  -->
+  
+  <test name="Filters Test Cases" >
+       <classes> 
+          <class name="testcases.Filters_TestCases" />
+       </classes>
+   </test>
+   
  </suite>

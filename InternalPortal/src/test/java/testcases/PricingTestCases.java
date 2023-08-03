@@ -13,23 +13,23 @@ public class PricingTestCases extends App
 	@Test(priority = 1)
 	public void testCase1() throws Exception {
 		//
-//		price.verifyAddProduct( "BACO55", "120.12", "BA05");
-//		//	
-//		price.verifyAddDiscountCode();
-//		//	
-//		price.verifyUpdateProduct();
-//		//	
-//		price.verifyUpdateDiscountCode();
-//		//
-//		price.importFile();
-//		//
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
-//		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
-//		price.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
+		price.verifyAddProduct( "BACO55", "120.12", "BA05");
+		//	
+		price.verifyAddDiscountCode();
+		//	
+		price.verifyUpdateProduct();
+		//	
+		price.verifyUpdateDiscountCode();
+		//
+		price.importFile();
+		//
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 49, "34", "","", 1);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 29, "", "","", 2);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Markup", 19, "39", "","267", 3);
+		//VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_PurchaseDiscounts_Not_Null
+		price.verifyBuyPrice_SellPrice_InSpecialPricing("Discount", 27, "39", "","123", 4);
 		//
 		price.verifyaAddSPItemsToQuotewithAccountType("PRICING_010_VerifyaAddSPItemsToQuotewithAccountType_withFixedPrice","Markup", 17, "43", "201.23","");
 		//

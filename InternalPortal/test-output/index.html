@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,8 +38,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+            <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" class="navigator-link">
+              <span class="suite-name border-failed">Buzzworld Regression Test Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,37 +49,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>testng-customsuite.xml</span>
+                  <a href="#" panel-name="test-xml-Buzzworld_Regression_Test_Suite" class="navigator-link ">
+                    <span>BuzzworldSuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-Default_suite" class="navigator-link ">
-                    <span class="test-stats">1 test</span>
+                  <a href="#" panel-name="testlist-Buzzworld_Regression_Test_Suite" class="navigator-link ">
+                    <span class="test-stats">3 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="group-Buzzworld_Regression_Test_Suite" class="navigator-link ">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="times-Buzzworld_Regression_Test_Suite" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="reporter-Buzzworld_Regression_Test_Suite" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="ignored-methods-Buzzworld_Regression_Test_Suite" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="chronological-Buzzworld_Regression_Test_Suite" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -92,21 +92,45 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">4 methods, 2 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" class="hide-methods failed suite-Buzzworld_Regression_Test_Suite"> (hide)</a> <!-- hide-methods failed suite-Buzzworld_Regression_Test_Suite -->
+                      <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" class="show-methods failed suite-Buzzworld_Regression_Test_Suite"> (show)</a> <!-- show-methods failed suite-Buzzworld_Regression_Test_Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Buzzworld_Regression_Test_Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" title="testcases.RepairTestCases" class="method navigator-link" hash-for-method="testCase22">testCase22</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" title="testcases.RepairTestCases" class="method navigator-link" hash-for-method="testCases">testCases</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Buzzworld_Regression_Test_Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
                     <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" class="hide-methods passed suite-Buzzworld_Regression_Test_Suite"> (hide)</a> <!-- hide-methods passed suite-Buzzworld_Regression_Test_Suite -->
+                      <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" class="show-methods passed suite-Buzzworld_Regression_Test_Suite"> (show)</a> <!-- show-methods passed suite-Buzzworld_Regression_Test_Suite -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content passed suite-Buzzworld_Regression_Test_Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testcases.QuoteTestCases" class="method navigator-link" hash-for-method="testCase0">testCase0</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" title="testcases.QuoteTestCases" class="method navigator-link" hash-for-method="testCase0">testCase0</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Buzzworld_Regression_Test_Suite" title="testcases.Filters_TestCases" class="method navigator-link" hash-for-method="testCase1">testCase1</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Buzzworld_Regression_Test_Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,8 +141,73 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+        <div panel-name="suite-Buzzworld_Regression_Test_Suite" class="panel Buzzworld_Regression_Test_Suite">
+          <div class="suite-Buzzworld_Regression_Test_Suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">testcases.RepairTestCases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCase22">
+                  </a> <!-- testCase22 -->
+                  <span class="method-name">testCase22</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@viewBox=&apos;0 0 16 16&apos;] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-78-generic&apos;, java.version: &apos;17.0.5&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.CNm8tG}, goog:chromeOptions: {debuggerAddress: localhost:43485}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:43485/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 4abeb1c750428edd6accfa654341c980
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at libraries.RepairPages.assignToQC_SO_Created(RepairPages.java:562)
+	at libraries.RepairPages.assignToQC_WhenReviseTheQuote(RepairPages.java:714)
+	at libraries.RepairPages.verifyAssignToQC_WhenReviseTheQuote(RepairPages.java:793)
+	at testcases.RepairTestCases.testCase22(RepairTestCases.java:143)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 27 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCases">
+                  </a> <!-- testCases -->
+                  <span class="method-name">testCases</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.name: customer_po_number (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.8.0&apos;, revision: &apos;267030adea&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-78-generic&apos;, java.version: &apos;17.0.5&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 106.0.5249.61 (511755355844..., userDataDir: /tmp/.com.google.Chrome.ZXDKfy}, goog:chromeOptions: {debuggerAddress: localhost:40161}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40161/devtoo..., se:cdpVersion: 106.0.5249.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 62159bc44d3c41db03edaaab32bdb8b0
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at libraries.AllModules.repairsModule(AllModules.java:598)
+	at testcases.RepairTestCases.testCases(RepairTestCases.java:17)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 27 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Buzzworld_Regression_Test_Suite-class-failed -->
+          <div class="suite-Buzzworld_Regression_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">testcases.Filters_TestCases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCase1">
+                  </a> <!-- testCase1 -->
+                  <span class="method-name">testCase1</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Buzzworld_Regression_Test_Suite-class-passed -->
+          <div class="suite-Buzzworld_Regression_Test_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
               <span class="class-name">testcases.QuoteTestCases</span>
@@ -132,126 +221,124 @@
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
-        </div> <!-- panel Default_suite -->
-        <div panel-name="test-xml-Default_suite" class="panel">
+          </div> <!-- suite-Buzzworld_Regression_Test_Suite-class-passed -->
+        </div> <!-- panel Buzzworld_Regression_Test_Suite -->
+        <div panel-name="test-xml-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse--555945922/testng-customsuite.xml</span>
+            <span class="header-content">/home/enterpi/git/IIDM/InternalPortal/BuzzworldSuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
+&lt;suite name=&quot;Buzzworld Regression Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Repairs Test Cases&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testcases.QuoteTestCases&quot;&gt;
-        &lt;methods&gt;
-          &lt;include name=&quot;testCase0&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- testcases.QuoteTestCases --&gt;
+      &lt;class name=&quot;testcases.RepairTestCases&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Default test --&gt;
-&lt;/suite&gt; &lt;!-- Default suite --&gt;
+  &lt;/test&gt; &lt;!-- Repairs Test Cases --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Quotes Test Cases&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;testcases.QuoteTestCases&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Quotes Test Cases --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Filters Test Cases&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;testcases.Filters_TestCases&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Filters Test Cases --&gt;
+&lt;/suite&gt; &lt;!-- Buzzworld Regression Test Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-Default_suite" class="panel">
+        <div panel-name="testlist-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for Default suite</span>
+            <span class="header-content">Tests for Buzzworld Regression Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Default test (1 class)</span>
+                <span class="test-name">Repairs Test Cases (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">Quotes Test Cases (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">Filters Test Cases (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-Default_suite" class="panel">
+        <div panel-name="group-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for Default suite</span>
+            <span class="header-content">Groups for Buzzworld Regression Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-Default_suite" class="panel">
+        <div panel-name="times-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for Default suite</span>
+            <span class="header-content">Times for Buzzworld Regression Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_Default_suite');
-function tableData_Default_suite() {
+suiteTableInitFunctions.push('tableData_Buzzworld_Regression_Test_Suite');
+function tableData_Buzzworld_Regression_Test_Suite() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testCase0')
 data.setCell(0, 2, 'testcases.QuoteTestCases')
-data.setCell(0, 3, 270796);
-window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+data.setCell(0, 3, 571685);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testCase1')
+data.setCell(1, 2, 'testcases.Filters_TestCases')
+data.setCell(1, 3, 418844);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testCases')
+data.setCell(2, 2, 'testcases.RepairTestCases')
+data.setCell(2, 3, 307800);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testCase22')
+data.setCell(3, 2, 'testcases.RepairTestCases')
+data.setCell(3, 3, 96507);
+window.suiteTableData['Buzzworld_Regression_Test_Suite']= { tableData: data, tableDiv: 'times-div-Buzzworld_Regression_Test_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 minutes</span>
-              <div id="times-div-Default_suite">
-              </div> <!-- times-div-Default_suite -->
+              <span class="suite-total-time">Total running time: 23 minutes</span>
+              <div id="times-div-Buzzworld_Regression_Test_Suite">
+              </div> <!-- times-div-Buzzworld_Regression_Test_Suite -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-Default_suite" class="panel">
+        <div panel-name="reporter-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for Default suite</span>
+            <span class="header-content">Reporter output for Buzzworld Regression Test Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-Default_suite" class="panel">
+        <div panel-name="ignored-methods-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">24 ignored methods</span>
+            <span class="header-content">39 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">testcases.QuoteTestCases</span>
+              <span class="ignored-class-name">testcases.RepairTestCases</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">testCase6</span>
-                <br/>
                 <span class="ignored-method-name">testCase1</span>
-                <br/>
-                <span class="ignored-method-name">testCase4</span>
-                <br/>
-                <span class="ignored-method-name">testCase2</span>
-                <br/>
-                <span class="ignored-method-name">testCase5</span>
-                <br/>
-                <span class="ignored-method-name">testCase8</span>
-                <br/>
-                <span class="ignored-method-name">testCase3</span>
                 <br/>
                 <span class="ignored-method-name">testCase19</span>
                 <br/>
-                <span class="ignored-method-name">testCase14</span>
-                <br/>
-                <span class="ignored-method-name">testCase28</span>
-                <br/>
-                <span class="ignored-method-name">testCase13</span>
-                <br/>
-                <span class="ignored-method-name">testCase16</span>
-                <br/>
-                <span class="ignored-method-name">testCase27</span>
-                <br/>
-                <span class="ignored-method-name">testCase24</span>
+                <span class="ignored-method-name">testCase17</span>
                 <br/>
                 <span class="ignored-method-name">testCase18</span>
-                <br/>
-                <span class="ignored-method-name">testCase25</span>
-                <br/>
-                <span class="ignored-method-name">testCase17</span>
                 <br/>
                 <span class="ignored-method-name">testCase23</span>
                 <br/>
@@ -259,36 +346,137 @@ return data;
                 <br/>
                 <span class="ignored-method-name">testCase21</span>
                 <br/>
+                <span class="ignored-method-name">testCase10</span>
+                <br/>
+                <span class="ignored-method-name">testCase8</span>
+                <br/>
+                <span class="ignored-method-name">testCase9</span>
+                <br/>
+                <span class="ignored-method-name">testCase6</span>
+                <br/>
+                <span class="ignored-method-name">testCase7</span>
+                <br/>
+                <span class="ignored-method-name">testCase4</span>
+                <br/>
+                <span class="ignored-method-name">testCase5</span>
+                <br/>
+                <span class="ignored-method-name">testCase2</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">testcases.QuoteTestCases</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">testCase20</span>
+                <br/>
+                <span class="ignored-method-name">testCase21</span>
+                <br/>
+                <span class="ignored-method-name">testCase22</span>
+                <br/>
+                <span class="ignored-method-name">testCase23</span>
+                <br/>
+                <span class="ignored-method-name">testCase12</span>
+                <br/>
+                <span class="ignored-method-name">testCase24</span>
+                <br/>
+                <span class="ignored-method-name">testCase13</span>
+                <br/>
+                <span class="ignored-method-name">testCase14</span>
+                <br/>
+                <span class="ignored-method-name">testCase25</span>
+                <br/>
                 <span class="ignored-method-name">testCase26</span>
                 <br/>
                 <span class="ignored-method-name">testCase15</span>
                 <br/>
-                <span class="ignored-method-name">testCase22</span>
+                <span class="ignored-method-name">testCase16</span>
                 <br/>
-                <span class="ignored-method-name">testCase12</span>
+                <span class="ignored-method-name">testCase27</span>
+                <br/>
+                <span class="ignored-method-name">testCase17</span>
+                <br/>
+                <span class="ignored-method-name">testCase28</span>
+                <br/>
+                <span class="ignored-method-name">testCase18</span>
+                <br/>
+                <span class="ignored-method-name">testCase19</span>
+                <br/>
+                <span class="ignored-method-name">testCase1</span>
+                <br/>
+                <span class="ignored-method-name">testCase4</span>
+                <br/>
+                <span class="ignored-method-name">testCase5</span>
+                <br/>
+                <span class="ignored-method-name">testCase2</span>
+                <br/>
+                <span class="ignored-method-name">testCase3</span>
+                <br/>
+                <span class="ignored-method-name">testCase8</span>
+                <br/>
+                <span class="ignored-method-name">testCase6</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-Default_suite" class="panel">
+        <div panel-name="chronological-Buzzworld_Regression_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testcases.QuoteTestCases</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">testcases.RepairTestCases</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">login</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testCases</span>
+                <span class="method-start">11864 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testCase22</span>
+                <span class="method-start">319668 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">logout</span>
+                <span class="method-start">416180 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">testcases.QuoteTestCases</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">login</span>
+                <span class="method-start">417316 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
                 <span class="method-name">testCase0</span>
-                <span class="method-start">11313 ms</span>
+                <span class="method-start">427919 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">logout</span>
-                <span class="method-start">282113 ms</span>
+                <span class="method-start">999607 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">testcases.Filters_TestCases</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">login</span>
+                <span class="method-start">1001007 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">testCase1</span>
+                <span class="method-start">1011789 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">logout</span>
+                <span class="method-start">1430635 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

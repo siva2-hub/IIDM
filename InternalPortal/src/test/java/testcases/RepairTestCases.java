@@ -136,8 +136,8 @@ public class RepairTestCases extends App
 		Assert.assertTrue(res);
 		App.logout();
 	}
-	//	@Test(enabled = false)
-	@Test(priority = 16)
+	@Test(enabled = false)
+	//	@Test(priority = 16)
 	public void testCase22() throws Exception {
 		App.login();
 		boolean res = repairs.verifyAssignToQC_WhenReviseTheQuote();

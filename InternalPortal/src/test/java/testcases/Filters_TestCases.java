@@ -24,8 +24,7 @@ public class Filters_TestCases extends App
 			PricingPages price = new PricingPages();
 			try {				
 				price.closeIcon();
-			} catch (Exception e2) {
-			}
+			} catch (Exception e2) {}
 		}
 		//check filters in parts purchase list view
 		filters.filtersInPartsPucrhase("Braden Morris", "Emergency Breakdown",
@@ -49,22 +48,20 @@ public class Filters_TestCases extends App
 			}
 		}
 
-		//		//check filters in Admin tabs list view
-		//		ResultSet rs  = App.adminTabs();
-		//		String sts = "";
-		//		while(rs.next()) {
-		//			String labelVal = rs.getString("admin_tab_names");
-		//			String tcName = rs.getString("tc_name");
-		//			if (labelVal.equals("Territories")) {
-		//				sts = "Little Rock";
-		//			} else if(labelVal.equals("Zip Codes")){
-		//				sts = "Jack Carberry";
-		//			}else {
-		//				sts = "Active";
-		//			}
-		//			filters.filtersInAdminmModule(labelVal, sts, tcName);
-//	}
-}
-//
-
+		//check filters in Admin tabs list view
+		ResultSet rs  = App.adminTabs();
+		String sts = "";
+		while(rs.next()) {
+			String labelVal = rs.getString("admin_tab_names");
+			String tcName = rs.getString("tc_name");
+			if (labelVal.equals("Territories")) {
+				sts = "Little Rock";
+			} else if(labelVal.equals("Zip Codes")){
+				sts = "Jack Carberry";
+			}else {
+				sts = "Active";
+			}
+			filters.filtersInAdminmModule(labelVal, sts, tcName);
+		}
+	}
 }

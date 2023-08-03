@@ -55,7 +55,6 @@ public class QuoteTestCases extends App{
 		App.logout();
 	}
 
-
 	@Test(enabled = false)
 	//	@Test(priority=1)
 	public void testCase1() throws Exception {
