@@ -71,7 +71,7 @@ public class PricingPages extends App
 		App.spinner();
 		return stockCode;
 	}
-	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass) throws Exception
+	public boolean verifyAddProduct(String discountCode, String listPrice, String productClass, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp("PRICING_001_VerifyAddProduct");
@@ -88,12 +88,14 @@ public class PricingPages extends App
 		String actStockCode = App.getGridData(0);
 		if (expStockCode.equalsIgnoreCase(actStockCode)) {
 			res = true;
-			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Passed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -115,7 +117,7 @@ public class PricingPages extends App
 		this.addButton("Update Product");
 		return text;
 	}
-	public boolean verifyUpdateProduct() throws Exception 
+	public boolean verifyUpdateProduct(String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp("PRICING_002_VerifyUpdateProduct");
@@ -130,11 +132,11 @@ public class PricingPages extends App
 		if (!beforeEdit.equalsIgnoreCase(afterEdit)) {
 			res = true;
 			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			App.values1(status);
 		}
 		return res;
 	}
@@ -172,7 +174,7 @@ public class PricingPages extends App
 		return dc;
 	}
 
-	public boolean verifyAddDiscountCode() throws Exception 
+	public boolean verifyAddDiscountCode(String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp("PRICING_003_VerifyAddDiscountCode");
@@ -183,12 +185,14 @@ public class PricingPages extends App
 		String actStockCode = App.getGridData(0);
 		if (dc.equalsIgnoreCase(actStockCode)) {
 			res = true;
-			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -211,7 +215,7 @@ public class PricingPages extends App
 		this.addButton("Update Discount Code");
 		return text;
 	}
-	public boolean verifyUpdateDiscountCode() throws Exception 
+	public boolean verifyUpdateDiscountCode(String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp("PRICING_004_VerifyUpdateDiscountCode");
@@ -224,17 +228,17 @@ public class PricingPages extends App
 		if (!beforeUpdate.equalsIgnoreCase(afterUpdate)) {
 			res = true;
 			Object status[] = {"PRICING_004_VerifyUpdateDiscountCode", "before update Our Price value is "+beforeUpdate,
-					"after update Our Price value is "+afterUpdate, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"after update Our Price value is "+afterUpdate, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"PRICING_004_VerifyUpdateDiscountCode", "before update Our Price value is "+beforeUpdate, 
-					"after update Our Price value is "+afterUpdate, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"after update Our Price value is "+afterUpdate, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
-	public boolean importFile() throws Exception 
+	public boolean importFile(String env) throws Exception 
 	{
 		//Warning Pop Up 
 		App.displayPopUp("PRICING_005_VerifyImport");
@@ -301,20 +305,20 @@ public class PricingPages extends App
 			String actText = driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("h3")).getText();
 			if (actText.equals(expText)) {
 				res = true;
-				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 				this.closeIcon();
 			} else {
 				res = false;
-				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 				this.closeIcon();
 			}
 		} else {
 			res = false;
 			String errorMsg = driver.findElement(By.xpath("//*[contains(@class,'error-msg')]")).getText();
-			Object status[] = {"PRICING_005_VerifyImport", summaryText, errorMsg, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {"PRICING_005_VerifyImport", summaryText, errorMsg, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		}
 		return res;
@@ -448,8 +452,8 @@ public class PricingPages extends App
 		Object data[] = {actBuyPrice, expBuyPrice, actSellPrice, sellPrice, actFixedPrice, orgName, lp, item};
 		return data;
 	}
-	public boolean verifyBuyPrice_SellPrice_InSpecialPricing(String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice, int count) throws Exception
-	{
+	public boolean verifyBuyPrice_SellPrice_InSpecialPricing(String type, int typeValue, String purchaseDiscount,
+			String fprice, String buyPrice, int count, String env) throws Exception {
 		boolean res = false;String tcName= "";
 		if(count==1) {
 			tcName = "PRICING_006_VerifyBuyPrice_SellPrice_InSpecialPricing_BuyPrice_Null_PurchaseDiscount_Not_Null";
@@ -471,13 +475,15 @@ public class PricingPages extends App
 		if (abp.equals(abp) && asp.equals(esp)) {
 			res = true;
 			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
-					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricing", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricingPage",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
-					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricing", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricingPage",
+					"Failed", java.time.LocalDate.now().toString()};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -603,7 +609,8 @@ public class PricingPages extends App
 		Object data[] = {actSugestedPrice, expSuggestedPrice, actListPrice, expListPrice, actQuotePrice, expQuotePrice};
 		return data;
 	}
-	public boolean verifyaAddSPItemsToQuotewithAccountType(String tcName, String type, int typeValue, String purchaseDiscount, String fprice, String buyPrice) throws Exception
+	public boolean verifyaAddSPItemsToQuotewithAccountType(String tcName, String type, int typeValue, String purchaseDiscount,
+			String fprice, String buyPrice, String env) throws Exception
 	{
 		//Warning Pop up
 		App.displayPopUp(tcName);
@@ -619,17 +626,20 @@ public class PricingPages extends App
 		if (actSp.equals(expSp) && actlp.equals(expLp) && actQp.equals(expQp)) {
 			res = true;
 			Object status[] = {tcName, "actual Sugested price "+actSp+" expected Sugested price "+expSp,
-					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricing", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricingPage",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {tcName, "actual Sugested price "+actSp+" expected Sugested price "+expSp,
-					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricing", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricingPage",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
-	public boolean verifyAAddProduct_DuplicateStockCode(int count, String stockCode, String discountCode, String listPrice, String productClass) throws Exception 
+	public boolean verifyAAddProduct_DuplicateStockCode(int count, String stockCode, String discountCode,
+			String listPrice, String productClass, String env) throws Exception 
 	{
 		String tcName = "";
 		switch (count) {
@@ -694,18 +704,18 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		}
 		return res;
 	}
-	public boolean verifyUpdateProductValidations(int count) throws Exception{
+	public boolean verifyUpdateProductValidations(int count, String env) throws Exception{
 		this.pricingPage("Pricing"); String tcName = "";
 		if(count==1) {
 			tcName = "PRICING_018_VerifyUpdateProduct_EmptyListPrice";
@@ -745,18 +755,18 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		}
 		return res;
 	}
-	public boolean isDifferentPricing(String tcName, boolean isDifferent) throws Exception
+	public boolean isDifferentPricing(String tcName, boolean isDifferent, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -820,13 +830,15 @@ public class PricingPages extends App
 		boolean res = false;
 		if (sectionText.toLowerCase().equals(vendorText.toLowerCase())) {
 			res = true;
-			Object status[] = {tcName, "is different pricing option applied", "displayed msg is "+sectionText, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "is different pricing option applied", "displayed msg is "+sectionText, 
+					"PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {tcName, "is different pricing option  not applied", "displayed msg is "+sectionText, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "is different pricing option  not applied", "displayed msg is "+sectionText,
+					"PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			this.closeIcon();
 		}
 		return res;

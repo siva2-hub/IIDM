@@ -16,13 +16,13 @@ public class URLRedirectsTestCase extends App
 	}
 	//@Test(enabled = false)
 	@Test(priority = 2)
-	public void testCase2() throws Exception {
-		all.repairsModule("NS23-TS01B-V2");
+	public void testCase2(String env) throws Exception {
+		all.repairsModule("NS23-TS01B-V2", env);
 	}
 	//@Test(enabled = false)
 	@Test(priority = 3)
-	public void testCase3() throws Exception {
-		all.quotesModule("Week(s)", "21", "32.23");
+	public void testCase3(String env) throws Exception {
+		all.quotesModule("Week(s)", "21", "32.23", env);
 	}
 	//@Test(enabled = false)
 	@Test(priority = 4)

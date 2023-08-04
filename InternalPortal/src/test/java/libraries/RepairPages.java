@@ -123,7 +123,7 @@ public class RepairPages extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='repair-items']")));
 		return actText;
 	}
-	public boolean verifyAddNewItem() throws Exception 
+	public boolean verifyAddNewItem(String env) throws Exception 
 	{
 		String actText = this.addNewItem();
 		boolean res = false;
@@ -131,12 +131,12 @@ public class RepairPages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (!actText.equals(expText)) {
 			res = true;
-			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_020_VerifyAddNewItem", actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -398,7 +398,7 @@ public class RepairPages extends App
 		App.spinner();
 		Thread.sleep(1400);	
 	}
-	public boolean verifyQCCheckList(String data) throws Exception 
+	public boolean verifyQCCheckList(String data, String env) throws Exception 
 	{
 		this.qcCheckList(data);
 		boolean res = false;
@@ -406,12 +406,12 @@ public class RepairPages extends App
 		String actText = driver.findElement(By.xpath("//*[@style = 'white-space: nowrap; max-width: 100%; text-overflow: ellipsis;']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"REPAIRS_010_VerifyQCCheckList_as_"+data, actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_010_VerifyQCCheckList_as_"+data, actText, expText, "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"REPAIRS_010_VerifyQCCheckList_"+data, actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_010_VerifyQCCheckList_"+data, actText, expText, "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -440,7 +440,7 @@ public class RepairPages extends App
 		}
 		return res;
 	}
-	public boolean fileUpload() throws Exception 
+	public boolean fileUpload(String env) throws Exception 
 	{
 		//		this.createRMA();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -461,12 +461,12 @@ public class RepairPages extends App
 		}
 		if (sta) {
 			res = true;
-			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploaded successfully", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploaded successfully", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploading Failed.!", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_017_VerifyFileUpload_Repairs", "Document Uploading Failed.!", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 
@@ -498,7 +498,7 @@ public class RepairPages extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
 		Thread.sleep(2400);
 	}
-	public boolean verifyFilters(String data, String data1, String data2) throws Exception 
+	public boolean verifyFilters(String data, String data1, String data2, String env) throws Exception 
 	{
 		String compName = "123 E Doty Corporation"; String salesP = "Dallas House";
 		String status1 = "Check In Pending";boolean res = false;
@@ -517,18 +517,18 @@ public class RepairPages extends App
 			String actStatus = driver.findElement(By.xpath("//*[text()='"+status1+"']")).getText();
 			if (compName.equalsIgnoreCase(actComp)&&salesP.equalsIgnoreCase(actSp)&&status1.equalsIgnoreCase(actStatus)) {
 				res = true;
-				Object status[] = {"REPAIRS_019_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
-				quotes.values(status);
+				Object status[] = {"REPAIRS_019_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
 				res = false;
-				Object status[] = {"REPAIRS_019_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-				quotes.values(status);
+				Object status[] = {"REPAIRS_019_VerifyFilters", actComp+" "+actSp+" "+actStatus, compName+" "+salesP+" "+status1, "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		}
 		driver.findElement(By.xpath("//*[@title='Reset Filters ']")).click();
 		return res;
 	}
-	public boolean verifyFilterStateMaintanance() throws Exception 
+	public boolean verifyFilterStateMaintanance(String env) throws Exception 
 	{
 
 		boolean res = false;
@@ -540,13 +540,15 @@ public class RepairPages extends App
 		ele = driver.findElement(By.xpath("//*[text() = 'Clear']"));
 		if (ele.isDisplayed()) {
 			res = true;
-			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are stabled after refresh the page", "", "RepairsPage", "Passed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are stabled after refresh the page",
+					"", "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else 
 		{
 			res = false;
-			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are not stabled after refresh the page", "", "RepairsPage", "Failed", java.time.LocalDate.now().toString()};
-			quotes.values(status);
+			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are not stabled after refresh the page",
+					"", "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}

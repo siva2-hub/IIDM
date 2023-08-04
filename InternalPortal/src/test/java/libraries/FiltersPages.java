@@ -2,14 +2,14 @@ package libraries;
 
 import java.sql.SQLException;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.beust.ah.A;
 
 import commonUtils.App;
 
@@ -18,7 +18,7 @@ public class FiltersPages extends App
 	WebDriverWait wait;
 	Actions act ;
 	QuotePages qp  = new QuotePages();
-	public void filtersInPartsPucrhase(String tech, String urgency, String tcName) throws Exception 
+	public void filtersInPartsPucrhase(String tech, String urgency, String tcName, String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -47,20 +47,22 @@ public class FiltersPages extends App
 			System.out.println("actual technician "+actTech +""+actUrgency);
 			if (actTech.contains(tech) && actUrgency.contains(urgency)) 
 			{
-				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage", "Passed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage",
+						"Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
-				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage", "Failed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage",
+						"Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			Object status[] = {tcName, "Applied Filters not Available", "", "PartsPurchasePage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			App.values1(status);
 		}
 	}
 
-	public void filtersInDiscountCodes(String tcName, String minQty)throws Exception 
+	public void filtersInDiscountCodes(String tcName, String minQty, String env)throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -80,19 +82,21 @@ public class FiltersPages extends App
 			String actPOMinQty = App.getGridData(1);
 			if (actPOMinQty.contains(minQty) ) 
 			{
-				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty, "DiscountCodesPage", "Passed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty,
+						"DiscountCodesPage", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
-				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty, "DiscountCodesPage", "Failed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty,
+						"DiscountCodesPage", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			Object status[] = {tcName, "Applied Filters not Available", "", "DiscountCodesPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "Applied Filters not Available", "", "DiscountCodesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 	}
-	public void filtersInOrganizations(String tcName, String actType, String stats, int count) throws Exception
+	public void filtersInOrganizations(String tcName, String actType, String stats, int count, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -143,17 +147,17 @@ public class FiltersPages extends App
 			if (actAtType.contains(actType) || actStats.equalsIgnoreCase(stats)) 
 			{
 				Object status[] = {tcName, "Displayed Filter is "+actAtType+", "+actStats,
-						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Passed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
 				Object status[] = {tcName, "Displayed Filter is "+actAtType+", "+actStats,
-						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Failed", java.time.LocalDate.now().toString()};
-				qp.values(status);
+						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			Object status[] = {tcName, "Applied Filters not Available", "", "OrganizationssPage", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "Applied Filters not Available", "", "OrganizationssPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 	}
 	public void openFiltersInAllModules(String moduleName, int count) throws SQLException 
@@ -202,7 +206,9 @@ public class FiltersPages extends App
 		//Applying the Filter
 		driver.findElement(By.xpath(App.clickLabel("filter_btn"))).click();
 	}
-	public boolean filtersInPricingListView(String disCountCode) throws Exception {
+	public boolean filtersInPricingListView(String disCountCode, String env) throws Exception 
+	{
+		String dt = LocalDate.now().toString()+" "+LocalTime.now().toString();
 		PricingPages price = new PricingPages();
 		price.pricingPage("Pricing");
 		//Warning Pop Up
@@ -223,19 +229,22 @@ public class FiltersPages extends App
 		Thread.sleep(1500);
 		String actDisCode = App.getGridData(3);
 		driver.findElement(By.xpath(App.clickLabel("filter_clear"))).click();
+//		java.time.LocalDate.now().toString()
 		boolean res = false;
 		if (actDisCode.equals(disCountCode)) {
 			res = true;
-			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode,
+					"Applied Filter is "+disCountCode, "PricingPage", "Passed", dt, env};
 			qp.values(status);
 		} else {
 			res = false;
-			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode, "Applied Filter is "+disCountCode, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "Displayed Filter is "+actDisCode,
+					"Applied Filter is "+disCountCode, "PricingPage", "Failed", dt, env};
 			qp.values(status);
 		}
 		return res;
 	}
-	public void filtersInAdminmModule(String tabName, String stats, String tcName) throws Exception
+	public void filtersInAdminmModule(String tabName, String stats, String tcName, String env) throws Exception
 	{
 		Actions act = new Actions(driver);
 		driver.findElement(By.xpath(App.clickLabel("click_admin"))).click();
@@ -280,11 +289,13 @@ public class FiltersPages extends App
 		}
 		String expText = stats;
 		if (actText.toLowerCase().equals(expText.toLowerCase())) {
-			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page", "Passed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
-			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page", "Failed", java.time.LocalDate.now().toString()};
-			qp.values(status);
+			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 	}
 	public void applyButton() throws Exception

@@ -161,7 +161,7 @@ public class QuotePages extends App
 		App.spinner();
 		Thread.sleep(1000);
 	}
-	public boolean verifyQuoteWon(int count) throws Exception {
+	public boolean verifyQuoteWon(int count, String env) throws Exception {
 		String won = "";
 		String tcName = "";
 		String expText = "";
@@ -188,15 +188,15 @@ public class QuotePages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {tcName, actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {tcName, actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		//Quote Clone from Quote for Parts
-		this.verifyQuoteClone_QuotesForParts();
+		this.verifyQuoteClone_QuotesForParts(env);
 		return res;
 	}
 
@@ -290,7 +290,7 @@ public class QuotePages extends App
 		return res;
 
 	}
-	public boolean verifyTopSearchInQuoteListView(String searchBy,int count) throws Exception {
+	public boolean verifyTopSearchInQuoteListView(String searchBy,int count, String env) throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[text()='Quotes']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -328,8 +328,9 @@ public class QuotePages extends App
 		Thread.sleep(2000);
 		if (gridText=="") {
 			res = false;
-			Object status[] = {tcName, "No Quotes for Parts Found! for "+tcName, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {tcName, "No Quotes for Parts Found! for "+tcName, searchBy, "QuotesPage", "Failed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 			//			App.logout();
 		} else {
 			if (count==4) {
@@ -346,12 +347,12 @@ public class QuotePages extends App
 			}
 			if (actText.toLowerCase().contains(searchBy.toLowerCase())) {
 				res = true;
-				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
 				res = false;
-				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 				//				App.logout();
 			}
 		}
@@ -374,7 +375,7 @@ public class QuotePages extends App
 		}
 		return res;
 	}
-	public boolean verifyResetandClearButtonInFiltersPage(String compName, int count) throws Exception {
+	public boolean verifyResetandClearButtonInFiltersPage(String compName, int count, String env) throws Exception {
 		boolean res = false;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
@@ -407,12 +408,14 @@ public class QuotePages extends App
 		driver.findElement(By.xpath("//*[@title='close']")).click();
 		if (compText1.equalsIgnoreCase("Search By Company Name")) {
 			res = true;
-			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Passed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Failed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -465,7 +468,7 @@ public class QuotePages extends App
 		}
 		return res;
 	}
-	public boolean verifyFiltersStateMaintanance(String compName, String salesPerson, String status, String quotedBy, int count) throws Exception {
+	public boolean verifyFiltersStateMaintanance(String compName, String salesPerson, String status, String quotedBy, int count, String env) throws Exception {
 		boolean res = false;
 		try {
 			driver.findElement(By.xpath("//*[@style = 'padding: 10px 10px 10px 0px; display: flex; align-items: center; cursor: pointer;']")).isDisplayed();
@@ -528,16 +531,18 @@ public class QuotePages extends App
 		}
 		if (filterCheck) {
 			res = true;
-			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance working.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status1);
+			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance working.", "",
+					"QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status1);
 		} else {
 			res = true;
-			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status1);
+			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance not working.!", "",
+					"QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status1);
 		}
 		return res;
 	}
-	public boolean verifyDeleteIcon(int count) throws Exception
+	public boolean verifyDeleteIcon(int count, String env) throws Exception
 	{
 		Thread.sleep(2000);
 		boolean res = false;
@@ -587,16 +592,16 @@ public class QuotePages extends App
 		}
 		if (!itemsCount.equalsIgnoreCase(expText)||itemsCount.equalsIgnoreCase("13")) {
 			res = true;
-			Object status1[] = {tcName, itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status1);
+			Object status1[] = {tcName, itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status1);
 		} else {
 			res = false;
-			Object status1[] = {tcName,itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status1);
+			Object status1[] = {tcName,itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status1);
 		}
 		return res;
 	}
-	public boolean verifyFiltersInQuoteListView(String compName, String salesPerson, String status, String quotedBy, int count) throws Exception 
+	public boolean verifyFiltersInQuoteListView(String compName, String salesPerson, String status, String quotedBy, int count, String env) throws Exception 
 	{
 		boolean res = false;
 		Actions act = new Actions(driver);
@@ -628,21 +633,20 @@ public class QuotePages extends App
 		this.selectDropDown(quotedBy);
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys("0165009LS").build().perform();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		Thread.sleep(1500);
-		//		this.selectDropDown("0165009LS");
 		price = new PricingPages();
 		price.clickButton("Apply");
 		Thread.sleep(5000);
 		String gridText = driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText();
 		if (gridText=="") {
 			res = false;
-			Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status1);
+			Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status1);
 			Thread.sleep(1500);
 			driver.findElement(By.xpath("//*[contains(@class,'clear-text')]")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
-			//			App.logout();
 		} else {
 			String cName = driver.findElement(By.xpath("//*[contains(text(),'"+compName+"')]")).getText();
 			System.out.println("After applying filter ");
@@ -655,12 +659,14 @@ public class QuotePages extends App
 			System.out.println("Quoted By"+quotedBy);
 			if (cName.equalsIgnoreCase(compName)&& sPerson.equalsIgnoreCase(salesPerson)&& sta.equalsIgnoreCase(status)&& qBy.equalsIgnoreCase(quotedBy)) {
 				res = true;
-				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality working", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-				this.values(status1);
+				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality working", "", "QuotesPage",
+						"Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status1);
 			} else {
 				res = false;
-				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-				this.values(status1);
+				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage",
+						"Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status1);
 				Thread.sleep(1500);
 				driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ag-react-container']")));
@@ -668,11 +674,9 @@ public class QuotePages extends App
 			}
 		}
 		Thread.sleep(1700);
-
-
 		return res;
 	}
-	public boolean verifyPrintDownLoad() throws Exception {
+	public boolean verifyPrintDownLoad(String env) throws Exception {
 		//		this.createQuote();
 		//		this.selectItemToQuote();
 		boolean res = false;
@@ -685,16 +689,18 @@ public class QuotePages extends App
 		driver.switchTo().window(id1[0].toString());
 		if (ids.size()==2) {
 			res = true;
-			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print working in Quotes Detailed Page.", "", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print working in Quotes Detailed Page.", "",
+					"QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print Not working..!,in Quotes Detailed Page", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print Not working..!,in Quotes Detailed Page", "",
+					"QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
-	public boolean verifyAddOptionInQuoteDetailedView() throws Exception {
+	public boolean verifyAddOptionInQuoteDetailedView(String env) throws Exception {
 		boolean res = false;
 		driver.findElement(By.xpath("//*[text()='Quotes']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -735,18 +741,20 @@ public class QuotePages extends App
 		String optionText = driver.findElement(By.xpath("//*[@id='repair-items']")).findElement(By.xpath("//*[@aria-setsize='2'][@aria-posinset='2']")).getText();
 		if (optionText.contains("Option 2")) {
 			res = true;
-			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_028_Verify_Decline_QuotesForParts");
 
 		//Decline Quote
-		this.verifyDeclineInQuoteDetailedView();
+		this.verifyDeclineInQuoteDetailedView(env);
 
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_021_VerifyReOpen_ButtonInQuoteDetailePage");
@@ -776,7 +784,7 @@ public class QuotePages extends App
 		String[] is = {beforeCloneRepText, beforeCloneItems, beforeCloneCust};
 		return is;
 	}
-	public boolean verifyQuoteClone_QuotesForParts() throws Exception
+	public boolean verifyQuoteClone_QuotesForParts(String env) throws Exception
 	{
 		String tcName = "QUOTES_026_VerifyQuoteClone_QuotesForParts";
 		//Warning Pop Up
@@ -797,12 +805,14 @@ public class QuotePages extends App
 			String ExpText = "OPEN";
 			if (actText.toLowerCase().contains(ExpText.toLowerCase())) {
 				res = true;
-				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Passed",
+						java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			} else {
 				res = false;
-				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Failed",
+						java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		} else {
 			System.out.println("Quote Cloned Failed.!");
@@ -813,17 +823,17 @@ public class QuotePages extends App
 			System.out.println("before clone cust info "+beforeCloneCust);
 			System.out.println("after clone  cust info "+afterCloneCust);
 			res = false;
-			Object status[] = {"QUOTES_026_VerifyQuoteClone_QuotesForParts", "", "", "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_026_VerifyQuoteClone_QuotesForParts", "", "", "QuotesPage", "Failed",
+					java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
-	public boolean quoteClone_QuoteForRepairs() throws Exception 
+	public boolean quoteClone_QuoteForRepairs(String env) throws Exception 
 	{
 		rp = new RepairPages();
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_027_VerifyQuoteClone_QuotesForRepairs");
-		//		rp.createQuoteFromRepair();
 		try {
 			driver.findElement(By.xpath("//*[text() = 'Check In Pending1']")).isDisplayed();
 			driver.findElement(By.xpath("//*[text() = 'Check In Pending']")).click();
@@ -946,7 +956,6 @@ public class QuotePages extends App
 		act.doubleClick(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
 		Thread.sleep(2500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'delete-icon')]")));
-
 		price.clickButton("Submit for Internal Approval");
 		Thread.sleep(1500);
 		rp.toastContainer("Proceed");
@@ -967,17 +976,20 @@ public class QuotePages extends App
 		if (quoteType.toLowerCase().contains("parts quote")) {
 			if(actText.toLowerCase().contains("OPEN".toLowerCase())) {
 				res = true;
-				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType, "Quote status is "+actText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
+						"Quote status is "+actText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}else {
 				res = false;
-				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType, "Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-				this.values(status);
+				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
+						"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+				App.values1(status);
 			}
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType, "Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
+					"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -992,7 +1004,7 @@ public class QuotePages extends App
 		wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath("/html/body/div[1]/div/div[3]/div[2]/button"), "Approve"));
 		Thread.sleep(1500);
 	}
-	public boolean verifyDeclineInQuoteDetailedView() throws Exception
+	public boolean verifyDeclineInQuoteDetailedView(String env) throws Exception
 	{
 		//		this.declineTheQuote();
 		Thread.sleep(2400);
@@ -1048,12 +1060,14 @@ public class QuotePages extends App
 		String expText = "REJECTED";boolean res = false;
 		if (actText.contains(expText)) {
 			res = true;
-			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage",
+					"Passed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
-			this.values(status);
+			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage",
+					"Failed", java.time.LocalDate.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}

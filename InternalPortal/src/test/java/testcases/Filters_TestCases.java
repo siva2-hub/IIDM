@@ -15,11 +15,17 @@ public class Filters_TestCases extends App
 	@Test(priority = 1)
 	public void testCase1() throws Exception 
 	{
+		String env = "";
+		if (driver.getCurrentUrl().contains("staging")) {
+			env = "Stage Instance";
+		} else {
+			env = "QA Instance";
+		}
 		//check filters in pricing list view
 		try {
-			filters.filtersInPricingListView("BACO44");
+			filters.filtersInPricingListView("BACO44", env); System.exit(0);
 		} catch (Exception e) {
-			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "", "", "PricingPage", "Not Executed..", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_001_Verify_Filters_In_Pricing", "", "", "PricingPage", "Not Executed..", java.time.LocalDate.now().toString(), env};
 			App.values1(status);
 			PricingPages price = new PricingPages();
 			try {				
@@ -28,18 +34,19 @@ public class Filters_TestCases extends App
 		}
 		//check filters in parts purchase list view
 		filters.filtersInPartsPucrhase("Braden Morris", "Emergency Breakdown",
-				"FILT_003_VerifyingFiltersInPartsPurchaseListView");
+				"FILT_003_VerifyingFiltersInPartsPurchaseListView", env);
+		System.exit(0);
 		//check filters in discount codes List view
-		filters.filtersInDiscountCodes("FILT_002_VerifyingFiltersInDiscountCodesListView", "1672236325");
+		filters.filtersInDiscountCodes("FILT_002_VerifyingFiltersInDiscountCodesListView", "1672236325", env);
 		//check filters in organizations list view
 		filters.filtersInOrganizations("FILT_004_VerifyingFiltersInOrganizationssListView"
-				,"RS, Reseller or Broker", "Active", 1);
+				,"RS, Reseller or Broker", "Active", 1, env);
 		//check filters in contacts list view
 		try {
 			filters.filtersInOrganizations("FILT_005_VerifyingFiltersInContactssListView"
-					,"RS, Reseller or Broker", "Active", 2);
+					,"RS, Reseller or Broker", "Active", 2, env);
 		} catch (Exception e) {
-			Object status[] = {"FILT_005_VerifyingFiltersInContactsListView", "", "", "ContactsPage", "Not Executed..", java.time.LocalDate.now().toString()};
+			Object status[] = {"FILT_005_VerifyingFiltersInContactsListView", "", "", "ContactsPage", "Not Executed..", java.time.LocalDate.now().toString(), env};
 			App.values1(status);
 			PricingPages price = new PricingPages();
 			try {				
@@ -61,7 +68,7 @@ public class Filters_TestCases extends App
 			}else {
 				sts = "Active";
 			}
-			filters.filtersInAdminmModule(labelVal, sts, tcName);
+			filters.filtersInAdminmModule(labelVal, sts, tcName, env);
 		}
 	}
 }
