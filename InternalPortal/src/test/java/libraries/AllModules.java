@@ -836,11 +836,11 @@ public class AllModules extends App
 		if (actText.contains(expText)) {
 
 			Object status[] = {"QUOTES_003_VerifyLeadTimeDisplayedOrNot", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
-			quotes.values(status);
+			App.values1(status);
 		} else {
 
 			Object status[] = {"QUOTES_003_VerifyLeadTimeDisplayedOrNot", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
-			quotes.values(status);
+			App.values1(status);
 		}
 		//Edit Icon 
 		//Warning Pop Up

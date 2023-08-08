@@ -32,7 +32,6 @@ public class Filters_TestCases extends App
 				price.closeIcon();
 			} catch (Exception e2) {}
 		}
-		System.exit(0);
 		
 		//check filters in parts purchase list view
 		filters.filtersInPartsPucrhase("Braden Morris", "Emergency Breakdown",

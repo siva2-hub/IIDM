@@ -419,7 +419,7 @@ public class QuotePages extends App
 		}
 		return res;
 	}
-	public boolean verifyClosenadReOpenButtons(int count) throws Exception {
+	public boolean verifyClosenadReOpenButtons(int count, String env) throws Exception {
 		boolean res = false;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		try {
@@ -459,12 +459,12 @@ public class QuotePages extends App
 		String compText1 = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (compText1.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {tcName, compText1, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
-			this.values(status);
+			Object status[] = {tcName, compText1, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, compText1, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
-			this.values(status);
+			Object status[] = {tcName, compText1, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
+			App.values1(status);
 		}
 		return res;
 	}
@@ -759,12 +759,12 @@ public class QuotePages extends App
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_021_VerifyReOpen_ButtonInQuoteDetailePage");
 		//Re Open Quote
-		this.verifyClosenadReOpenButtons( 1);
+		this.verifyClosenadReOpenButtons( 1, env);
 
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_022_VerifyClose_ButtonInQuoteDetailePage");
 		//Close Quote
-		this.verifyClosenadReOpenButtons( 2);
+		this.verifyClosenadReOpenButtons( 2, env);
 
 		return res;
 	}

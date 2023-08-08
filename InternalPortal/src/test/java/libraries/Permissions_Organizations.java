@@ -20,7 +20,7 @@ public class Permissions_Organizations extends Permissions
 		String actURL[] = this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, count);
 		System.out.println("current url is "+actURL[0]);
 		driver.navigate().to(actURL[0].replace("users", actURL[1]));
-		Thread.sleep(2000);
+		App.spinner(); Thread.sleep(1200);
 		System.out.println("paragraphs tags are "+driver.findElements(By.tagName("p")).size());
 		String message = "";String expText = "";boolean sta = false;
 		if (count==2) {
