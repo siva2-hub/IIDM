@@ -48,16 +48,16 @@ public class FiltersPages extends App
 			if (actTech.contains(tech) && actUrgency.contains(urgency)) 
 			{
 				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage",
-						"Passed", java.time.LocalDate.now().toString(), env};
+						"Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			} else {
 				Object status[] = {tcName, "Displayed Filter is "+actTech, "Applied Filter is "+tech, "PartsPurchasePage",
-						"Failed", java.time.LocalDate.now().toString(), env};
+						"Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			Object status[] = {tcName, "Applied Filters not Available", "", "PartsPurchasePage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, "Applied Filters not Available", "", "PartsPurchasePage", "Passed", java.time.LocalDateTime.now().toString()};
 			App.values1(status);
 		}
 	}
@@ -83,16 +83,16 @@ public class FiltersPages extends App
 			if (actPOMinQty.contains(minQty) ) 
 			{
 				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty,
-						"DiscountCodesPage", "Passed", java.time.LocalDate.now().toString(), env};
+						"DiscountCodesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			} else {
 				Object status[] = {tcName, "Displayed Filter is "+actPOMinQty, "Applied Filter is "+minQty,
-						"DiscountCodesPage", "Failed", java.time.LocalDate.now().toString(), env};
+						"DiscountCodesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			Object status[] = {tcName, "Applied Filters not Available", "", "DiscountCodesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, "Applied Filters not Available", "", "DiscountCodesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 	}
@@ -147,16 +147,16 @@ public class FiltersPages extends App
 			if (actAtType.contains(actType) || actStats.equalsIgnoreCase(stats)) 
 			{
 				Object status[] = {tcName, "Displayed Filter is "+actAtType+", "+actStats,
-						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Passed", java.time.LocalDate.now().toString(), env};
+						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			} else {
 				Object status[] = {tcName, "Displayed Filter is "+actAtType+", "+actStats,
-						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Failed", java.time.LocalDate.now().toString(), env};
+						"Applied Filter is "+actType+", "+stats, moduleName+"Page", "Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			Object status[] = {tcName, "Applied Filters not Available", "", "OrganizationssPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, "Applied Filters not Available", "", "OrganizationssPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 	}
@@ -208,7 +208,7 @@ public class FiltersPages extends App
 	}
 	public boolean filtersInPricingListView(String disCountCode, String env) throws Exception 
 	{
-		String dt = LocalDate.now().toString()+" "+LocalTime.now().toString();
+		String dt = java.time.LocalDateTime.now().toString();
 		PricingPages price = new PricingPages();
 		price.pricingPage("Pricing");
 		//Warning Pop Up
@@ -290,11 +290,11 @@ public class FiltersPages extends App
 		String expText = stats;
 		if (actText.toLowerCase().equals(expText.toLowerCase())) {
 			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			Object status[] = {tcName, "Displayed Filter is "+actText, "Applied Filter is "+expText, tabName+"Page",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 	}

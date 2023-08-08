@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -131,7 +132,7 @@ public class App {
 			String expText = rs.getString("expected_text");
 			String pn = rs.getString("page_name");
 			String status = rs.getString("status");
-			Date dt = rs.getDate("date");
+			String dt = rs.getString("date");
 			String inst = rs.getString("environment");
 			row = sheet.createRow(col);
 			row.createCell(0).setCellValue(tc);
@@ -162,7 +163,7 @@ public class App {
 		}
 		//Adjust the column width to header row
 		sheet.setColumnWidth(0, 20*600); sheet.setColumnWidth(1, 20*400); sheet.setColumnWidth(2,20*400);
-		sheet.setColumnWidth(3, 20*255); sheet.setColumnWidth(4,20*166); sheet.setColumnWidth(5, 20*157);
+		sheet.setColumnWidth(3, 20*255); sheet.setColumnWidth(4,20*166); sheet.setColumnWidth(5, 20*253);
 		sheet.setColumnWidth(6, 20*177);
 		con.close();
 		wb.write(fo);
@@ -338,13 +339,14 @@ public class App {
 		}
 	}
 	public static void values1(Object data[]) throws Exception {
+		String date = java.time.LocalDateTime.now().toString().replace("T", " ").substring(0, 19);
 		Class.forName("com.mysql.jdbc.Driver");  
 		//String dbName = "demo"; String userName = "root"; String pwd = "siva7661@"; String host = "localhost";
 		String dbName = "testing"; String userName = "enterpi"; String pwd = "enterpi@1234"; String host = "192.168.1.35";
 		Connection con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+dbName, userName, pwd);
 		Statement stmt=con.createStatement(); 
 		String sql = "INSERT INTO buzzworld_automation_logs ( test_case_name, actual_text, expected_text, page_name, status, date, environment) "
-				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "','"+data[5]+"', '"+data[6]+"')";
+				+ "VALUES ('"+ data[0]+ "',\""+ data[1] + "\",\""+ data[2] + "\",'" + data[3] + "','" + data[4]+ "','"+date+"','"+data[6]+"')";
 		stmt.executeUpdate(sql);  
 	}
 }

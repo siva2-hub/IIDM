@@ -36,7 +36,7 @@ public class Permissions_RepairPages extends Permissions
 		String vals[] = {url, path};
 		return vals;
 	}
-	public boolean verifyRepairPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count)  throws Exception
+	public boolean verifyRepairPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env)  throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -61,7 +61,7 @@ public class Permissions_RepairPages extends Permissions
 
 		} else if(count==3) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'vendor_logo')]")));
-			//			PricingPages price = new PricingPages();
+			//PricingPages price = new PricingPages();
 			driver.findElement(By.xpath("//*[text() = 'Create']")).click();
 			Thread.sleep(1400);
 			if(driver.findElement(By.xpath("//*[contains(@id,'ds--dropdown')]")).getText().contains("RMA")) {
@@ -78,12 +78,12 @@ public class Permissions_RepairPages extends Permissions
 		boolean res = false;
 		if (check) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Repairs_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Repairs_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Repairs_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Repairs_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
@@ -115,7 +115,7 @@ public class Permissions_RepairPages extends Permissions
 		String vals[] = {url, path, xpath1};
 		return vals;
 	}
-	public boolean verifyAddToQuotePermissionAsYes(String tcName, String itemName, String tabName, String labelName, int count)throws Exception
+	public boolean verifyAddToQuotePermissionAsYes(String tcName, String itemName, String tabName, String labelName, int count, String env)throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -143,9 +143,13 @@ public class Permissions_RepairPages extends Permissions
 			} catch (Exception e) {
 				System.out.println("try block error is "+e.getMessage());
 			}
+			App.spinner();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Pending Quote']")));
 			Thread.sleep(1600);
 			driver.findElement(By.xpath("//*[text() = 'Pending Quote']")).click();
+			App.spinner(); Thread.sleep(1000);
+			driver.findElement(By.xpath("//*[@row-index = '0']")).findElements(By.xpath("//*[starts-with(@style, 'left')]")).get(5).click();
+			App.spinner(); Thread.sleep(1200);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src, 'Toe-Tag-Scanner')]")));
 			Thread.sleep(500);
 		}
@@ -161,12 +165,12 @@ public class Permissions_RepairPages extends Permissions
 		boolean res = false;
 		if (actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Repairs_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Repairs_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Repairs_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "In Item displayed button is "+actText, "Repairs_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 
 		return res;

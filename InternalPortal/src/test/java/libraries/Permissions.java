@@ -64,7 +64,7 @@ public class Permissions extends App
 		String vals[] = {url, path};
 		return vals;
 	}
-	public boolean verifyAdminTabs_None(String tcName,String itemName, String tabName, String labelName, int count) throws Exception
+	public boolean verifyAdminTabs_None(String tcName,String itemName, String tabName, String labelName, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -82,18 +82,18 @@ public class Permissions extends App
 		boolean res = false;
 		if (message.equalsIgnoreCase("Sorry, you do not have permissions to access this page.") && actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Permissions", "Failed", "", env};
+			App.values1(status);
 			price.takesScreenShot(tcName+".png");
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean adminTabwithViewPermission(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
+	public boolean adminTabwithViewPermission(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -165,14 +165,14 @@ public class Permissions extends App
 			if (actText.equals(expText)&& editCount==0) {
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Passed"};
+						"Permissions", "Passed", "", env};
 
-				qp.values(status);
+				App.values1(status);
 			} else {
 				res = false;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Failed"};
-				qp.values(status);
+						"Permissions", "Failed", "", env};
+				App.values1(status);
 				price.takesScreenShot(tcName+".png");
 			}
 		} else {
@@ -180,14 +180,14 @@ public class Permissions extends App
 			if (actText.equals(expText)&& editCount==0) {
 				res = true;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Passed"};
+						"Permissions", "Passed", "", env};
 
-				qp.values(status);
+				App.values1(status);
 			} else {
 				res = false;
 				Object status[] = {tcName, "actual displayed option is "+actText, "expected displayed option is "+expText+" edit count is "+editCount,
-						"Permissions", "Failed"};
-				qp.values(status);
+						"Permissions", "Failed", "", env};
+				App.values1(status);
 				price.takesScreenShot(tcName+".png");
 			}
 			this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);

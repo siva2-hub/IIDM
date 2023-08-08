@@ -86,11 +86,11 @@ public class QuotePages extends App
 		String expText = driver.findElement(By.id("repair-items")).findElement(By.tagName("h4")).getText();
 		if (actText!=expText) {
 			res = true;
-			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_002_VerifySelectItemToQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -102,11 +102,11 @@ public class QuotePages extends App
 		String expText = "OPEN";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_001_VerifyCreateQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -128,11 +128,11 @@ public class QuotePages extends App
 		String expText = "APPROVED";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_004_VerifyApproveButton", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -144,11 +144,11 @@ public class QuotePages extends App
 		String expText = "DELIVERED TO CUSTOMER";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_005_VerifySubmitForCustomerApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -188,11 +188,11 @@ public class QuotePages extends App
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		//Quote Clone from Quote for Parts
@@ -208,11 +208,11 @@ public class QuotePages extends App
 		String expText = "PENDING APPROVAL";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_003_VerifySubmitForInternalApproval", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -280,11 +280,11 @@ public class QuotePages extends App
 				+ "OPEN";
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"QUOTES_008_VerifyReviseQuote", actText, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -329,7 +329,7 @@ public class QuotePages extends App
 		if (gridText=="") {
 			res = false;
 			Object status[] = {tcName, "No Quotes for Parts Found! for "+tcName, searchBy, "QuotesPage", "Failed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			//			App.logout();
 		} else {
@@ -347,11 +347,11 @@ public class QuotePages extends App
 			}
 			if (actText.toLowerCase().contains(searchBy.toLowerCase())) {
 				res = true;
-				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			} else {
 				res = false;
-				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+				Object status[] = {tcName, actText, searchBy, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 				//				App.logout();
 			}
@@ -409,12 +409,12 @@ public class QuotePages extends App
 		if (compText1.equalsIgnoreCase("Search By Company Name")) {
 			res = true;
 			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Passed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"QUOTES_020_VerifyResetandClearButtonInFiltersPage", compText1, "", "QuotesPage", "Failed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -459,11 +459,11 @@ public class QuotePages extends App
 		String compText1 = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (compText1.toLowerCase().contains(expText.toLowerCase())) {
 			res = true;
-			Object status[] = {tcName, compText1, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, compText1, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, compText1, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {tcName, compText1, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString()};
 			this.values(status);
 		}
 		return res;
@@ -532,12 +532,12 @@ public class QuotePages extends App
 		if (filterCheck) {
 			res = true;
 			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance working.", "",
-					"QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+					"QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status1);
 		} else {
 			res = true;
 			Object status1[] = {"QUOTES_019_VerifyFiltersStateMaintanance", "Filter State Maintanance not working.!", "",
-					"QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+					"QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status1);
 		}
 		return res;
@@ -592,11 +592,11 @@ public class QuotePages extends App
 		}
 		if (!itemsCount.equalsIgnoreCase(expText)||itemsCount.equalsIgnoreCase("13")) {
 			res = true;
-			Object status1[] = {tcName, itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status1[] = {tcName, itemsCount, expText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status1);
 		} else {
 			res = false;
-			Object status1[] = {tcName,itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+			Object status1[] = {tcName,itemsCount, expText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status1);
 		}
 		return res;
@@ -642,7 +642,7 @@ public class QuotePages extends App
 		if (gridText=="") {
 			res = false;
 			Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "No Quotes for Parts Found!", "", "QuotesPage",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status1);
 			Thread.sleep(1500);
 			driver.findElement(By.xpath("//*[contains(@class,'clear-text')]")).click();
@@ -660,12 +660,12 @@ public class QuotePages extends App
 			if (cName.equalsIgnoreCase(compName)&& sPerson.equalsIgnoreCase(salesPerson)&& sta.equalsIgnoreCase(status)&& qBy.equalsIgnoreCase(quotedBy)) {
 				res = true;
 				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality working", "", "QuotesPage",
-						"Passed", java.time.LocalDate.now().toString(), env};
+						"Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status1);
 			} else {
 				res = false;
 				Object status1[] = {"QUOTES_018_VerifyFiltersInQuotesListView", "Filter functionality not working.!", "", "QuotesPage",
-						"Failed", java.time.LocalDate.now().toString(), env};
+						"Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status1);
 				Thread.sleep(1500);
 				driver.findElement(By.xpath("//*[contains(@src,'filters-cancel')]")).click();
@@ -690,12 +690,12 @@ public class QuotePages extends App
 		if (ids.size()==2) {
 			res = true;
 			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print working in Quotes Detailed Page.", "",
-					"QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+					"QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"QUOTES_013_VerifyPrintFunctionality", "Print Not working..!,in Quotes Detailed Page", "",
-					"QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+					"QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -742,12 +742,12 @@ public class QuotePages extends App
 		if (optionText.contains("Option 2")) {
 			res = true;
 			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"QUOTES_025_Verify_AddOptionInQuoteDetailedView", optionText, "Option 2", "QuotesPage",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		//Warning Pop Up
@@ -806,12 +806,12 @@ public class QuotePages extends App
 			if (actText.toLowerCase().contains(ExpText.toLowerCase())) {
 				res = true;
 				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Passed",
-						java.time.LocalDate.now().toString(), env};
+						java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			} else {
 				res = false;
 				Object status[] = {tcName, actText, ExpText, "QuotesPage", "Failed",
-						java.time.LocalDate.now().toString(), env};
+						java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}
 		} else {
@@ -824,7 +824,7 @@ public class QuotePages extends App
 			System.out.println("after clone  cust info "+afterCloneCust);
 			res = false;
 			Object status[] = {"QUOTES_026_VerifyQuoteClone_QuotesForParts", "", "", "QuotesPage", "Failed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -977,18 +977,18 @@ public class QuotePages extends App
 			if(actText.toLowerCase().contains("OPEN".toLowerCase())) {
 				res = true;
 				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
-						"Quote status is "+actText, "QuotesPage", "Passed", java.time.LocalDate.now().toString(), env};
+						"Quote status is "+actText, "QuotesPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}else {
 				res = false;
 				Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
-						"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+						"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 			}
 		} else {
 			res = false;
 			Object status[] = {"QUOTES_027_VerifyQuoteClone_QuotesForRepairs", "Quote Type is "+quoteType,
-					"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDate.now().toString(), env};
+					"Quote status is "+actText, "QuotesPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -1061,12 +1061,12 @@ public class QuotePages extends App
 		if (actText.contains(expText)) {
 			res = true;
 			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"QUOTES_028_Verify_Decline_QuotesForParts", actText, expText, "QuotesPage",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;

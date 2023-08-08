@@ -40,7 +40,7 @@ public class Permissions_PricingPages extends Permissions
 		String vals[] = {url, path};
 		return vals;
 	}
-	public boolean verifyPricingermissionsAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
+	public boolean verifyPricingermissionsAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -56,12 +56,12 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase("Sorry, you do not have permissions to access this page.")) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
@@ -97,7 +97,7 @@ public class Permissions_PricingPages extends Permissions
 		String vals[] = {url, path, xpath1};
 		return vals;
 	}
-	public boolean verifyPricingExportImportPermissions(String tcName, String itemName, String tabName, String labelName, int count, int xpCount, String btnName, int btnCount) throws Exception
+	public boolean verifyPricingExportImportPermissions(String tcName, String itemName, String tabName, String labelName, int count, int xpCount, String btnName, int btnCount, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -131,17 +131,17 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.clickYesButton(itemName, tabName, labelName, count, xpCount, btnCount);
 		return res;
 	}
-	public boolean verifyPricingPermissionsAsView(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
+	public boolean verifyPricingPermissionsAsView(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -165,12 +165,12 @@ public class Permissions_PricingPages extends Permissions
 		boolean res = false;
 		if (!actText.contains(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;

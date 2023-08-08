@@ -11,79 +11,87 @@ public class PermissionsTestCases_AdminTabs extends App
 	//	@Test(enabled = false)
 	@Test(priority = 1)
 	public void testCase1() throws Exception{
+
+		//Testing environment
+		String env = "";
+		if (driver.getCurrentUrl().contains("staging")) {
+			env = "stage Instance";
+		} else {
+			env = "QA Instance";
+		}
 		//Check the Account Types as None permission
-		p.verifyAdminTabs_None("PERMNS_001_Verify_AccountType_Permission_As_None", "Admin", "Users", "Account Type", 2);
+		p.verifyAdminTabs_None("PERMNS_001_Verify_AccountType_Permission_As_None", "Admin", "Users", "Account Type", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_002_Verify_Branches_Permission_As_None", "Admin", "Users", "Branches", 2);
+		p.verifyAdminTabs_None("PERMNS_002_Verify_Branches_Permission_As_None", "Admin", "Users", "Branches", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_003_Verify_Classification_Permission_As_None", "Admin", "Users", "Classification", 2);
+		p.verifyAdminTabs_None("PERMNS_003_Verify_Classification_Permission_As_None", "Admin", "Users", "Classification", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_004_Verify_Industry_Permission_As_None", "Admin", "Users", "Industry", 2);
+		p.verifyAdminTabs_None("PERMNS_004_Verify_Industry_Permission_As_None", "Admin", "Users", "Industry", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_005_Verify_Po Min Qty_Permission_As_None", "Admin", "Users", "Po Min Qty", 2);
+		p.verifyAdminTabs_None("PERMNS_005_Verify_Po Min Qty_Permission_As_None", "Admin", "Users", "Po Min Qty", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_006_Verify_Product Class_Permission_As_None", "Admin", "Users", "Product Class", 2);
+		p.verifyAdminTabs_None("PERMNS_006_Verify_Product Class_Permission_As_None", "Admin", "Users", "Product Class", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_007_Verify_QC Control_Permission_As_None", "Admin", "Users", "QC Control", 2);
+		p.verifyAdminTabs_None("PERMNS_007_Verify_QC Control_Permission_As_None", "Admin", "Users", "QC Control", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_008_Verify_Quote Approval_Permission_As_None", "Admin", "Users", "Quote Approval", 2);
+		p.verifyAdminTabs_None("PERMNS_008_Verify_Quote Approval_Permission_As_None", "Admin", "Users", "Quote Approval", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_009_Verify_Quote Types_Permission_As_None", "Admin", "Users", "Quote Types", 2);
+		p.verifyAdminTabs_None("PERMNS_009_Verify_Quote Types_Permission_As_None", "Admin", "Users", "Quote Types", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_010_Verify_Regions_Permission_As_None", "Admin", "Users", "Regions", 2);
+		p.verifyAdminTabs_None("PERMNS_010_Verify_Regions_Permission_As_None", "Admin", "Users", "Regions", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_011_Verify_Sales Potential_Permission_As_None", "Admin", "Users", "Sales Potential", 2);
+		p.verifyAdminTabs_None("PERMNS_011_Verify_Sales Potential_Permission_As_None", "Admin", "Users", "Sales Potential", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_012_Verify_Terms & Conditions_Permission_As_None", "Admin", "Users", "Terms & Conditions", 2);
+		p.verifyAdminTabs_None("PERMNS_012_Verify_Terms & Conditions_Permission_As_None", "Admin", "Users", "Terms & Conditions", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_013_Verify_Territories_Permission_As_None", "Admin", "Users", "Territories", 2);
+		p.verifyAdminTabs_None("PERMNS_013_Verify_Territories_Permission_As_None", "Admin", "Users", "Territories", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_014_Verify_User Roles_Permission_As_None", "Admin", "Users", "User Roles", 2);
+		p.verifyAdminTabs_None("PERMNS_014_Verify_User Roles_Permission_As_None", "Admin", "Users", "User Roles", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_015_Verify_Vendors_Permission_As_None", "Admin", "Users", "Vendors", 2);
+		p.verifyAdminTabs_None("PERMNS_015_Verify_Vendors_Permission_As_None", "Admin", "Users", "Vendors", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_016_Verify_Warehouse_Permission_As_None", "Admin", "Users", "Warehouse", 2);
+		p.verifyAdminTabs_None("PERMNS_016_Verify_Warehouse_Permission_As_None", "Admin", "Users", "Warehouse", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_017_Verify_Zip Codes_Permission_As_None", "Admin", "Users", "Zip Codes", 2);
+		p.verifyAdminTabs_None("PERMNS_017_Verify_Zip Codes_Permission_As_None", "Admin", "Users", "Zip Codes", 2, env);
 		//
-		p.verifyAdminTabs_None("PERMNS_096_Verify_Product Category_Permission_As_None", "Admin", "Users", "Product Category", 2);
+		p.verifyAdminTabs_None("PERMNS_096_Verify_Product Category_Permission_As_None", "Admin", "Users", "Product Category", 2, env);
 
 		//Check the Account Types as View permission
-		p.adminTabwithViewPermission("PERMNS_018_Verify_Account Type_Permission_As_View","Admin", "Users", "Account Type", 3);
+		p.adminTabwithViewPermission("PERMNS_018_Verify_Account Type_Permission_As_View","Admin", "Users", "Account Type", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_019_Verify_Branches_Permission_As_View","Admin", "Users", "Branches", 3);
+		p.adminTabwithViewPermission("PERMNS_019_Verify_Branches_Permission_As_View","Admin", "Users", "Branches", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_020_Verify_Regions_Permission_As_View","Admin", "Users", "Regions", 3);
+		p.adminTabwithViewPermission("PERMNS_020_Verify_Regions_Permission_As_View","Admin", "Users", "Regions", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_021_Verify_Territories_Permission_As_View","Admin", "Users", "Territories", 3);
+		p.adminTabwithViewPermission("PERMNS_021_Verify_Territories_Permission_As_View","Admin", "Users", "Territories", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_022_Verify_Zip Codes_Permission_As_View","Admin", "Users", "Zip Codes", 3);
+		p.adminTabwithViewPermission("PERMNS_022_Verify_Zip Codes_Permission_As_View","Admin", "Users", "Zip Codes", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_023_Verify_Warehouse_Permission_As_View","Admin", "Users", "Warehouse", 3);
+		p.adminTabwithViewPermission("PERMNS_023_Verify_Warehouse_Permission_As_View","Admin", "Users", "Warehouse", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_024_Verify_Classifications_Permission_As_View","Admin", "Users", "Classification", 3);
+		p.adminTabwithViewPermission("PERMNS_024_Verify_Classifications_Permission_As_View","Admin", "Users", "Classification", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_025_Verify_Contact Types_Permission_As_View","Admin", "Users", "Contact Types", 3);
+		p.adminTabwithViewPermission("PERMNS_025_Verify_Contact Types_Permission_As_View","Admin", "Users", "Contact Types", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_026_Verify_Industries_Permission_As_View","Admin", "Users", "Industry", 3);
+		p.adminTabwithViewPermission("PERMNS_026_Verify_Industries_Permission_As_View","Admin", "Users", "Industry", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_027_Verify_PO Min Qty_Permission_As_View","Admin", "Users", "PO Min Qty", 3);
+		p.adminTabwithViewPermission("PERMNS_027_Verify_PO Min Qty_Permission_As_View","Admin", "Users", "PO Min Qty", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_028_Verify_Quote Types_Permission_As_View","Admin", "Users", "Quote Types", 3);
+		p.adminTabwithViewPermission("PERMNS_028_Verify_Quote Types_Permission_As_View","Admin", "Users", "Quote Types", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_029_Verify_Sales Potential_Permission_As_View","Admin", "Users", "Sales Potential", 3);
+		p.adminTabwithViewPermission("PERMNS_029_Verify_Sales Potential_Permission_As_View","Admin", "Users", "Sales Potential", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_030_Verify_Vendors_Permission_As_View","Admin", "Users", "Vendors", 3);
+		p.adminTabwithViewPermission("PERMNS_030_Verify_Vendors_Permission_As_View","Admin", "Users", "Vendors", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_031_Verify_Quote Approval_Permission_As_View","Admin", "Users", "Quote Approval", 3);
+		p.adminTabwithViewPermission("PERMNS_031_Verify_Quote Approval_Permission_As_View","Admin", "Users", "Quote Approval", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_032_Verify_User Roles_Permission_As_View","Admin", "Users", "User Roles", 3);
+		p.adminTabwithViewPermission("PERMNS_032_Verify_User Roles_Permission_As_View","Admin", "Users", "User Roles", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_033_Verify_Terms & Conditions_Permission_As_View","Admin", "Users", "Terms & Conditions", 3);
+		p.adminTabwithViewPermission("PERMNS_033_Verify_Terms & Conditions_Permission_As_View","Admin", "Users", "Terms & Conditions", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_034_Verify_QC Control_Permission_As_View","Admin", "Users", "QC Control", 3);
+		p.adminTabwithViewPermission("PERMNS_034_Verify_QC Control_Permission_As_View","Admin", "Users", "QC Control", 3, env);
 		//
-		p.adminTabwithViewPermission("PERMNS_094_Verify_Product Category_Permission_As_View","Admin", "Users", "Product Category", 3);
+		p.adminTabwithViewPermission("PERMNS_094_Verify_Product Category_Permission_As_View","Admin", "Users", "Product Category", 3, env);
 
 
 		//		if(res) {

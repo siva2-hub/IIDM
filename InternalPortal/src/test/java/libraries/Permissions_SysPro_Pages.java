@@ -10,7 +10,7 @@ import commonUtils.App;
 
 public class Permissions_SysPro_Pages extends Permissions
 {
-	public boolean verifyInventoryPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
+	public boolean verifyInventoryPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -27,7 +27,7 @@ public class Permissions_SysPro_Pages extends Permissions
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+stockCode+"')]")));
 			quotes.selectDropDown("CMT-G01");
 		}
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@viewBox='0 0 16 16']")));
+		App.spinner();
 		String message = "";
 		String actText = driver.findElement(By.xpath("/html/body/div/div/div[3]")).getText();
 		boolean sta = false;
@@ -47,17 +47,17 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+actText, "Syspro_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyJobsPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
+	public boolean verifyJobsPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -85,17 +85,17 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+expText, "Syspro_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyOrdersPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
+	public boolean verifyOrdersPermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -109,17 +109,17 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyPartsPurchasePermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception 
+	public boolean verifyPartsPurchasePermissionAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception 
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -140,12 +140,12 @@ public class Permissions_SysPro_Pages extends Permissions
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+expText, "Syspro_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;

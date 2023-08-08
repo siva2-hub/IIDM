@@ -12,7 +12,7 @@ import commonUtils.App;
 
 public class Permissions_Organizations extends Permissions
 {
-	public boolean verifyOrganizationsPermissionsAsNone(String tcName, String itemName, String tabName, String labelName, int count) throws Exception
+	public boolean verifyOrganizationsPermissionsAsNone(String tcName, String itemName, String tabName, String labelName, int count, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -41,17 +41,17 @@ public class Permissions_Organizations extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, labelName+"_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, labelName+"_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, labelName+"_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, labelName+"_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean exportPermissionAsYesInContacts(String tcName, String itemName, String tabName, String xpathName, String urlName, String expText, String yes) throws Exception
+	public boolean exportPermissionAsYesInContacts(String tcName, String itemName, String tabName, String xpathName, String urlName, String expText, String yes, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -88,12 +88,12 @@ public class Permissions_Organizations extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, "Top displayed text is "+actText, actText, urlName+"_Permissions", "Passed" };
-			qp.values(status);
+			Object status[] = {tcName, "Top displayed text is "+actText, actText, urlName+"_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "Top displayed text is "+actText, actText, urlName+"_Permissions", "Failed" };
-			qp.values(status);
+			Object status[] = {tcName, "Top displayed text is "+actText, actText, urlName+"_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		return res;
 	}

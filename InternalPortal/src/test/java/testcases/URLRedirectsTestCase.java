@@ -11,8 +11,14 @@ public class URLRedirectsTestCase extends App
 	//@Test(enabled = false)
 	@Test(priority = 1)
 	public void testCase18() throws Exception {
+		String env = "";
+		if (driver.getCurrentUrl().contains("staging")) {
+			env = "Stage Instance";
+		} else {
+			env = "QA Instance";
+		}
 		all = new AllModules();
-		all.linksRedirectsOrNot();
+		all.linksRedirectsOrNot(env);
 	}
 	//@Test(enabled = false)
 	@Test(priority = 2)
@@ -27,6 +33,12 @@ public class URLRedirectsTestCase extends App
 	//@Test(enabled = false)
 	@Test(priority = 4)
 	public void testCase4() throws Exception {
-		all.logoutCheckURLRedirectsOrNot();
+		String env = "";
+		if (driver.getCurrentUrl().contains("staging")) {
+			env = "Stage Instance";
+		} else {
+			env = "QA Instance";
+		}
+		all.logoutCheckURLRedirectsOrNot(env);
 	}
 }

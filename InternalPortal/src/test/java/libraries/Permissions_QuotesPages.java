@@ -38,7 +38,7 @@ public class Permissions_QuotesPages extends Permissions
 		String vals[] = {url, path};
 		return vals;
 	}
-	public boolean verifyQuotesPermissionAsNone(String tcName, String itemName, String tabName, String labelName,  int tabCount ,int count) throws Exception
+	public boolean verifyQuotesPermissionAsNone(String tcName, String itemName, String tabName, String labelName,  int tabCount ,int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -61,12 +61,12 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (message.equalsIgnoreCase(expText)) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
@@ -100,7 +100,7 @@ public class Permissions_QuotesPages extends Permissions
 		String vals[] = {url, path, xpath1};
 		return vals;
 	}
-	public boolean verifyCreateSalesOrderPermissionAsYes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyCreateSalesOrderPermissionAsYes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -184,17 +184,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyQuoteClosePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyQuoteClosePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -264,17 +264,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed", "",env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyEditIIDMCostPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyEditIIDMCostPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -319,17 +319,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyQuoteReOpenPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyQuoteReOpenPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Warning Pop Up
 		App.displayPopUp(tcName);
@@ -382,17 +382,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyReviseQuotePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyReviseQuotePermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -445,12 +445,12 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, "Revise Quote is Displayed "+message, "", "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
@@ -504,7 +504,7 @@ public class Permissions_QuotesPages extends Permissions
 		rp.toastContainer("Proceed");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[text() = 'Submit for Internal Approval']")));
 	}
-	public boolean verifySendToCustomerPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifySendToCustomerPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -561,17 +561,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, "is Displayed Send To Customer ==> "+message, "", "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyPayTermsPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count) throws Exception
+	public boolean verifyPayTermsPermissionAsYes_Quotes(String tcName, String itemName, String tabName, String labelName, int childCount, int count, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -621,17 +621,17 @@ public class Permissions_QuotesPages extends Permissions
 		boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, message, "Top displayed text is "+message, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;
 	}
-	public boolean verifyQuoteApprovalLimitPermissionAsNone_Quotes(String tcName, String itemName, String tabName, String labelName,String perName) throws Exception
+	public boolean verifyQuoteApprovalLimitPermissionAsNone_Quotes(String tcName, String itemName, String tabName, String labelName,String perName, String env) throws Exception
 	{
 		//Pop Up message
 		App.displayPopUp(tcName);
@@ -695,12 +695,12 @@ public class Permissions_QuotesPages extends Permissions
 		Thread.sleep(2000);	boolean res = false;
 		if (sta) {
 			res = true;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Passed", "", env};
+			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed"};
-			qp.values(status);
+			Object status[] = {tcName, actText, "Top displayed text is "+actText, "Quotes_Permissions", "Failed", "", env};
+			App.values1(status);
 		}
 		this.verifyAdminTabswithNonePermission(itemName, tabName, labelName, 4);
 		return res;

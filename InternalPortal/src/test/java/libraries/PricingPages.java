@@ -89,12 +89,12 @@ public class PricingPages extends App
 		if (expStockCode.equalsIgnoreCase(actStockCode)) {
 			res = true;
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Passed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"PRICING_001_VerifyAddProduct", actStockCode, expStockCode, "PricingPage", "Failed",
-					java.time.LocalDate.now().toString(), env};
+					java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -131,11 +131,11 @@ public class PricingPages extends App
 		this.closeIcon();
 		if (!beforeEdit.equalsIgnoreCase(afterEdit)) {
 			res = true;
-			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Passed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Passed", java.time.LocalDateTime.now().toString()};
 			App.values1(status);
 		} else {
 			res = false;
-			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Failed", java.time.LocalDate.now().toString()};
+			Object status[] = {"PRICING_002_VerifyUpdateProduct", "before update List Price is "+beforeEdit, "after update List Price is "+afterEdit, "PricingPage", "Failed", java.time.LocalDateTime.now().toString()};
 			App.values1(status);
 		}
 		return res;
@@ -186,12 +186,12 @@ public class PricingPages extends App
 		if (dc.equalsIgnoreCase(actStockCode)) {
 			res = true;
 			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"PRICING_003_VerifyAddDiscountCode", actStockCode, dc, "PricingPage",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -228,12 +228,12 @@ public class PricingPages extends App
 		if (!beforeUpdate.equalsIgnoreCase(afterUpdate)) {
 			res = true;
 			Object status[] = {"PRICING_004_VerifyUpdateDiscountCode", "before update Our Price value is "+beforeUpdate,
-					"after update Our Price value is "+afterUpdate, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+					"after update Our Price value is "+afterUpdate, "PricingPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {"PRICING_004_VerifyUpdateDiscountCode", "before update Our Price value is "+beforeUpdate, 
-					"after update Our Price value is "+afterUpdate, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+					"after update Our Price value is "+afterUpdate, "PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -305,19 +305,19 @@ public class PricingPages extends App
 			String actText = driver.findElement(By.xpath("//*[@role='dialog']")).findElement(By.tagName("h3")).getText();
 			if (actText.equals(expText)) {
 				res = true;
-				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 				this.closeIcon();
 			} else {
 				res = false;
-				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+				Object status[] = {"PRICING_005_VerifyImport", actText, expText, "PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 				App.values1(status);
 				this.closeIcon();
 			}
 		} else {
 			res = false;
 			String errorMsg = driver.findElement(By.xpath("//*[contains(@class,'error-msg')]")).getText();
-			Object status[] = {"PRICING_005_VerifyImport", summaryText, errorMsg, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {"PRICING_005_VerifyImport", summaryText, errorMsg, "PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		}
@@ -476,13 +476,13 @@ public class PricingPages extends App
 			res = true;
 			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
 					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricingPage",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {tcName, "actual buy price "+abp+" expected buy price "+ebp,
 					"actual sell price "+asp+" expected sell price "+esp, "NonStandardPricingPage",
-					"Failed", java.time.LocalDate.now().toString()};
+					"Failed", java.time.LocalDateTime.now().toString()};
 			App.values1(status);
 		}
 		return res;
@@ -627,13 +627,13 @@ public class PricingPages extends App
 			res = true;
 			Object status[] = {tcName, "actual Sugested price "+actSp+" expected Sugested price "+expSp,
 					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricingPage",
-					"Passed", java.time.LocalDate.now().toString(), env};
+					"Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		} else {
 			res = false;
 			Object status[] = {tcName, "actual Sugested price "+actSp+" expected Sugested price "+expSp,
 					"actual quote price "+actQp+" expected quote price "+expQp, "NonStandardPricingPage",
-					"Failed", java.time.LocalDate.now().toString(), env};
+					"Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 		}
 		return res;
@@ -704,12 +704,12 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		}
@@ -755,12 +755,12 @@ public class PricingPages extends App
 		boolean res = false;
 		if (actText.equals(expText)) {
 			res = true;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "PricingPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
-			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+			Object status[] = {tcName, actText, expText, "PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		}
@@ -831,13 +831,13 @@ public class PricingPages extends App
 		if (sectionText.toLowerCase().equals(vendorText.toLowerCase())) {
 			res = true;
 			Object status[] = {tcName, "is different pricing option applied", "displayed msg is "+sectionText, 
-					"PricingPage", "Passed", java.time.LocalDate.now().toString(), env};
+					"PricingPage", "Passed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		} else {
 			res = false;
 			Object status[] = {tcName, "is different pricing option  not applied", "displayed msg is "+sectionText,
-					"PricingPage", "Failed", java.time.LocalDate.now().toString(), env};
+					"PricingPage", "Failed", java.time.LocalDateTime.now().toString(), env};
 			App.values1(status);
 			this.closeIcon();
 		}
