@@ -133,7 +133,7 @@ public class AllModules extends App
 		App.displayPopUp("REPAIRS_018_VerifyFilters");
 
 		RepairPages repair = new RepairPages();
-		repair.verifyFilters("123 E Doty Corporation", "Dallas House", "Check In Pending", env);
+		repair.verifyFilters("123 E Doty Corporation", "Dallas House", "Receiving", env);
 
 		//Filter's State Maintenance
 		//Warning Pop Up
@@ -146,7 +146,7 @@ public class AllModules extends App
 		App.displayPopUp("REPAIRS_002_VerifyCreateRMA ");
 
 		repair.createRMA();
-		String expText = "CHECK IN PENDING";
+		String expText = "RECEIVING";
 		String repairId = driver.findElement(By.xpath("//*[@class ='id-num']")).getText().replace("#", "");
 		String actText = driver.findElement(By.xpath("//*[@class='quote-num-and-status']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
@@ -166,12 +166,12 @@ public class AllModules extends App
 		//Add New Item
 		//Warning Pop Up
 		App.displayPopUp("REPAIRS_020_VerifyAddNewItem");
-		
+
 		repair.verifyAddNewItem(env);
 		//Delete Row option in Add New Item Page
 		//Warning Pop Up
 		App.displayPopUp("REPAIRS_021_Verify_Delete_Row_In Add New Items");
-		
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Add Items']")));
 		driver.findElement(By.xpath("//*[text()='Add Items']")).click();
 		driver.findElement(By.xpath("//*[text()='Add New Items']")).click();
@@ -270,10 +270,8 @@ public class AllModules extends App
 		//Warning Pop Up
 		App.displayPopUp("REPAIRS_004_VerifyAssignLocation");
 
-		List<WebElement>  btn=  driver.findElement(By.xpath("//*[@id='repair-items']")).findElements(By.xpath("//*[contains(@class,'action-item icon-bg-hover')]"));
-		btn.get(0).click();
-		Thread.sleep(1000);
-		Thread.sleep(1500);
+		driver.findElement(By.xpath("//*[text() = 'Assign Location']")).click();
+		App.spinner(); Thread.sleep(1200);
 		Actions act = new Actions(driver);
 		WebElement editIcon = driver.findElement(By.xpath("//*[@class='quantity-parent']")).findElement(By.tagName("svg"));
 		act.moveToElement(editIcon).perform();
@@ -287,6 +285,8 @@ public class AllModules extends App
 			driver.findElement(By.xpath("//*[@title='Undo Changes']")).click();
 		}
 		driver.findElement(By.name("storage")).sendKeys("New York");
+		driver.findElement(By.xpath("//*[@placeholder= 'Type here']")).sendKeys("Internal Item Notes While Assign Location");
+		Thread.sleep(1200);
 		driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElement(By.tagName("button")).click();
 		App.spinner();
 		Thread.sleep(1200);
@@ -310,6 +310,7 @@ public class AllModules extends App
 		act.sendKeys(Keys.TAB).build().perform();
 		act.sendKeys(Keys.SPACE).build().perform();
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
+		driver.findElement(By.xpath("//textarea[@placeholder= 'Type here']")).sendKeys("Internal Item Notes While Assign Technician");
 		List<WebElement> btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		for(int i=0;i<btns.size();i++) {
 			if(btns.get(i).getText().equalsIgnoreCase("Assign")) {
@@ -332,12 +333,14 @@ public class AllModules extends App
 		//Warning Pop Up
 		App.displayPopUp("REPAIRS_006_VerifyEvaluateItem");
 
-		driver.findElement(By.className("hides")).click();
+		driver.findElement(By.xpath("//*[text() = 'Evaluate']")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[contains(@class,'auto__dropdown-indicator')]")).click();
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
 		driver.findElement(By.name("estimated_hrs")).sendKeys("23");
 		driver.findElement(By.name("price")).sendKeys("198");
+		driver.findElement(By.xpath("//*[@placeholder = 'Estimated Parts Cast']")).sendKeys("");
+		driver.findElement(By.xpath("//textarea[@placeholder= 'Type here']")).sendKeys("Internal Item Notes While Assign Technician");
 		btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		btns.get(7).click();
 		System.out.println("count of btns are "+btns.size());
@@ -346,7 +349,7 @@ public class AllModules extends App
 		}
 		App.spinner();
 		Thread.sleep(1200);
-		expText = "REPAIRABLE";
+		expText = "PENDING QUOTE";
 		actText = driver.findElement(By.xpath("//*[@style = 'white-space: nowrap; max-width: 100%; text-overflow: ellipsis;']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			Object status[] = {"REPAIRS_006_VerifyEvaluateItem", actText, expText, "RepairsPage", "Passed", java.time.LocalDateTime.now().toString(), env};
@@ -366,7 +369,7 @@ public class AllModules extends App
 		repair.toastContainer("Accept");
 		App.spinner();
 		Thread.sleep(1500);
-		expText = "ADDED TO QUOTE";
+		expText = "PENDING APPROVAL";
 		actText = driver.findElement(By.xpath("//*[@style = 'white-space: nowrap; max-width: 100%; text-overflow: ellipsis;']")).getText();
 		if (actText.toLowerCase().contains(expText.toLowerCase())) {
 			Object status[] = {"REPAIRS_007_VerifyAddRepairableItemToQuote", actText, expText, "RepairsPage", "Passed", java.time.LocalDateTime.now().toString(), env};
@@ -845,7 +848,7 @@ public class AllModules extends App
 		//Edit Icon 
 		//Warning Pop Up
 		App.displayPopUp("QUOTES_004_VerifyBulkEdit");
-		
+
 		quotes.verifyDeleteIcon(2, env);
 		//Bulk Edit
 		driver.findElement(By.xpath("//*[contains(@class,'check_box')]")).findElement(By.tagName("label")).click();
@@ -1133,7 +1136,7 @@ public class AllModules extends App
 	public void createPartsPurchase(String tcName, String jobId, int count, String env) throws Exception 
 	{
 		Actions act = new Actions(driver);
-		
+
 		driver.findElement(By.xpath("//*[text()= 'Next']")).click();
 
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
@@ -1141,7 +1144,7 @@ public class AllModules extends App
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'OMRON')]")));
 		act.sendKeys(Keys.ENTER).build().perform();
 		driver.findElement(By.name("vendor_contact_name")).sendKeys("testAbb");
-		
+
 		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[text()= 'Item Information']")).click();
 		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(3).click();

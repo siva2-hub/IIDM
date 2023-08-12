@@ -501,7 +501,7 @@ public class RepairPages extends App
 	public boolean verifyFilters(String data, String data1, String data2, String env) throws Exception 
 	{
 		String compName = "123 E Doty Corporation"; String salesP = "Dallas House";
-		String status1 = "Check In Pending";boolean res = false;
+		String status1 = "Receiving";boolean res = false;
 		this.filters(compName, salesP, status1);
 		System.out.println("grid text after apply the filter "+driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText());
 		if (driver.findElement(By.xpath("//*[@class='ag-center-cols-viewport']")).getText().equalsIgnoreCase("")) {
