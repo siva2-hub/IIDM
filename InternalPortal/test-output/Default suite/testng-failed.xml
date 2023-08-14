@@ -5,8 +5,8 @@
     <classes>
       <class name="testcases.RepairTestCases">
         <methods>
-          <include name="logout"/>
           <include name="login"/>
+          <include name="logout"/>
           <include name="testCases"/>
         </methods>
       </class> <!-- testcases.RepairTestCases -->

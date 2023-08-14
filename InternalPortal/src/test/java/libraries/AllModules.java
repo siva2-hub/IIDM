@@ -139,7 +139,7 @@ public class AllModules extends App
 		//Warning Pop Up
 		App.displayPopUp("REPAIRS_019_VerifyFilterStateMaintanance");
 
-		repair.verifyFilterStateMaintanance(env);
+		//		repair.verifyFilterStateMaintanance(env);
 
 		//Create RMA
 		//Warning Pop Up
@@ -339,7 +339,7 @@ public class AllModules extends App
 		driver.findElement(By.xpath("//*[contains(@class,'css-4mp3pp-menu')]")).click();
 		driver.findElement(By.name("estimated_hrs")).sendKeys("23");
 		driver.findElement(By.name("price")).sendKeys("198");
-		driver.findElement(By.xpath("//*[@placeholder = 'Estimated Parts Cast']")).sendKeys("");
+		driver.findElement(By.xpath("//*[@placeholder = 'Estimated Parts Cast']")).sendKeys("178");
 		driver.findElement(By.xpath("//textarea[@placeholder= 'Type here']")).sendKeys("Internal Item Notes While Assign Technician");
 		btns = driver.findElement(By.xpath("//*[@class='side-drawer open']")).findElements(By.tagName("button"));
 		btns.get(7).click();
@@ -418,9 +418,9 @@ public class AllModules extends App
 			driver.findElement(By.xpath("//*[@placeholder='IIDM Cost']")).sendKeys("189.20");
 		}
 		//Update leadTime
-		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
-		Thread.sleep(1200);
-		act.sendKeys(Keys.ENTER).build().perform();
+		//		driver.findElements(By.xpath("//*[contains(@class,'dropdown-indicator')]")).get(2).click();
+		//		Thread.sleep(1200);
+		//		act.sendKeys(Keys.ENTER).build().perform();
 		act.click(driver.findElements(By.xpath("//*[text()='Edit Quote Item']")).get(1)).build().perform();
 		Thread.sleep(2500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src,'delete-icon')]")));

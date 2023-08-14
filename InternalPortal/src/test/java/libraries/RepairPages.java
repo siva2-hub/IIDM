@@ -540,13 +540,13 @@ public class RepairPages extends App
 		ele = driver.findElement(By.xpath("//*[text() = 'Clear']"));
 		if (ele.isDisplayed()) {
 			res = true;
-			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are stabled after refresh the page",
+			Object status[] = {"REPAIRS_0_VerifyFilterStateMaintanance", "filters  are stabled after refresh the page",
 					"", "RepairsPage", "Passed", java.time.LocalDate.now().toString(), env};
 			App.values1(status);
 		} else 
 		{
 			res = false;
-			Object status[] = {"REPAIRS_020_VerifyFilterStateMaintanance", "filters  are not stabled after refresh the page",
+			Object status[] = {"REPAIRS_01_VerifyFilterStateMaintanance", "filters  are not stabled after refresh the page",
 					"", "RepairsPage", "Failed", java.time.LocalDate.now().toString(), env};
 			App.values1(status);
 		}
